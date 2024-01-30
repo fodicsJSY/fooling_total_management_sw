@@ -222,6 +222,33 @@
 
 
     <script>
+
+        // 현재날짜
+        let currentDate = new Date();
+
+        // 연, 월, 일을 얻어옴
+        let year = currentDate.getFullYear();
+        console.log("year : ", year);
+        let month = (currentDate.getMonth() + 1).toString().padStart(2, "0"); // 월은 0부터 시작하므로 +1, 두 자리로 포맷
+        console.log("month : ", month);
+        let day = currentDate.getDate().toString().padStart(2, "0"); // 두 자리로 포맷
+        console.log("day : ", day);
+
+        // 현재 시간을 얻어옴
+        let hours = currentDate.getHours().toString().padStart(2, "0");
+        let minutes = currentDate.getMinutes().toString().padStart(2, "0");
+
+        //날짜+시간
+        var tmFc;
+        if(hours + minutes < 1800){
+            tmFc = year + month + day + "0600";
+        }
+        if(hours + minutes >= 1800){
+            tmFc = year + month + day + "1800";
+        }
+        console.log("tmFc", tmFc);
+
+
         getWeather()
         function getWeather(){
 
@@ -229,10 +256,10 @@
             const pageNo = "1";
             const numOfRows = "10";
             const dataType = "JSON";
-            const stnId = "105";
-            let tmFc = "202401300600";
+            const stnId = "105"; //강원
+
     
-            let totalUrl = 'https://apis.data.go.kr/1360000/MidFcstInfoService/getMidFcst?serviceKey=9pU1U1AX4DstHNWuttTMFHFOnRv85QODFmRrOrueaopEhKLJMbWJk1i1WrKCDhS%2F1EzPCV1TUZV%2BUn9OCPXvGA%3D%3D&pageNo=1&numOfRows=10&dataType=json&stnId=105&tmFc=202401300600';
+            let totalUrl = "https://apis.data.go.kr/1360000/MidFcstInfoService/getMidFcst?serviceKey=9pU1U1AX4DstHNWuttTMFHFOnRv85QODFmRrOrueaopEhKLJMbWJk1i1WrKCDhS%2F1EzPCV1TUZV%2BUn9OCPXvGA%3D%3D&pageNo=1&numOfRows=10&dataType=json&stnId=105&tmFc="+tmFc+"";
 
             fetch(totalUrl,{
                     method:"GET",
@@ -241,7 +268,7 @@
             )
                 .then((response) => {return response.json();})
                 .then((data) => {
-                    console.log(data);
+                    console.log("getWeather", data);
                     // 여기에서 wfSv 내용을 출력합니다.
                     const wfSvContent = data.response.body.items.item[0].wfSv;
                     console.log("wfSv Content:", wfSvContent);
@@ -250,6 +277,15 @@
                 .catch(error => console.error('Error:', error));
         }
 
+
+        // 최종 날짜 문자열 생성
+        var base_date = year + month + day;
+        console.log("base_date : ", base_date);
+
+        // 최종 시간 문자열 생성
+        var base_time = hours + minutes;
+        console.log("base_time : ", base_time);
+
         getRain()
         function getRain(){
 
@@ -257,12 +293,11 @@
             const pageNo = "1";
             const numOfRows = "10";
             const dataType = "JSON";
-            let base_date = "20240130";
-            let base_time = "00600";
+
             let nx = "86";
             let ny = "119";
     
-            let totalUrl = 'https://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getUltraSrtNcst?serviceKey=9pU1U1AX4DstHNWuttTMFHFOnRv85QODFmRrOrueaopEhKLJMbWJk1i1WrKCDhS%2F1EzPCV1TUZV%2BUn9OCPXvGA%3D%3D&pageNo=1&numOfRows=1000&dataType=json&base_date=20240130&base_time=0600&nx=86&ny=119';
+            let totalUrl = "https://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getUltraSrtNcst?serviceKey=9pU1U1AX4DstHNWuttTMFHFOnRv85QODFmRrOrueaopEhKLJMbWJk1i1WrKCDhS%2F1EzPCV1TUZV%2BUn9OCPXvGA%3D%3D&pageNo=1&numOfRows=1000&dataType=json&base_date="+base_date+"&base_time="+base_time+"&nx=86&ny=119";
 
             fetch(totalUrl,{
                     method:"GET",
@@ -271,7 +306,7 @@
             )
                 .then((response) => {return response.json();})
                 .then((data) => {
-                    console.log(data);
+                    console.log("getRain", data);
                     // 여기에서 wfSv 내용을 출력합니다.
                     //const rainContent = data.response.body.items.item[0].wfSv;
                     //console.log("rain Content:", rainContent);
