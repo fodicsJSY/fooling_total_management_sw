@@ -87,8 +87,21 @@
         }
 
 
+        /* 움직이는 텍스트 시작*/
+        .animated-title {font-size:60px; font-family:'Raleway',Sans-serif; font-weight:300; position: relative; width: 100%;max-width:100%; height: auto; padding:100px 0; overflow-x: hidden; overflow-y: hidden; }
+        .animated-title .track {position: absolute; white-space: nowrap;will-change: transform;animation: marquee 60s linear infinite; }
+        @keyframes marquee {
+        from { transform: translateX(0); }
+        to { transform: translateX(-50%); }
+        }
+        @media (hover: hover) and (min-width: 700px){
+        .animated-title .content {-webkit-transform: translateY(calc(100% - 8rem)); transform: translateY(calc(100% - 8rem));}
+            }
+        /* 움직이는 텍스트 끝*/
+
+
     </style>
-    
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 </head>
 <body>
     
@@ -104,246 +117,95 @@
     <main>
     <section>
         <div class="gridBox">
-            <div style="margin:10px;width:150px;border: 1px solid red;">
-                <div style="height:100px;">보고서</div>
-                <div style="height:40px;"><a href="#">일일보고서</a></div>
-            </div>
         </div>
-        <div class="gridBox" id="printContents" style="display:flex;flex-direction:column;justify-content:center;">
-            <div>보고서</div>
-            <div style="display:flex;flex-direction:column;justify-content:center;">
-                <div><hr></div>
-                <div>영월군 침수차단 현황</div>
-                <div>[영월군 재난 안전 대책 본부]</div>
-                <div><hr></div>
-                <div>
-                    <div style="display:flex;flex-direction:row;justify-content:space-between;">
-                        <div><strong>수위/침수</strong></div>
-                        <div><strong>단위: Cm</strong></div>
-                    </div>
-                    <div>
-                        <table border="1">
-                            <tr>
-                                <th>지역명</th>
-                                <th>01월27일</th>
-                                <th>01월28일</th>
-                                <th>01월29일</th>
-                                <th>합계</th>
-                            </tr>
-                            <tr>
-                                <td>후탄지구</td>
-                                <td>0.0</td>
-                                <td>X</td>
-                                <td>X</td>
-                                <td>X</td>
-                            </tr>
-                        </table>
-                    </div>
-                    <div style="display:flex;flex-direction:row;justify-content:space-between;">
-                        <div><strong>강우량</strong></div>
-                    </div>
-                    </div>
-                    <div>
-                        <table border="1">
-                            <tr>
-                                <th>지역명</th>
-                                <th>현재</th>
-                                <th>침수1(5cm)</th>
-                                <th>침수2(15cm)</th>
-                                <th>침수3(20cm)</th>
-                            </tr>
-                            <tr>
-                                <td>영월(도)</td>
-                                <td>0.0</td>
-                                <td>0.0</td>
-                                <td>0.0</td>
-                                <td>0.0</td>
-                            </tr>
-                            <tr>
-                                <td>상동읍(도)</td>
-                                <td>0.0</td>
-                                <td>0.0</td>
-                                <td>0.0</td>
-                                <td>0.0</td>
-                            </tr>
-                            <tr>
-                                <td>중동면(도)</td>
-                                <td>0.0</td>
-                                <td>0.0</td>
-                                <td>0.0</td>
-                                <td>0.0</td>
-                            </tr>
-                            <tr>
-                                <td>김삿갓면(도)</td>
-                                <td>0.0</td>
-                                <td>0.0</td>
-                                <td>0.0</td>
-                                <td>0.0</td>
-                            </tr>
-                            <tr>
-                                <td>영월북면(도)</td>
-                                <td>0.0</td>
-                                <td>0.0</td>
-                                <td>0.0</td>
-                                <td>0.0</td>
-                            </tr>
-                            <tr>
-                                <td>영월남면(도)</td>
-                                <td>0.0</td>
-                                <td>0.0</td>
-                                <td>0.0</td>
-                                <td>0.0</td>
-                            </tr>
-                            <tr>
-                                <td>한반도면(도)</td>
-                                <td>0.0</td>
-                                <td>0.0</td>
-                                <td>0.0</td>
-                                <td>0.0</td>
-                            </tr>
-                            <tr>
-                                <td>무릉도원면(도)</td>
-                                <td>0.0</td>
-                                <td>0.0</td>
-                                <td>0.0</td>
-                                <td>0.0</td>
-                            </tr>
-                            <tr>
-                                <td>주천(도)</td>
-                                <td>0.0</td>
-                                <td>0.0</td>
-                                <td>0.0</td>
-                                <td>0.0</td>
-                            </tr>
-                            <tr>
-                                <td>상동(도)</td>
-                                <td>0.0</td>
-                                <td>0.0</td>
-                                <td>0.0</td>
-                                <td>0.0</td>
-                            </tr>
-                        </table>
-                    </div>
-                    <div style="display:flex;flex-direction:row;justify-content:space-between;">
-                        <div><strong>경보발령 내역(최근5개)</strong></div>
-                    </div>
-                    <div>
-                        <table border="1">
-                            <tr>
-                                <th>장비명</th>
-                                <th>발생종류</th>
-                                <th>발생시간</th>
-                                <th>수동/자동</th>
-                                <th>상태</th>
-                            </tr>
-                            <tr>
-                                <td>후탄지구</td>
-                                <td>임계치 3단계</td>
-                                <td>2023-08-25 04:01:00</td>
-                                <td>자동발생</td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>후탄지구</td>
-                                <td>임계치 3단계</td>
-                                <td>2023-08-25 03:00:00</td>
-                                <td>자동발생</td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>후탄지구</td>
-                                <td>임계치 3단계</td>
-                                <td>2023-08-25 01:01:00</td>
-                                <td>자동발생</td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>후탄지구</td>
-                                <td>임계치 3단계</td>
-                                <td>2023-08-25 00:20:00</td>
-                                <td>자동발생</td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>후탄지구</td>
-                                <td>임계치 2단계</td>
-                                <td>2023-08-25 20:42:00</td>
-                                <td>자동발생</td>
-                                <td></td>
-                            </tr>
-                        </table>
-                    </div>
-                    <div style="display:flex;flex-direction:row;justify-content:space-between;">
-                        <div><strong>문자전광판 표시내용</strong></div>
-                    </div>
-                    <div>
-                        <table border="1">
-                            <tr>
-                                <th>장비명</th>
-                                <th>장비상태</th>
-                                <th>파워1</th>
-                                <th>파워2</th>
-                                <th>파워3</th>
-                            </tr>
-                            <tr>
-                                <td>후탄리 25-3</td>
-                                <td>정상</td>
-                                <td>정상</td>
-                                <td>정상</td>
-                                <td>정상</td>
-                            </tr>
-                            <tr>
-                                <td>후탄리 331-1</td>
-                                <td>정상</td>
-                                <td>정상</td>
-                                <td>정상</td>
-                                <td>정상</td>
-                            </tr>
-                        </table>
-                    </div>
-                    <div style="display:flex;flex-direction:row;justify-content:space-between;">
-                        <div><strong>차단기 상태</strong></div>
-                    </div>
-                    <div>
-                        <table border="1">
-                            <tr>
-                                <th>장비명</th>
-                                <th>차단기상태</th>
-                                <th>경고음상태</th>
-                                <th>경고등상태</th>
-                            </tr>
-                            <tr>
-                                <td>후탄리 331-1</td>
-                                <td>열림</td>
-                                <td>꺼짐</td>
-                                <td>꺼짐</td>
-                            </tr>
-                            <tr>
-                                <td>후탄리 25-3</td>
-                                <td>열림</td>
-                                <td>꺼짐</td>
-                                <td>꺼짐</td>
-                            </tr>
-                            <tr>
-                                <td>판운리 426-20</td>
-                                <td>열림</td>
-                                <td>꺼짐</td>
-                                <td>꺼짐</td>
-                            </tr>
-                            <tr>
-                                <td>광천리 998-7</td>
-                                <td>열림</td>
-                                <td>꺼짐</td>
-                                <td>꺼짐</td>
-                            </tr>
-                        </table>
+        <div class="gridBox">
+            <div class="animated-title">
+                <div class="track">
+                    <div class="content">
+                        노는게 제일 좋아 칭구들 모여라 언제나 즐거워 개구쟁이 뽀로로 한적한 숲속마을 꼬마펭귄 나가신다 오늘은 또 무슨일이 생길까 뽀로로를 불러봐요 뽀롱뽀로로 뽀롱뽀로로 뽀롱뽀롱뽀로로 
                     </div>
                 </div>
-            <div style="display:flex;flex-direction:row;justify-content:center;">
-                <button type="button" onclick="return printPage();">인쇄</button>
-                <button>새로고침</button>
             </div>
+            <div>기상청_중기예보 조회서비스 ~ 중기전망조회(강원105)</div>
+            <div class="animated-title">
+                <div class="track">
+                    <div class="content" id="weatherContents">
+                    </div>
+                </div>
             </div>
+            <div>(영월)중동면이 산솔면으로 명칭 변경됨 </div>
+            <div>
+                <table border="1">
+                    <tr>
+                        <th>지역명</th>
+                        <th>전일강우</th>
+                        <th>금일강우</th>
+                        <th>현재시간</th>
+                    </tr>
+                    <tr>
+                        <td>영월군</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>영월읍</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>상동읍</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>산솔면</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>김삿갓면</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>북면</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>남면</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>한반도면</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>주천면</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>무릉도원면</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="gridBox">
         </div>
     </section>
 
@@ -360,26 +222,63 @@
 
 
     <script>
-        // 원하는 영역 print하기
-        var initBodyHtml;
+        getWeather()
+        function getWeather(){
 
-            
-        function printPage(){
-            window.print();
-        }    
+            const serviceKey = "9pU1U1AX4DstHNWuttTMFHFOnRv85QODFmRrOrueaopEhKLJMbWJk1i1WrKCDhS%2F1EzPCV1TUZV%2BUn9OCPXvGA%3D%3D";
+            const pageNo = "1";
+            const numOfRows = "10";
+            const dataType = "JSON";
+            const stnId = "105";
+            let tmFc = "202401300600";
+    
+            let totalUrl = 'https://apis.data.go.kr/1360000/MidFcstInfoService/getMidFcst?serviceKey=9pU1U1AX4DstHNWuttTMFHFOnRv85QODFmRrOrueaopEhKLJMbWJk1i1WrKCDhS%2F1EzPCV1TUZV%2BUn9OCPXvGA%3D%3D&pageNo=1&numOfRows=10&dataType=json&stnId=105&tmFc=202401300600';
 
-        function beforePrint(){
-            initBodyHtml = document.body.innerHTML;
-            document.body.innerHTML = document.getElementById("printContents").innerHTML;
+            fetch(totalUrl,{
+                    method:"GET",
+                    headers: {Accept: "application/json"},
+                }
+            )
+                .then((response) => {return response.json();})
+                .then((data) => {
+                    console.log(data);
+                    // 여기에서 wfSv 내용을 출력합니다.
+                    const wfSvContent = data.response.body.items.item[0].wfSv;
+                    console.log("wfSv Content:", wfSvContent);
+                    document.getElementById("weatherContents").innerHTML = wfSvContent;
+                })
+                .catch(error => console.error('Error:', error));
         }
 
-        function afterPrint(){
-            document.body.innerHTML=initBodyHtml;
+        getRain()
+        function getRain(){
+
+            const serviceKey = "9pU1U1AX4DstHNWuttTMFHFOnRv85QODFmRrOrueaopEhKLJMbWJk1i1WrKCDhS%2F1EzPCV1TUZV%2BUn9OCPXvGA%3D%3D";
+            const pageNo = "1";
+            const numOfRows = "10";
+            const dataType = "JSON";
+            let base_date = "20240130";
+            let base_time = "00600";
+            let nx = "86";
+            let ny = "119";
+    
+            let totalUrl = 'https://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getUltraSrtNcst?serviceKey=9pU1U1AX4DstHNWuttTMFHFOnRv85QODFmRrOrueaopEhKLJMbWJk1i1WrKCDhS%2F1EzPCV1TUZV%2BUn9OCPXvGA%3D%3D&pageNo=1&numOfRows=1000&dataType=json&base_date=20240130&base_time=0600&nx=86&ny=119';
+
+            fetch(totalUrl,{
+                    method:"GET",
+                    headers: {Accept: "application/json"},
+                }
+            )
+                .then((response) => {return response.json();})
+                .then((data) => {
+                    console.log(data);
+                    // 여기에서 wfSv 내용을 출력합니다.
+                    //const rainContent = data.response.body.items.item[0].wfSv;
+                    //console.log("rain Content:", rainContent);
+                    
+                })
+                .catch(error => console.error('Error:', error));
         }
-
-        window.onbeforeprint = beforePrint;
-        window.onafterprint = afterPrint;
-
     </script>
 </body>
 </html>
