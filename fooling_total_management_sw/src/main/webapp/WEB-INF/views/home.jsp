@@ -137,70 +137,70 @@
             <div>
                 <table border="1">
                     <tr>
-                        <th>지역명</th>
+                        <th class="areaName">지역명</th>
                         <th>전일강우</th>
                         <th>금일강우</th>
                         <th>현재시간</th>
                     </tr>
                     <tr>
-                        <td>영월군</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                        <td class="areaName">영월군</td>
+                        <td class="yesterday"></td>
+                        <td class="today"></td>
+                        <td class="cureentTime"></td>
                     </tr>
                     <tr>
-                        <td>영월읍</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                        <td class="areaName">영월읍</td>
+                        <td class="yesterday"></td>
+                        <td class="today"></td>
+                        <td class="cureentTime"></td>
                     </tr>
                     <tr>
-                        <td>상동읍</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                        <td class="areaName">상동읍</td>
+                        <td class="yesterday"></td>
+                        <td class="today"></td>
+                        <td class="cureentTime"></td>
                     </tr>
                     <tr>
-                        <td>산솔면</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                        <td class="areaName">산솔면</td>
+                        <td class="yesterday"></td>
+                        <td class="today"></td>
+                        <td class="cureentTime"></td>
                     </tr>
                     <tr>
-                        <td>김삿갓면</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                        <td class="areaName">김삿갓면</td>
+                        <td class="yesterday"></td>
+                        <td class="today"></td>
+                        <td class="cureentTime"></td>
                     </tr>
                     <tr>
-                        <td>북면</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                        <td class="areaName">북면</td>
+                        <td class="yesterday"></td>
+                        <td class="today"></td>
+                        <td class="cureentTime"></td>
                     </tr>
                     <tr>
-                        <td>남면</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                        <td class="areaName">남면</td>
+                        <td class="yesterday"></td>
+                        <td class="today"></td>
+                        <td class="cureentTime"></td>
                     </tr>
                     <tr>
-                        <td>한반도면</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                        <td class="areaName">한반도면</td>
+                        <td class="yesterday"></td>
+                        <td class="today"></td>
+                        <td class="cureentTime"></td>
                     </tr>
                     <tr>
-                        <td>주천면</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                        <td class="areaName">주천면</td>
+                        <td class="yesterday"></td>
+                        <td class="today"></td>
+                        <td class="cureentTime"></td>
                     </tr>
                     <tr>
-                        <td>무릉도원면</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                        <td class="areaName">무릉도원면</td>
+                        <td class="yesterday"></td>
+                        <td class="today"></td>
+                        <td class="cureentTime"></td>
                     </tr>
                 </table>
             </div>
@@ -249,7 +249,7 @@
         console.log("tmFc", tmFc);
 
 
-        getWeather()
+        //getWeather()
         function getWeather(){
 
             const serviceKey = "9pU1U1AX4DstHNWuttTMFHFOnRv85QODFmRrOrueaopEhKLJMbWJk1i1WrKCDhS%2F1EzPCV1TUZV%2BUn9OCPXvGA%3D%3D";
@@ -278,7 +278,8 @@
         }
 
 
-        // 최종 날짜 문자열 생성
+        // 오늘 날짜 문자열 생성
+        var base_date_today = year + month + day;
         var base_date = year + month + day;
         console.log("base_date : ", base_date);
 
@@ -286,13 +287,95 @@
         var base_time = hours + minutes;
         console.log("base_time : ", base_time);
 
-        getRain()
+        // 어제 날짜 계산
+        let yesterday = new Date();
+        yesterday.setDate(currentDate.getDate() - 1);
+
+        year = yesterday.getFullYear();
+        month = (yesterday.getMonth() + 1).toString().padStart(2, "0");
+        day = yesterday.getDate().toString().padStart(2, "0");
+
+        var base_date_yesterday = year + month + day;
+
+
+        var nx;
+        var ny;
+        /* nx값과 ny값 구하기 시작(구현중) */
+        let areaNames = document.getElementsByClassName("areaName");
+        for(let i=0; i < areaNames.length ; i++){
+            let areaName = document.getElementsByClassName("areaName")[i].innerHTML;
+            console.log("areaName : ", areaName);
+
+            if(i=1){
+                nx = "86";
+                ny = "119";
+                console.log("1nx, ny : ", nx, ny);
+            }
+            if(i=2){
+                nx = "86";
+                ny = "119";
+                console.log("2nx, ny : ", nx, ny);
+            }
+            if(i=3){
+                nx = "92";
+                ny = "118";
+                console.log("3nx, ny : ", nx, ny);
+            }
+            if(i=4){
+                nx = "89";
+                ny = "118";
+                console.log("4nx, ny : ", nx, ny);
+            }
+            if(i=5){
+                nx = "88";
+                ny = "118";
+                console.log("5nx, ny : ", nx, ny);
+            }
+            if(i=6){
+                nx = "85";
+                ny = "120";
+                console.log("6nx, ny : ", nx, ny);
+            }
+            if(i=7){
+                nx = "85";
+                ny = "119";
+                console.log("7nx, ny : ", nx, ny);
+            }
+            if(i=8){
+                nx = "83";
+                ny = "120";
+                console.log("8nx, ny : ", nx, ny);
+            }
+            if(i=9){
+                nx = "82";
+                ny = "121";
+                console.log("9nx, ny : ", nx, ny);
+            }
+            if(i=10){
+                nx = "82";
+                ny = "121";
+                console.log("10nx, ny : ", nx, ny);
+            }
+
+        }
+        /* nx값과 ny값 구하기 끝(구현중)*/
+
+    console.log("nx, ny : ", nx, ny);
+
+
+        // 오늘과 어제 두 날짜로 API 호출
+        //getRain();
+        //getRain(base_date_today, base_time);
+       //getRain(base_date_yesterday, base_time);
         function getRain(){
 
             const serviceKey = "9pU1U1AX4DstHNWuttTMFHFOnRv85QODFmRrOrueaopEhKLJMbWJk1i1WrKCDhS%2F1EzPCV1TUZV%2BUn9OCPXvGA%3D%3D";
             const pageNo = "1";
             const numOfRows = "10";
             const dataType = "JSON";
+
+            let areaName = document.getElementsByClassName("areaName").innerHTML;
+            console.log("areaName : ", areaName);
 
             let nx = "86";
             let ny = "119";
@@ -314,6 +397,8 @@
                 })
                 .catch(error => console.error('Error:', error));
         }
+
+        
     </script>
 </body>
 </html>
