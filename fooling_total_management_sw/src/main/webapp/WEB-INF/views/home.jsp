@@ -99,9 +99,12 @@
             }
         /* 움직이는 텍스트 끝*/
 
+        .today{
+            text-align: center;
+        }
 
     </style>
-    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+    <script src="../../resources/js/jquery/jquery.min.js"></script>
 </head>
 <body>
     
@@ -122,7 +125,8 @@
             <div class="animated-title">
                 <div class="track">
                     <div class="content">
-                        노는게 제일 좋아 칭구들 모여라 언제나 즐거워 개구쟁이 뽀로로 한적한 숲속마을 꼬마펭귄 나가신다 오늘은 또 무슨일이 생길까 뽀로로를 불러봐요 뽀롱뽀로로 뽀롱뽀로로 뽀롱뽀롱뽀로로 
+                        <%-- 노는게 제일 좋아 칭구들 모여라 언제나 즐거워 개구쟁이 뽀로로 한적한 숲속마을 꼬마펭귄 나가신다 오늘은 또 무슨일이 생길까 뽀로로를 불러봐요 뽀롱뽀로로 뽀롱뽀로로 뽀롱뽀롱뽀로로  --%>
+                        이것저것 보장하라!! 아무튼 보장하라!! 이것저것 보장하라!! 아무튼 보장하라!! 이것저것 보장하라!! 아무튼 보장하라!!
                     </div>
                 </div>
             </div>
@@ -133,6 +137,7 @@
                     </div>
                 </div>
             </div>
+            <div>초단기실황조회(오늘만 가능)</div>
             <div>(영월)중동면이 산솔면으로 명칭 변경됨 </div>
             <div>
                 <table border="1">
@@ -144,63 +149,63 @@
                     </tr>
                     <tr>
                         <td class="areaName">영월군</td>
-                        <td class="yesterday"></td>
-                        <td class="today"></td>
-                        <td class="cureentTime"></td>
+                        <td class="yesterday" id="YGyesterday"></td>
+                        <td class="today"  id="YGtoday"></td>
+                        <td class="cureentTime" id="TimeData1"></td>
                     </tr>
                     <tr>
                         <td class="areaName">영월읍</td>
-                        <td class="yesterday"></td>
-                        <td class="today"></td>
-                        <td class="cureentTime"></td>
+                        <td class="yesterday" id="YEyesterday"></td>
+                        <td class="today" id="YEtoday"></td>
+                        <td class="cureentTime" id="TimeData2"></td>
                     </tr>
                     <tr>
                         <td class="areaName">상동읍</td>
-                        <td class="yesterday"></td>
-                        <td class="today"></td>
-                        <td class="cureentTime"></td>
+                        <td class="yesterday" id="SEyesterday"></td>
+                        <td class="today" id="SEtoday"></td>
+                        <td class="cureentTime" id="TimeData3"></td>
                     </tr>
                     <tr>
                         <td class="areaName">산솔면</td>
-                        <td class="yesterday"></td>
-                        <td class="today"></td>
-                        <td class="cureentTime"></td>
+                        <td class="yesterday" id="SMyesterday"></td>
+                        <td class="today" id="SMtoday"></td>
+                        <td class="cureentTime" id="TimeData4"></td>
                     </tr>
                     <tr>
                         <td class="areaName">김삿갓면</td>
-                        <td class="yesterday"></td>
-                        <td class="today"></td>
-                        <td class="cureentTime"></td>
+                        <td class="yesterday" id="GMyesterday"></td>
+                        <td class="today" id="GMtoday"></td>
+                        <td class="cureentTime" id="TimeData5"></td>
                     </tr>
                     <tr>
                         <td class="areaName">북면</td>
-                        <td class="yesterday"></td>
-                        <td class="today"></td>
-                        <td class="cureentTime"></td>
+                        <td class="yesterday" id="BMyesterday"></td>
+                        <td class="today" id="BMtoday"></td>
+                        <td class="cureentTime" id="TimeData6"></td>
                     </tr>
                     <tr>
                         <td class="areaName">남면</td>
-                        <td class="yesterday"></td>
-                        <td class="today"></td>
-                        <td class="cureentTime"></td>
+                        <td class="yesterday" id="NMyesterday"></td>
+                        <td class="today" id="NMtoday"></td>
+                        <td class="cureentTime" id="TimeData7"></td>
                     </tr>
                     <tr>
                         <td class="areaName">한반도면</td>
-                        <td class="yesterday"></td>
-                        <td class="today"></td>
-                        <td class="cureentTime"></td>
+                        <td class="yesterday" id="HMyesterday"></td>
+                        <td class="today" id="HMtoday"></td>
+                        <td class="cureentTime" id="TimeData8"></td>
                     </tr>
                     <tr>
                         <td class="areaName">주천면</td>
-                        <td class="yesterday"></td>
-                        <td class="today"></td>
-                        <td class="cureentTime"></td>
+                        <td class="yesterday" id="JMyesterday"></td>
+                        <td class="today" id="JMtoday"></td>
+                        <td class="cureentTime" id="TimeData9"></td>
                     </tr>
                     <tr>
                         <td class="areaName">무릉도원면</td>
-                        <td class="yesterday"></td>
-                        <td class="today"></td>
-                        <td class="cureentTime"></td>
+                        <td class="yesterday" id="MMyesterday"></td>
+                        <td class="today" id="MMtoday"></td>
+                        <td class="cureentTime" id="TimeData10"></td>
                     </tr>
                 </table>
             </div>
@@ -220,185 +225,12 @@
         </div>
     </footer>
 
-
+    <script src="/resources/js/date.js"></script>
+    <script src="/resources/js/getWeather.js"></script>
+    <script src="/resources/js/getRain.js"></script>
+    <script src="/resources/js/time.js"></script>
     <script>
 
-        // 현재날짜
-        let currentDate = new Date();
-
-        // 연, 월, 일을 얻어옴
-        let year = currentDate.getFullYear();
-        console.log("year : ", year);
-        let month = (currentDate.getMonth() + 1).toString().padStart(2, "0"); // 월은 0부터 시작하므로 +1, 두 자리로 포맷
-        console.log("month : ", month);
-        let day = currentDate.getDate().toString().padStart(2, "0"); // 두 자리로 포맷
-        console.log("day : ", day);
-
-        // 현재 시간을 얻어옴
-        let hours = currentDate.getHours().toString().padStart(2, "0");
-        let minutes = currentDate.getMinutes().toString().padStart(2, "0");
-
-        //날짜+시간
-        var tmFc;
-        if(hours + minutes < 1800){
-            tmFc = year + month + day + "0600";
-        }
-        if(hours + minutes >= 1800){
-            tmFc = year + month + day + "1800";
-        }
-        console.log("tmFc", tmFc);
-
-
-        //getWeather()
-        function getWeather(){
-
-            const serviceKey = "9pU1U1AX4DstHNWuttTMFHFOnRv85QODFmRrOrueaopEhKLJMbWJk1i1WrKCDhS%2F1EzPCV1TUZV%2BUn9OCPXvGA%3D%3D";
-            const pageNo = "1";
-            const numOfRows = "10";
-            const dataType = "JSON";
-            const stnId = "105"; //강원
-
-    
-            let totalUrl = "https://apis.data.go.kr/1360000/MidFcstInfoService/getMidFcst?serviceKey=9pU1U1AX4DstHNWuttTMFHFOnRv85QODFmRrOrueaopEhKLJMbWJk1i1WrKCDhS%2F1EzPCV1TUZV%2BUn9OCPXvGA%3D%3D&pageNo=1&numOfRows=10&dataType=json&stnId=105&tmFc="+tmFc+"";
-
-            fetch(totalUrl,{
-                    method:"GET",
-                    headers: {Accept: "application/json"},
-                }
-            )
-                .then((response) => {return response.json();})
-                .then((data) => {
-                    console.log("getWeather", data);
-                    // 여기에서 wfSv 내용을 출력합니다.
-                    const wfSvContent = data.response.body.items.item[0].wfSv;
-                    console.log("wfSv Content:", wfSvContent);
-                    document.getElementById("weatherContents").innerHTML = wfSvContent;
-                })
-                .catch(error => console.error('Error:', error));
-        }
-
-
-        // 오늘 날짜 문자열 생성
-        var base_date_today = year + month + day;
-        var base_date = year + month + day;
-        console.log("base_date : ", base_date);
-
-        // 최종 시간 문자열 생성
-        var base_time = hours + minutes;
-        console.log("base_time : ", base_time);
-
-        // 어제 날짜 계산
-        let yesterday = new Date();
-        yesterday.setDate(currentDate.getDate() - 1);
-
-        year = yesterday.getFullYear();
-        month = (yesterday.getMonth() + 1).toString().padStart(2, "0");
-        day = yesterday.getDate().toString().padStart(2, "0");
-
-        var base_date_yesterday = year + month + day;
-
-
-        var nx;
-        var ny;
-        /* nx값과 ny값 구하기 시작(구현중) */
-        let areaNames = document.getElementsByClassName("areaName");
-        for(let i=0; i < areaNames.length ; i++){
-            let areaName = document.getElementsByClassName("areaName")[i].innerHTML;
-            console.log("areaName : ", areaName);
-
-            if(i=1){
-                nx = "86";
-                ny = "119";
-                console.log("1nx, ny : ", nx, ny);
-            }
-            if(i=2){
-                nx = "86";
-                ny = "119";
-                console.log("2nx, ny : ", nx, ny);
-            }
-            if(i=3){
-                nx = "92";
-                ny = "118";
-                console.log("3nx, ny : ", nx, ny);
-            }
-            if(i=4){
-                nx = "89";
-                ny = "118";
-                console.log("4nx, ny : ", nx, ny);
-            }
-            if(i=5){
-                nx = "88";
-                ny = "118";
-                console.log("5nx, ny : ", nx, ny);
-            }
-            if(i=6){
-                nx = "85";
-                ny = "120";
-                console.log("6nx, ny : ", nx, ny);
-            }
-            if(i=7){
-                nx = "85";
-                ny = "119";
-                console.log("7nx, ny : ", nx, ny);
-            }
-            if(i=8){
-                nx = "83";
-                ny = "120";
-                console.log("8nx, ny : ", nx, ny);
-            }
-            if(i=9){
-                nx = "82";
-                ny = "121";
-                console.log("9nx, ny : ", nx, ny);
-            }
-            if(i=10){
-                nx = "82";
-                ny = "121";
-                console.log("10nx, ny : ", nx, ny);
-            }
-
-        }
-        /* nx값과 ny값 구하기 끝(구현중)*/
-
-    console.log("nx, ny : ", nx, ny);
-
-
-        // 오늘과 어제 두 날짜로 API 호출
-        //getRain();
-        //getRain(base_date_today, base_time);
-       //getRain(base_date_yesterday, base_time);
-        function getRain(){
-
-            const serviceKey = "9pU1U1AX4DstHNWuttTMFHFOnRv85QODFmRrOrueaopEhKLJMbWJk1i1WrKCDhS%2F1EzPCV1TUZV%2BUn9OCPXvGA%3D%3D";
-            const pageNo = "1";
-            const numOfRows = "10";
-            const dataType = "JSON";
-
-            let areaName = document.getElementsByClassName("areaName").innerHTML;
-            console.log("areaName : ", areaName);
-
-            let nx = "86";
-            let ny = "119";
-    
-            let totalUrl = "https://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getUltraSrtNcst?serviceKey=9pU1U1AX4DstHNWuttTMFHFOnRv85QODFmRrOrueaopEhKLJMbWJk1i1WrKCDhS%2F1EzPCV1TUZV%2BUn9OCPXvGA%3D%3D&pageNo=1&numOfRows=1000&dataType=json&base_date="+base_date+"&base_time="+base_time+"&nx=86&ny=119";
-
-            fetch(totalUrl,{
-                    method:"GET",
-                    headers: {Accept: "application/json"},
-                }
-            )
-                .then((response) => {return response.json();})
-                .then((data) => {
-                    console.log("getRain", data);
-                    // 여기에서 wfSv 내용을 출력합니다.
-                    //const rainContent = data.response.body.items.item[0].wfSv;
-                    //console.log("rain Content:", rainContent);
-                    
-                })
-                .catch(error => console.error('Error:', error));
-        }
-
-        
     </script>
 </body>
 </html>
