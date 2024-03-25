@@ -3,17 +3,21 @@
 <configuration>
 	
 	<settings>
-		<setting name="jdbctypeForNull" value="NULL"/>
+		<setting name="jdbcTypeForNull" value="NULL" />
 	</settings>
 	
 	<!-- 별칭작성 -->
 	<typeAliases>
-		<typeAlias type="" alias=""/>
+		<typeAlias type="fodics.web.jsy.dataSearch.model.dto.DataSearch" alias="DataSearch"/>
+		<typeAlias type="fodics.web.jsy.equipmentControl.model.dto.EquipmentControl" alias="EquipmentControl"/>
+		<typeAlias type="fodics.web.jsy.inundationSetting.model.dto.InundationSetting" alias="InundationSetting"/>
+		<typeAlias type="fodics.web.jsy.research.model.dto.Research" alias="Research"/>
+		<typeAlias type="fodics.web.jsy.main.model.dto.Main" alias="Main"/>
 	</typeAliases>
 	
 	<!-- mapper파일 등록 -->
 	<mappers>
-		<mapper resource=""/>
+		<!-- <mapper resource="/mappers/main-mapper.xml"/> -->
 	</mappers>
 	
 </configuration>

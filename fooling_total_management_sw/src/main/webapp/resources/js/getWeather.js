@@ -1,4 +1,6 @@
     getWeather();
+
+    //중기전망조회
     function getWeather(){
 
         const serviceKey = "9pU1U1AX4DstHNWuttTMFHFOnRv85QODFmRrOrueaopEhKLJMbWJk1i1WrKCDhS%2F1EzPCV1TUZV%2BUn9OCPXvGA%3D%3D";

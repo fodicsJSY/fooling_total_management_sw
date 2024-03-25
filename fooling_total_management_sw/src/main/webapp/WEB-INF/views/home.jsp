@@ -102,6 +102,9 @@
         .today{
             text-align: center;
         }
+        .cureentTime{
+            text-align: center;
+        }
 
     </style>
     <script src="../../resources/js/jquery/jquery.min.js"></script>
@@ -126,7 +129,7 @@
                 <div class="track">
                     <div class="content">
                         <%-- 노는게 제일 좋아 칭구들 모여라 언제나 즐거워 개구쟁이 뽀로로 한적한 숲속마을 꼬마펭귄 나가신다 오늘은 또 무슨일이 생길까 뽀로로를 불러봐요 뽀롱뽀로로 뽀롱뽀로로 뽀롱뽀롱뽀로로  --%>
-                        이것저것 보장하라!! 아무튼 보장하라!! 이것저것 보장하라!! 아무튼 보장하라!! 이것저것 보장하라!! 아무튼 보장하라!!
+                        이것저것 보장하라!! 아무거나 규탄하라!!! 아무튼 보장하라!!  이것저것 보장하라!! 아무거나 규탄하라!!! 아무튼 보장하라!!  아무거나 규탄하라!!! 이것저것 보장하라!! 아무거나 규탄하라!!! 아무튼 보장하라!!  아무거나 규탄하라!!!
                     </div>
                 </div>
             </div>
@@ -137,7 +140,6 @@
                     </div>
                 </div>
             </div>
-            <div>초단기실황조회(오늘만 가능)</div>
             <div>(영월)중동면이 산솔면으로 명칭 변경됨 </div>
             <div>
                 <table border="1">
@@ -151,61 +153,61 @@
                         <td class="areaName">영월군</td>
                         <td class="yesterday" id="YGyesterday"></td>
                         <td class="today"  id="YGtoday"></td>
-                        <td class="cureentTime" id="TimeData1"></td>
+                        <td class="cureentTime" id="YG-CureentTime"></td>
                     </tr>
                     <tr>
                         <td class="areaName">영월읍</td>
                         <td class="yesterday" id="YEyesterday"></td>
                         <td class="today" id="YEtoday"></td>
-                        <td class="cureentTime" id="TimeData2"></td>
+                        <td class="cureentTime" id="YE-CureentTime"></td>
                     </tr>
                     <tr>
                         <td class="areaName">상동읍</td>
                         <td class="yesterday" id="SEyesterday"></td>
                         <td class="today" id="SEtoday"></td>
-                        <td class="cureentTime" id="TimeData3"></td>
+                        <td class="cureentTime" id="SE-CureentTime"></td>
                     </tr>
                     <tr>
                         <td class="areaName">산솔면</td>
                         <td class="yesterday" id="SMyesterday"></td>
                         <td class="today" id="SMtoday"></td>
-                        <td class="cureentTime" id="TimeData4"></td>
+                        <td class="cureentTime" id="SM-CureentTime"></td>
                     </tr>
                     <tr>
                         <td class="areaName">김삿갓면</td>
                         <td class="yesterday" id="GMyesterday"></td>
                         <td class="today" id="GMtoday"></td>
-                        <td class="cureentTime" id="TimeData5"></td>
+                        <td class="cureentTime" id="GM-CureentTime"></td>
                     </tr>
                     <tr>
                         <td class="areaName">북면</td>
                         <td class="yesterday" id="BMyesterday"></td>
                         <td class="today" id="BMtoday"></td>
-                        <td class="cureentTime" id="TimeData6"></td>
+                        <td class="cureentTime" id="BM-CureentTime"></td>
                     </tr>
                     <tr>
                         <td class="areaName">남면</td>
                         <td class="yesterday" id="NMyesterday"></td>
                         <td class="today" id="NMtoday"></td>
-                        <td class="cureentTime" id="TimeData7"></td>
+                        <td class="cureentTime" id="NM-CureentTime"></td>
                     </tr>
                     <tr>
                         <td class="areaName">한반도면</td>
                         <td class="yesterday" id="HMyesterday"></td>
                         <td class="today" id="HMtoday"></td>
-                        <td class="cureentTime" id="TimeData8"></td>
+                        <td class="cureentTime" id="HM-CureentTime"></td>
                     </tr>
                     <tr>
                         <td class="areaName">주천면</td>
                         <td class="yesterday" id="JMyesterday"></td>
                         <td class="today" id="JMtoday"></td>
-                        <td class="cureentTime" id="TimeData9"></td>
+                        <td class="cureentTime" id="JM-CureentTime"></td>
                     </tr>
                     <tr>
                         <td class="areaName">무릉도원면</td>
                         <td class="yesterday" id="MMyesterday"></td>
                         <td class="today" id="MMtoday"></td>
-                        <td class="cureentTime" id="TimeData10"></td>
+                        <td class="cureentTime" id="MM-CureentTime"></td>
                     </tr>
                 </table>
             </div>
@@ -228,7 +230,7 @@
     <script src="/resources/js/date.js"></script>
     <script src="/resources/js/getWeather.js"></script>
     <script src="/resources/js/getRain.js"></script>
-    <script src="/resources/js/time.js"></script>
+    <%-- <script src="/resources/js/time.js"></script> --%>
     <script>
 
     </script>
