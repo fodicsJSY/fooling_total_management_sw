@@ -97,11 +97,12 @@
 
 
     .sectionBox01{
-        width: 10vw;
+        width: 230px;
     }
 
 
     .listBox{
+        min-width: 200px;
         margin: 20px 15px 15px 15px;
     }
 
@@ -251,6 +252,20 @@
         align-items: center;
     }
 
+    .areaBox{
+        display: flex;
+        align-items: center;
+    }
+
+    .areaSelect{
+        vertical-align:middle;
+    }
+
+
+    .areaSelect:hover{
+        cursor: pointer;
+    }
+
 
 
     .yearBox{
@@ -329,6 +344,7 @@
 
 
     .rainfullThead{
+        height: 35px;
     }
     
     /* 일간강우 시작*/
@@ -389,6 +405,7 @@
 
     
     .rainfull{
+        height: 35px;
         font-size: 12px;
         border: 1px solid #DEA8A9;
         text-align: center;

@@ -22,8 +22,8 @@
                     <a href="/"><div class="logoBox"><img class="logo" src="/resources/img/logo.png" alt=""></a></div>
                     <div class="menuContiner">
                         <div><a href="#">데이터검색</a></div>
-                        <div><a href="#">장비제어</a></div>
-                        <div><a href="#">침수설정</a></div>
+                        <div><a href="/전광판관리">장비제어</a></div>
+                        <div><a href="/임계값설정">침수설정</a></div>
                         <div><a href="#">보고서</a></div>
                     </div>
             </div>
@@ -35,9 +35,9 @@
             <div class="sectionBox01">
                 <div class="listBox">
                     <div class="listTitle">데이터 검색</div>
-                    <div class="listContent"><a href="/" class="pageFoward nowForward">강우 데이터</a></div>
-                    <div class="listContent"><a href="#" class="pageFoward">침수 데이터</a></div>
-                    <div class="listContent"><a href="#" class="pageFoward">입출차 정보</a></div>
+                    <div class="listContent"><a href="#" class="pageFoward nowForward">강우 데이터</a></div>
+                    <div class="listContent"><a href="/침수데이터" class="pageFoward">침수 데이터</a></div>
+                    <div class="listContent"><a href="/입출차정보" class="pageFoward">입출차 정보</a></div>
                 </div>
             </div>
             <div class="sectionBox02">
@@ -55,14 +55,16 @@
                     </div>
                     <div class="titleContiner02">
                         <div class="subTitleBox">
-                            <div class="subTitle">▶ 데이터검색  &gt; 강우데이터  &gt; 일간강우</div>
+                            <div class="subTitle">
+                            <%-- ▶ 데이터검색  &gt; 강우데이터  &gt; 일간강우 --%>
+                            </div>
                         </div>
                     </div>
                 </div>
                 <div class="searchContainer02">
                     <div class="measure">(단위 : mm)</div>
                     <div class="selectDate">
-                        <div class="yearBox">
+                        <%-- <div class="yearBox">
                             <select name="연도" id="year" class="yearSelect">
                                 <option value="2024">2024</option>
                                 <option value="2023">2023</option>
@@ -125,7 +127,7 @@
                                 </select>
                                 일
                         </div>
-                        <div><button class="searchBtn">검색</button></div>
+                        <div><button class="searchBtn">검색</button></div> --%>
                     </div>
                 </div>
                 <div class="tableContainer"></div>

@@ -1,0 +1,311 @@
+/* @media(min-width: 2560px){ */
+
+
+
+    *{ 
+        box-sizing: border-box;
+        padding: 0;
+        margin: 0;
+        background-color: white;
+        color:black;
+    }
+
+
+    /* 다 만들고 삭제예정 */
+    div, main, section, header, footer, article, nav, aside, form 
+    { 
+        border: 1px solid blue; 
+    }  
+
+
+    body {
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh; /* 최소 높이를 뷰포트 높이의 100%로 설정합니다. */
+        justify-content: center;
+    }
+
+
+    header{
+        height: 94px;
+        display:flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+
+    }
+
+    .headContiner{
+        width: 1730px; height: 100%; display:flex; align-items: center;
+    }
+
+    .headContent{
+        width: 1000px;
+        display:flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        margin: 0 0 0 15px;
+    }
+
+    .logo{
+        width: 250px;
+        height: 70px;
+    }
+
+    .menuContiner{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        width: 720px;
+        font-size: 24px;
+        font-weight: bolder;
+        margin: 0 0 0 60px;
+    }
+
+
+
+
+    main{
+        /* width: 1140px; */
+        margin: auto;
+        min-width: 100%;
+        height: 90vh;
+
+        /* min-height: 요소의 최소 높이  
+                        -> 내부 요소 없어도 최소 높이 유지
+                        -> 내부 요소가 지정된 크기를 초과하면 
+                            그에 맞게 늘어남
+        */
+        /* min-height: 500px; */
+        display:flex;
+        flex-direction: row;
+        justify-content: center;
+    }
+
+    a{
+        text-decoration: none;
+    }
+
+    section{
+        /* width:100%; */
+        width: 1730px; /*임의설정 차후 네이버 보고 맞출 것*/
+        height:100%;
+        display: flex;
+
+        }
+
+
+    .sectionBox01{
+        width: 230px;
+    }
+
+
+    .listBox{
+        min-width: 200px;
+        margin: 20px 15px 15px 15px;
+    }
+
+    .listTitle{
+        height: 100px;
+        width: 100%;
+        background-color: #5ab8de;
+        color: white;
+        font-size: 20px;
+        text-align: center;
+        line-height: 100px;
+
+    }
+
+    .listContent{
+        height: 40px;
+        border-bottom: 1px solid #e6ecf0;
+        padding-left: 20px;
+        font-weight: bold;
+        cursor: pointer;
+        line-height: 40px;
+    }
+
+    .pageFoward{
+        color: #656565;
+        font-size: 16px;
+    }
+
+    .nowForward{
+        color: #5ab8de;
+    }
+
+
+
+
+
+
+    .sectionBox02{
+        width: 1630px;
+    }
+
+
+
+
+
+
+
+
+
+    .searchContainer01{
+        margin-top: 20px;
+    }
+
+
+
+
+    .titleContiner01{
+        display: flex;
+        flex-direction: row;
+        justify-content: start;
+    }
+
+    .titleBox{
+        display: flex;
+        flex-direction: row;
+        height: 50px;
+        align-items: center;
+    }
+
+    .titleName{
+        font-size: 28px;
+        font-weight: bold;
+    }
+
+
+
+
+
+    .active{
+        color: #5ab8de;
+        border: 1px solid #5ab8de;
+    }
+
+
+    .titleContiner02{
+        display: flex;
+        flex-direction: row;
+        justify-content: end;
+    }
+
+
+    .subTitleBox{
+        display: flex;
+        align-items: end;
+    }
+
+
+    .subTitle{
+        font-size: 12px;
+    }
+
+
+
+    .searchContainer02{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 20px;
+    }
+
+
+
+    /* 테이블 css시작 */
+
+    .tableContainer{
+        margin: 10px 0 10px 0;
+        width: 100%;
+    }
+
+    .controlTable{
+        border: 1px solid #8AC4E1;
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+
+
+    .controlThead{
+        height: 35px;
+    }
+
+    .controlThead *{
+        font-size: 12px;
+        background-color: #BAE4F9;
+        color: #025273;
+        border: 1px solid #8AC4E1
+    }
+    
+    
+    .areaName{
+        width: 250px;
+    }
+
+
+
+
+    .areaNameData{
+        font-size: 12px;
+        background-color: #BAE4F9;
+        color: #025273;
+        font-weight: bold;
+        text-align: center;
+        border: 1px solid #8AC4E1;
+    }
+
+
+
+    .controlTD{
+        height: 35px;
+        font-size: 12px;
+        border: 1px solid #8AC4E1;
+        text-align: center;
+    }
+
+    select{
+        width: 80px;
+        height: 25px;
+    }
+
+    .saveButton{
+        width: 80px;
+        height: 25px;
+        background-color: #4FB3E5;
+        line-height: 25px;
+        font-weight: bold;
+        color: #fff;
+        cursor: pointer;
+        margin: 0 auto;
+        border: none;
+    }
+
+
+
+
+
+
+    /* 테이블 css끝 */
+
+
+
+
+
+
+
+
+    footer{
+        height: 115px;
+
+        display:flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+    }
+
+/* } */

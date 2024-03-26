@@ -20,10 +20,29 @@ public class DataSearchController {
 	public String dataSearchForword(
 			Model model
 			){
-		
-		
 		return "/dataSearch/강우데이터";
 	}
+	
+	
+	
+	//침수데이터 페이지 
+	@GetMapping("/침수데이터")
+	public String inundationDataForword(
+			Model model
+			){
+		return "/dataSearch/침수데이터";
+	}
+	
+	
+	//입출차정보 페이지 
+	@GetMapping("/입출차정보")
+	public String entryAndExitForword(
+			Model model
+			){
+		return "/dataSearch/입출차정보";
+	}
+	
+	
 	
 	
 }
