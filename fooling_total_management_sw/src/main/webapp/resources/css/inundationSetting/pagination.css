@@ -1,0 +1,22 @@
+.pagination{
+    width: 100%;
+    text-align: center;
+    margin-top: 20px;
+}
+
+
+li { 
+    list-style-type : none;  /* 아무 표시 없음 */
+    display: inline;
+    /* border: 1px solid black; */
+}
+
+
+.page-link{
+    text-decoration: none;
+    border: 1px solid #ccc;
+    padding: 4px 8px;
+    margin-right: 2px;
+    font-size: 12px;
+    color: #333;
+}

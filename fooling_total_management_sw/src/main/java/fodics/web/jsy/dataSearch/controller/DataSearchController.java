@@ -15,31 +15,38 @@ public class DataSearchController {
 //	@Autowired
 	private DataSearchService service;
 	
-	//강우데이터 페이지 
+	//강우데이터 페이지 임시
 	@GetMapping("/")
+	public String dataSearchForword1(
+			Model model
+			){
+		return "/dataSearch/rainfall";
+	}
+	//강우데이터 페이지 
+	@GetMapping("/rainfall")
 	public String dataSearchForword(
 			Model model
 			){
-		return "/dataSearch/강우데이터";
+		return "/dataSearch/rainfall";
 	}
 	
 	
 	
 	//침수데이터 페이지 
-	@GetMapping("/침수데이터")
+	@GetMapping("flooding")
 	public String inundationDataForword(
 			Model model
 			){
-		return "/dataSearch/침수데이터";
+		return "/dataSearch/flooding";
 	}
 	
 	
 	//입출차정보 페이지 
-	@GetMapping("/입출차정보")
+	@GetMapping("incomingAndOutgoing")
 	public String entryAndExitForword(
 			Model model
 			){
-		return "/dataSearch/입출차정보";
+		return "/dataSearch/incomingAndOutgoing";
 	}
 	
 	

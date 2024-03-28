@@ -16,15 +16,15 @@
             <div class="headContent">
                     <a href="/"><div class="logoBox"><img class="logo" src="/resources/img/logo.png" alt=""></a></div>
                     <div class="menuContiner">
-                        <div><a href="/강우데이터">데이터검색</a></div>
+                        <div><a href="/">데이터검색</a></div>
                         <div><a href="/차단기수동제어">장비제어</a></div>
                         <div><a href="/임계값설정">침수설정</a></div>
-                        <div><a href="#">보고서</a></div>
+                        <div><a href="/보고서출력">보고서</a></div>
                     </div>
             </div>
         </div>
     </header>
-
+<hr>
     <main>
         <section>
             <div class="sectionBox01">
@@ -84,7 +84,7 @@
                                     </select>
                                 </td>
                                 <td class="controlTD">
-                                    <button type="button" class="saveButton" id="saveBtn">저장</button>
+                                    <button type="button" class="saveButton" id="saveBtn25-3">저장</button>
                                 </td>
                             </tr>
                             <tr>
@@ -108,7 +108,7 @@
                                     </select>
                                 </td>
                                 <td class="controlTD">
-                                    <button type="button" class="saveButton" id="saveBtn">저장</button>
+                                    <button type="button" class="saveButton" id="saveBtn331-1">저장</button>
                                 </td>
                             </tr>
                             <tr>
@@ -132,7 +132,7 @@
                                     </select>
                                 </td>
                                 <td class="controlTD">
-                                    <button type="button" class="saveButton" id="saveBtn">저장</button>
+                                    <button type="button" class="saveButton" id="saveBtn426-20">저장</button>
                                 </td>
                             </tr>
                             <tr>
@@ -156,7 +156,7 @@
                                     </select>
                                 </td>
                                 <td class="controlTD">
-                                    <button type="button" class="saveButton" id="saveBtn">저장</button>
+                                    <button type="button" class="saveButton" id="saveBtn998-7">저장</button>
                                 </td>
                             </tr>
                         </tbody>
@@ -167,9 +167,9 @@
         </section>
     </main>
 
-
+<hr>
     <footer>
-        <div style=" width: 1730px; height: 100%; display:flex; flex-direction: row; justify-content: space-between; align-items: center;">
+        <div>
             <div>
                 <div>[24347] 강원도 영월군 영월읍 하송로 64 Tel : 1577-0545</div>
                 <div>Copyright 2020ⓒ,Yeongwol County All rights reserved.</div>

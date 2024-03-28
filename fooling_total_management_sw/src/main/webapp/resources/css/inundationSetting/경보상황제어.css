@@ -209,95 +209,147 @@
 
     .searchContainer02{
         display: flex;
-        flex-direction: row;
+        flex-direction: column;
         justify-content: space-between;
-        align-items: center;
         margin-top: 20px;
     }
+
+    /* 지구선택 시작 */
+
+    .zoneBox{
+
+    }
+
+    /* 지구선택 끝 */
 
 
 
     /* 테이블 css시작 */
 
+
+    input:hover, label:hover, select:hover{
+        cursor: pointer;
+    }
+
+    select{
+        width: 180px;
+        height: 25px;
+    }
+
+
+
     .tableContainer{
         margin: 10px 0 10px 0;
         width: 100%;
+
     }
 
-    .controlTable{
-        border: 1px solid #8AC4E1;
+    /* .tableContainer{
+        height: 1030px;
+        overflow-y: auto;
+    } */
+
+    .sencerTable{
         width: 100%;
+        border: 1px solid #91CB98;
         border-collapse: collapse;
     }
 
 
-
-    .controlThead{
+    .sencerTable th{
+        width: 15.8%;
         height: 35px;
-    }
-
-    .controlThead *{
+        background-color: #D0E9D3;
+        border: 1px solid #91CB98;
+        color: #09552b;
         font-size: 12px;
-        background-color: #BAE4F9;
-        color: #025273;
-        border: 1px solid #8AC4E1
+    }
+    
+    .sencerTable td{
+        height: 50px;
+        border: 1px solid #91CB98;
+        padding: 0 0 0 10px;
+        text-align: center;
+        font-size: 12px;
+    }
+    
+
+    .tableContainer>div:last-child{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        margin-top: 20px;
     }
     
     
-    .areaName{
-        width: 250px;
-    }
-
-
-
-
-    .areaNameData{
-        font-size: 12px;
-        background-color: #BAE4F9;
-        color: #025273;
-        font-weight: bold;
-        text-align: center;
-        border: 1px solid #8AC4E1;
-    }
-
-
-
-    .controlTD{
-        height: 35px;
-        font-size: 12px;
-        border: 1px solid #8AC4E1;
-        text-align: center;
-    }
-
-    select{
-        width: 80px;
-        height: 25px;
-    }
-
-    .saveButton{
-        width: 80px;
-        height: 25px;
-        background-color: #4FB3E5;
-        line-height: 25px;
-        font-weight: bold;
+    
+    .warningButton{
+        font-size: 14px;
+        padding: 8px 10px;
+        background-color: #91CB98;
         color: #fff;
+        font-weight: bold;
         cursor: pointer;
-        margin: 0 auto;
         border: none;
     }
-
-
-
 
 
 
     /* 테이블 css끝 */
 
 
+    .stageContainer{
+        position: relative;
+        border: 1px solid #999;
+        margin-top: 15px;
+        padding: 15px;
+        font-size: 12px;
+
+        display: flex;
+        flex-direction: row;
+        justify-content: start;
+        align-items: center;
+    }
+
+    .stageContainer>div{
+        margin-right: 25px;
+    }
 
 
+    
+    .messageContainer{
+        position: relative;
+        width: 100%;
+        border: 1px solid #999;
+        margin-top: 15px;
+        padding: 15px 15px 0 15px;
+        font-size: 12px;
+        
+        
+        display: flex;
+        flex-direction: column;
+        justify-content: start;
+    }
+    
+    
+    .messageContainer>div{
+        margin-bottom: 15px;
+    }
 
 
+    .sTitle{
+        position: absolute;
+        font-size: 14px;
+        font-weight: bold;
+        top: -10px;
+        background-color: #fff;
+        padding: 0px 5px;
+        color: #777;
+    }
+    
+    .stageTitle{
+        font-weight: bold;
+    }
 
 
     footer{
@@ -310,7 +362,7 @@
     }
 
 
-   
+
     footer>div{
         padding: 0 0 0 15px;
         width: 1280px; 

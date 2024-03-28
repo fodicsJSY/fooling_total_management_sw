@@ -209,10 +209,19 @@
 
     .searchContainer02{
         display: flex;
-        flex-direction: row;
-        justify-content: space-between;
+        flex-direction: column;
         align-items: center;
         margin-top: 20px;
+    }
+
+
+
+    .tableTitle{
+        font-size: 14px;
+        width: 100%;
+        font-weight: bold;
+        color: #572F68;
+        margin-top: 10px;
     }
 
 
@@ -224,69 +233,39 @@
         width: 100%;
     }
 
-    .controlTable{
-        border: 1px solid #8AC4E1;
+    table{
+        border: 1px solid #DCCDE3;
         width: 100%;
         border-collapse: collapse;
     }
 
 
 
-    .controlThead{
+    th{
         height: 35px;
-    }
-
-    .controlThead *{
         font-size: 12px;
-        background-color: #BAE4F9;
-        color: #025273;
-        border: 1px solid #8AC4E1
+        background-color: #EBE2EF;
+        color: #5b416b;
+        border: 1px solid #DCCDE3;
     }
     
     
-    .areaName{
-        width: 250px;
+    
+    td{
+        border: 1px solid #DCCDE3;
+        font-size: 12px;
     }
-
-
+    
+    .str>td{
+        height: 97px;
+        text-align: center;
+    }
 
 
     .areaNameData{
-        font-size: 12px;
-        background-color: #BAE4F9;
-        color: #025273;
-        font-weight: bold;
-        text-align: center;
-        border: 1px solid #8AC4E1;
+        text-align: left;
+        padding-left: 10px;
     }
-
-
-
-    .controlTD{
-        height: 35px;
-        font-size: 12px;
-        border: 1px solid #8AC4E1;
-        text-align: center;
-    }
-
-    select{
-        width: 80px;
-        height: 25px;
-    }
-
-    .saveButton{
-        width: 80px;
-        height: 25px;
-        background-color: #4FB3E5;
-        line-height: 25px;
-        font-weight: bold;
-        color: #fff;
-        cursor: pointer;
-        margin: 0 auto;
-        border: none;
-    }
-
-
 
 
 
@@ -295,10 +274,25 @@
 
 
 
-
-
-
-
+    .searchContainer02>div:last-child{
+        width: 100%;
+        text-align: end;
+    }
+    
+    
+    .add{
+        border: 1px solid #DCCDE3;
+        font-size: 14px;
+        padding: 5px 10px 5px 10px;
+        border-radius: 50px;
+        font-weight: bold;
+        color: #5b416b;
+    }
+    
+    .add:hover{
+        cursor: pointer;
+    }
+    
 
     footer{
         height: 115px;
@@ -309,8 +303,8 @@
         align-items: center;
     }
 
+    
 
-   
     footer>div{
         padding: 0 0 0 15px;
         width: 1280px; 

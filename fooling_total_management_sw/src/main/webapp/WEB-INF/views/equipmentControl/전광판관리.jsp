@@ -18,22 +18,22 @@
             <div class="headContent">
                     <a href="/"><div class="logoBox"><img class="logo" src="/resources/img/logo.png" alt=""></a></div>
                     <div class="menuContiner">
-                        <div><a href="/강우데이터">데이터검색</a></div>
+                        <div><a href="/">데이터검색</a></div>
                         <div><a href="/차단기수동제어">장비제어</a></div>
                         <div><a href="/임계값설정">침수설정</a></div>
-                        <div><a href="#">보고서</a></div>
+                        <div><a href="/보고서출력">보고서</a></div>
                     </div>
             </div>
         </div>
     </header>
-
+<hr>
     <main>
         <section>
             <div class="sectionBox01">
                 <div class="listBox">
                     <div class="listTitle">장비제어</div>
                     <div class="listContent"><a href="/차단기수동제어" class="pageFoward">차단기</a></div>
-                    <div class="listContent"><a href="#" class="pageFoward nowForward">전광판</a></div>
+                    <div class="listContent"><a href="/" class="pageFoward nowForward">전광판</a></div>
                 </div>
             </div>
             <div class="sectionBox02">
@@ -69,13 +69,13 @@
                                     </th>
                                     <td class="areaNameData">후탄리 25-3</td>
                                     <td class="controlTD">
-                                        <div><a href="" class="scenario">시나리오관리</a></div>
+                                        <div><a href="/후탄리25-3" class="scenario">시나리오관리</a></div>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td class="areaNameData">후탄리 331-1</td>
                                     <td class="controlTD">
-                                        <div><a href="" class="scenario">시나리오관리</a></div>
+                                        <div><a href="/후탄리331-1" class="scenario">시나리오관리</a></div>
                                     </td>
                                 </tr>
                             </tbody>
@@ -86,9 +86,9 @@
         </section>
     </main>
 
-
+<hr>
     <footer>
-        <div style=" width: 1730px; height: 100%; display:flex; flex-direction: row; justify-content: space-between; align-items: center;">
+        <div>
             <div>
                 <div>[24347] 강원도 영월군 영월읍 하송로 64 Tel : 1577-0545</div>
                 <div>Copyright 2020ⓒ,Yeongwol County All rights reserved.</div>

@@ -70,7 +70,7 @@
         /* width: 1140px; */
         margin: auto;
         min-width: 100%;
-        height: 1100px;
+        min-height: 1100px;
 
         /* min-height: 요소의 최소 높이  
                         -> 내부 요소 없어도 최소 높이 유지
@@ -207,93 +207,162 @@
 
 
 
-    .searchContainer02{
+    .searchContainer02{        
         display: flex;
         flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-        margin-top: 20px;
+        justify-content: center;
+        width:100%;
+        /* height: 1000px;
+        overflow-y: auto; */
     }
+    
+    
+    
+    .innerContainer{
+        width: 800px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
 
+    }
+    
+
+    
+    .innerContainer>div:last-child{
+        display: flex; 
+        flex-direction: row;
+        justify-content: center;
+        margin: 15px 0 25px 0;
+    }
 
 
     /* 테이블 css시작 */
 
+
+
+
+
     .tableContainer{
         margin: 10px 0 10px 0;
-        width: 100%;
+
     }
 
-    .controlTable{
-        border: 1px solid #8AC4E1;
+    .innerBox01{
+        position: relative;
+        text-align: center;
+        padding: 6px;
+        border-top: 5px solid;
+        border-bottom: 5px solid;
+        -webkit-border-image: url(/resources/img/header.png) 30 stretch;
+        -o-border-image: url(/resources/img/header.png) 30 stretch;
+        border-image: url(/resources/img/header.png) 30 stretch;
+    }
+    
+    
+    .slogan{
+        position: absolute;
+        width: 110px;
+        top: 7px;
+        left: 9px;
+    }
+    
+    .innerBox01 strong{
+        font-size: 36px;
+        line-height: 1.5em;
+    }
+    
+    .innerBox01 span{
+        display: block;
+        font-size: 26px;
+        line-height: 1.5em;
+        margin-bottom: 3px;
+    }
+    
+
+    .innerBox02{
         width: 100%;
+        display: flex; 
+        flex-direction: row;
+        justify-content: center;
+        margin-top: 15px;
+    }
+
+
+
+
+    .tableBox{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+
+
+    .r_title{
+        font-size: 14px;
+        margin-top: 10px;
+        font-weight: bold;
+        margin-bottom: 5px;
+
+        display: flex; 
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    
+
+    table{
+        width: 100%;
+        background-clip: padding-box;
+        border: 3px solid #aaa;
         border-collapse: collapse;
+        
     }
 
 
-
-    .controlThead{
-        height: 35px;
-    }
-
-    .controlThead *{
+    th{
+        /* width: 15.8%; */
         font-size: 12px;
-        background-color: #BAE4F9;
-        color: #025273;
-        border: 1px solid #8AC4E1
+        height: 35px;
+        background-color: #D0E1E9;
+        /* background-color: yellowgreen; */
+        color: #083055;
+        border: 1px solid #aaa;
     }
     
+    td{
+        border: 1px solid #aaa;
+        font-size: 12px;
+        height: 30px;
+        text-align: center;
+        padding: 0px 10px;
+        background-color: #fff;
+        vertical-align: middle;
+    }
     
-    .areaName{
-        width: 250px;
-    }
 
 
-
-
-    .areaNameData{
-        font-size: 12px;
-        background-color: #BAE4F9;
-        color: #025273;
+    
+    button{
+        font-size: 16px;
         font-weight: bold;
+        display: inline-block;
+        width: 100px;
+        height: 40px;
+        line-height: 40px;
+        background-color: #333;
         text-align: center;
-        border: 1px solid #8AC4E1;
-    }
-
-
-
-    .controlTD{
-        height: 35px;
-        font-size: 12px;
-        border: 1px solid #8AC4E1;
-        text-align: center;
-    }
-
-    select{
-        width: 80px;
-        height: 25px;
-    }
-
-    .saveButton{
-        width: 80px;
-        height: 25px;
-        background-color: #4FB3E5;
-        line-height: 25px;
-        font-weight: bold;
         color: #fff;
         cursor: pointer;
-        margin: 0 auto;
-        border: none;
+        margin-right: 10px;
     }
 
-
-
-
+    button:hover{
+        background-color: #555;
+        cursor: pointer;
+    }
 
 
     /* 테이블 css끝 */
-
-
 
 
 
@@ -309,8 +378,6 @@
         align-items: center;
     }
 
-
-   
     footer>div{
         padding: 0 0 0 15px;
         width: 1280px; 
@@ -320,5 +387,8 @@
         justify-content: space-between; 
         align-items: center;
     }
+
+
+
 
 /* } */

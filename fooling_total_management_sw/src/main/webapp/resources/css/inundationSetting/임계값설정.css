@@ -14,7 +14,7 @@
     /* 다 만들고 삭제예정 */
     div, main, section, header, footer, article, nav, aside, form 
     { 
-        border: 1px solid blue; 
+        /* border: 1px solid blue;  */
     }  
 
 
@@ -36,7 +36,7 @@
     }
 
     .headContiner{
-        width: 1730px; height: 100%; display:flex; align-items: center;
+        width: 1280px; height: 100%; display:flex; align-items: center;
     }
 
     .headContent{
@@ -49,8 +49,8 @@
     }
 
     .logo{
-        width: 250px;
-        height: 70px;
+        width: 219px;
+        height: 60px;
     }
 
     .menuContiner{
@@ -70,7 +70,7 @@
         /* width: 1140px; */
         margin: auto;
         min-width: 100%;
-        height: 90vh;
+        height: 1100px;
 
         /* min-height: 요소의 최소 높이  
                         -> 내부 요소 없어도 최소 높이 유지
@@ -89,7 +89,7 @@
 
     section{
         /* width:100%; */
-        width: 1730px; /*임의설정 차후 네이버 보고 맞출 것*/
+        width: 1280px; /*임의설정 차후 네이버 보고 맞출 것*/
         height:100%;
         display: flex;
 
@@ -104,6 +104,7 @@
     .listBox{
         min-width: 200px;
         margin: 20px 15px 15px 15px;
+        border: 1px solid #e6ecf0;
     }
 
     .listTitle{
@@ -141,7 +142,7 @@
 
 
     .sectionBox02{
-        width: 1630px;
+        width: 1050px;
     }
 
 
@@ -227,13 +228,29 @@
     /* 테이블 css시작 */
 
 
+    input:hover, label:hover, select:hover{
+        cursor: pointer;
+    }
+
+    select{
+        width: 80px;
+        height: 25px;
+    }
+
 
 
     .tableContainer{
         margin: 10px 0 10px 0;
         width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
     }
 
+    /* .tableContainer{
+        height: 1030px;
+        overflow-y: auto;
+    } */
 
     .sencerTable{
         width: 100%;
@@ -253,8 +270,7 @@
     .sencerTable td{
         padding: 0 0 0 10px;
     }
-
-    /********************************/
+    
 
     .stepOneTable{
         margin-top: 15px;
@@ -262,6 +278,50 @@
         border: 1px solid #91CB98;
         border-collapse: collapse;
     }
+
+    .stepOneTable td{
+        border: 1px solid #91CB98;
+        height: 35px;
+    }
+
+
+    .stepTwoTable{
+        margin-top: 15px;
+        width: 100%;
+        border: 1px solid #91CB98;
+        border-collapse: collapse;
+    }
+
+    .stepTwoTable td{
+        border: 1px solid #91CB98;
+        height: 35px;
+    }
+
+
+    .stepThreeTable{
+        margin-top: 15px;
+        width: 100%;
+        border: 1px solid #91CB98;
+        border-collapse: collapse;
+    }
+
+
+
+    .stepThreeTable td{
+        border: 1px solid #91CB98;
+        height: 35px;
+    }
+
+
+
+
+
+
+
+
+    /***************테이블 공통 시작*****************/
+
+
 
     .step{
         width: 100px;
@@ -288,6 +348,8 @@
         padding-left: 10px;
     }
 
+
+
     td>div{
         display: flex;
         justify-content: space-between;
@@ -295,13 +357,14 @@
     }
 
     td>div>div:first-child{
+
         display: flex;
         justify-content: space-between;
         align-items: center;
     }
     
-    td>div>div>div *{
-        margin: 0 5px 0 5px;
+    td>div>div>div{
+        margin: 0 5px 0 15px;
         font-size: 12px;
     }
     
@@ -324,54 +387,31 @@
         width: 100%;
         border-collapse: collapse;
     }
-
-
-
+    
+    /*****************테이블 공통 끝*****************/
     
     
-    .areaName{
-        width: 250px;
-    }
-
-
-
-
-    .areaNameData{
-        font-size: 12px;
-        background-color: #BAE4F9;
-        color: #025273;
-        font-weight: bold;
-        text-align: center;
-        border: 1px solid #8AC4E1;
-    }
-
-
-
-    .controlTD{
-        height: 35px;
-        font-size: 12px;
-        border: 1px solid #8AC4E1;
-        text-align: center;
-    }
-
-    select{
-        width: 80px;
-        height: 25px;
-    }
-
-    .saveButton{
-        font-size: 14px;
-        display: inline-block;
-        padding: 8px 10px;
-        background-color: #91CB98;
-        color: #fff;
-        font-weight: bold;
-        cursor: pointer;
-        border: none;
-    }
-
-
-
+    
+        
+        .tableContainer>div:last-child{
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        
+        
+        
+        .saveButton{
+            font-size: 14px;
+            display: inline-block;
+            padding: 8px 10px;
+            background-color: #91CB98;
+            color: #fff;
+            font-weight: bold;
+            cursor: pointer;
+            border: none;
+        }
 
 
 
@@ -390,6 +430,17 @@
         display:flex;
         flex-direction: row;
         justify-content: center;
+        align-items: center;
+    }
+
+
+    footer>div{
+        padding: 0 0 0 15px;
+        width: 1280px; 
+        height: 100%; 
+        display:flex; 
+        flex-direction: row; 
+        justify-content: space-between; 
         align-items: center;
     }
 

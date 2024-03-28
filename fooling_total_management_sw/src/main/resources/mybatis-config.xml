@@ -11,7 +11,7 @@
 		<typeAlias type="fodics.web.jsy.dataSearch.model.dto.DataSearch" alias="DataSearch"/>
 		<typeAlias type="fodics.web.jsy.equipmentControl.model.dto.EquipmentControl" alias="EquipmentControl"/>
 		<typeAlias type="fodics.web.jsy.inundationSetting.model.dto.InundationSetting" alias="InundationSetting"/>
-		<typeAlias type="fodics.web.jsy.research.model.dto.Research" alias="Research"/>
+		<typeAlias type="fodics.web.jsy.outputReport.model.dto.OutputReport" alias="OutputReport"/>
 		<typeAlias type="fodics.web.jsy.main.model.dto.Main" alias="Main"/>
 	</typeAliases>
 	

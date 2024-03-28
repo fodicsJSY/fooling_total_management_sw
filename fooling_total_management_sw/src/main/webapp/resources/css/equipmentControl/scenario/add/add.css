@@ -209,11 +209,12 @@
 
     .searchContainer02{
         display: flex;
-        flex-direction: row;
-        justify-content: space-between;
+        flex-direction: column;
         align-items: center;
-        margin-top: 20px;
+        /* margin-top: 10px; */
     }
+
+
 
 
 
@@ -224,93 +225,193 @@
         width: 100%;
     }
 
-    .controlTable{
-        border: 1px solid #8AC4E1;
+    table{
+        border: 1px solid #DCCDE3;
         width: 100%;
         border-collapse: collapse;
     }
 
 
 
-    .controlThead{
+    th{
         height: 35px;
-    }
-
-    .controlThead *{
         font-size: 12px;
-        background-color: #BAE4F9;
-        color: #025273;
-        border: 1px solid #8AC4E1
+        background-color: #EBE2EF;
+        color: #5b416b;
+        border: 1px solid #DCCDE3;
+        text-align: center;
     }
     
     
-    .areaName{
-        width: 250px;
-    }
-
-
-
-
-    .areaNameData{
+    
+    td{
+        border: 1px solid #DCCDE3;
         font-size: 12px;
-        background-color: #BAE4F9;
-        color: #025273;
-        font-weight: bold;
-        text-align: center;
-        border: 1px solid #8AC4E1;
+        text-align: left;
+        padding-left: 10px;
+    }
+    
+
+
+    .selectBox{
+        display: flex;
+        justify-content: start;
+        align-items: center;
+    }
+
+    .selectBox>div{
+        margin: 0 10px 0 0 ;
     }
 
 
-
-    .controlTD{
-        height: 35px;
-        font-size: 12px;
-        border: 1px solid #8AC4E1;
-        text-align: center;
+    .inputStartDate{
+        border-radius: 5px;
     }
 
-    select{
-        width: 80px;
-        height: 25px;
-    }
-
-    .saveButton{
-        width: 80px;
-        height: 25px;
-        background-color: #4FB3E5;
-        line-height: 25px;
-        font-weight: bold;
-        color: #fff;
+    
+    .inputStartDate:hover{
         cursor: pointer;
-        margin: 0 auto;
-        border: none;
     }
 
 
+    .selectStartTime:hover{
+        cursor: pointer;
+    }
 
+    .text{
+        font-size: 11px;
+        color: #777;
+    }
 
 
 
     /* 테이블 css끝 */
 
 
+    #addText{
+        height: 51px;
+        width: 700px;
+        padding: 10px;
+        font-size: 16px;
+        border: 1px solid #DCCDE3;
+    }
+    
+    
+    .textAddBtn{
+        background-color: #914F9C;
+        border: none;
+        height: 40px;
+        width: 40px;
+        border-radius: 50%;
+        line-height: 38px;
+        text-align: center;
+        font-size: 20px;
+        font-weight: bold;
+        color: #fff;
+        
+    }
+    
+    .textAddBtn:hover{
+        cursor: pointer;
+        background-color: #744598;
+    }
+    
+    .addTextBox{
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+    }
+    
+    
+    .addTextBox>div:last-child{
+        vertical-align: middle;
+        width: 75px;
+        text-align: center;
+        border: 1px solid #DCCDE3;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .addTextBox>div:last-child>div{
+        border: none;
+        height: 40px;
+        width: 40px;
+        border-radius: 50%;
+    }
 
 
+    
+
+    .byte, .byte *{
+        font-size: 12px;
+        margin-top: 5px;
+        text-align: right;
+        color: #777;
+    }
+    
+    
+    .btnBox{
+        width: 100%;
+        display: flex;
+
+        margin: 20px 0 20px 0 ;
+    }
+    
+    
+    .colorBtn{
+        width: 135px;
+        height: 50px;
+        border: 1px solid #DCCDE3;
+    }
+
+    .colorBtn:hover{
+        cursor: pointer;
+    }
+
+    .color1{background-color: rgba(255,0,0,1.00);}
+    .color2{background-color: rgba(0,255,0,1.00);}
+    .color3{background-color: rgba(255,255,0,1.00);}
+    .color4{background-color: rgba(0,0,255,1.00);}
+    .color5{background-color: rgba(255,0,255,1.00);}
+    .color6{background-color: rgba(0,255,255,1.00);}
+    .color7{background-color: rgba(255,255,255,1.00);}
+
+    .searchContainer02>div:last-child{
+    }
+    
+    .saveBtnBox{
+        width: 100%;
+        text-align: center;
+    }
+
+    .saveBtn{
+        margin: 0 auto;
+        display: inline-block;
+        background-color: #9E72BF;
+        border: none;
+        padding: 5px 10px;
+        font-size: 15px;
+        font-weight: bold;
+        color: #fff;
+    }
 
 
-
+    .saveBtn:hover{
+        cursor: pointer;
+        background-color: #744598;
+    }
 
     footer{
         height: 115px;
-
         display:flex;
         flex-direction: row;
         justify-content: center;
         align-items: center;
     }
 
-
-   
+    
+  
     footer>div{
         padding: 0 0 0 15px;
         width: 1280px; 

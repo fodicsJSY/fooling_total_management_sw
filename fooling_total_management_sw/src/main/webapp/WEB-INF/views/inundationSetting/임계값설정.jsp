@@ -15,23 +15,23 @@
             <div class="headContent">
                     <a href="/"><div class="logoBox"><img class="logo" src="/resources/img/logo.png" alt=""></a></div>
                     <div class="menuContiner">
-                        <div><a href="#">데이터검색</a></div>
-                        <div><a href="/전광판관리">장비제어</a></div>
-                        <div><a href="/임계값설정">침수설정</a></div>
-                        <div><a href="#">보고서</a></div>
+                        <div><a href="/">데이터검색</a></div>
+                        <div><a href="/차단기수동제어">장비제어</a></div>
+                        <div><a href="#">침수설정</a></div>
+                        <div><a href="/보고서출력">보고서</a></div>
                     </div>
             </div>
         </div>
     </header>
-
+<hr>
     <main>
         <section>
             <div class="sectionBox01">
                 <div class="listBox">
-                    <div class="listTitle">데이터 검색</div>
-                    <div class="listContent"><a href="#" class="pageFoward nowForward">강우 데이터</a></div>
-                    <div class="listContent"><a href="/침수데이터" class="pageFoward">침수 데이터</a></div>
-                    <div class="listContent"><a href="/입출차정보" class="pageFoward">입출차 정보</a></div>
+                    <div class="listTitle">침수설정</div>
+                    <div class="listContent"><a href="#" class="pageFoward nowForward">임계값설정</a></div>
+                    <div class="listContent"><a href="/경보상황제어" class="pageFoward">경보상황 제어</a></div>
+                    <div class="listContent"><a href="/경보발생내역" class="pageFoward">경보발생 내역</a></div>
                 </div>
             </div>
             <div class="sectionBox02">
@@ -54,14 +54,15 @@
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="searchContainer02">
                     <div class="zoneBox">
                         지구선택 : 
                         <select name="지구선택" id="zoneSelect" class="selectZone">
                             <option value="후탄지구">후탄지구</option>
                         </select>
                     </div>
+                </div>
+                <div class="searchContainer02">
+                    
                 </div>
                 <div class="tableContainer">
                     <div>
@@ -94,13 +95,13 @@
                                     <div>
                                         <div>
                                             <div>
-                                                <input type="radio" id="" value="5cm" > <label for="">5cm</label>
+                                                <input type="radio" id="stepOne_5cm" name="stepOneRadio" value="5cm" > <label for="stepOne_5cm">5cm</label>
                                             </div>
                                             <div>
-                                                <input type="radio" id="" value="13cm" > <label for=""> 13cm</label>
+                                                <input type="radio" id="stepOne_13cm" name="stepOneRadio" value="13cm" > <label for="stepOne_13cm"> 13cm</label>
                                             </div>
                                             <div>
-                                                <input type="radio" id="" value="21cm" > <label for=""> 21cm</label>
+                                                <input type="radio" id="stepOne_21cm" name="stepOneRadio" value="21cm" > <label for="stepOne_21cm"> 21cm</label>
                                             </div>
                                         </div>
                                         <div>※ 침수상황을 조건에 추가합니다. (AND)</div>
@@ -113,16 +114,16 @@
                                     <div>
                                         <div>
                                             <div>
-                                                <input type="checkbox" id="" value="호우주의보" > <label for="">호우주의보</label>
+                                                <input type="checkbox" id="stepOne_heavyRainAdvisory" value="호우주의보" > <label for="stepOne_heavyRainAdvisory">호우주의보</label>
                                             </div>
                                             <div>
-                                                <input type="checkbox" id="" value="호우경보" > <label for="">호우경보</label>
+                                                <input type="checkbox" id="stepOne_heavyRainWarning" value="호우경보" > <label for="stepOne_heavyRainWarning">호우경보</label>
                                             </div>
                                             <div>
-                                                <input type="checkbox" id="" value="태풍주의보" > <label for="">태풍주의보</label>
+                                                <input type="checkbox" id="stepOne_typhoonAdvisory" value="태풍주의보" > <label for="stepOne_typhoonAdvisory">태풍주의보</label>
                                             </div>
                                             <div>
-                                                <input type="checkbox" id="" value="태풍경보" > <label for="">태풍경보</label>
+                                                <input type="checkbox" id="stepOne_typhoonWarning" value="태풍경보" > <label for="stepOne_typhoonWarning">태풍경보</label>
                                             </div>
                                         </div>
                                         <div>※ 특보상황을 조건에 추가합니다. (AND)</div>
@@ -135,12 +136,12 @@
                                     <div>
                                         <div>
                                             <div>
-                                                <input type="checkbox" id="" value="금일" > <label for="">금일</label>
-                                                <input type="number"class="numInput" min="0" placeholder="0">mm
+                                                <input type="checkbox" id="stepOne_todayCheck" value="금일" > <label for="stepOne_todayCheck">금일</label>
+                                                <input type="number"class="numInput" id="stepOne_todayInput" min="0" placeholder="0">mm
                                             </div>
                                             <div>
-                                                <input type="checkbox" id="" value="시간" > <label for="">시간</label>
-                                                <input type="number" class="numInput" min="0" placeholder="0">mm
+                                                <input type="checkbox" id="stepOne_timeCheck" value="시간" > <label for="stepOne_timeCheck">시간</label>
+                                                <input type="number" class="numInput" id="stepOne_timeInput" min="0" placeholder="0">mm
                                             </div>
                                         </div>
                                         <div>※ 강우상황을 조건에 추가합니다. (AND)</div>
@@ -152,16 +153,16 @@
                                     <div>
                                         <div>
                                             <div>
-                                                <input type="checkbox" id="" value="이동 15분" > <label for="">이동 15분</label>
-                                                <input type="number" class="numInput"  min="0" placeholder="0">mm
+                                                <input type="checkbox" id="stepOne_move15" value="이동 15분" > <label for="stepOne_move15">이동 15분</label>
+                                                <input type="number" class="numInput" id="stepOne_move15numInput" min="0" placeholder="0">mm
                                             </div>
                                             <div>
-                                                <input type="checkbox" id="" value="이동 60분" > <label for="">이동 60분</label>
-                                                <input type="number" class="numInput"  min="0" placeholder="0">mm
+                                                <input type="checkbox" id="stepOne_move60" value="이동 60분" > <label for="stepOne_move60">이동 60분</label>
+                                                <input type="number" class="numInput" id="stepOne_move60numInput"  min="0" placeholder="0">mm
                                             </div>
                                             <div>
-                                                <input type="checkbox" id="" value="이동 24시" > <label for="">이동 24시</label>
-                                                <input type="number" class="numInput"  min="0" placeholder="0">mm
+                                                <input type="checkbox" id="stepOne_move24h" value="이동 24시" > <label for="stepOne_move24h">이동 24시</label>
+                                                <input type="number" class="numInput" id="stepOne_move24hNumInput"  min="0" placeholder="0">mm
                                             </div>
                                         </div>
                                         <div>※ 금일,시간,이동강우 중 조건에 맞으면 경보발령이 됩니다. (OR)</div>
@@ -174,19 +175,19 @@
                                     <div>
                                         <div>
                                             <div>
-                                                <input type="checkbox" id="" value="차단기" > <label for="">차단기</label>
+                                                <input type="checkbox" id="stepOne_circuitBreaker" value="차단기" > <label for="stepOne_circuitBreaker">차단기</label>
                                             </div>
                                             <div>
-                                                <input type="checkbox" id="" value="경보방송" > <label for="">경보방송</label>
+                                                <input type="checkbox" id="stepOne_broadcasting" value="경보방송" > <label for="stepOne_broadcasting">경보방송</label>
                                             </div>
                                             <div>
-                                                <input type="checkbox" id="" value="문자전광판" > <label for="">문자전광판</label>
+                                                <input type="checkbox" id="stepOne_scriptBoard" value="문자전광판" > <label for="stepOne_scriptBoard">문자전광판</label>
                                             </div>
                                             <div>
-                                                <input type="checkbox" id="" value="사용자APP 알림" > <label for="">사용자APP 알림</label>
+                                                <input type="checkbox" id="stepOne_userAPPalarm" value="사용자APP 알림" > <label for="stepOne_userAPPalarm">사용자APP 알림</label>
                                             </div>
                                             <div>
-                                                <input type="checkbox" id="" value="관리자APP 알림" > <label for="">관리자APP 알림</label>
+                                                <input type="checkbox" id="stepOne_managerAPPalarm" value="관리자APP 알림" > <label for="stepOne_managerAPPalarm">관리자APP 알림</label>
                                             </div>
                                         </div>
                                         <div>※ 조건에 만족하면 선택된 장비를 자동으로 동작합니다.</div>
@@ -194,19 +195,240 @@
                                 </td>
                             </tr>
                         </table>
-                        <table class="stepTwoTable"></table>
-                        <table class="stepThreeTable"></table>
+                        <table class="stepTwoTable">
+                            <tr>
+                                <th class="step" rowspan="6"><input type="checkbox" id="stepTwo" value="2단계" ><label class="checkStep"  for="stepTwo">2단계</label></th>
+                            </tr>
+                            <tr>
+                                <th class="group">침수</th>
+                                <td>
+                                    <div>
+                                        <div>
+                                            <div>
+                                                <input type="radio" id="stepTwo_5cm" name="stepTwoRadio" value="5cm" > <label for="stepTwo_5cm">5cm</label>
+                                            </div>
+                                            <div>
+                                                <input type="radio" id="stepTwo_13cm" name="stepTwoRadio" value="13cm" > <label for="stepTwo_13cm"> 13cm</label>
+                                            </div>
+                                            <div>
+                                                <input type="radio" id="stepTwo_21cm" name="stepTwoRadio" value="21cm" > <label for="stepTwo_21cm"> 21cm</label>
+                                            </div>
+                                        </div>
+                                        <div>※ 침수상황을 조건에 추가합니다. (AND)</div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th class="group">특보</th>
+                                <td>
+                                    <div>
+                                        <div>
+                                            <div>
+                                                <input type="checkbox" id="stepTwo_heavyRainAdvisory" value="호우주의보" > <label for="stepTwo_heavyRainAdvisory">호우주의보</label>
+                                            </div>
+                                            <div>
+                                                <input type="checkbox" id="stepTwo_heavyRainWarning" value="호우경보" > <label for="stepTwo_heavyRainWarning">호우경보</label>
+                                            </div>
+                                            <div>
+                                                <input type="checkbox" id="stepTwo_typhoonAdvisory" value="태풍주의보" > <label for="stepTwo_typhoonAdvisory">태풍주의보</label>
+                                            </div>
+                                            <div>
+                                                <input type="checkbox" id="stepTwo_typhoonWarning" value="태풍경보" > <label for="stepTwo_typhoonWarning">태풍경보</label>
+                                            </div>
+                                        </div>
+                                        <div>※ 특보상황을 조건에 추가합니다. (AND)</div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th class="group" rowspan="2" >강우량</th>
+                                <td>
+                                    <div>
+                                        <div>
+                                            <div>
+                                                <input type="checkbox" id="stepTwo_todayCheck" value="금일" > <label for="stepTwo_todayCheck">금일</label>
+                                                <input type="number"class="numInput" id="stepTwo_todayInput" min="0" placeholder="0">mm
+                                            </div>
+                                            <div>
+                                                <input type="checkbox" id="stepTwo_timeCheck" value="시간" > <label for="stepTwo_timeCheck">시간</label>
+                                                <input type="number" class="numInput" id="stepTwo_timeInput" min="0" placeholder="0">mm
+                                            </div>
+                                        </div>
+                                        <div>※ 강우상황을 조건에 추가합니다. (AND)</div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div>
+                                        <div>
+                                            <div>
+                                                <input type="checkbox" id="stepTwo_move15" value="이동 15분" > <label for="stepTwo_move15">이동 15분</label>
+                                                <input type="number" class="numInput" id="stepTwo_move15numInput" min="0" placeholder="0">mm
+                                            </div>
+                                            <div>
+                                                <input type="checkbox" id="stepTwo_move60" value="이동 60분" > <label for="stepTwo_move60">이동 60분</label>
+                                                <input type="number" class="numInput" id="stepTwo_move60numInput"  min="0" placeholder="0">mm
+                                            </div>
+                                            <div>
+                                                <input type="checkbox" id="stepTwo_move24h" value="이동 24시" > <label for="stepTwo_move24h">이동 24시</label>
+                                                <input type="number" class="numInput" id="stepTwo_move24hNumInput"  min="0" placeholder="0">mm
+                                            </div>
+                                        </div>
+                                        <div>※ 금일,시간,이동강우 중 조건에 맞으면 경보발령이 됩니다. (OR)</div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th class="group">동작장비</th>
+                                <td>
+                                    <div>
+                                        <div>
+                                            <div>
+                                                <input type="checkbox" id="stepTwo_circuitBreaker" value="차단기" > <label for="stepTwo_circuitBreaker">차단기</label>
+                                            </div>
+                                            <div>
+                                                <input type="checkbox" id="stepTwo_broadcasting" value="경보방송" > <label for="stepTwo_broadcasting">경보방송</label>
+                                            </div>
+                                            <div>
+                                                <input type="checkbox" id="stepTwo_scriptBoard" value="문자전광판" > <label for="stepTwo_scriptBoard">문자전광판</label>
+                                            </div>
+                                            <div>
+                                                <input type="checkbox" id="stepTwo_userAPPalarm" value="사용자APP 알림" > <label for="stepTwo_userAPPalarm">사용자APP 알림</label>
+                                            </div>
+                                            <div>
+                                                <input type="checkbox" id="stepTwo_managerAPPalarm" value="관리자APP 알림" > <label for="stepTwo_managerAPPalarm">관리자APP 알림</label>
+                                            </div>
+                                        </div>
+                                        <div>※ 조건에 만족하면 선택된 장비를 자동으로 동작합니다.</div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                        </table>
+                        <table class="stepThreeTable">
+                            <tr>
+                                <th class="step" rowspan="6"><input type="checkbox" id="stepThree" value="3단계" ><label class="checkStep"  for="stepThree">3단계</label></th>
+                            </tr>
+                            <tr>
+                                <th class="group">침수</th>
+                                <td>
+                                    <div>
+                                        <div>
+                                            <div>
+                                                <input type="radio" id="stepThree_5cm" name="stepThreeRadio" value="5cm" > <label for="stepThree_5cm">5cm</label>
+                                            </div>
+                                            <div>
+                                                <input type="radio" id="stepThree_13cm" name="stepThreeRadio" value="13cm" > <label for="stepThree_13cm"> 13cm</label>
+                                            </div>
+                                            <div>
+                                                <input type="radio" id="stepThree_21cm" name="stepThreeRadio" value="21cm" > <label for="stepThree_21cm"> 21cm</label>
+                                            </div>
+                                        </div>
+                                        <div>※ 침수상황을 조건에 추가합니다. (AND)</div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th class="group">특보</th>
+                                <td>
+                                    <div>
+                                        <div>
+                                            <div>
+                                                <input type="checkbox" id="stepThree_heavyRainAdvisory" value="호우주의보" > <label for="stepThree_heavyRainAdvisory">호우주의보</label>
+                                            </div>
+                                            <div>
+                                                <input type="checkbox" id="stepThree_heavyRainWarning" value="호우경보" > <label for="stepThree_heavyRainWarning">호우경보</label>
+                                            </div>
+                                            <div>
+                                                <input type="checkbox" id="stepThree_typhoonAdvisory" value="태풍주의보" > <label for="stepThree_typhoonAdvisory">태풍주의보</label>
+                                            </div>
+                                            <div>
+                                                <input type="checkbox" id="stepThree_typhoonWarning" value="태풍경보" > <label for="stepThree_typhoonWarning">태풍경보</label>
+                                            </div>
+                                        </div>
+                                        <div>※ 특보상황을 조건에 추가합니다. (AND)</div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th class="group" rowspan="2" >강우량</th>
+                                <td>
+                                    <div>
+                                        <div>
+                                            <div>
+                                                <input type="checkbox" id="stepThreestepThreeheck" value="금일" > <label for="stepThreestepThreeheck">금일</label>
+                                                <input type="number"class="numInput" id="stepThreestepThreenput" min="0" placeholder="0">mm
+                                            </div>
+                                            <div>
+                                                <input type="checkbox" id="stepThreestepThreeeck" value="시간" > <label for="stepThreestepThreeeck">시간</label>
+                                                <input type="number" class="numInput" id="stepThreestepThreeput" min="0" placeholder="0">mm
+                                            </div>
+                                        </div>
+                                        <div>※ 강우상황을 조건에 추가합니다. (AND)</div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div>
+                                        <div>
+                                            <div>
+                                                <input type="checkbox" id="stepThree_move15" value="이동 15분" > <label for="stepThree_move15">이동 15분</label>
+                                                <input type="number" class="numInput" id="stepThree_move15numInput" min="0" placeholder="0">mm
+                                            </div>
+                                            <div>
+                                                <input type="checkbox" id="stepThree_move60" value="이동 60분" > <label for="stepThree_move60">이동 60분</label>
+                                                <input type="number" class="numInput" id="stepThree_move60numInput"  min="0" placeholder="0">mm
+                                            </div>
+                                            <div>
+                                                <input type="checkbox" id="stepThree_move24h" value="이동 24시" > <label for="stepThree_move24h">이동 24시</label>
+                                                <input type="number" class="numInput" id="stepThree_move24hNumInput"  min="0" placeholder="0">mm
+                                            </div>
+                                        </div>
+                                        <div>※ 금일,시간,이동강우 중 조건에 맞으면 경보발령이 됩니다. (OR)</div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th class="group">동작장비</th>
+                                <td>
+                                    <div>
+                                        <div>
+                                            <div>
+                                                <input type="checkbox" id="stepThree_circuitBreaker" value="차단기" > <label for="stepThree_circuitBreaker">차단기</label>
+                                            </div>
+                                            <div>
+                                                <input type="checkbox" id="stepThree_broadcasting" value="경보방송" > <label for="stepThree_broadcasting">경보방송</label>
+                                            </div>
+                                            <div>
+                                                <input type="checkbox" id="stepThree_scriptBoard" value="문자전광판" > <label for="stepThree_scriptBoard">문자전광판</label>
+                                            </div>
+                                            <div>
+                                                <input type="checkbox" id="stepThree_userAPPalarm" value="사용자APP 알림" > <label for="stepThree_userAPPalarm">사용자APP 알림</label>
+                                            </div>
+                                            <div>
+                                                <input type="checkbox" id="stepThree_managerAPPalarm" value="관리자APP 알림" > <label for="stepThree_managerAPPalarm">관리자APP 알림</label>
+                                            </div>
+                                        </div>
+                                        <div>※ 조건에 만족하면 선택된 장비를 자동으로 동작합니다.</div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
                     </div>
-                    <div><button class="saveButton">저장</button></div>
+                    <div>
+                        <div><button class="saveButton">저장</button></div>
+                    </div>
                 
                 </div>
             </div>
         </section>
     </main>
 
-
+<hr>
     <footer>
-        <div style=" width: 1730px; height: 100%; display:flex; flex-direction: row; justify-content: space-between; align-items: center;">
+        <div>
             <div>
                 <div>[24347] 강원도 영월군 영월읍 하송로 64 Tel : 1577-0545</div>
                 <div>Copyright 2020ⓒ,Yeongwol County All rights reserved.</div>
@@ -219,7 +441,7 @@
 
 
     <script></script>
-    <script src="resources/js/dataSearch/강우데이터.js"></script>
+    <script src="resources/js/inundationSetting/임계값설정.js"></script>
     <script src="resources/js/date.js"></script>
 </body>
 </html>
