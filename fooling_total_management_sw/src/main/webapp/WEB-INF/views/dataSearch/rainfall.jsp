@@ -150,7 +150,9 @@
 
 
     <script></script>
-    <script src="resources/js/dataSearch/rainfall.js"></script>
+    <script src="resources/js/dataSearch/rainfall/rainfall_select.js"></script>
+    <script src="resources/js/dataSearch/rainfall/rainfall_search.js"></script>
+    <script src="resources/js/dataSearch/rainfall/rainfall_table.js"></script>
     <script src="resources/js/date.js"></script>
 </body>
 </html>

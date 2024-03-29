@@ -233,7 +233,7 @@
     }
 
     select{
-        width: 80px;
+        width: 120px;
         height: 25px;
     }
 
@@ -328,7 +328,6 @@
         font-size: 12px;
         height: 35px;
         background-color: #D0E9D3;
-
         border: 1px solid #91CB98;
     }
 
@@ -364,17 +363,19 @@
     }
     
     td>div>div>div{
-        margin: 0 5px 0 15px;
+        margin: 0 5px 0 10px;
         font-size: 12px;
     }
     
     td>div>div:last-child{
         font-size: 10px;
+        margin-right: 5px;
     }
 
 
     .numInput{
         width: 70px;
+        padding: 0 5px 0 5px;
     }
 
 

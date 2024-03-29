@@ -154,8 +154,8 @@
 
 
     <script></script>
-    <script src="resources/js/inundationSetting/경보발생내역.js"></script>
-    <script src="resources/js/inundationSetting/pagination.js"></script>
+    <script src="resources/js/inundationSetting/경보발생내역/경보발생내역.js"></script>
+    <script src="resources/js/inundationSetting/경보발생내역/pagination.js"></script>
     <script src="resources/js/date.js"></script>
 </body>
 </html>

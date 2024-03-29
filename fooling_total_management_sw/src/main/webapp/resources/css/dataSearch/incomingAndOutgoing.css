@@ -392,19 +392,23 @@
     .rainfullThead{
         height: 35px;
     }
+
+    td{
+        width: 20px;
+    }
     
     /* 일간강우 시작*/
     
     .areaName{
         background-color: #EBD3C6;
         color:#351B12;
-        width: 100px;
+        width: 90px;
     }
 
     .inout{
         background-color: #EBD3C6;
         color:#351B12;
-        /* width: 30px; */
+        width: 40px;
 
     }
 

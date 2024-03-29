@@ -146,7 +146,10 @@
 
 
     <script></script>
-    <script src="resources/js/dataSearch/incomingAndOutgoing.js"></script>
+    <script src="resources/js/dataSearch/incomingAndOutgoing/incomingAndOutgoing_select.js"></script>
+    <script src="resources/js/dataSearch/incomingAndOutgoing/incomingAndOutgoing_search.js"></script>
+    <script src="resources/js/dataSearch/incomingAndOutgoing/incomingAndOutgoing_xml.js"></script>
+    <script src="resources/js/dataSearch/incomingAndOutgoing/incomingAndOutgoing_table.js"></script>
     <script src="resources/js/date.js"></script>
 
 

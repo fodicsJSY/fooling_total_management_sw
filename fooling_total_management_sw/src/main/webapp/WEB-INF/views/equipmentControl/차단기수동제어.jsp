@@ -66,97 +66,97 @@
                             <tr>
                                 <th class="areaNameData">후탄리 25-3</th>
                                 <td class="controlTD">
-                                    <select name="상태" id="gate25-3">
-                                        <option value="열림">열림</option>
-                                        <option value="닫힘">닫힘</option>
+                                    <select name="상태" id="gate25_3">
+                                        <option value="open">열림</option>
+                                        <option value="close">닫힘</option>
                                     </select>
                                 </td>
                                 <td class="controlTD">
-                                    <select name="상태" id="light25-3">
-                                        <option value="꺼짐">꺼짐</option>
-                                        <option value="켜짐">켜짐</option>
+                                    <select name="상태" id="light25_3">
+                                        <option value="Turn_off">꺼짐</option>
+                                        <option value="Turn_on">켜짐</option>
                                     </select>
                                 </td>
                                 <td class="controlTD">
-                                    <select name="상태" id="sound25-3" >
-                                        <option value="꺼짐">꺼짐</option>
-                                        <option value="켜짐">켜짐</option>
+                                    <select name="상태" id="sound25_3" >
+                                        <option value="Turn_off">꺼짐</option>
+                                        <option value="Turn_on">켜짐</option>
                                     </select>
                                 </td>
                                 <td class="controlTD">
-                                    <button type="button" class="saveButton" id="saveBtn25-3">저장</button>
+                                    <button type="button" class="saveButton" id="saveBtn25_3">저장</button>
                                 </td>
                             </tr>
                             <tr>
                                 <th class="areaNameData">후탄리 331-1</th>
                                 <td class="controlTD">
-                                    <select name="상태" id="gate331-1">
-                                        <option value="열림">열림</option>
-                                        <option value="닫힘">닫힘</option>
+                                    <select name="상태" id="gate331_1">
+                                        <option value="open">열림</option>
+                                        <option value="close">닫힘</option>
                                     </select>
                                 </td>
                                 <td class="controlTD">
-                                    <select name="상태" id="light331-1">
-                                        <option value="꺼짐">꺼짐</option>
-                                        <option value="켜짐">켜짐</option>
+                                    <select name="상태" id="light331_1">
+                                        <option value="Turn_off">꺼짐</option>
+                                        <option value="Turn_on">켜짐</option>
                                     </select>
                                 </td>
                                 <td class="controlTD">
-                                    <select name="상태" id="sound331-1" >
-                                        <option value="꺼짐">꺼짐</option>
-                                        <option value="켜짐">켜짐</option>
+                                    <select name="상태" id="sound331_1" >
+                                        <option value="Turn_off">꺼짐</option>
+                                        <option value="Turn_on">켜짐</option>
                                     </select>
                                 </td>
                                 <td class="controlTD">
-                                    <button type="button" class="saveButton" id="saveBtn331-1">저장</button>
+                                    <button type="button" class="saveButton" id="saveBtn331_1">저장</button>
                                 </td>
                             </tr>
                             <tr>
                                 <th class="areaNameData">판운리 426-20</th>
                                 <td class="controlTD">
-                                    <select name="상태" id="gate426-20">
-                                        <option value="열림">열림</option>
-                                        <option value="닫힘">닫힘</option>
+                                    <select name="상태" id="gate426_20">
+                                        <option value="open">열림</option>
+                                        <option value="close">닫힘</option>
                                     </select>
                                 </td>
                                 <td class="controlTD">
-                                    <select name="상태" id="light426-20">
-                                        <option value="꺼짐">꺼짐</option>
-                                        <option value="켜짐">켜짐</option>
+                                    <select name="상태" id="light426_20">
+                                        <option value="Turn_off">꺼짐</option>
+                                        <option value="Turn_on">켜짐</option>
                                     </select>
                                 </td>
                                 <td class="controlTD">
-                                    <select name="상태" id="sound426-20" >
-                                        <option value="꺼짐">꺼짐</option>
-                                        <option value="켜짐">켜짐</option>
+                                    <select name="상태" id="sound426_20" >
+                                        <option value="Turn_off">꺼짐</option>
+                                        <option value="Turn_on">켜짐</option>
                                     </select>
                                 </td>
                                 <td class="controlTD">
-                                    <button type="button" class="saveButton" id="saveBtn426-20">저장</button>
+                                    <button type="button" class="saveButton" id="saveBtn426_20">저장</button>
                                 </td>
                             </tr>
                             <tr>
                                 <th class="areaNameData">광전리 998-7</th>
                                 <td class="controlTD">
-                                    <select name="상태" id="gate998-7">
-                                        <option value="열림">열림</option>
-                                        <option value="닫힘">닫힘</option>
+                                    <select name="상태" id="gate998_7">
+                                        <option value="open">열림</option>
+                                        <option value="close">닫힘</option>
                                     </select>
                                 </td>
                                 <td class="controlTD">
-                                    <select name="상태" id="light998-7">
-                                        <option value="꺼짐">꺼짐</option>
-                                        <option value="켜짐">켜짐</option>
+                                    <select name="상태" id="light998_7">
+                                        <option value="Turn_off">꺼짐</option>
+                                        <option value="Turn_on">켜짐</option>
                                     </select>
                                 </td>
                                 <td class="controlTD">
-                                    <select name="상태" id="sound998-7" >
-                                        <option value="꺼짐">꺼짐</option>
-                                        <option value="켜짐">켜짐</option>
+                                    <select name="상태" id="sound998_7" >
+                                        <option value="Turn_off">꺼짐</option>
+                                        <option value="Turn_on">켜짐</option>
                                     </select>
                                 </td>
                                 <td class="controlTD">
-                                    <button type="button" class="saveButton" id="saveBtn998-7">저장</button>
+                                    <button type="button" class="saveButton" id="saveBtn998_7">저장</button>
                                 </td>
                             </tr>
                         </tbody>

@@ -102,7 +102,7 @@
                         </div>
                         <div>
                             <div>
-                                <button class="textAddBtn">+</button>
+                                <button class="textAddBtn" id="plusButton">+</button>
                             </div>
                         </div>
                     </div>
@@ -116,7 +116,7 @@
                         <div><button class="colorBtn color6"></button></div>
                         <div><button class="colorBtn color7"></button></div>
                     </div>
-                    <div class="saveBtnBox"><button class="saveBtn">저장</button></div>
+                    <div class="saveBtnBox"><button class="saveBtn" id="saveButton">저장</button></div>
                 </div>
             </div>
         </section>
@@ -135,7 +135,8 @@
 
 
     <script></script>
-    <script src="resources/js/equipmentControl/scenario/add/add.js"></script>
+    <script src="resources/js/equipmentControl/전광판관리/scenario/add/add.js"></script>
+    <script src="resources/js/equipmentControl/전광판관리/scenario/add/add_save.js"></script>
     <script src="resources/js/date.js"></script>
 </body>
 </html>

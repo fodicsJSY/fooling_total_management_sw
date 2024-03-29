@@ -67,18 +67,18 @@
                                     <td>정상</td>
                                     <td>
                                         <select name="경보내용" id="warningSelect" class="selectWarning">
-                                            <option value="">발생내용을 선택해주세요</option>
-                                            <option value="임계치 1단계">임계치 1단계</option>
-                                            <option value="임계치 2단계">임계치 2단계</option>
-                                            <option value="임계치 3단계">임계치 3단계</option>
-                                            <option value="호우주의보">호우주의보</option>
-                                            <option value="호우경보">호우경보</option>
-                                            <option value="태풍주의보">태풍주의보</option>
-                                            <option value="태풍경보">태풍경보</option>
+                                            <option value="" disabled selected>발생내용을 선택해주세요</option>
+                                            <option value="criticalLevel1">임계치 1단계</option>
+                                            <option value="criticalLevel2">임계치 2단계</option>
+                                            <option value="criticalLevel3">임계치 3단계</option>
+                                            <option value="heavyRainAdvisory">호우주의보</option>
+                                            <option value="heavyRainWarning">호우경보</option>
+                                            <option value="typhoonAdvisory">태풍주의보</option>
+                                            <option value="typhoonWarning">태풍경보</option>
                                     </select>
                                     </td>
                                     <td>
-                                        <button type="button" class="warningButton">경보상황 발생</button>
+                                        <button type="button" class="warningButton" id="warningBtn">경보상황 발생</button>
                                     </td>
                                 </tr>
                             </tbody>

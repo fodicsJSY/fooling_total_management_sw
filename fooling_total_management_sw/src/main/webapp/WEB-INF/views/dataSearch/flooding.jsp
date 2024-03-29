@@ -147,7 +147,9 @@
 
 
     <script></script>
-    <script src="resources/js/dataSearch/flooding.js"></script>
+    <script src="resources/js/dataSearch/flooding/flooding_select.js"></script>
+    <script src="resources/js/dataSearch/flooding/flooding_table.js"></script>
+    <script src="resources/js/dataSearch/flooding/flooding_search.js"></script>
     <script src="resources/js/date.js"></script>
 </body>
 </html>

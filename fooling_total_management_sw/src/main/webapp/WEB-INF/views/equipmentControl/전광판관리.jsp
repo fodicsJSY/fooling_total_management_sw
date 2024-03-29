@@ -99,7 +99,7 @@
 
 
     <script></script>
-    <script src="resources/js/equipmentControl/전광판관리.js"></script>
+    <script src="resources/js/equipmentControl/전광판관리/전광판관리_select.js"></script>
     <script src="resources/js/date.js"></script>
 </body>
 </html>

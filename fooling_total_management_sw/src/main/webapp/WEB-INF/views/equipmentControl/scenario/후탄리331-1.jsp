@@ -138,7 +138,7 @@
 
 
     <script></script>
-    <script src="resources/js/equipmentControl/scenario/후탄리-331.js"></script>
+    <script src="resources/js/equipmentControl/전광판관리/scenario/후탄리-331.js"></script>
     <script src="resources/js/date.js"></script>
 </body>
 </html>
