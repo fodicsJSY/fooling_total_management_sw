@@ -408,9 +408,17 @@
 
 
 
-    /* 월간강우 시작 */
+    /* 기간강우 시작 */
 
-    /* 월간강우 끝 */
+    .date{
+        font-weight: bold;
+    }
+
+
+    .dateSumData{
+        background-color: #E0EFFB;
+    }
+    /* 기간강우 끝 */
 
 
     
@@ -441,6 +449,8 @@
     }
 
     footer>div{
+        font-size: 12px;
+        color: #555;
         padding: 0 0 0 15px;
         width: 1280px; 
         height: 100%; 

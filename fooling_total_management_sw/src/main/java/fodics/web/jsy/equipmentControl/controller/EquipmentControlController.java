@@ -4,15 +4,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import fodics.web.jsy.equipmentControl.model.service.EquipmentControlService;
+
 
 @Controller
 public class EquipmentControlController {
 	
 	
-	@Autowired
+//	@Autowired
 	private EquipmentControlService service;
+	
 	
 	
 	//전광판 페이지 

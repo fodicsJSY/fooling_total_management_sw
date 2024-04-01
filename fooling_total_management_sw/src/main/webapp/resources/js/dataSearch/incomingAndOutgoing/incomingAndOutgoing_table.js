@@ -33,7 +33,7 @@ function dayMakeTable(data){
     createCell(htr, "th", "rainfull inout", "구분");
 
 
-    for(let i = 1; i<=day ; i++ ){
+    for(let i = 1; i<=31 ; i++ ){
         createCell(htr, "th", "rainfull dayData", i);
     }
 
@@ -43,7 +43,7 @@ function dayMakeTable(data){
     rainfullTbody.className = "rainfullTbody";
     rainfullTable.appendChild(rainfullTbody);
 
-    for(let i = 0; i<=4 ; i ++ ){
+    for(let i = 0; i<4 ; i ++ ){
         
         var tr = document.createElement("tr");
         rainfullTbody.appendChild(tr);
@@ -70,7 +70,7 @@ function dayMakeTable(data){
         trFlooding.className = "rainfull inoutData";
         trFlooding.innerHTML = "in";
 
-        for(let j = 1; j<=day ; j ++ ){
+        for(let j = 1; j<=31 ; j ++ ){
             createCell(tr, "td", "rainfull", "0");
         }
         createCell(tr, "td", "rainfull sumData", "12");
@@ -86,7 +86,7 @@ function dayMakeTable(data){
         trWaterLevel.className = "rainfull inoutData";
         trWaterLevel.innerHTML = "out";
 
-        for(let j = 1; j<=day ; j ++ ){
+        for(let j = 1; j<=31 ; j ++ ){
             createCell(tr3, "td", "rainfull",  "0");
         }
         createCell(tr3, "td", "rainfull sumData", "12");
@@ -184,7 +184,7 @@ function monthMakeTable(data){
     rainfullTbody.className = "rainfullTbody";
     rainfullTable.appendChild(rainfullTbody);
 
-    for(let i = 0; i<=4 ; i ++ ){
+    for(let i = 0; i<4 ; i ++ ){
         
         var tr = document.createElement("tr");
         rainfullTbody.appendChild(tr);
@@ -325,7 +325,7 @@ function yearMakeTable(data){
     rainfullTbody.className = "rainfullTbody";
     rainfullTable.appendChild(rainfullTbody);
 
-    for(let i = 0; i<=4 ; i ++ ){
+    for(let i = 0; i<4 ; i ++ ){
         
         var tr = document.createElement("tr");
         rainfullTbody.appendChild(tr);
@@ -457,8 +457,7 @@ function dateMakeTable(data){
     var htr = document.createElement("tr");
     rainfullThead.appendChild(htr);
 
-    createCell(htr, "th", "rainfull areaName", "지역명");
-    createCell(htr, "th", "rainfull inout", "구분");
+    createCell(htr, "th", "rainfull areaName", "날짜");
 
     for(let i = 0; i<24 ; i++){
         createCell(htr, "th", "rainfull dayData", i);
@@ -474,55 +473,23 @@ function dateMakeTable(data){
 
 
     
-    for(let i = 0; i<=4 ; i ++ ){
         
-        var tr = document.createElement("tr");
-        rainfullTbody.appendChild(tr);
-        
-        var tr = document.createElement("tr");
-        rainfullTbody.appendChild(tr);
+    var tr = document.createElement("tr");
+    rainfullTbody.appendChild(tr);
 
-        
-        // 시간 값을 위아래 두 칸 차지하도록 설정합니다.
-        var tdSpan = document.createElement("th");
-        tdSpan.className = "rainfull areaName";
-        tdSpan.setAttribute("rowspan", "2");
-        tdSpan.textContent = "후탄리 25-3";
-        tr.appendChild(tdSpan);
+    
+    createCell(tr, "td", "rainfull date", "24년 04월 01일");
         
 
-
-
-
-
-        // "in" 행 생성
-        var trFlooding = document.createElement("th");
-        tr.appendChild(trFlooding);
-        trFlooding.className = "rainfull inoutData";
-        trFlooding.innerHTML = "in";
-
-        for(let j = 0; j<24 ; j ++ ){
-            createCell(tr, "td", "rainfull", "0");
-        }
-        createCell(tr, "td", "rainfull sumData", "12");
-
-
-
-        var tr3 = document.createElement("tr");
-        rainfullTbody.appendChild(tr3);
-
-        // "out" 행 생성
-        var trWaterLevel = document.createElement("th");
-        tr3.appendChild(trWaterLevel);
-        trWaterLevel.className = "rainfull inoutData";
-        trWaterLevel.innerHTML = "out";
-
-        for(let j = 0; j<24 ; j ++ ){
-            createCell(tr3, "td", "rainfull",  "0");
-        }
-        createCell(tr3, "td", "rainfull sumData", "12");
-
+    for(let j = 0; j<24 ; j ++ ){
+        createCell(tr, "td", "rainfull", "0");
     }
+    createCell(tr, "td", "rainfull dateSumData", "12");
+
+
+
+
+
 
 
 

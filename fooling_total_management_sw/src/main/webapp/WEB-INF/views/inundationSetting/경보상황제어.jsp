@@ -6,7 +6,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>경보상황제어</title>
+    <title>침수차단 시스템</title>
+    <link rel="shortcut icon" type="image/png" href="/resources/img/slogan.png" sizes="192x192">
 
     <link rel="stylesheet" href="/resources/css/inundationSetting/경보상황제어.css">
 </head>
@@ -14,13 +15,13 @@
     <header>
         <div class="headContiner">
             <div class="headContent">
-                    <a href="/"><div class="logoBox"><img class="logo" src="/resources/img/logo.png" alt=""></a></div>
-                    <div class="menuContiner">
-                        <div><a href="/">데이터검색</a></div>
-                        <div><a href="/차단기수동제어">장비제어</a></div>
-                        <div><a href="#">침수설정</a></div>
-                        <div><a href="/보고서출력">보고서</a></div>
-                    </div>
+                <a href="/"><div class="logoBox"><img class="logo" src="/resources/img/logo.png" alt=""></a></div>
+                <div class="menuContiner">
+                    <div><a href="/rainfall">데이터검색</a></div>
+                    <div><a href="/차단기수동제어">장비제어</a></div>
+                    <div><a href="/임계값설정">침수설정</a></div>
+                    <div><a href="/보고서출력">보고서</a></div>
+                </div>
             </div>
         </div>
     </header>
@@ -31,7 +32,7 @@
                 <div class="listBox">
                     <div class="listTitle">침수설정</div>
                     <div class="listContent"><a href="/임계값설정" class="pageFoward">임계값설정</a></div>
-                    <div class="listContent"><a href="#" class="pageFoward nowForward">경보상황 제어</a></div>
+                    <div class="listContent"><a href="/경보상황제어" class="pageFoward nowForward">경보상황 제어</a></div>
                     <div class="listContent"><a href="/경보발생내역" class="pageFoward">경보발생 내역</a></div>
                 </div>
             </div>

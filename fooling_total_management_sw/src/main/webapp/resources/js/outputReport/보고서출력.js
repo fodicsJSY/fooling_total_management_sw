@@ -22,7 +22,7 @@ function MakeReportTable(){
     
     
     var div001 =  document.createElement("div");
-    div001.innerHTML = "◈수위/침수"; 
+    div001.innerHTML = "◈ 수위/침수"; 
     div01.appendChild(div001);
 
     var div002 =  document.createElement("div");
@@ -68,7 +68,7 @@ function MakeReportTable(){
     
     
     var div001 =  document.createElement("div");
-    div001.innerHTML = "◈강우량"; 
+    div001.innerHTML = "◈ 강우량"; 
     div01.appendChild(div001);
 
     var reportTable = document.createElement("table");
@@ -111,7 +111,7 @@ function MakeReportTable(){
     
     
     var div001 =  document.createElement("div");
-    div001.innerHTML = "◈경보발령내역(최근5개)"; 
+    div001.innerHTML = "◈ 경보발령내역(최근5개)"; 
     div01.appendChild(div001);
 
     var reportTable = document.createElement("table");
@@ -153,7 +153,7 @@ function MakeReportTable(){
     
     
     var div001 =  document.createElement("div");
-    div001.innerHTML = "문자전광판 표시내용"; 
+    div001.innerHTML = "◈ 문자전광판 표시내용"; 
     div01.appendChild(div001);
 
     var reportTable = document.createElement("table");
@@ -197,7 +197,7 @@ function MakeReportTable(){
     
     
     var div001 =  document.createElement("div");
-    div001.innerHTML = "차단기상태"; 
+    div001.innerHTML = "◈ 차단기상태"; 
     div01.appendChild(div001);
 
     var reportTable = document.createElement("table");

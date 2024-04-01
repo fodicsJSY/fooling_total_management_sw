@@ -21,10 +21,10 @@
             <div class="headContent">
                     <a href="/"><div class="logoBox"><img class="logo" src="/resources/img/logo.png" alt=""></a></div>
                     <div class="menuContiner">
-                        <div><a href="/">데이터검색</a></div>
-                        <div><a href="/">장비제어</a></div>
-                        <div><a href="/">침수설정</a></div>
-                        <div><a href="/">보고서</a></div>
+                        <div><a href="/rainfall">데이터검색</a></div>
+                        <div><a href="/차단기수동제어">장비제어</a></div>
+                        <div><a href="/임계값설정">침수설정</a></div>
+                        <div><a href="/보고서출력">보고서</a></div>
                     </div>
             </div>
         </div>
@@ -34,15 +34,15 @@
         <section>
             <div class="sectionBox01">
                 <div class="listBox">
-                    <div class="listTitle">데이터 검색</div>
-                    <div class="listContent"><a href="/">강우 데이터</a></div>
-                    <div class="listContent"><a href="/">침수 데이터</a></div>
-                    <div class="listContent"><a href="/">입출차 정보</a></div>
+                    <div class="listTitle">메인페이지</div>
+                    <div class="listContent"><a href="/">메인페이지</a></div>
+                    <div class="listContent"><a href="/">메인페이지</a></div>
+                    <div class="listContent"><a href="/">메인페이지</a></div>
                 </div>
             </div>
             <div class="sectionBox02">
                 <div class="searchContainer01">
-                    <div class="titleContiner01">
+                    <%-- <div class="titleContiner01">
                         <div class="titleBox">
                             <div class="titleName">데이터검색</div>
                             <div class="typeBox">
@@ -57,10 +57,10 @@
                         <div class="subTitleBox">
                             <div class="subTitle">▶ 데이터검색  &gt; 강우데이터  &gt; 일간강우</div>
                         </div>
-                    </div>
+                    </div> --%>
                 </div>
                 <div class="searchContainer02">
-                    <div class="measure">(단위 : mm)</div>
+                    <%-- <div class="measure">(단위 : mm)</div>
                     <div class="selectDate">
                         <div class="yearBox">
                             <select name="연도" id="year" class="yearSelect">
@@ -126,7 +126,7 @@
                                 일
                         </div>
                         <div><button class="searchBtn">검색</button></div>
-                    </div>
+                    </div> --%>
                 </div>
                 <div class="tableContainer"></div>
             </div>

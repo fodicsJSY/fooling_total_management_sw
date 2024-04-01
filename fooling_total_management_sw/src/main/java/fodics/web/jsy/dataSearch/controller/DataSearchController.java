@@ -16,12 +16,13 @@ public class DataSearchController {
 	private DataSearchService service;
 	
 	//강우데이터 페이지 임시
-	@GetMapping("/")
-	public String dataSearchForword1(
-			Model model
-			){
-		return "/dataSearch/rainfall";
-	}
+//	@GetMapping("/")
+//	public String dataSearchForword1(
+//			Model model
+//			){
+//		return "/dataSearch/rainfall";
+//	}
+//	
 	//강우데이터 페이지 
 	@GetMapping("/rainfall")
 	public String dataSearchForword(

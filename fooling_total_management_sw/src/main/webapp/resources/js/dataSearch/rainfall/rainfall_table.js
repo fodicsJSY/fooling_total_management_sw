@@ -28,7 +28,7 @@ function dayMakeTable(data){
     createCell(htr, "th", "rainfull max", "최고");
     createCell(htr, "th", "rainfull min", "최저");
 
-    for(let i = 1; i<=day ; i++ ){
+    for(let i = 1; i<=31 ; i++ ){
         createCell(htr, "th", "rainfull dayData", i);
     }
 
@@ -46,7 +46,7 @@ function dayMakeTable(data){
     createCell(tr, "td", "rainfull maxData", "0.0");
     createCell(tr, "td", "rainfull minData", "0.0");
     
-    for(let i = 1; i<=day ; i++ ){
+    for(let i = 1; i<=31 ; i++ ){
         createCell(tr, "td", "rainfull",  "0.0");
     }
 
@@ -334,10 +334,11 @@ function dateMakeTable(data){
     var htr = document.createElement("tr");
     rainfullThead.appendChild(htr);
 
+    createCell(htr, "th", "rainfull areaName", "날짜");
     createCell(htr, "th", "rainfull max", "최고");
     createCell(htr, "th", "rainfull min", "최저");
 
-    for(let i = 1; i<13 ; i++){
+    for(let i = 0; i<24 ; i++){
         createCell(htr, "th", "rainfull dayData", i);
     }
 
@@ -351,14 +352,15 @@ function dateMakeTable(data){
     var tr = document.createElement("tr");
     rainfullTbody.appendChild(tr);
 
+    createCell(tr, "td", "rainfull date", "24년 04월 01일");
     createCell(tr, "td", "rainfull maxData", "0.0");
     createCell(tr, "td", "rainfull minData", "0.0");
 
-    for(let i = 1; i<13 ; i++){
+    for(let i = 0; i<24 ; i++){
         createCell(tr, "td", "rainfull", "0.0");
     }
     
-    createCell(tr, "td", "rainfull sumData", "0.0");
+    createCell(tr, "td", "rainfull dateSumData", "0.0");
 
 
     // 데이터 삽입

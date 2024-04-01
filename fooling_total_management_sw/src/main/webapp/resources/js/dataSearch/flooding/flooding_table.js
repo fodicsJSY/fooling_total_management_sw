@@ -174,7 +174,7 @@ function dayMakeTable(data){
     createCell(htr, "th", "rainfull areaName", "지역명");
 
 
-    for(let i = 1; i<=day ; i++ ){
+    for(let i = 1; i<=31 ; i++ ){
         createCell(htr, "th", "rainfull dayData", i);
     }
 
@@ -198,14 +198,14 @@ function dayMakeTable(data){
     tr.appendChild(tdSpan);
 
     
-    for(let i = 1; i<=day ; i++ ){
+    for(let i = 1; i<=31 ; i++ ){
         createCell(tr, "td", "rainfull",  "0.0");
     }
 
     // 두 번째 행을 만들어 해당 행의 첫 번째 셀에 "XXX" 값을 넣어줍니다.
     var tr2 = document.createElement("tr");
     rainfullTbody.appendChild(tr2);
-    for(let i = 1; i<=day ; i++ ){
+    for(let i = 1; i<=31 ; i++ ){
         createCell(tr2, "td", "rainfull", "XXX");
     }
 
@@ -506,7 +506,7 @@ function dateMakeTable(data){
     createCell(tr, "td", "rainfull", "24년 03월 26일");
 
     for(let i = 0; i<24 ; i++){
-        createCell(tr, "td", "rainfull", "0.0");
+        createCell(tr, "td", "rainfull", "X X X");
     }
     
 

@@ -320,6 +320,8 @@
 
 
     footer>div{
+        font-size: 12px;
+        color: #555;
         padding: 0 0 0 15px;
         width: 1280px; 
         height: 100%; 
@@ -328,84 +330,6 @@
         justify-content: space-between; 
         align-items: center;
     }
-
-
-
-
-
-
-
-
-
-
-
-
-    /* 임시테이블 css시작(삭제예정) */
-
-
-    input:hover, label:hover, select:hover{
-        cursor: pointer;
-    }
-
-    select{
-        width: 180px;
-        height: 25px;
-    }
-
-
-
-    .tableContainer1{
-        margin: 10px 0 10px 0;
-        width: 100%;
-
-    }
-
-    /* .tableContainer{
-        height: 1030px;
-        overflow-y: auto;
-    } */
-
-    .sencerTable1{
-        width: 100%;
-        border: 1px solid #91CB98;
-        border-collapse: collapse;
-    }
-
-
-    .sencerTable1 th{
-        /* width: 15.8%; */
-        height: 35px;
-        background-color: #D0E9D3;
-        border: 1px solid #91CB98;
-        color: #09552b;
-        font-size: 12px;
-    }
-    
-    .sencerTable1 td{
-        height: 30px;
-        border: 1px solid #91CB98;
-        text-align: center;
-        font-size: 12px;
-    }
-    
-
-    .tableContainer1>div:last-child{
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        margin-top: 20px;
-    }
-    
-    
-    
-
-
-
-
-    /* 임시테이블 css끝(삭제예정) */
-
-
-
 
 
 

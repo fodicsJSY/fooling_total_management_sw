@@ -6,20 +6,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>임계값설정</title>
+    <title>침수차단 시스템</title>
+    <link rel="shortcut icon" type="image/png" href="/resources/img/slogan.png" sizes="192x192">
+
     <link rel="stylesheet" href="/resources/css/inundationSetting/임계값설정.css">
 </head>
 <body>
     <header>
         <div class="headContiner">
             <div class="headContent">
-                    <a href="/"><div class="logoBox"><img class="logo" src="/resources/img/logo.png" alt=""></a></div>
-                    <div class="menuContiner">
-                        <div><a href="/">데이터검색</a></div>
-                        <div><a href="/차단기수동제어">장비제어</a></div>
-                        <div><a href="#">침수설정</a></div>
-                        <div><a href="/보고서출력">보고서</a></div>
-                    </div>
+                <a href="/"><div class="logoBox"><img class="logo" src="/resources/img/logo.png" alt=""></a></div>
+                <div class="menuContiner">
+                    <div><a href="/rainfall">데이터검색</a></div>
+                    <div><a href="/차단기수동제어">장비제어</a></div>
+                    <div><a href="/임계값설정">침수설정</a></div>
+                    <div><a href="/보고서출력">보고서</a></div>
+                </div>
             </div>
         </div>
     </header>
@@ -29,7 +31,7 @@
             <div class="sectionBox01">
                 <div class="listBox">
                     <div class="listTitle">침수설정</div>
-                    <div class="listContent"><a href="#" class="pageFoward nowForward">임계값설정</a></div>
+                    <div class="listContent"><a href="/임계값설정" class="pageFoward nowForward">임계값설정</a></div>
                     <div class="listContent"><a href="/경보상황제어" class="pageFoward">경보상황 제어</a></div>
                     <div class="listContent"><a href="/경보발생내역" class="pageFoward">경보발생 내역</a></div>
                 </div>
@@ -88,7 +90,7 @@
                         </table>
                         <table class="stepOneTable">
                             <tr>
-                                <th class="step" rowspan="6"><input type="checkbox" name="step" id="stepOne" value="1단계" ><label class="checkStep"  for="stepOne">1단계</label></th>
+                                <th class="step" rowspan="6"><input type="checkbox" id="stepOne" value="1단계" checked><label class="checkStep"  for="stepOne">1단계</label></th>
                             </tr>
                             <tr>
                                 <th class="group">침수</th>
@@ -96,13 +98,13 @@
                                     <div>
                                         <div>
                                             <div>
-                                                <input type="radio" id="stepOne_5cm" name="stepOneRadio" value="5cm" checked> <label for="stepOne_5cm">5cm</label>
+                                                <input type="radio" id="stepOne_5cm" name="stepOneFlooding" value="5cm" checked> <label for="stepOne_5cm">5cm</label>
                                             </div>
                                             <div>
-                                                <input type="radio" id="stepOne_13cm" name="stepOneRadio" value="13cm" > <label for="stepOne_13cm"> 13cm</label>
+                                                <input type="radio" id="stepOne_13cm" name="stepOneFlooding" value="13cm" > <label for="stepOne_13cm"> 13cm</label>
                                             </div>
                                             <div>
-                                                <input type="radio" id="stepOne_21cm" name="stepOneRadio" value="21cm" > <label for="stepOne_21cm"> 21cm</label>
+                                                <input type="radio" id="stepOne_21cm" name="stepOneFlooding" value="21cm" > <label for="stepOne_21cm"> 21cm</label>
                                             </div>
                                         </div>
                                         <div>※ 침수상황을 조건에 추가합니다. (AND)</div>
@@ -115,7 +117,7 @@
                                     <div>
                                         <div>
                                             <div>
-                                                <input type="checkbox" id="stepOne_heavyRainAdvisory" value="호우주의보" > <label for="stepOne_heavyRainAdvisory">호우주의보</label>
+                                                <input type="checkbox" id="stepOne_heavyRainAdvisory"  value="호우주의보" > <label for="stepOne_heavyRainAdvisory">호우주의보</label>
                                             </div>
                                             <div>
                                                 <input type="checkbox" id="stepOne_heavyRainWarning" value="호우경보" > <label for="stepOne_heavyRainWarning">호우경보</label>
@@ -198,7 +200,7 @@
                         </table>
                         <table class="stepTwoTable">
                             <tr>
-                                <th class="step" rowspan="6"><input type="checkbox" name="step" id="stepTwo" value="2단계" ><label class="checkStep"  for="stepTwo">2단계</label></th>
+                                <th class="step" rowspan="6"><input type="checkbox" id="stepTwo" value="2단계" checked><label class="checkStep"  for="stepTwo">2단계</label></th>
                             </tr>
                             <tr>
                                 <th class="group">침수</th>
@@ -206,13 +208,13 @@
                                     <div>
                                         <div>
                                             <div>
-                                                <input type="radio" id="stepTwo_5cm" name="stepTwoRadio" value="5cm" > <label for="stepTwo_5cm">5cm</label>
+                                                <input type="radio" id="stepTwo_5cm" name="stepTwoFlooding" value="5cm" > <label for="stepTwo_5cm">5cm</label>
                                             </div>
                                             <div>
-                                                <input type="radio" id="stepTwo_13cm" name="stepTwoRadio" value="13cm" checked> <label for="stepTwo_13cm"> 13cm</label>
+                                                <input type="radio" id="stepTwo_13cm" name="stepTwoFlooding" value="13cm" checked> <label for="stepTwo_13cm"> 13cm</label>
                                             </div>
                                             <div>
-                                                <input type="radio" id="stepTwo_21cm" name="stepTwoRadio" value="21cm" > <label for="stepTwo_21cm"> 21cm</label>
+                                                <input type="radio" id="stepTwo_21cm" name="stepTwoFlooding" value="21cm" > <label for="stepTwo_21cm"> 21cm</label>
                                             </div>
                                         </div>
                                         <div>※ 침수상황을 조건에 추가합니다. (AND)</div>
@@ -309,7 +311,7 @@
                         </table>
                         <table class="stepThreeTable">
                             <tr>
-                                <th class="step" rowspan="6"><input type="checkbox" name="step" id="stepThree" value="3단계" ><label class="checkStep"  for="stepThree">3단계</label></th>
+                                <th class="step" rowspan="6"><input type="checkbox" id="stepThree" value="3단계" checked><label class="checkStep"  for="stepThree">3단계</label></th>
                             </tr>
                             <tr>
                                 <th class="group">침수</th>
@@ -317,13 +319,13 @@
                                     <div>
                                         <div>
                                             <div>
-                                                <input type="radio" id="stepThree_5cm" name="stepThreeRadio" value="5cm" > <label for="stepThree_5cm">5cm</label>
+                                                <input type="radio" id="stepThree_5cm" name="stepThreeFlooding" value="5cm" > <label for="stepThree_5cm">5cm</label>
                                             </div>
                                             <div>
-                                                <input type="radio" id="stepThree_13cm" name="stepThreeRadio" value="13cm" > <label for="stepThree_13cm"> 13cm</label>
+                                                <input type="radio" id="stepThree_13cm" name="stepThreeFlooding" value="13cm" > <label for="stepThree_13cm"> 13cm</label>
                                             </div>
                                             <div>
-                                                <input type="radio" id="stepThree_21cm" name="stepThreeRadio" value="21cm" checked> <label for="stepThree_21cm"> 21cm</label>
+                                                <input type="radio" id="stepThree_21cm" name="stepThreeFlooding" value="21cm" checked> <label for="stepThree_21cm"> 21cm</label>
                                             </div>
                                         </div>
                                         <div>※ 침수상황을 조건에 추가합니다. (AND)</div>
@@ -358,12 +360,12 @@
                                     <div>
                                         <div>
                                             <div>
-                                                <input type="checkbox" id="stepThreestepThreeheck" value="금일" > <label for="stepThreestepThreeheck">금일</label>
-                                                <input type="text"class="numInput" id="stepThreestepThreenput" min="0" value="0">mm
+                                                <input type="checkbox" id="stepThree_todayCheck" value="금일" > <label for="stepThree_todayCheck">금일</label>
+                                                <input type="text"class="numInput" id="stepThree_todayInput" min="0" value="0">mm
                                             </div>
                                             <div>
-                                                <input type="checkbox" id="stepThreestepThreeeck" value="시간" > <label for="stepThreestepThreeeck">시간</label>
-                                                <input type="text" class="numInput" id="stepThreestepThreeput" min="0" value="0">mm
+                                                <input type="checkbox" id="stepThree_timeCheck" value="시간" > <label for="stepThree_timeCheck">시간</label>
+                                                <input type="text" class="numInput" id="stepThree_timeInput" min="0" value="0">mm
                                             </div>
                                         </div>
                                         <div>※ 강우상황을 조건에 추가합니다. (AND)</div>
@@ -419,7 +421,7 @@
                         </table>
                     </div>
                     <div>
-                        <div><button class="saveButton" id="saveBtn">저장</button></div>
+                        <div><button class="saveButton" id="saveBtn">저 장</button></div>
                     </div>
                 
                 </div>

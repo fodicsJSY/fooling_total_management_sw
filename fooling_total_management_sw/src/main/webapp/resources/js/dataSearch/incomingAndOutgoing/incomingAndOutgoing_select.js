@@ -473,19 +473,19 @@ function dateSelectBox(){
     var kindSelect01 = document.createElement("select");
     kindSelect01.className = "kindSelect";
     kindSelect01.id = "kind";
-    kindSelect01.name = "지역명";
+    kindSelect01.name = "inOut";
     kindBox01.appendChild(kindSelect01);
 
 
-    var option02 = document.createElement("option");
-    option02.value = "flooding";
-    option02.innerHTML = "침수";
-    kindSelect01.appendChild(option02);
+    var option05 = document.createElement("option");
+    option05.value = "in";
+    option05.innerHTML = "IN";
+    kindSelect01.appendChild(option05);
 
-    var option03 = document.createElement("option");
-    option03.value = "waterLevel";
-    option03.innerHTML = "수위";
-    kindSelect01.appendChild(option03);
+    var option06 = document.createElement("option");
+    option06.value = "out";
+    option06.innerHTML = "OUT";
+    kindSelect01.appendChild(option06);
 
 
     //지역
@@ -501,9 +501,24 @@ function dateSelectBox(){
 
 
     var option01 = document.createElement("option");
-    option01.value = "hutanZone";
-    option01.innerHTML = "후탄지구";
+    option01.value = "hutanri25_3";
+    option01.innerHTML = "후탄리25-3";
     areaSelect01.appendChild(option01);
+
+    var option02 = document.createElement("option");
+    option02.value = "hutanri331_1";
+    option02.innerHTML = "후탄리331-1";
+    areaSelect01.appendChild(option02);
+
+    var option03 = document.createElement("option");
+    option03.value = "Panunri426_20";
+    option03.innerHTML = "판운리423-20";
+    areaSelect01.appendChild(option03);
+
+    var option04 = document.createElement("option");
+    option04.value = "gwangjeonri998_7";
+    option04.innerHTML = "광전리998-7";
+    areaSelect01.appendChild(option04);
 
 
 
