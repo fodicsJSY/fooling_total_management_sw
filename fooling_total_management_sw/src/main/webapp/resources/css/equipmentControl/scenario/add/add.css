@@ -233,7 +233,7 @@
 
 
 
-    th{
+    .start th{
         height: 35px;
         font-size: 12px;
         background-color: #EBE2EF;
@@ -244,13 +244,19 @@
     
     
     
-    td{
+    .start td{
         border: 1px solid #DCCDE3;
         font-size: 12px;
         text-align: left;
         padding-left: 10px;
     }
     
+    
+    
+    .inputTable td{
+        border: 1px solid #DCCDE3;
+        
+    }
 
 
     .selectBox{
@@ -288,12 +294,12 @@
     /* 테이블 css끝 */
 
 
-    #addText{
+    .inputText{
         height: 51px;
-        width: 700px;
+        width: 570px;
         padding: 10px;
         font-size: 16px;
-        border: 1px solid #DCCDE3;
+        border: none;
     }
     
     
@@ -308,13 +314,45 @@
         font-size: 20px;
         font-weight: bold;
         color: #fff;
-        
+        margin: 0 15px 0 15px;
     }
     
     .textAddBtn:hover{
         cursor: pointer;
         background-color: #744598;
     }
+    
+    .textDeleteBtn{
+        background-color: #4F6D9C;
+        border: none;
+        height: 40px;
+        width: 40px;
+        border-radius: 50%;
+        line-height: 38px;
+        text-align: center;
+        font-size: 20px;
+        font-weight: bold;
+        color: #fff;
+        margin: 0 15px 0 15px;
+        
+    }
+
+    .textDeleteBtn:hover{
+        cursor: pointer;
+        background-color: #3B5275;
+    }
+
+    .addContainer{
+        width: 100%;
+        min-height: auto;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+
+
+
     
     .addTextBox{
         width: 100%;
@@ -358,6 +396,21 @@
         margin: 20px 0 20px 0 ;
     }
     
+
+
+    .displayBox{
+        width: 333px;
+        height: 133px;
+        background-color: black;
+    }
+
+
+    .display1{
+        color: white;
+    }
+
+
+
     
     .colorBtn{
         width: 135px;

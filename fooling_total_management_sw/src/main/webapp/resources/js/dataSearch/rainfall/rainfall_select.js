@@ -258,8 +258,43 @@ function makeDaySelectBox(){
     // searchButton 변수에 버튼 엘리먼트 할당
     searchButton = button01;
 
+
+
+    let data;
+
     searchButton.addEventListener("click", ()=>{
-        searchData();
+        console.log("클릭");
+
+        // let totalUrl = "https://cors-anywhere/herokuapp.com/http://127.0.0.1:10443/fnvr/request/query/select"
+        // let totalUrl = "http://172.16.103.34:8988/fnvr/request/query/select"
+        // let totalUrl = "http://127.0.0.1:10443/fnvr/request/query/execute"
+        
+        fetch("/getDataFromAPI", { 
+            method : "POST", 
+            headers: {"Content-Type": "application/json;"}, 
+            credentials: "include",
+            body : JSON.stringify( {
+                                    "serverip" : "172.16.0.93",
+                                    "query": "SELECT SRV.site_code, CAM.camera_code, CAM.camera_name, CASE WHEN GIS_CAM.GIS_COORDINATE_X > 0 AND GIS_CAM.GIS_COORDINATE_Y > 0 THEN 1 ELSE 0 END AS gis_alloc, GIS_CAM.GIS_COORDINATE_X, GIS_CAM.GIS_COORDINATE_Y FROM TB_CAMERA CAM LEFT OUTER JOIN TB_SERVER_RECORD SRV ON type = 34 LEFT OUTER JOIN TB_GATE_CONTROL_GIS_CAMERA_INFO GIS_CAM ON SRV.site_code = GIS_CAM.SITE_CODE AND CAM.camera_code = GIS_CAM.CAMERA_CODE"
+                                    } ) 
+        })
+        .then(resp => resp.json()) // 요청에 대한 응답 객체(response)를 필요한 형태로 파싱
+        .then((result) => {
+            console.log("result", result );
+    
+            // data = result;
+            // console.log("data : ", data);
+            
+            
+        }) // 첫 번째 then에서 파싱한 데이터를 이용한 동작 작성
+        .catch( err => {
+            // console.log("err : ", err);
+        }); // 예외 발생 시 처리할 내용을 작성
+
+
+
+
+        // searchData();
     });
 
     setTodaySelections();
