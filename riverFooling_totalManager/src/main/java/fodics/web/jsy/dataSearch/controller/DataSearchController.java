@@ -43,6 +43,16 @@ public class DataSearchController {
 	
 	
 	
+	//강우데이터 페이지 
+	@GetMapping("/fooling_total")
+	public String dataSearchForword(
+			Model model
+			){
+		return "/dataSearch/rainfall";
+	}
+	
+	
+	
 
 	@PostMapping("/getDataFromAPI")
 	@ResponseBody
@@ -171,7 +181,7 @@ public class DataSearchController {
 	
 	
 	//침수데이터 페이지 
-	@GetMapping("flooding")
+	@GetMapping("/flooding")
 	public String inundationDataForword(
 			Model model
 			){
@@ -273,7 +283,7 @@ public class DataSearchController {
 	
 	
 	//입출차정보 페이지 
-	@GetMapping("incomingAndOutgoing")
+	@GetMapping("/incomingAndOutgoing")
 	public String entryAndExitForword(
 			Model model
 			){

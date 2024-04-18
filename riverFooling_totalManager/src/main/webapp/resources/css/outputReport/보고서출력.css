@@ -216,6 +216,11 @@
         overflow-y: auto; */
     }
     
+    .searchContainer02>div{        
+        max-height:950px;
+        overflow-y: auto;
+    }
+    
     
     
     .innerContainer{
@@ -244,6 +249,9 @@
 
     .tableContainer{
         margin: 10px 0 10px 0;
+    }
+    .tableContainer>div{
+
     }
 
     .innerBox01{

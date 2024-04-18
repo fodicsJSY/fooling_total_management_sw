@@ -53,8 +53,9 @@
 
 
                 <div class="searchContainer02">
-                        <div class="innerContainer" >
-                            <div class="tableContainer" id="printContents">
+                            <div>
+                    <div class="innerContainer" >
+                        <div class="tableContainer" id="printContents">
                                 <div class="innerBox01" >
                                     <img src="/resources/img/slogan.png" class="slogan">
                                     <strong>영월군 침수차단 현황</strong>
@@ -65,13 +66,14 @@
                                         <div class="tableBox" >
                                         </div>
                                 </div>
-                            </div>
-                            
-                            <div>
-                                <button type="button" onclick="return printPage();">인쇄</button>
-                                <button type="button" id="refreshButton" >새로고침</button>
-                            </div>       
                         </div>
+                        
+                        <div>
+                            <button type="button" onclick="return printPage();">인쇄</button>
+                            <button type="button" id="refreshButton" >새로고침</button>
+                        </div>       
+                    </div>
+                            </div>
                 </div>
 
             </div>
