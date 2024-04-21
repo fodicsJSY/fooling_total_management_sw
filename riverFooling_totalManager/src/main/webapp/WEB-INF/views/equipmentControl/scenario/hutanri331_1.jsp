@@ -52,6 +52,7 @@
                     </div>
                 </div>
                 <div class="searchContainer02">
+                <div>
                     <div class="tableTitle">
                             ▣ 전광판 정보
                     </div>
@@ -62,7 +63,7 @@
                                     <th>
                                         지역명
                                     </th>
-                                    <td class="areaNameData">후탄리 25-3</td>
+                                    <td class="areaNameData">후탄리 331-1</td>
                                 </tr>
                             </table>
                         </div>
@@ -72,20 +73,18 @@
                     </div>
                     <div class="tableContainer">
                         <div>
-
                             <table>
                                 <thead>
                                     <tr>
-                                        <th style="width: 15%;">시작일</th>
+                                        <th style="width: 15%;" >시작일</th>
                                         <th>내용</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr class="str">
-                                        <td>
-                                            2023-11-21 00:00:00
+                                        <td id="showStartDay">
                                         </td>
-                                        <td>나랏말싸미</td>
+                                        <td id="showContents"></td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -94,7 +93,7 @@
                     <div class="tableTitle">
                         ▣ 등록된 시나리오
                     </div>
-                    <div class="tableContainer">
+                    <div class="tableContainer" id="registeredContainer">
                         <div>
                             <table>
                                 <thead>
@@ -108,23 +107,21 @@
                                 </thead>
                                 <tbody>
                                     <tr class="str">
-                                        <td>
-                                            2023-11-21 00:00:00
-                                        </td>
-                                        <td>나랏말싸미</td>
-                                        <td>나랏말싸미</td>
-                                        <td>나랏말싸미</td>
-                                        <td>나랏말싸미</td>
+                                        <td id="registeredStartDay"></td>
+                                        <td id="registeredState"></td>
+                                        <td id="registeredContents"></td>
+                                        <td id="registeredUpdate"></td>
+                                        <td id="registeredDelete"></td>
                                     </tr>
                                 </tbody>
                             </table>
                         </div>
                     </div>
                     <div><a href="/equipmentControl/scenario/add/add331_1" class="add">추 가</a></div>
+                </div>
             </div>
         </section>
     </main>
-
 <hr>
     <footer>
         <div>
@@ -138,7 +135,7 @@
 
 
     <script></script>
-    <script src="/resources/js/equipmentControl/scenario/후탄리-331.js"></script>
+    <script src="/resources/js/equipmentControl/scenario/hutanri331-1.js"></script>
     <script src="/resources/js/date.js"></script>
 </body>
 </html>
