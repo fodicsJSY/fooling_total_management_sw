@@ -20,6 +20,49 @@ let light998_7 = document.getElementById("light998_7");
 let sound998_7 = document.getElementById("sound998_7");
 
 
+
+//강우페이지 로드시
+document.addEventListener("DOMContentLoaded", function() {
+    forwardBreaker();
+});
+
+
+function forwardBreaker(){
+
+    fetch("/breakerStatus", { 
+        method : "POST", 
+        headers: {"Content-Type": "application/json;"}, 
+        credentials: "include",
+        body : JSON.stringify( {
+                                "serverip" : "172.16.20.101",
+                                "query": "SELECT site_code, camera_code, camera_name, gate_code, ip, port, status FROM dbo.TB_CIRCUIT_BREAKER_CONFIG"
+        } ) 
+    })
+    .then(resp => resp.json()) // 요청에 대한 응답 객체(response)를 필요한 형태로 파싱
+    .then((result) => {
+        console.log("result", result );
+
+        data = result;
+
+        // 차트호출
+        // lineChart(data);
+        // makeTable(data);
+        // liveInfomation(data);
+        // openDounutChart(data);
+        // closeDounutChart(data);
+
+        
+    }) // 첫 번째 then에서 파싱한 데이터를 이용한 동작 작성
+    .catch( err => {
+        // console.log("err : ", err);
+    }); // 예외 발생 시 처리할 내용을 작성
+
+
+}
+
+
+
+
 //후탄리 25-3
 saveBtn25_3.addEventListener("click", ()=>{
 
@@ -28,15 +71,38 @@ saveBtn25_3.addEventListener("click", ()=>{
     let sound25_3Value = sound25_3.value;
 
     // console.log("클릭");
-    // console.log("gate25_3Value : ", gate25_3Value);
-    // console.log("light25_3Value : ", light25_3Value);
-    // console.log("sound25_3Value : ", sound25_3Value);
+    console.log("gate25_3Value : ", gate25_3Value);
+    console.log("light25_3Value : ", light25_3Value);
+    console.log("sound25_3Value : ", sound25_3Value);
+
+
+    let gate25_3change;
+    let light25_3change;
+    let sound25_3change;
+
+    if(gate25_3Value =="open"){
+        gate25_3change = 1;
+    }else{
+        gate25_3change = 0;
+    }
+
+    if(light25_3Value =="Turn_on"){
+        light25_3change = 1;
+    }else{
+        light25_3change = 0;
+    }
+
+    if(light25_3Value =="Turn_on"){
+        sound25_3change =1;
+    }else{
+        sound25_3change =0;
+    }
 
 
     fetch("/send25_3", { 
         method : "POST", 
         headers: {"Content-Type": "application/json;"}, 
-        body : JSON.stringify( {"gate25_3Value":gate25_3Value, "light25_3Value":light25_3Value, "sound25_3Value":sound25_3Value} ) 
+        body : JSON.stringify( {"gate25_3change":gate25_3change, "light25_3change":light25_3change, "sound25_3change":sound25_3change} ) 
     })
     .then(resp => resp.json()) // 요청에 대한 응답 객체(response)를 필요한 형태로 파싱
     .then((result) => {
