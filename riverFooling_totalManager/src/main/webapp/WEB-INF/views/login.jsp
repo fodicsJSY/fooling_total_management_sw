@@ -77,7 +77,7 @@
 <hr>
 <main>
     <section>
-        <form action="/userLogin" method="post" id="loginFrm">
+        <form id="loginFrm">
             <div class="loginContainer">
                 <div>
                     <div><a href="/"><div class="logoBox"><img class="slogan" src="/resources/img/slogan.png" alt=""></a></div></div>
@@ -88,7 +88,7 @@
                         ID : 
                     </div>
                     <div>
-                        <input type="text" name="userId" id="id" placeholder="id">
+                        <input type="text" name="user_id" id="id" placeholder="id">
                     </div>
                 </div>
                 <div>
@@ -96,7 +96,7 @@
                         PW : 
                     </div>
                     <div>
-                        <input type="password"  name="userPw" id="pw" placeholder="password" autocomplete="off">
+                        <input type="password"  name="user_pw" id="pw" placeholder="password" autocomplete="off">
                     </div>
                 </div>
                 <div>

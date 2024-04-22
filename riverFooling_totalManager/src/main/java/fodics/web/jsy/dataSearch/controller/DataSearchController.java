@@ -1,6 +1,6 @@
 package fodics.web.jsy.dataSearch.controller;
 
-import java.lang.ProcessBuilder.Redirect;
+
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -15,7 +15,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
+
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.client.RestTemplate;
@@ -27,7 +27,7 @@ public class DataSearchController {
 	
 	
 	
-	 private final RestTemplate restTemplate;
+	 private RestTemplate restTemplate;
 
     @Autowired
     public DataSearchController(RestTemplate restTemplate) {
@@ -49,13 +49,63 @@ public class DataSearchController {
 	
 	@PostMapping("/userLogin")
 	public String userLogin(
-							@RequestParam("userId") String userId, 
-							@RequestParam("userPw") String userPw
+								@RequestBody String req
 							) {
 		
-		System.out.println("userId : " + userId );
-		System.out.println("userPw : " + userPw );
+		System.out.println("req : " + req );
+
+		// MappingJackson2HttpMessageConverter 추가
+		restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
+
 		
+		
+		// JSON 문자열을 파싱하여 필요한 변수에 할당
+	    JSONObject jsonObject = new JSONObject(req);
+		
+	    String user_id = jsonObject.getString("user_id");
+	    String user_pw = jsonObject.getString("user_pw");
+	    String serverip = jsonObject.getString("serverip");
+	    String query = jsonObject.getString("query");
+	    System.out.println("user_id : "+ user_id);
+	    System.out.println("user_pw : "+ user_pw);
+	    System.out.println("serverip : "+ serverip);
+	    System.out.println("query : "+ query);
+		
+	    
+	    
+//	    String url = "http://172.16.103.34:8988/fnvr/request/query/select"; // 외부 RESTful API의 URL select
+//		
+//		
+//	    //서버로 전송할 객체 생성
+//       Map<String, String> requestBody = new LinkedHashMap<>();
+//       requestBody.put("user_id", user_id);
+//       requestBody.put("user_pw", user_pw);
+//       requestBody.put("serverip", serverip);
+//       requestBody.put("query", query);
+//       System.out.println("requestBody : "+ requestBody);
+//
+//       // 요청 헤더 설정
+//       HttpHeaders headers = new HttpHeaders();
+//       headers.setContentType(MediaType.APPLICATION_JSON);
+//
+//       // HttpEntity 생성
+//       HttpEntity<Map<String, String>> requestEntity = new HttpEntity<>(requestBody, headers);
+//
+//       // post 요청 보내기
+//       String response = restTemplate.postForObject(url, requestEntity, String.class);
+//       
+//       
+//       System.out.print("response"+ response);
+
+       // 응답 데이터를 클라이언트에 반환
+       
+	    
+	    
+	    
+	    
+	    
+	    
+	    
 		return "/dataSearch/rainfall";
 	}
 	
