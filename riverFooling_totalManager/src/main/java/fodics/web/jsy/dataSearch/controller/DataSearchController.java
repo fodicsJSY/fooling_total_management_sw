@@ -1,5 +1,6 @@
 package fodics.web.jsy.dataSearch.controller;
 
+import java.lang.ProcessBuilder.Redirect;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -14,10 +15,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.client.RestTemplate;
 
 
+@SessionAttributes({"loginUser"}) 
 @Controller
 public class DataSearchController {
 	
@@ -33,13 +37,28 @@ public class DataSearchController {
 	
 	
 	
-	//강우데이터 페이지 임시
+	//로그인 페이지 임시
 	@GetMapping("/")
-	public String dataSearchForword1(
+	public String login(
 			Model model
 			){
+		return "/login";
+	}
+	
+	
+	
+	@PostMapping("/userLogin")
+	public String userLogin(
+							@RequestParam("userId") String userId, 
+							@RequestParam("userPw") String userPw
+							) {
+		
+		System.out.println("userId : " + userId );
+		System.out.println("userPw : " + userPw );
+		
 		return "/dataSearch/rainfall";
 	}
+	
 	
 	
 	

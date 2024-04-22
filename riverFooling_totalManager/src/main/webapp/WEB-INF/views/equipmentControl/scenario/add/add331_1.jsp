@@ -18,9 +18,9 @@
     <header>
         <div class="headContiner">
             <div class="headContent">
-                <a href="/"><div class="logoBox"><img class="logo" src="/resources/img/logo.png" alt=""></a></div>
+                <a href="/fooling_total"><div class="logoBox"><img class="logo" src="/resources/img/logo.png" alt=""></a></div>
                 <div class="menuContiner">
-                    <div><a href="/">데이터검색</a></div>
+                    <div><a href="/fooling_total">데이터검색</a></div>
                     <div><a href="/차단기수동제어">장비제어</a></div>
                     <div><a href="/임계값설정">침수설정</a></div>
                     <div><a href="/보고서출력">보고서</a></div>
@@ -35,7 +35,7 @@
                 <div class="listBox">
                     <div class="listTitle">장비제어</div>
                     <div class="listContent"><a href="/차단기수동제어" class="pageFoward">차단기</a></div>
-                    <div class="listContent"><a href="/전광판관리" class="pageFoward nowForward">전광판</a></div>
+                    <div class="listContent"><a href="/displayManagement" class="pageFoward nowForward">전광판</a></div>
                 </div>
             </div>
             <div class="sectionBox02">

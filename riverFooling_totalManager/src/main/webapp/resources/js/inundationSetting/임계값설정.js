@@ -262,7 +262,6 @@ document.getElementById("saveBtn").addEventListener("click", ()=>{
                                 , "stepTwo_selectedRadio_value":stepTwo_selectedRadio_value
                                 , "stepThree_selectedRadio_value":stepThree_selectedRadio_value
 
-
                                 , "step1wwValues":step1wwValues
                                 , "step2wwValues":step2wwValues
                                 , "step3wwValues":step3wwValues
@@ -270,7 +269,7 @@ document.getElementById("saveBtn").addEventListener("click", ()=>{
                                 , "stepOneRF_checkedValues":stepOneRF_checkedValues
                                 , "stepTwoRF_checkedValues":stepTwoRF_checkedValues
                                 , "stepThreeRF_checkedValues":stepThreeRF_checkedValues
-                                
+
                                 , "step1_equipments":step1_equipments
                                 , "step2_equipments":step2_equipments
                                 , "step3_equipments":step3_equipments
