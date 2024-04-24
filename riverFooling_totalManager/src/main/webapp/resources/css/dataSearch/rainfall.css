@@ -43,9 +43,23 @@
         width: 1200px;
         display:flex;
         flex-direction: row;
-        justify-content: center;
+        justify-content: space-between;
         align-items: center;
         margin: 0 0 0 15px;
+    }
+
+    .headContent>div:first-child{
+        display:flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .headContent>div:last-child{
+        display:flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
     }
 
     .logo{
@@ -64,7 +78,18 @@
     }
 
 
+    .DB_btn{
+        width: 55px;
+        height: 25px;
+        margin: 0 5px 0 5px;
+        background-color: #ccc;
+        border-radius: 5px;
+    }
 
+
+    .DB_btn:hover{
+        cursor: pointer;
+    }
 
     main{
         /* width: 1140px; */

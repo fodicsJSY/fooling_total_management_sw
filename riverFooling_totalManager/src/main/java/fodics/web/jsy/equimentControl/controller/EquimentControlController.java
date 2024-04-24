@@ -17,9 +17,15 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.client.RestTemplate;
 
+import fodics.web.jsy.dataSearch.model.service.DataSearchService;
+import fodics.web.jsy.equimentControl.model.service.EquimentControlService;
+
 
 @Controller
 public class EquimentControlController {
+	
+	@Autowired
+	private EquimentControlService service;
 	
 	 private RestTemplate restTemplate;
 
@@ -49,7 +55,7 @@ public class EquimentControlController {
 	}
 	
 	
-	//차단기 상태 불러오기
+	//차단기 상태 연습
 	@PostMapping("/breakerStatus")
 	@ResponseBody
 	public String breaker(
@@ -65,19 +71,21 @@ public class EquimentControlController {
 		// JSON 문자열을 파싱하여 필요한 변수에 할당
 	    JSONObject jsonObject = new JSONObject(req);
 	    String serverip = jsonObject.getString("serverip");
-	    String query = jsonObject.getString("query");
+	    String camera_code = jsonObject.getString("camera_code");
+	    String command = jsonObject.getString("command");
 	    
 	    System.out.println("serverip : " + serverip);
-	    System.out.println("query : " + query);
+	    System.out.println("camera_code : " + camera_code);
+	    System.out.println("command : " + command);
 	    
 	    
-	    String url = "http://172.16.103.34:8988/fnvr/request/query/select"; // 외부 RESTful API의 URL select
-		
+	    String url = "http://172.16.20.101:10443/fnvr/request/gate_control/gate_control"; // 외부 RESTful API의 URL select
 		
 	    //서버로 전송할 객체 생성
 	   Map<String, String> requestBody = new LinkedHashMap<>();
 	   requestBody.put("serverip", serverip);
-	   requestBody.put("query", query);
+	   requestBody.put("camera_code", camera_code);
+	   requestBody.put("command", command);
 	   System.out.println("requestBody : "+ requestBody);
 	
 	   // 요청 헤더 설정

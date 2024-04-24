@@ -1,8 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
-	
+	xmlns:security="http://www.springframework.org/schema/security"
+	xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-5.7.xsd
+		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
 	<!-- Root Context: defines shared resources visible to all other web components -->
+	
+	
+	<!-- DB -->
+    <bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource"
+		destroy-method="close">
+        <property name="driverClassName" value="org.mariadb.jdbc.Driver"></property>
+        <property name="url" value="jdbc:mariadb://172.16.20.101:3306;databaseName=FWaterLevelSystem;integratedSecurity=false;encrypt=false;trustServerCertificate=false;sslProtocol=TLSv1.2;"></property>
+        <property name="username" value="root"></property>
+        <property name="password" value="root"></property>
+       	<property name="defaultAutoCommit" value="false" />
+		<property name="initialSize" value="10" /> 
+		<property name="maxTotal" value="500" /> 
+		<property name="maxIdle" value="100" /> 
+		<property name="minIdle" value="10" /> 
+		<property name="maxWaitMillis" value="-1" /> 
+    </bean>
+ 
+	<bean id="sqlSessionFactoryBean" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="configLocation" value="classpath:/mybatis-config.xml" />
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	
+	<bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg ref="sqlSessionFactoryBean" />
+	</bean>
+	
+	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+
+	
 		
 </beans>

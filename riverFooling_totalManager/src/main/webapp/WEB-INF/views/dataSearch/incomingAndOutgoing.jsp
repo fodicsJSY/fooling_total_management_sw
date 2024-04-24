@@ -16,9 +16,9 @@
     <header>
         <div class="headContiner">
             <div class="headContent">
-                <a href="/fooling_total"><div class="logoBox"><img class="logo" src="/resources/img/logo.png" alt=""></a></div>
+                <a href="/rainfall"><div class="logoBox"><img class="logo" src="/resources/img/logo.png" alt=""></a></div>
                 <div class="menuContiner">
-                    <div><a href="/fooling_total">데이터검색</a></div>
+                    <div><a href="/rainfall">데이터검색</a></div>
                     <div><a href="/차단기수동제어">장비제어</a></div>
                     <div><a href="/임계값설정">침수설정</a></div>
                     <div><a href="/보고서출력">보고서</a></div>
@@ -32,7 +32,7 @@
             <div class="sectionBox01">
                 <div class="listBox">
                     <div class="listTitle">데이터 검색</div>
-                    <div class="listContent"><a href="/fooling_total" class="pageFoward">강우 데이터</a></div>
+                    <div class="listContent"><a href="/rainfall" class="pageFoward">강우 데이터</a></div>
                     <div class="listContent"><a href="/flooding" class="pageFoward">침수 데이터</a></div>
                     <div class="listContent"><a href="/incomingAndOutgoing" class="pageFoward nowForward">입출차 정보</a></div>
                 </div>
@@ -154,7 +154,8 @@
     <script src="/resources/js/date.js"></script>
 
 
-
+    <script src="/resources/js/share.js"></script>
+    <script src="/resources/js/dbSetting.js"></script>
     
 </body>
 </html>

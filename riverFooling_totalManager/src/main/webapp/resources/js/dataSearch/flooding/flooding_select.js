@@ -405,8 +405,8 @@ function makeDaySelectBox(){
     // searchButton 변수에 버튼 엘리먼트 할당
     searchButton = button01;
 
-    searchButton.addEventListener("click", ()=>{
-        searchData();
+    searchButton.addEventListener("click", async ()=>{
+        await searchData();
     });
 
 

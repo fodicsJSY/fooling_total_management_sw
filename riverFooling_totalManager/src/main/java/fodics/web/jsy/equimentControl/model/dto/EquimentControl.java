@@ -1,4 +1,4 @@
-package fodics.web.jsy.dataSearch.model.dto;
+package fodics.web.jsy.equimentControl.model.dto;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -9,9 +9,6 @@ import lombok.ToString;
 @Setter
 @ToString
 @NoArgsConstructor
-public class DataSearch {
-	
-	
-	
+public class EquimentControl {
 
 }

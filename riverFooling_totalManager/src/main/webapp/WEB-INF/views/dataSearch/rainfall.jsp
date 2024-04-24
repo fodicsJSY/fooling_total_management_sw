@@ -8,7 +8,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>침수차단 시스템</title>
     <link rel="shortcut icon" type="image/png" href="/resources/img/slogan.png" sizes="192x192">
-
+    <%-- sweetalert2 --%>
+    <script src="/resources/js/sweetalert/sweetalert2.js"></script>
     <style>
 
 
@@ -20,12 +21,17 @@
     <header>
         <div class="headContiner">
             <div class="headContent">
-                    <a href="/fooling_total"><div class="logoBox"><img class="logo" src="/resources/img/logo.png" alt=""></a></div>
-                    <div class="menuContiner">
-                        <div><a href="/fooling_total">데이터검색</a></div>
-                        <div><a href="/차단기수동제어">장비제어</a></div>
-                        <div><a href="/임계값설정">침수설정</a></div>
-                        <div><a href="/보고서출력">보고서</a></div>
+                    <div>
+                        <a href="/rainfall"><div class="logoBox"><img class="logo" src="/resources/img/logo.png" alt=""></a></div>
+                        <div class="menuContiner">
+                            <div><a href="/rainfall">데이터검색</a></div>
+                            <div><a href="/차단기수동제어">장비제어</a></div>
+                            <div><a href="/임계값설정">침수설정</a></div>
+                            <div><a href="/보고서출력">보고서</a></div>
+                        </div>
+                    </div>
+                    <div>
+                        <div><button class="DB_btn" id="DB_button" onclick="getDBIP();">IP입력</button></div>
                     </div>
             </div>
         </div>
@@ -36,7 +42,7 @@
             <div class="sectionBox01">
                 <div class="listBox">
                     <div class="listTitle">데이터 검색</div>
-                    <div class="listContent"><a href="/fooling_total" class="pageFoward nowForward">강우 데이터</a></div>
+                    <div class="listContent"><a href="/rainfall" class="pageFoward nowForward">강우 데이터</a></div>
                     <div class="listContent"><a href="/flooding" class="pageFoward">침수 데이터</a></div>
                     <div class="listContent"><a href="/incomingAndOutgoing" class="pageFoward">입출차 정보</a></div>
                 </div>
@@ -155,5 +161,7 @@
     <script src="/resources/js/dataSearch/rainfall/rainfall_search.js"></script>
     <script src="/resources/js/dataSearch/rainfall/rainfall_table.js"></script>
     <script src="/resources/js/date.js"></script>
+
+    <script src="/resources/js/dbSetting.js"></script>
 </body>
 </html>

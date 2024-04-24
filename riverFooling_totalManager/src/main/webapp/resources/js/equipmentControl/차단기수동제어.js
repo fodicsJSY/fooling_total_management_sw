@@ -21,21 +21,24 @@ let sound998_7 = document.getElementById("sound998_7");
 
 
 
-//강우페이지 로드시
+//차단기 수동제어 로드시
 document.addEventListener("DOMContentLoaded", function() {
-    forwardBreaker();
+    savedIP = getIPFromLocalStorage().breakerIP;
+    console.log("savedIP : ", savedIP);
+    forwardBreaker(savedIP);
 });
 
 
-function forwardBreaker(){
-
+function forwardBreaker(savedIP){
+    //"172.16.20.101"
     fetch("/breakerStatus", { 
         method : "POST", 
         headers: {"Content-Type": "application/json;"}, 
         credentials: "include",
         body : JSON.stringify( {
-                                "serverip" : "172.16.20.101",
-                                "query": "SELECT site_code, camera_code, camera_name, gate_code, ip, port, status FROM dbo.TB_CIRCUIT_BREAKER_CONFIG"
+                                "serverip" : savedIP,
+                                "camera_code" : "CD3E052FC20240318_000002",
+                                "command" : "1"
         } ) 
     })
     .then(resp => resp.json()) // 요청에 대한 응답 객체(response)를 필요한 형태로 파싱

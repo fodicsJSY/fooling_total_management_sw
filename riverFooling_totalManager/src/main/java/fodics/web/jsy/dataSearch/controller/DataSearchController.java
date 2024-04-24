@@ -20,11 +20,15 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.client.RestTemplate;
 
+import fodics.web.jsy.dataSearch.model.service.DataSearchService;
+
 
 @SessionAttributes({"loginUser"}) 
 @Controller
 public class DataSearchController {
 	
+	@Autowired
+	private DataSearchService service;
 	
 	
 	 private RestTemplate restTemplate;
@@ -113,7 +117,7 @@ public class DataSearchController {
 	
 	
 	//강우데이터 페이지 
-	@GetMapping("/fooling_total")
+	@GetMapping("/rainfall")
 	public String dataSearchForword(
 			Model model
 			){
@@ -274,13 +278,104 @@ public class DataSearchController {
 	
 	
 	// 침수데이터 일간강우
+	@PostMapping("/sendDay_waterLevelGauge")
+	@ResponseBody
+	public String WLGDayDataForword(
+			@RequestBody String req
+			) {
+		System.out.println("WLGDayDataForword req" + req);
+		
+		// JSON 문자열을 파싱하여 필요한 변수에 할당
+	    JSONObject jsonObject = new JSONObject(req);
+//	    String occuDay = jsonObject.getString("occuDay");
+	    String serverip = jsonObject.getString("serverip");
+	    String query = jsonObject.getString("query");
+	    String id = jsonObject.getString("id");
+	    String pw = jsonObject.getString("pw");
+	    
+	    // 각 변수 값 출력
+//	    System.out.println("occuDay: " + occuDay);
+	    System.out.println("serverip: " + serverip);
+	    System.out.println("query: " + query);
+	    System.out.println("id: " + id);
+	    System.out.println("pw: " + pw);
+	    
+	    
+//	    String url = "http://172.16.103.34:8988/fnvr/request/query/select"; // 외부 RESTful API의 URL select
+	    String url = "http://172.16.20.101:10443/fnvr/request/query/select"; // 외부 RESTful API의 URL select
+		
+	    //서버로 전송할 객체 생성
+	   Map<String, String> requestBody = new LinkedHashMap<>();
+	   requestBody.put("serverip", serverip);
+	   requestBody.put("query", query);
+	   System.out.println("requestBody : "+ requestBody);
+	
+	   // 요청 헤더 설정
+	   HttpHeaders headers = new HttpHeaders();
+	   headers.setContentType(MediaType.APPLICATION_JSON);
+	
+	   // HttpEntity 생성
+	   HttpEntity<Map<String, String>> requestEntity = new HttpEntity<>(requestBody, headers);
+	
+	   // post 요청 보내기
+	   String response = restTemplate.postForObject(url, requestEntity, String.class);
+	   
+	   
+	   System.out.print("response"+ response);
+		
+		
+		return response;
+	}
+	
+	
+	
 	@PostMapping("/sendDay_flooding")
 	@ResponseBody
 	public String floodingDayDataForword(
-			@RequestBody String occuDay
+			@RequestBody String req
 			) {
-		System.out.println("occuDay"+occuDay);
-		return null;
+		System.out.println("floodingDayDataForword req" + req);
+		
+		// JSON 문자열을 파싱하여 필요한 변수에 할당
+	    JSONObject jsonObject = new JSONObject(req);
+//	    String occuDay = jsonObject.getString("occuDay");
+	    String serverip = jsonObject.getString("serverip");
+	    String query = jsonObject.getString("query");
+	    String id = jsonObject.getString("id");
+	    String pw = jsonObject.getString("pw");
+	    
+	    // 각 변수 값 출력
+//	    System.out.println("occuDay: " + occuDay);
+	    System.out.println("serverip: " + serverip);
+	    System.out.println("query: " + query);
+	    System.out.println("id: " + id);
+	    System.out.println("pw: " + pw);
+	    
+	    
+	    String url = "http://172.16.103.34:8988/fnvr/request/query/select"; // 외부 RESTful API의 URL select
+		
+		
+	    //서버로 전송할 객체 생성
+	   Map<String, String> requestBody = new LinkedHashMap<>();
+	   requestBody.put("serverip", serverip);
+	   requestBody.put("query", query);
+	   System.out.println("requestBody : "+ requestBody);
+	
+	   // 요청 헤더 설정
+	   HttpHeaders headers = new HttpHeaders();
+	   headers.setContentType(MediaType.APPLICATION_JSON);
+	
+	   // HttpEntity 생성
+	   HttpEntity<Map<String, String>> requestEntity = new HttpEntity<>(requestBody, headers);
+	
+	   // post 요청 보내기
+	   String response = restTemplate.postForObject(url, requestEntity, String.class);
+	   
+	   
+	   System.out.print("response"+ response);
+		
+		
+		return response;
 	}
 	
 	
@@ -328,18 +423,10 @@ public class DataSearchController {
 			) {
 		System.out.println("req"+req);
 		
-		// JSON 문자열을 파싱하여 필요한 변수에 할당
-	    JSONObject jsonObject = new JSONObject(req);
-	    String startOccuDate = jsonObject.getString("startOccuDate");
-	    String endOccuDate = jsonObject.getString("endOccuDate");
-	    String areaValue = jsonObject.getString("areaValue");
-	    String kindValue = jsonObject.getString("kindValue");
+	
 	    
-	    // 각 변수 값 출력
-	    System.out.println("startOccuDate: " + startOccuDate);
-	    System.out.println("endOccuDate: " + endOccuDate);
-	    System.out.println("areaValue: " + areaValue);
-	    System.out.println("kindValue: " + kindValue);
+	    
+	    
 	    return null;
 	}
 	

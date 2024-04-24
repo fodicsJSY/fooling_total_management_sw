@@ -15,9 +15,9 @@
         <header>
         <div class="headContiner">
             <div class="headContent">
-                <a href="/fooling_total"><div class="logoBox"><img class="logo" src="/resources/img/logo.png" alt=""></a></div>
+                <a href="/rainfall"><div class="logoBox"><img class="logo" src="/resources/img/logo.png" alt=""></a></div>
                 <div class="menuContiner">
-                    <div><a href="/fooling_total">데이터검색</a></div>
+                    <div><a href="/rainfall">데이터검색</a></div>
                     <div><a href="/차단기수동제어">장비제어</a></div>
                     <div><a href="/임계값설정">침수설정</a></div>
                     <div><a href="/보고서출력">보고서</a></div>

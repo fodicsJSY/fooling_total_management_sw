@@ -9,16 +9,17 @@
 	<!-- 별칭작성 -->
 	<typeAliases>
 		<typeAlias type="fodics.web.jsy.dataSearch.model.dto.DataSearch" alias="DataSearch"/>
-		<typeAlias type="fodics.web.jsy.equipmentControl.model.dto.EquipmentControl" alias="EquipmentControl"/>
+		<typeAlias type="fodics.web.jsy.equimentControl.model.dto.EquimentControl" alias="EquimentControl"/>
 		<typeAlias type="fodics.web.jsy.inundationSetting.model.dto.InundationSetting" alias="InundationSetting"/>
 		<typeAlias type="fodics.web.jsy.outputReport.model.dto.OutputReport" alias="OutputReport"/>
-		<typeAlias type="fodics.web.jsy.main.model.dto.Main" alias="Main"/>
 	</typeAliases>
 	
 	<!-- mapper파일 등록 -->
 	<mappers>
-		<!-- <mapper resource="/mappers/main-mapper.xml"/> -->
-		<!-- <mapper resource="/mappers/dataSearch-mapper.xml"/> -->
+		<mapper resource="/mappers/dataSearch-mapper.xml"/> 
+		<mapper resource="/mappers/equimentControl-mapper.xml"/> 
+		<mapper resource="/mappers/inundationSetting-mapper.xml"/> 
+		<mapper resource="/mappers/outputReport-mapper.xml"/> 
 	</mappers>
 	
 </configuration>

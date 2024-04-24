@@ -1,13 +1,12 @@
-package fodics.web.jsy.dataSearch.model.service;
+package fodics.web.jsy.equimentControl.model.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
-
-import fodics.web.jsy.dataSearch.model.dao.DataSearchDAO;
 import org.springframework.stereotype.Service;
 
+import fodics.web.jsy.dataSearch.model.dao.DataSearchDAO;
+
 @Service
-public class DataSearchServiceImpl implements DataSearchService{
-	
+public class EquimentControlServiceImpl implements EquimentControlService{
 	
 	@Autowired
 	private DataSearchDAO dao;
