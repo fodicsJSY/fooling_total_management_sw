@@ -3,5 +3,22 @@
 <mapper namespace="databaseMapper">
 
 
+	<resultMap type="Flooding" id="_flooding">
+	     	<result property="sensorLocation" column="SENSOR_LOCATION" />
+	</resultMap> 
+
+	
+	 <resultMap id="_int" type="java.lang.Integer"/>
+	 
+	 
+	 <select id="locationList" resultMap="_flooding">
+	 	SELECT SENSOR_LOCATION
+		FROM tb_water_level_hist
+		JOIN tb_water_level_sensor_info ON tb_water_level_hist.DEVICE_ID = tb_water_level_sensor_info.SENSOR_ID;
+	 </select>
+	 
+	  
+	  
+	  
 
 </mapper>

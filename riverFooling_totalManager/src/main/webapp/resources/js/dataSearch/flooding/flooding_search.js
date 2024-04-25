@@ -46,12 +46,6 @@ async function searchData() {
 
                     data = result;
 
-                    // 차트호출
-                    // lineChart(data);
-                    // makeTable(data);
-                    // liveInfomation(data);
-                    // openDounutChart(data);
-                    // closeDounutChart(data);
 
 
                 }) // 첫 번째 then에서 파싱한 데이터를 이용한 동작 작성
@@ -60,74 +54,24 @@ async function searchData() {
                 }); // 예외 발생 시 처리할 내용을 작성
         } else {
             // 일간
-            // fetch("/sendDay_flooding", { 
-            //     method : "POST", 
-            //     headers: {"Content-Type": "application/json;"}, 
-            //     body : JSON.stringify( {"occuDay":occuDay} ) 
-            // })
-            // .then(resp => resp.json()) // 요청에 대한 응답 객체(response)를 필요한 형태로 파싱
-            // .then((result) => {
-            //     // console.log("result", result );
+            fetch("/sendDay_flooding", { 
+                method : "POST", 
+                headers: {"Content-Type": "application/json;"}, 
+                body : JSON.stringify( {"occuDay":occuDay} ) 
+            })
+            .then(resp => resp.json()) // 요청에 대한 응답 객체(response)를 필요한 형태로 파싱
+            .then((result) => {
+                console.log("result", result );
 
-            //     data = result;
+                data = result;
 
-            //     // 차트호출
-            //     // lineChart(data);
-            //     // makeTable(data);
-            //     // liveInfomation(data);
-            //     // openDounutChart(data);
-            //     // closeDounutChart(data);
+            // fetchData 함수를 호출하고 결과를 처리하는 예제
+            // dayMakeTable(sendDay_WLG_Resp, sendDay_floodingResp);
 
-
-            // }) // 첫 번째 then에서 파싱한 데이터를 이용한 동작 작성
-            // .catch( err => {
-            //     // console.log("err : ", err);
-            // }); // 예외 발생 시 처리할 내용을 작성
-
-
-
-            try {
-                const sendDay_WLG_Resp = await fetch("/sendDay_waterLevelGauge", {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json;" },
-                    body: JSON.stringify({
-                        // "occuDay":occuDay,
-                        "serverip": "172.16.20.101",
-                        "query": "SELECT EVENT_NO, DEVICE_ID, DATE_TIME, WATER_LEVEL FROM tb_water_level_hist",
-                        "id": "",
-                        "pw": ""
-                    })
-                }).then(resp => resp.json());
-
-                const sendDay_floodingResp = await fetch("/sendDay_flooding", {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json;" },
-                    body: JSON.stringify({
-                        // "occuDay":occuDay,
-                        "serverip": "172.16.20.101",
-                        "query": "SELECT SENSOR_NO, SENSOR_ID, SENSOR_LOCATION, ALARM_WATER_LEVEL, CONTROL_BOARD_TYPE, CONTROL_BOARD_IP, CONTROL_BOARD_PORT, ALARM_OFF_CONDITION, MACHING_CODE, USESMS FROM tb_water_level_sensor_info",
-                        "id": "",
-                        "pw": ""
-                    })
-                }).then(resp => resp.json());
-
-                console.log("sendDay_WLG_Resp", sendDay_WLG_Resp);
-                console.log("sendDay_floodingResp", sendDay_floodingResp);
-
-
-                // fetchData 함수를 호출하고 결과를 처리하는 예제
-                // dayMakeTable(sendDay_WLG_Resp, sendDay_floodingResp);
-
-            } catch (error) {
-                console.error('Error fetching data:', error);
-                throw error;
-            }
-
-
-
-
-
-
+            }) // 첫 번째 then에서 파싱한 데이터를 이용한 동작 작성
+            .catch( err => {
+                // console.log("err : ", err);
+            }); // 예외 발생 시 처리할 내용을 작성
         }
 
 

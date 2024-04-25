@@ -9,10 +9,8 @@ import lombok.ToString;
 @Setter
 @ToString
 @NoArgsConstructor
-public class DataSearch {
+public class Flooding {
 	
-	
-	
-	
+	private String sensorLocation;
 
 }
