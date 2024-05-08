@@ -1,5 +1,7 @@
 package fodics.web.jsy.equimentControl.controller;
 
+import java.io.InputStream;
+import java.util.Scanner;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -63,29 +65,47 @@ public class EquimentControlController {
 			) {
 		
 	    System.out.println("req : " + req);
+	    
+	    String ipAddress;
+	    String port;
 		
 		// MappingJackson2HttpMessageConverter 추가
 		restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
+		
+		 try {
+	    	InputStream is = getClass().getResourceAsStream("/server_info.ini");
+	        Scanner s = new Scanner(is);
+	        ipAddress = s.nextLine();
+	        port = s.nextLine();
+	//		        System.out.println("openGate ipAddress : "+ ipAddress);
+	//		        System.out.println("openGate port : "+ port);
+	        s.close();
+	        is.close();
+
+		
 		
 		
 		// JSON 문자열을 파싱하여 필요한 변수에 할당
 	    JSONObject jsonObject = new JSONObject(req);
 	    String serverip = jsonObject.getString("serverip");
-	    String camera_code = jsonObject.getString("camera_code");
-	    String command = jsonObject.getString("command");
+	    String query = jsonObject.getString("query");
+//	    String camera_code = jsonObject.getString("camera_code");
+//	    String command = jsonObject.getString("command");
 	    
 	    System.out.println("serverip : " + serverip);
-	    System.out.println("camera_code : " + camera_code);
-	    System.out.println("command : " + command);
+	    System.out.println("query : " + query);
+//	    System.out.println("camera_code : " + camera_code);
+//	    System.out.println("command : " + command);
 	    
 	    
-	    String url = "http://172.16.20.101:10443/fnvr/request/gate_control/gate_control"; // 외부 RESTful API의 URL select
+	    String breakerUrl = "http://"+ipAddress+":"+port+"/fnvr/request/gate_control/gate_control"; // 외부 RESTful API의 URL select
 		
 	    //서버로 전송할 객체 생성
 	   Map<String, String> requestBody = new LinkedHashMap<>();
 	   requestBody.put("serverip", serverip);
-	   requestBody.put("camera_code", camera_code);
-	   requestBody.put("command", command);
+	   requestBody.put("query", query);
+//	   requestBody.put("camera_code", camera_code);
+//	   requestBody.put("command", command);
 	   System.out.println("requestBody : "+ requestBody);
 	
 	   // 요청 헤더 설정
@@ -96,7 +116,7 @@ public class EquimentControlController {
 	   HttpEntity<Map<String, String>> requestEntity = new HttpEntity<>(requestBody, headers);
 	
 	   // post 요청 보내기
-	   String response = restTemplate.postForObject(url, requestEntity, String.class);
+	   String response = restTemplate.postForObject(breakerUrl, requestEntity, String.class);
 	   
 	   
 	   System.out.print("response"+ response);
@@ -104,6 +124,15 @@ public class EquimentControlController {
 	    
 		
 		return response;
+		
+        
+        
+        
+    } catch (Exception e) {
+       //  //  System.out.println("Read Query Error");
+        e.printStackTrace();
+        return ""; // 예외가 발생하면 빈 문자열을 반환하도록 수정
+    }
 	}
 	
 	

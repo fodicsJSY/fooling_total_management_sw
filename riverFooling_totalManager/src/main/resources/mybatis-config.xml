@@ -10,6 +10,8 @@
 	<typeAliases>
 		<typeAlias type="fodics.web.jsy.dataSearch.model.dto.DataSearch" alias="DataSearch"/>
 		<typeAlias type="fodics.web.jsy.dataSearch.model.dto.Flooding" alias="Flooding"/>
+		<typeAlias type="fodics.web.jsy.dataSearch.model.dto.Date_flooding" alias="Date_flooding"/>
+		<typeAlias type="fodics.web.jsy.dataSearch.model.dto.Min_flooding" alias="Min_flooding"/>
 		<typeAlias type="fodics.web.jsy.equimentControl.model.dto.EquimentControl" alias="EquimentControl"/>
 		<typeAlias type="fodics.web.jsy.inundationSetting.model.dto.InundationSetting" alias="InundationSetting"/>
 		<typeAlias type="fodics.web.jsy.outputReport.model.dto.OutputReport" alias="OutputReport"/>

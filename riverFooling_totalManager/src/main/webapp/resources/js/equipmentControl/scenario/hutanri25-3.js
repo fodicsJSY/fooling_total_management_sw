@@ -32,7 +32,7 @@ function showScenario(){
     var span =  document.createElement("span");
     span.className = "span01";
     block1.appendChild(span);
-    span.innerHTML="보입니다.";
+    span.innerHTML="함노해ㅑ몯호ㅟㅏ";
     
     showStartDay.innerHTML="2023-11-21 09:00:00";
     showContents.appendChild(display);
@@ -94,7 +94,7 @@ function registeredScenario(){
     var span01 =  document.createElement("span");
     span01.className = "span01";
     block1.appendChild(span01);
-    span01.innerHTML="내용입니다만.";
+    span01.innerHTML="내용입니다.";
 
     var block2 =  document.createElement("div");
     block2.className = "block";
@@ -103,7 +103,7 @@ function registeredScenario(){
     var span02 =  document.createElement("span");
     span02.className = "span01";
     block2.appendChild(span02);
-    span02.innerHTML="야호야호";
+    span02.innerHTML="보입니다.";
 
 
     makeCell(tr, "td", display);

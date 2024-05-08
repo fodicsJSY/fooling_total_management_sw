@@ -4,17 +4,142 @@
 
 
 	<resultMap type="Flooding" id="_flooding">
+	     	<result property="hour" column="HOUR" />
+	     	<result property="day" column="DAY" />
+	     	<result property="month" column="MONTH" />
+	     	<result property="waterLevel" column="WATER_LEVEL" />
 	     	<result property="sensorLocation" column="SENSOR_LOCATION" />
+	     	<result property="alarmWaterLevel" column="ALARM_WATER_LEVEL" />
+	     	<result property="startOccuDate" column="START_OCCUDATE" />
+	     	<result property="endOccuDate" column="END_OCCUDATE" />
+	     	<result property="areaValue" column="AREA_VALUE" />
+	     	<result property="kindValue" column="KIND_VALUE" />
+	</resultMap> 
+	
+	
+	<resultMap type="Date_flooding" id="_date_flooding">
+	     	<result property="date" column="DATE" />
+	     	<result property="hour" column="HOUR" />
+	     	<result property="waterLevel" column="WATER_LEVEL" />
+	     	<result property="alarmWaterLevel" column="ALARM_WATER_LEVEL" />
+	     	<result property="startOccuDate" column="START_OCCUDATE" />
+	     	<result property="endOccuDate" column="END_OCCUDATE" />
+	     	<result property="areaValue" column="AREA_VALUE" />
+	     	<result property="kindValue" column="KIND_VALUE" />
+	</resultMap> 
+	
+	
+	<resultMap type="Min_flooding" id="_min_flooding">
+	     	<result property="occuDay" column="OCCUDAY" />
+	     	<result property="hour" column="HOUR" />
+	     	<result property="min" column="MIN" />
+	     	<result property="waterLevel" column="WATER_LEVEL" />
+	     	<result property="alarmWaterLevel" column="ALARM_WATER_LEVEL" />
+	     	<result property="areaValue" column="AREA_VALUE" />
 	</resultMap> 
 
 	
 	 <resultMap id="_int" type="java.lang.Integer"/>
 	 
 	 
-	 <select id="locationList" resultMap="_flooding">
-	 	SELECT SENSOR_LOCATION
-		FROM tb_water_level_hist
-		JOIN tb_water_level_sensor_info ON tb_water_level_hist.DEVICE_ID = tb_water_level_sensor_info.SENSOR_ID;
+	 
+	 
+	 
+	 <select id="areaList" resultMap="_flooding">
+		SELECT DISTINCT INFO.SENSOR_LOCATION
+		FROM tb_water_level_hist HIST
+		LEFT OUTER JOIN tb_water_level_sensor_info INFO ON HIST.DEVICE_ID = INFO.SENSOR_ID
+	 </select>
+	 
+	 <select id="min_floodingList" resultMap="_min_flooding">
+		SELECT DATE_FORMAT(HIST.DATE_TIME, '%h') AS HOUR, DATE_FORMAT(HIST.DATE_TIME, '%m') AS MIN, INFO.ALARM_WATER_LEVEL, ROUND(AVG(HIST.WATER_LEVEL), 2) AS WATER_LEVEL
+		FROM tb_water_level_hist HIST
+		LEFT OUTER JOIN tb_water_level_sensor_info INFO ON HIST.DEVICE_ID = INFO.SENSOR_ID
+		WHERE DATE_FORMAT(HIST.DATE_TIME, '%Y%m%d') = #{occuDay}
+		AND INFO.SENSOR_LOCATION = '포딕스시스템'
+		GROUP BY HOUR, MIN
+		ORDER BY HOUR, MIN
+	 </select>
+	 
+	 
+	 <select id="day_floodingList" resultMap="_flooding">
+	 	SELECT
+		INFO.SENSOR_LOCATION
+		, DATE_FORMAT(HIST.DATE_TIME, '%h')AS HOUR
+		, ROUND(AVG(HIST.WATER_LEVEL), 2) AS WATER_LEVEL
+		, INFO.ALARM_WATER_LEVEL
+		FROM tb_water_level_hist HIST
+		LEFT OUTER JOIN tb_water_level_sensor_info INFO ON HIST.DEVICE_ID = INFO.SENSOR_ID
+		WHERE DATE_FORMAT(HIST.DATE_TIME, '%Y%m%d') = #{occuDay}
+		GROUP BY
+		INFO.SENSOR_LOCATION
+		, HOUR(HIST.DATE_TIME)
+		ORDER BY
+		INFO.SENSOR_LOCATION
+		, HOUR(HIST.DATE_TIME)
+	 </select>
+	 
+	  
+	 
+	 <select id="month_floodingList" resultMap="_flooding">
+	 	SELECT
+		INFO.SENSOR_LOCATION
+		, DATE_FORMAT(HIST.DATE_TIME, '%d')AS DAY
+		, ROUND(AVG(HIST.WATER_LEVEL), 2)AS WATER_LEVEL
+		, INFO.SENSOR_LOCATION
+		FROM tb_water_level_hist HIST
+		LEFT OUTER JOIN tb_water_level_sensor_info INFO ON HIST.DEVICE_ID = INFO.SENSOR_ID
+		WHERE DATE_FORMAT(HIST.DATE_TIME, '%Y%m') = #{occuMonth}
+		GROUP BY
+		INFO.SENSOR_LOCATION
+		, DAY(HIST.DATE_TIME)
+		ORDER BY
+		INFO.SENSOR_LOCATION
+		, DAY(HIST.DATE_TIME)
+	 </select>
+	 
+	  
+	  
+	  
+	 <select id="year_floodingList" resultMap="_flooding">
+		SELECT
+		INFO.SENSOR_LOCATION
+		, DATE_FORMAT(HIST.DATE_TIME, '%m')AS MONTH
+		, ROUND(AVG(HIST.WATER_LEVEL), 2)AS WATER_LEVEL
+		, INFO.SENSOR_LOCATION
+		FROM tb_water_level_hist HIST
+		LEFT OUTER JOIN tb_water_level_sensor_info INFO ON HIST.DEVICE_ID = INFO.SENSOR_ID
+		WHERE DATE_FORMAT(HIST.DATE_TIME, '%Y') = #{occuYear}
+		GROUP BY
+		INFO.SENSOR_LOCATION
+		, MONTH(HIST.DATE_TIME)
+		ORDER BY
+		INFO.SENSOR_LOCATION
+		, MONTH(HIST.DATE_TIME)
+	 </select>
+	 
+	  
+	  
+	  
+	<select id="date_floodingList01" resultMap="_date_flooding">
+	    SELECT DATE_FORMAT(HIST.DATE_TIME, '%Y%m%d') AS DATE, DATE_FORMAT(HIST.DATE_TIME, '%h') AS HOUR, INFO.ALARM_WATER_LEVEL
+		FROM tb_water_level_hist HIST
+		LEFT OUTER JOIN tb_water_level_sensor_info INFO ON HIST.DEVICE_ID = INFO.SENSOR_ID
+		WHERE DATE_FORMAT(HIST.DATE_TIME, '%Y%m%d') BETWEEN #{startOccuDate} AND #{endOccuDate}
+		AND INFO.SENSOR_LOCATION = #{areaValue}
+		GROUP BY DATE_FORMAT(HIST.DATE_TIME, '%Y%m%d'), HOUR
+		ORDER BY DATE, HOUR
+	</select>
+	 
+	  
+	 <select id="date_floodingList02" resultMap="_date_flooding">
+		SELECT DATE_FORMAT(HIST.DATE_TIME, '%Y%m%d') AS DATE, DATE_FORMAT(HIST.DATE_TIME, '%h') AS HOUR, ROUND(AVG(HIST.WATER_LEVEL), 2)AS WATER_LEVEL
+		FROM tb_water_level_hist HIST
+		LEFT OUTER JOIN tb_water_level_sensor_info INFO ON HIST.DEVICE_ID = INFO.SENSOR_ID
+		WHERE DATE_FORMAT(HIST.DATE_TIME, '%Y%m%d') BETWEEN #{startOccuDate} AND #{endOccuDate}
+		AND INFO.SENSOR_LOCATION = #{areaValue}
+		GROUP BY DATE_FORMAT(HIST.DATE_TIME, '%Y%m%d'), HOUR
+		ORDER BY DATE, HOUR
 	 </select>
 	 
 	  

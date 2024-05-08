@@ -7,6 +7,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>침수차단 시스템</title>
+
+    <%-- sweetalert2 --%>
+    <script src="/resources/js/sweetalert/sweetalert2.js"></script>
+
     <link rel="shortcut icon" type="image/png" href="/resources/img/slogan.png" sizes="192x192">
 
     <link rel="stylesheet" href="/resources/css/dataSearch/flooding.css">
@@ -27,6 +31,8 @@
         </div>
     </header>
 <hr>
+    <%-- ${areaList}
+    ${areaList[0].sensorLocation} --%>
     <main>
         <section>
             <div class="sectionBox01">
@@ -147,10 +153,24 @@
     </footer>
 
 
-    <script></script>
+    <script>
+        var areaListJson = ${areaListJson};
+
+        var areaList = [];
+
+        for (var i = 0; i < areaListJson.length; i++) {
+            console.log("객체 ", i, "의 name 속성: ", areaListJson[i].sensorLocation);
+
+            // areaList 배열에 새로운 요소를 추가
+            areaList.push(areaListJson[i].sensorLocation);
+            console.log("areaList: ", areaList);
+        }
+
+    </script>
     <script src="/resources/js/dataSearch/flooding/flooding_select.js"></script>
     <script src="/resources/js/dataSearch/flooding/flooding_table.js"></script>
     <script src="/resources/js/dataSearch/flooding/flooding_search.js"></script>
+    <script src="/resources/js/dataSearch/flooding/flooding_todaySearch.js"></script>
     <script src="/resources/js/dataSearch/flooding/flooding_save.js"></script>
     <script src="/resources/js/date.js"></script>
 

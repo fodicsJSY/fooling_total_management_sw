@@ -9,17 +9,18 @@ import lombok.ToString;
 @Setter
 @ToString
 @NoArgsConstructor
-public class Flooding {
+public class Date_flooding {
 	
+
+	private String date;
 	private String hour;
-	private String day;
-	private String month;
+	private String startOccuDate;
+	private String endOccuDate;
+	private String areaValue;
+	private String kindValue;
 	private String waterLevel;
-	private String sensorLocation;
 	private String alarmWaterLevel;
 
-
-	
 	
 
 }

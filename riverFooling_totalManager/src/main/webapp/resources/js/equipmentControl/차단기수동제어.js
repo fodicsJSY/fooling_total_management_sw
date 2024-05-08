@@ -25,8 +25,37 @@ let sound998_7 = document.getElementById("sound998_7");
 document.addEventListener("DOMContentLoaded", function() {
     savedIP = getIPFromLocalStorage().breakerIP;
     console.log("savedIP : ", savedIP);
-    forwardBreaker(savedIP);
+    selectBreaker();
+    // forwardBreaker(savedIP);
 });
+
+
+function selectBreaker(){
+    //"172.16.20.101"
+    fetch("/breakerStatus", { 
+        method : "POST", 
+        headers: {"Content-Type": "application/json;"}, 
+        credentials: "include",
+        body : JSON.stringify( {
+                                "serverip" : savedIP,
+                                "query" : "SELECT * FROM dbo.TB_CIRCUIT_BREAKER_CONFIG",
+        } ) 
+    })
+    .then(resp => resp.json()) // 요청에 대한 응답 객체(response)를 필요한 형태로 파싱
+    .then((result) => {
+        console.log("result", result );
+
+        data = result;
+
+    
+        
+    }) // 첫 번째 then에서 파싱한 데이터를 이용한 동작 작성
+    .catch( err => {
+        // console.log("err : ", err);
+    }); // 예외 발생 시 처리할 내용을 작성
+
+
+}
 
 
 function forwardBreaker(savedIP){

@@ -17,12 +17,18 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.client.RestTemplate;
 
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.Gson;
+
+import fodics.web.jsy.dataSearch.model.dto.Date_flooding;
 import fodics.web.jsy.dataSearch.model.dto.Flooding;
+import fodics.web.jsy.dataSearch.model.dto.Min_flooding;
 import fodics.web.jsy.dataSearch.model.service.DataSearchService;
 
 
@@ -261,6 +267,12 @@ public class DataSearchController {
 	public String inundationDataForword(
 			Model model
 			){
+		
+		 List<Flooding> areaList = service.areaList();
+		String areaListJson = new Gson().toJson(areaList);
+		model.addAttribute("areaListJson", areaListJson);
+		System.out.println("areaListJson : "+areaListJson);
+		
 		return "/dataSearch/flooding";
 	}
 	
@@ -269,89 +281,71 @@ public class DataSearchController {
 	// 침수데이터 시간강우
 	@PostMapping("/send10min_flooding")
 	@ResponseBody
-	public String floodingMinDataForword(
-			@RequestBody String req
-			) {
-		System.out.println("req"+req);
-		return null;
+	public Map<String, Object> floodingMinDataForword(
+					@RequestBody Min_flooding min_flooding
+					) {
+				Map<String, Object> map = new HashMap<>();
+				
+				System.out.println("min_flooding"+min_flooding);
+				
+                List<Flooding> min_floodingList = service.min_floodingList(min_flooding);
+                System.out.println("min_floodingList : " + min_floodingList);
+                map.put("min_floodingList", min_floodingList);
+                System.out.println("map : " + map);
+                
+                return map;
+		                
 	}
 	
 	
 	
-	
-	
-	// 침수데이터 일간강우 
-//	@PostMapping("/sendDay_waterLevelGauge")
-//	@ResponseBody
-//	public String WLGDayDataForword(
-//			@RequestBody String req
-//			) {
-//		System.out.println("WLGDayDataForword req" + req);
-//		
-//		// JSON 문자열을 파싱하여 필요한 변수에 할당
-//	    JSONObject jsonObject = new JSONObject(req);
-////	    String occuDay = jsonObject.getString("occuDay");
-//	    String serverip = jsonObject.getString("serverip");
-//	    String query = jsonObject.getString("query");
-//	    String id = jsonObject.getString("id");
-//	    String pw = jsonObject.getString("pw");
-//	    
-//	    // 각 변수 값 출력
-////	    System.out.println("occuDay: " + occuDay);
-//	    System.out.println("serverip: " + serverip);
-//	    System.out.println("query: " + query);
-//	    System.out.println("id: " + id);
-//	    System.out.println("pw: " + pw);
-//	    
-//	    
-////	    String url = "http://172.16.103.34:8988/fnvr/request/query/select"; // 외부 RESTful API의 URL select
-//	    String url = "http://172.16.20.101:10443/fnvr/request/query/select"; // 외부 RESTful API의 URL select
-//		
-//	    //서버로 전송할 객체 생성
-//	   Map<String, String> requestBody = new LinkedHashMap<>();
-//	   requestBody.put("serverip", serverip);
-//	   requestBody.put("query", query);
-//	   System.out.println("requestBody : "+ requestBody);
-//	
-//	   // 요청 헤더 설정
-//	   HttpHeaders headers = new HttpHeaders();
-//	   headers.setContentType(MediaType.APPLICATION_JSON);
-//	
-//	   // HttpEntity 생성
-//	   HttpEntity<Map<String, String>> requestEntity = new HttpEntity<>(requestBody, headers);
-//	
-//	   // post 요청 보내기
-//	   String response = restTemplate.postForObject(url, requestEntity, String.class);
-//	   
-//	   
-//	   System.out.print("response"+ response);
-//		
-//		
-//		return response;
-//	}
-	
+
 	
 	// 침수데이터 일간강우
 	@PostMapping("/sendDay_flooding")
 	@ResponseBody
 	public Map<String, Object> floodingDayDataForword(
-			@RequestBody String occuDay
+			@RequestBody String req
 			) {
 	 	Map<String, Object> map = new HashMap<>();
+	 	
+	 	System.out.println("req" + req);
+
+
+        // ObjectMapper 생성
+        ObjectMapper objectMapper = new ObjectMapper();
+
+        try {
+            // JSON 문자열 파싱
+            JsonNode jsonNode = objectMapper.readTree(req);
+
+            // "occuDay" 키에 해당하는 값을 추출
+            String occuDay = jsonNode.get("occuDay").asText();
+
+            System.out.println("occuDay : " + occuDay);
+            
+            List<Flooding> day_floodingList = service.day_floodingList(occuDay);
+    		System.out.println("day_floodingList : " + day_floodingList);
+    		
+
+			map.put("day_floodingList", day_floodingList);
+			
+    		System.out.println("map : " + map);
+            return map;
+    			
+    		
+    		
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null; // 에러 발생 시 null 반환하거나 적절히 처리
+        }
 		
-		System.out.println("occuDay : " + occuDay);
 		
 
 		
 		
-		List<Flooding> localationList = service.localationList();
-		System.out.println("localationList : " + localationList);
-		
-		map.put("localationList", localationList);
-		System.out.println("map : " + map);
-		
-		
-		return map;
+
 	}
 	
 	
@@ -362,35 +356,122 @@ public class DataSearchController {
 	// 침수데이터 월간강우
 	@PostMapping("/sendMonth_flooding")
 	@ResponseBody
-	public String floodingMonthDataForword(
-			@RequestBody String occuMonth
+	public Map<String, Object> floodingMonthDataForword(
+			@RequestBody String req
 			) {
-		System.out.println("occuMonth"+occuMonth);
-		return null;
+		
+		Map<String, Object> map = new HashMap<>();
+		
+		System.out.println("req"+req);
+		
+
+        // ObjectMapper 생성
+        ObjectMapper objectMapper = new ObjectMapper();
+
+        try {
+            // JSON 문자열 파싱
+            JsonNode jsonNode = objectMapper.readTree(req);
+
+            // "occuMonth" 키에 해당하는 값을 추출
+            String occuMonth = jsonNode.get("occuMonth").asText();
+
+            System.out.println("occuMonth : " + occuMonth);
+            
+            List<Flooding> month_floodingList = service.month_floodingList(occuMonth);
+    		System.out.println("month_floodingList : " + month_floodingList);
+    		
+    		map.put("month_floodingList", month_floodingList);
+    		System.out.println("map : " + map);
+    		
+            
+            return map;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null; // 에러 발생 시 null 반환하거나 적절히 처리
+        }
+		
 	}
 	
 	
 	
 	
+	// 침수데이터 월간강우 파일명 받아오기
+	@PostMapping("/fnameUrl")
+	@ResponseBody
+	public String fnameUrlForword(
+			@RequestBody String fnameUrl
+			) {
+		System.out.println("fnameUrl"+fnameUrl);
+		return fnameUrl;
+	}
+	
+	
 	// 침수데이터 월간강우 데이터xml저장
 	@PostMapping("/sendMonth_floodingSave")
 	@ResponseBody
-	public String floodingMonthDataSaveForword(
-			@RequestBody String occuMonth
+	public Map<String, Object> floodingMonthDataSaveForword(
+			@RequestBody Map<String, Object> paramMap
 			) {
-		System.out.println("occuMonth"+occuMonth);
-		return null;
+	 	Map<String, Object> map = new HashMap<>();
+	 	
+		System.out.println("paramMap"+paramMap);
+		
+		
+		// JSON 문자열을 파싱하여 필요한 변수에 할당
+	    JSONObject jsonObject = new JSONObject(paramMap);
+	    
+	    String occuMonth = jsonObject.getString("occuMonth");
+		 System.out.println("occuMonth"+occuMonth);
+		 String fname = jsonObject.getString("fname");
+		 System.out.println("fname"+fname);
+		 map.put("fname", fname);
+		
+         List<Flooding> month_floodingSaveList = service.month_floodingSaveList(occuMonth);
+		 map.put("month_floodingSaveList", month_floodingSaveList);
+		
+		 System.out.println("map"+map);
+		
+		
+		return map;
 	}
 	
 	
 	// 침수데이터 연간강우
 	@PostMapping("/sendYear_flooding")
 	@ResponseBody
-	public String floodingYearDataForword(
-			@RequestBody String occuYear
+	public Map<String, Object> floodingYearDataForword(
+			@RequestBody String req
 			) {
-		System.out.println("occuYear"+occuYear);
-		return null;
+	Map<String, Object> map = new HashMap<>();
+		
+		System.out.println("req"+req);
+		
+
+        // ObjectMapper 생성
+        ObjectMapper objectMapper = new ObjectMapper();
+
+        try {
+            // JSON 문자열 파싱
+            JsonNode jsonNode = objectMapper.readTree(req);
+
+            // "occuYear" 키에 해당하는 값을 추출
+            String occuYear = jsonNode.get("occuYear").asText();
+
+            System.out.println("occuYear : " + occuYear);
+            
+            List<Flooding> year_floodingList = service.year_floodingList(occuYear);
+    		System.out.println("year_floodingList : " + year_floodingList);
+    		
+    		map.put("year_floodingList", year_floodingList);
+    		System.out.println("map : " + map);
+            
+            return map;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null; // 에러 발생 시 null 반환하거나 적절히 처리
+        }
+		
+
 	}
 
 	
@@ -398,16 +479,36 @@ public class DataSearchController {
 	// 침수데이터 기간별강우
 	@PostMapping("/sendDate_flooding")
 	@ResponseBody
-	public String floodingDateDataForword(
-			@RequestBody String req
+	public Map<String, Object> floodingDateDataForword(
+			@RequestBody Date_flooding date_flooding
 			) {
-		System.out.println("req"+req);
+		Map<String, Object> map = new HashMap<>();
 		
-	
+		System.out.println("date_flooding"+date_flooding);
+		
+
+
+
+            if("flooding".equals(date_flooding.getKindValue())) {
+                List<Flooding> date_floodingList01 = service.date_floodingList01(date_flooding);
+                System.out.println("date_floodingList01 : " + date_floodingList01);
+                map.put("date_floodingList01", date_floodingList01);
+                System.out.println("map : " + map);
+                
+                return map;
+                
+            }else {
+            	List<Flooding> date_floodingList02 = service.date_floodingList02(date_flooding);
+            	System.out.println("date_floodingList02 : " + date_floodingList02);
+            	map.put("date_floodingList02", date_floodingList02);
+            	System.out.println("map : " + map);
+            	
+            	return map;
+            }
+            
+            
+
 	    
-	    
-	    
-	    return null;
 	}
 	
 	
