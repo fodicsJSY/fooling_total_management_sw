@@ -8,7 +8,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>침수차단 시스템</title>
     <link rel="shortcut icon" type="image/png" href="/resources/img/slogan.png" sizes="192x192">
-
+    <%-- sweetalert2 --%>
+    <script src="/resources/js/sweetalert/sweetalert2.js"></script>
 
     <link rel="stylesheet" href="/resources/css/equipmentControl/차단기수동제어.css">
 </head>
@@ -41,6 +42,9 @@
                     <div class="titleContiner01">
                         <div class="titleBox">
                             <div class="titleName">차단기 수동제어</div>
+                                <div>
+                    <div><button class="DB_btn" id="DB_button" onclick="getDBIP();">IP입력</button></div>
+                </div>
                         </div>
                     </div>
                     <div class="titleContiner02">
@@ -53,7 +57,7 @@
                 </div>
                 <div class="searchContainer02">
                 <div class="tableContainer">
-                    <div>
+                    <%-- <div>
                         <table class="controlTable">
                             <thead class="controlThead">
                                 <tr>
@@ -163,12 +167,11 @@
                                 </tr>
                             </tbody>
                         </table>
-                    </div>
+                    </div> --%>
                 </div>
             </div>
         </section>
     </main>
-
 <hr>
     <footer>
         <div>
@@ -184,6 +187,7 @@
     <script></script>
     <script src="/resources/js/equipmentControl/차단기수동제어.js"></script>
     <script src="/resources/js/date.js"></script>
+    <script src="/resources/js/equipmentControl/breaker_table.js"></script>
 
     <script src="/resources/js/dbSetting.js"></script>
 </body>

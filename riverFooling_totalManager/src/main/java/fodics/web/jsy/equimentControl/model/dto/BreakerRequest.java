@@ -9,8 +9,9 @@ import lombok.ToString;
 @Setter
 @ToString
 @NoArgsConstructor
-public class EquimentControl {
+public class BreakerRequest {
 	
-	private String gateCode;
+	private String data[][]; // "data" 필드로 받을 예정
+
 
 }

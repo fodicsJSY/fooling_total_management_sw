@@ -21,7 +21,6 @@
     <header>
         <div class="headContiner">
             <div class="headContent">
-                <div>
                     <a href="/rainfall"><div class="logoBox"><img class="logo" src="/resources/img/logo.png" alt=""></a></div>
                     <div class="menuContiner">
                         <div><a href="/rainfall">데이터검색</a></div>
@@ -29,10 +28,6 @@
                         <div><a href="/임계값설정">침수설정</a></div>
                         <div><a href="/보고서출력">보고서</a></div>
                     </div>
-                </div>
-                <div>
-                    <div><button class="DB_btn" id="DB_button" onclick="getDBIP();">IP입력</button></div>
-                </div>
             </div>
         </div>
     </header>

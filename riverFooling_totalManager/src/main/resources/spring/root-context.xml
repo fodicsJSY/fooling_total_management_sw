@@ -7,27 +7,57 @@
 	<!-- Root Context: defines shared resources visible to all other web components -->
 	
 	
-	<!-- DB -->
-    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+	<!-- 침수데이터 maria DB -->
+    <bean id="dataSource1" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <property name="driverClassName" value="org.mariadb.jdbc.Driver"></property>
         <property name="url" value="jdbc:mysql://172.16.20.101:3306/FWaterLevelSystem"></property>
         <property name="username" value="root"></property>
         <property name="password" value="qwer12#$"></property>
     </bean>
  
-	<bean id="sqlSessionFactoryBean" class="org.mybatis.spring.SqlSessionFactoryBean">
+	<bean id="sqlSessionFactoryBean1" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="configLocation" value="classpath:/mybatis-config.xml" />
-		<property name="dataSource" ref="dataSource" />
+		<property name="dataSource" ref="dataSource1" />
 	</bean>
 	
-	<bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
-		<constructor-arg ref="sqlSessionFactoryBean" />
+	<bean id="sqlSessionTemplate1" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg ref="sqlSessionFactoryBean1" />
 	</bean>
 	
-	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-		<property name="dataSource" ref="dataSource" />
+	<bean id="transactionManager1" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource1" />
 	</bean>
 
 	
+		<!--차단기 데이터 mssql DB -->
+		<!-- 
+	<bean id="dataSource2"
+		class="org.apache.commons.dbcp2.BasicDataSource"
+		destroy-method="close">
+		<property name="driverClassName" value="com.microsoft.sqlserver.jdbc.SQLServerDriver" />
+		<property name="url" value="jdbc:sqlserver://172.16.20.101:12000;databaseName=FdcVmsDB;integratedSecurity=false;encrypt=false;trustServerCertificate=false;sslProtocol=TLSv1.2;" />
+		<property name="username" value="admin" />
+		<property name="password" value="fodics1@@" />
+		<property name="defaultAutoCommit" value="false" />
+		<property name="initialSize" value="10" /> 
+		<property name="maxTotal" value="500" /> 
+		<property name="maxIdle" value="100" /> 
+		<property name="minIdle" value="10" /> 
+		<property name="maxWaitMillis" value="-1" /> 
+	</bean>
+
+	<bean id="sqlSessionFactoryBean2" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="configLocation" value="classpath:mybatis-config.xml" />
+		<property name="dataSource" ref="dataSource2" />
+	</bean>
+
+	<bean id="sqlSessionTemplate2" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg ref="sqlSessionFactoryBean2" />
+	</bean>
+	
+	<bean id="transactionManager2" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource2" />
+	</bean>
+		 -->
 		
 </beans>

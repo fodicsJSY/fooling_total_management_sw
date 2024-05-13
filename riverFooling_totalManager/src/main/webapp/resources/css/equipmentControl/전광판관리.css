@@ -32,7 +32,6 @@
         flex-direction: row;
         justify-content: center;
         align-items: center;
-
     }
 
     .headContiner{
@@ -40,7 +39,7 @@
     }
 
     .headContent{
-        width: 1000px;
+        width: 1200px;
         display:flex;
         flex-direction: row;
         justify-content: center;

@@ -3,6 +3,8 @@ package fodics.web.jsy.dataSearch.model.dao;
 import java.util.List;
 import java.util.Map;
 
+import javax.annotation.Resource;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -10,11 +12,13 @@ import org.springframework.stereotype.Repository;
 import fodics.web.jsy.dataSearch.model.dto.Date_flooding;
 import fodics.web.jsy.dataSearch.model.dto.Flooding;
 import fodics.web.jsy.dataSearch.model.dto.Min_flooding;
+import fodics.web.jsy.equimentControl.model.dto.EquimentControl;
 
 @Repository
 public class DataSearchDAO {
 	
 	@Autowired
+	@Resource(name="sqlSessionTemplate1")
 	private SqlSessionTemplate sql;
 
 	
@@ -51,6 +55,9 @@ public class DataSearchDAO {
 	public List<Flooding> month_floodingSaveList(String occuMonth) {
 		return sql.selectList("databaseMapper.month_floodingList", occuMonth);
 	}
+
+
+
 
 
 

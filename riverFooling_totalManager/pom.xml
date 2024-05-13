@@ -14,6 +14,14 @@
 		<org.slf4j-version>1.7.25</org.slf4j-version>
 	</properties>
 	<dependencies>
+	
+	 	<!-- mssql -->
+	    <!-- https://learn.microsoft.com/en-us/sql/connect/jdbc/download-microsoft-jdbc-driver-for-sql-server?view=sql-server-ver15 -->
+		<dependency>
+		    <groupId>com.microsoft.sqlserver</groupId>
+		    <artifactId>mssql-jdbc</artifactId>
+		    <version>12.4.2.jre8</version>
+		</dependency>
 		
 		<!-- 다른 의존성들 위에 Gson 의존성 추가 -->
 	    <dependency>

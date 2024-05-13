@@ -28,7 +28,7 @@ function getIPFromLocalStorage() {
 }
 
 
-let savedIP;
+
 
 
 

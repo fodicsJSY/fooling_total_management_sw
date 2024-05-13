@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class OutputReportDAO {
 	
-	@Autowired
-	private SqlSessionTemplate sql;
+//	@Autowired
+//	private SqlSessionTemplate sql;
 	
 }
