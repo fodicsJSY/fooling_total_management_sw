@@ -362,7 +362,7 @@ public class EquimentControlController {
 				System.out.println("breaker response: " + response);
 				
 				// 응답을 Map에 저장
-				responseMap.put(camera_code, response);
+				responseMap.put("result", response);
 			} catch (ResourceAccessException e) {
 				// 서버 응답에 문제가 있는 경우
 				System.out.println("Error connecting to the server: " + e.getMessage());

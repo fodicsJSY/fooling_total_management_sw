@@ -27,8 +27,9 @@ function breakerMakeTable(data){
 
     createCell(htr, "th", "areaName", "카메라명");
     makeCell(htr, "th", "차단기");
-    makeCell(htr, "th", "경고등");
-    makeCell(htr, "th", "경보음");
+    makeCell(htr, "th", "EM LOCK");
+    // makeCell(htr, "th", "경고등");
+    // makeCell(htr, "th", "경보음");
     makeCell(htr, "th", "저장");
 
     var controlTbody = document.createElement("tbody");
@@ -39,9 +40,11 @@ function breakerMakeTable(data){
         var tr = document.createElement("tr");
         controlTbody.appendChild(tr);
         createCell(tr, "th", "areaNameData", data[i][2]);
-        createSelectCell1(tr, "controlTD", data[i][1], data[i][2], i);
-        createSelectCell2(tr, "controlTD", data[i][1], i);
-        createSelectCell3(tr, "controlTD", data[i][1], i);
+        createSelectCell1(tr, "controlTD", data[i][1], data[i][2], i, data[i][3]);
+        createSelectCell2(tr, "controlTD", data[i][1], data[i][2], i, data[i][3]);
+
+        // createSelectCell3(tr, "controlTD", data[i][1], i);
+        // createSelectCell4(tr, "controlTD", data[i][1], i);
         // 저장 버튼 셀 생성
         var saveCell = document.createElement("td");
         saveCell.classList.add("controlTD");
@@ -51,7 +54,8 @@ function breakerMakeTable(data){
         saveButton.textContent = "저장";
         saveButton.id = `saveBtn_${i}`; // ID를 데이터의 첫 번째 요소를 이용하여 설정
         saveButton.addEventListener("click", function() {
-            saveChanges(data[i][0], data[i][2], i);
+            console.log("클릭");
+            saveChanges(data[i][0], data[i][2], i, data[i][3]);
         });
         saveCell.appendChild(saveButton);
         tr.appendChild(saveCell);
@@ -101,7 +105,8 @@ function makeCell(row, elementType, content) {
 
 
 // select 셀 생성 함수1
-function createSelectCell1(row, className, value, cameraName, i) {
+function createSelectCell1(row, className, status, cameraName, i, gateCode) {
+    console.log("createSelectCell1 gateCode : ", gateCode);
     var cell = document.createElement("td");
     cell.className = className;
     var select = document.createElement("select");
@@ -115,9 +120,24 @@ function createSelectCell1(row, className, value, cameraName, i) {
         var optionElement = document.createElement("option");
         optionElement.value = option.value;
         optionElement.textContent = option.text;
-        if (option.value === value) {
-            optionElement.selected = true; // 기존 값이면 선택
+
+        if(gateCode == 6){
+            console.log("createSelectCell1 status : ", status);
+            if (status == 20 || status == 21) {
+                if (option.value == "1") { // 상태가 20 또는 21일 때 열림이 선택되도록 함
+                    optionElement.selected = true;
+                }
+            } else {
+                if (option.value == "0") { // 상태가 24 또는 23일 때 닫힘이 선택되도록 함
+                    optionElement.selected = true;
+                }
+            }
+        }else{
+            if (option.value === status) {
+                optionElement.selected = true; // 기존 값이면 선택
+            }
         }
+
         select.appendChild(optionElement);
     });
     cell.appendChild(select);
@@ -127,8 +147,58 @@ function createSelectCell1(row, className, value, cameraName, i) {
 
 
 
-// select 셀 생성 함수2
-function createSelectCell2(row, className, value, cameraName, i) {
+// select 셀 생성 함수2(EM LOCK)
+function createSelectCell2(row, className, status, cameraName, i, gateCode) {
+    console.log("gateCode : ", gateCode);
+    var cell = document.createElement("td");
+    cell.className = className;
+    if(gateCode == 6){
+        var select = document.createElement("select");
+        select.name = "상태";
+        select.id = `${cameraName}_emLock${i}`;
+        var options = [
+            { value: "1", text: "START" },
+            { value: "0", text: "STOP" }
+        ];
+        options.forEach(function(option) {
+            var optionElement = document.createElement("option");
+            optionElement.value = option.value;
+            optionElement.textContent = option.text;
+            if (status == 24 || status == 21) {
+                if (option.value == "1") { // 상태가 24 또는 21일 때 START가 선택되도록 함
+                    optionElement.selected = true;
+                }
+            } else {
+                if (option.value == "0") { // 상태가 24 또는 21이 아닐 때 STOP이 선택되도록 함
+                    optionElement.selected = true;
+                }
+            }
+            select.appendChild(optionElement);
+        });
+        cell.appendChild(select);
+
+        // select가 변경될 때 createSelectCell1 함수의 select를 활성화 또는 비활성화하기
+        // select.addEventListener('change', function() {
+        //     if (select.value === '1') { // START가 선택되면 createSelectCell1의 select를 활성화
+        //         document.getElementById(`${cameraName}_breaker${i}`).disabled = false;
+        //     } else { // STOP이 선택되면 createSelectCell1의 select를 비활성화
+        //         document.getElementById(`${cameraName}_breaker${i}`).disabled = true;
+        //     }
+        // });
+
+    }else{
+        cell.innerHTML="-"
+    }
+        row.appendChild(cell);
+}
+
+
+
+
+
+
+// select 셀 생성 함수3(경고등)
+function createSelectCell3(row, className, value, cameraName, i) {
     var cell = document.createElement("td");
     cell.className = className;
     var select = document.createElement("select");
@@ -149,13 +219,14 @@ function createSelectCell2(row, className, value, cameraName, i) {
     });
     cell.appendChild(select);
     row.appendChild(cell);
+
 }
 
 
 
 
-// select 셀 생성 함수3
-function createSelectCell3(row, className, value, cameraName, i) {
+// select 셀 생성 함수4(경보음)
+function createSelectCell4(row, className, value, cameraName, i) {
     var cell = document.createElement("td");
     cell.className = className;
     var select = document.createElement("select");
@@ -184,44 +255,121 @@ function createSelectCell3(row, className, value, cameraName, i) {
 
 
 
+
 // 저장 함수 정의
-function saveChanges(camera_code, cameraName, i) {
+function saveChanges(camera_code, cameraName, i, gateCode) {
+    console.log("실행");
     console.log("camera_code : ", camera_code);
     console.log("cameraName : ", cameraName);
     console.log("Index : ", i);
+    console.log("cameraName : ", cameraName);
+    console.log("gateCode : ", gateCode);
 
     var clickedButton = event.target;
     var row = clickedButton.closest("tr");
 
     var select1 = row.querySelector(`select[id="${cameraName}_breaker${i}"]`);
-    // var select2 = row.querySelector(`select[id="${cameraName}_WarningLamp${i}"]`);
-    // var select3 = row.querySelector(`select[id="${cameraName}_WarningSound${i}"]`);
+    var select2 = row.querySelector(`select[id="${cameraName}_emLock${i}"]`);
+    // var select3 = row.querySelector(`select[id="${cameraName}_WarningLamp${i}"]`);
+    // var select4 = row.querySelector(`select[id="${cameraName}_WarningSound${i}"]`);
 
     var value1 = select1.value;
     console.log("Value 1: ", value1);
-    // var value2 = select2.value;
-    // console.log("Value 2: ", value2);
+
     // var value3 = select3.value;
     // console.log("Value 3: ", value3);
+    // var value4 = select4.value;
+    // console.log("Value 4: ", value4);
 
 
-    fetch("/breakerSave", { 
-        method : "POST", 
-        headers: {"Content-Type": "application/json;"}, 
-        credentials: "include",
-        body : JSON.stringify( {
-            "camera_code" : camera_code,
-            "command" : value1,
-        } )
-    })
-    .then(resp => resp.json()) 
-    .then((result) => {
-        console.log("result", result );
+    if(gateCode == 6){
 
-    }) 
-    .catch( err => {
-        console.error("Error: ", err);
-    }); 
+        var value2 = select2.value;
+        console.log("Value 2: ", value2);
+
+        let doorCommand;
+        if(value1 == 0){
+            if(value2 == 0){
+                doorCommand = 23;
+            }else{
+                doorCommand = 24;
+            }
+        }else{
+            if(value2 == 0){
+                doorCommand = 20;
+            }else{
+                doorCommand = 21;
+            }
+        }
+        console.log("doorCommand", doorCommand);
+
+        fetch("/breakerSave", { 
+            method : "POST", 
+            headers: {"Content-Type": "application/json;"}, 
+            credentials: "include",
+            body : JSON.stringify( {
+                "camera_code" : camera_code,
+                "command" : doorCommand,
+            } )
+        })
+        .then(resp => resp.json()) 
+        .then((result) => {
+            console.log("result", result );
+            // result 문자열을 JSON으로 파싱
+            let resultObj = JSON.parse(result.result);
+    
+            // res_code 값 추출
+            let resCode = resultObj.res_code;
+    
+            console.log(resCode); // 결과값 출력
+    
+            if(resCode == 200 ){
+                Swal.fire("저장이 완료되었습니다!").then(() => {
+                    location.reload();
+                });
+            }else{
+                Swal.fire("저장에 실패했습니다.");
+            }
+    
+        }) 
+        .catch( err => {
+            console.error("Error: ", err);
+        }); 
+    }else{
+        console.log("6아님");
+        fetch("/breakerSave", { 
+            method : "POST", 
+            headers: {"Content-Type": "application/json;"}, 
+            credentials: "include",
+            body : JSON.stringify( {
+                "camera_code" : camera_code,
+                "command" : value1,
+            } )
+        })
+        .then(resp => resp.json()) 
+        .then((result) => {
+            console.log("result", result );
+            // result 문자열을 JSON으로 파싱
+            let resultObj = JSON.parse(result.result);
+    
+            // res_code 값 추출
+            let resCode = resultObj.res_code;
+    
+            console.log(resCode); // 결과값 출력
+    
+            if(resCode == 200 ){
+                Swal.fire("저장이 완료되었습니다!").then(() => {
+                    location.reload();
+                });
+            }else{
+                Swal.fire("저장에 실패했습니다.");
+            }
+    
+        }) 
+        .catch( err => {
+            console.error("Error: ", err);
+        }); 
+    }
 }
 
 
