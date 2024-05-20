@@ -1,5 +1,9 @@
 package fodics.web.jsy.inundationSetting.controller;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,8 +13,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.google.gson.Gson;
+
+import fodics.web.jsy.dataSearch.model.dto.Flooding;
 import fodics.web.jsy.dataSearch.model.service.DataSearchService;
+import fodics.web.jsy.inundationSetting.model.dto.ThresholdSetting;
 import fodics.web.jsy.inundationSetting.model.service.InundationSettingService;
 
 @Controller
@@ -19,14 +28,26 @@ public class InundationSettingController {
 	@Autowired
 	private InundationSettingService service;
 	
+	@Autowired
+	private DataSearchService service1;
+	
 
 	//임계값관리 페이지 
 	@GetMapping("/임계값설정")
 	public String settingPageForword1(
 			Model model
 			){
+		List<Flooding> areaList = service1.areaList();
+		model.addAttribute("areaList", areaList);
+		List<ThresholdSetting> sensorList = service.sensorList();
+		System.out.println("sensorList" + sensorList);
+		model.addAttribute("sensorList", sensorList);
+		
+		
 		return "/inundationSetting/임계값설정";
 	}
+	
+	
 	
 	
 

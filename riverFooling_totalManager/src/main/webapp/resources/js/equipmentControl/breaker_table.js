@@ -325,7 +325,7 @@ function saveChanges(camera_code, cameraName, i, gateCode) {
     
             if(resCode == 200 ){
                 Swal.fire("저장이 완료되었습니다!").then(() => {
-                    location.reload();
+                    // location.reload();
                 });
             }else{
                 Swal.fire("저장에 실패했습니다.");
@@ -359,7 +359,7 @@ function saveChanges(camera_code, cameraName, i, gateCode) {
     
             if(resCode == 200 ){
                 Swal.fire("저장이 완료되었습니다!").then(() => {
-                    location.reload();
+                    // location.reload();
                 });
             }else{
                 Swal.fire("저장에 실패했습니다.");

@@ -2,6 +2,34 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="inundatoinSettingMapper">
 
+	<resultMap type="Flooding" id="_flooding">
+     	<result property="hour" column="HOUR" />
+     	<result property="day" column="DAY" />
+     	<result property="month" column="MONTH" />
+     	<result property="waterLevel" column="WATER_LEVEL" />
+     	<result property="sensorLocation" column="SENSOR_LOCATION" />
+     	<result property="alarmWaterLevel" column="ALARM_WATER_LEVEL" />
+     	<result property="startOccuDate" column="START_OCCUDATE" />
+     	<result property="endOccuDate" column="END_OCCUDATE" />
+     	<result property="areaValue" column="AREA_VALUE" />
+     	<result property="kindValue" column="KIND_VALUE" />
+	</resultMap> 
 
+
+	<resultMap type="ThresholdSetting" id="_threshold">
+	     	<result property="sensorId" column="SENSOR_ID" />
+	</resultMap> 
+	
+	
+	 <select id="areaList" resultMap="_flooding">
+		SELECT DISTINCT INFO.SENSOR_LOCATION
+		FROM tb_water_level_hist HIST
+		LEFT OUTER JOIN tb_water_level_sensor_info INFO ON HIST.DEVICE_ID = INFO.SENSOR_ID
+	 </select>
+
+
+	<select id="sensorList" resultMap="_threshold">
+		SELECT DISTINCT SENSOR_ID FROM tb_water_level_alarm_info 
+	</select>
 
 </mapper>

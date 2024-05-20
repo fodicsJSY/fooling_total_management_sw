@@ -10,7 +10,7 @@
 	<!-- 침수데이터 maria DB -->
     <bean id="dataSource1" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <property name="driverClassName" value="org.mariadb.jdbc.Driver"></property>
-        <property name="url" value="jdbc:mysql://172.16.20.101:3306/FWaterLevelSystem"></property>
+        <property name="url" value="jdbc:mysql://172.16.20.71:3306/FWaterLevelSystem"></property>
         <property name="username" value="root"></property>
         <property name="password" value="qwer12#$"></property>
     </bean>

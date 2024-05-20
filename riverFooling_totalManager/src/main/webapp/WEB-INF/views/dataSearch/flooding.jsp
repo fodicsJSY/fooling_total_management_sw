@@ -31,8 +31,8 @@
         </div>
     </header>
 <hr>
-    <%-- ${areaList}
-    ${areaList[0].sensorLocation} --%>
+    ${areaList}
+    ${areaList[0].sensorLocation}
     <main>
         <section>
             <div class="sectionBox01">

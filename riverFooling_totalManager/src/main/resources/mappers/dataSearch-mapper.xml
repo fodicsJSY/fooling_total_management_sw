@@ -56,7 +56,7 @@
 		FROM tb_water_level_hist HIST
 		LEFT OUTER JOIN tb_water_level_sensor_info INFO ON HIST.DEVICE_ID = INFO.SENSOR_ID
 		WHERE DATE_FORMAT(HIST.DATE_TIME, '%Y%m%d') = #{occuDay}
-		AND INFO.SENSOR_LOCATION = '포딕스시스템'
+		AND INFO.SENSOR_LOCATION =  #{areaValue}
 		GROUP BY HOUR, MIN
 		ORDER BY HOUR, MIN
 	 </select>

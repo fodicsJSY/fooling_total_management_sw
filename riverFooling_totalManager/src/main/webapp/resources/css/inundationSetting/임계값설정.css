@@ -314,6 +314,36 @@
 
 
 
+    .stepFourTable{
+        margin-top: 15px;
+        width: 100%;
+        border: 1px solid #91CB98;
+        border-collapse: collapse;
+    }
+
+
+
+    .stepFourTable td{
+        border: 1px solid #91CB98;
+        height: 35px;
+    }
+
+    .stepFiveTable{
+        margin-top: 15px;
+        width: 100%;
+        border: 1px solid #91CB98;
+        border-collapse: collapse;
+    }
+
+
+
+    .stepFiveTable td{
+        border: 1px solid #91CB98;
+        height: 35px;
+    }
+
+
+
 
 
 
@@ -385,9 +415,17 @@
         width: 70px;
         padding: 0 5px 0 5px;
     }
+    .stepFour_numInput{
+        width: 70px;
+        padding: 0 5px 0 5px;
+    }
+    .stepFive_numInput{
+        width: 70px;
+        padding: 0 5px 0 5px;
+    }
 
 
-    .stepTwoTable{
+    /* .stepTwoTable{
         width: 100%;
         border-collapse: collapse;
     }
@@ -395,7 +433,7 @@
     .stepThreeTable{
         width: 100%;
         border-collapse: collapse;
-    }
+    } */
     
     /*****************테이블 공통 끝*****************/
     
