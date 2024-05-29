@@ -12,14 +12,14 @@ import lombok.ToString;
 public class Date_flooding {
 	
 
-	private String date;
-	private String hour;
+//	private String date;
+//	private String hour;
 	private String startOccuDate;
 	private String endOccuDate;
 	private String areaValue;
 	private String kindValue;
-	private String waterLevel;
-	private String alarmWaterLevel;
+//	private String waterLevel;
+//	private String alarmWaterLevel;
 
 	
 

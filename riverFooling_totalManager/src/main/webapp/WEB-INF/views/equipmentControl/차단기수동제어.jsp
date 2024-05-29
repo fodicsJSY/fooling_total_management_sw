@@ -17,12 +17,12 @@
     <header>
         <div class="headContiner">
             <div class="headContent">
-                <a href="/rainfall"><div class="logoBox"><img class="logo" src="/resources/img/logo.png" alt=""></a></div>
+                <a href="/dataSearch/rainfall"><div class="logoBox"><img class="logo" src="/resources/img/logo.png" alt=""></a></div>
                 <div class="menuContiner">
-                    <div><a href="/rainfall">데이터검색</a></div>
-                    <div><a href="/차단기수동제어">장비제어</a></div>
-                    <div><a href="/임계값설정">침수설정</a></div>
-                    <div><a href="/보고서출력">보고서</a></div>
+                    <div><a href="/dataSearch/rainfall">데이터검색</a></div>
+                    <div><a href="/equipmentControl/차단기수동제어">장비제어</a></div>
+                    <div><a href="/inundationSetting/임계값설정">침수설정</a></div>
+                    <div><a href="/outputReport/보고서출력">보고서</a></div>
                 </div>
             </div>
         </div>
@@ -33,8 +33,8 @@
             <div class="sectionBox01">
                 <div class="listBox">
                     <div class="listTitle">장비제어</div>
-                    <div class="listContent"><a href="/차단기수동제어" class="pageFoward nowForward">차단기</a></div>
-                    <div class="listContent"><a href="/displayManagement" class="pageFoward">전광판</a></div>
+                    <div class="listContent"><a href="/equipmentControl/차단기수동제어" class="pageFoward nowForward">차단기</a></div>
+                    <div class="listContent"><a href="/equipmentControl/displayManagement" class="pageFoward">전광판</a></div>
                 </div>
             </div>
             <div class="sectionBox02">
@@ -43,7 +43,7 @@
                         <div class="titleBox">
                             <div class="titleName">차단기 수동제어</div>
                                 <div>
-                    <div><button class="DB_btn" id="DB_button" onclick="getDBIP();">IP입력</button></div>
+                    <%-- <div><button class="DB_btn" id="DB_button" onclick="getDBIP();">IP입력</button></div> --%>
                 </div>
                         </div>
                     </div>
@@ -184,11 +184,21 @@
     </footer>
 
 
-    <script></script>
+    <script>
+        var loginIp = "${loginUser.serverip}";
+        var loginPort = ${loginUser.port};
+        var loginId = "${loginUser.user_id}";
+        var loginPw = "${loginUser.user_pw}";
+
+        console.log("loginIp", loginIp);
+        console.log("loginPort", loginPort);
+        console.log("loginId", loginId);
+        console.log("loginPw", loginPw);
+    </script>
     <script src="/resources/js/equipmentControl/차단기수동제어.js"></script>
     <script src="/resources/js/date.js"></script>
     <script src="/resources/js/equipmentControl/breaker_table.js"></script>
-
+    <script src="/resources/js/login.js"></script>
     <script src="/resources/js/dbSetting.js"></script>
 </body>
 </html>

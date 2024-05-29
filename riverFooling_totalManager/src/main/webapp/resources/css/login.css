@@ -122,32 +122,32 @@
         margin-bottom: 10px;
     }
 
-    .loginContainer>div:nth-child(2)>div{
-        margin-left: 10px;
-    }
-
-
-
-    .loginContainer>div:nth-child(3){
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        align-items: center;
-        margin-bottom: 40px;
-    }
-
-    .loginContainer>div:nth-child(3)>div{
-        margin-left: 10px;
-
-    }
-
-
-    .loginContainer>div:nth-child(4){
+    .constentsCon{
         display: flex;
         flex-direction: row;
         justify-content: center;
         align-items: center;
     }
+    
+    .textCon{
+        display: flex;
+        flex-direction: column;
+
+    }
+    
+    .textCon *{
+        display: flex;
+        flex-direction: column;
+        justify-content: end;
+        margin-bottom: 20px;
+    }
+
+    
+    .inputCon *{
+        margin: 0 0 5px 5px;
+    }
+    
+    
 
     .textContainer{
         font-size: 20px;

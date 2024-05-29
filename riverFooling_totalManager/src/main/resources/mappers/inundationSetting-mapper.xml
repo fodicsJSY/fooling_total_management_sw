@@ -17,7 +17,16 @@
 
 
 	<resultMap type="ThresholdSetting" id="_threshold">
+	     	<result property="zoneSelectValue" column="zoneSelectValue" />
+	     	<result property="areaSelectValue" column="areaSelectValue" />
+	     	<result property="sensorNo" column="SENSOR_NO" />
 	     	<result property="sensorId" column="SENSOR_ID" />
+	     	<result property="alarmLevel" column="ALARM_LEVEL" />
+	     	<result property="alarmValue" column="ALARM_VALUE" />
+	     	<result property="alarmCondition" column="ALARM_CONDITION" />
+	     	<result property="alarmAction" column="ALARM_ACTION" />
+	     	<result property="sensorLocation" column="SENSOR_LOCATION" />
+	     	<result property="alarmOffCondition" column="ALARM_OFF_CONDITION" />
 	</resultMap> 
 	
 	
@@ -31,5 +40,89 @@
 	<select id="sensorList" resultMap="_threshold">
 		SELECT DISTINCT SENSOR_ID FROM tb_water_level_alarm_info 
 	</select>
+	
+	
+	<select id="settingDataList" resultMap="_threshold">
+		SELECT 
+		    AINFO.SENSOR_NO, 
+		    AINFO.SENSOR_ID, 
+		    AINFO.ALARM_LEVEL, 
+		    AINFO.ALARM_VALUE, 
+		    AINFO.ALARM_CONDITION, 
+		    AINFO.ALARM_ACTION, 
+		    SINFO.SENSOR_LOCATION, 
+		    SINFO.ALARM_OFF_CONDITION
+		FROM 
+		    tb_water_level_alarm_info AINFO
+		LEFT OUTER JOIN 
+		    tb_water_level_sensor_info SINFO 
+		ON 
+		    AINFO.SENSOR_ID = SINFO.SENSOR_ID
+		WHERE 
+		    AINFO.SENSOR_ID IN (#{areaSelectValue})
+		AND     
+			SINFO.SENSOR_LOCATION = #{zoneSelectValue}
+		ORDER BY 
+		    AINFO.ALARM_LEVEL ASC
+	</select>
+	
+	<!-- 침수조건 시작 -->
+	<update id="updateStep1" >
+		UPDATE tb_water_level_alarm_info
+		SET ALARM_CONDITION = #{stepOneChecked}
+		, ALARM_VALUE = #{stepOne_InputValue}
+		, ALARM_ACTION = #{step1_alarm}
+		WHERE SENSOR_ID = #{areaSelectValue}
+		AND ALARM_LEVEL = '1'
+	</update>
+	
+	
+	<update id="updateStep2" >
+		UPDATE tb_water_level_alarm_info
+		SET ALARM_CONDITION = #{stepTwoChecked}
+		, ALARM_VALUE = #{stepTwo_InputValue}
+		, ALARM_ACTION = #{step2_alarm}
+		WHERE SENSOR_ID = #{areaSelectValue}
+		AND ALARM_LEVEL = '2'
+	</update>
+	
+	<update id="updateStep3" >
+		UPDATE tb_water_level_alarm_info
+		SET ALARM_CONDITION = #{stepThreeChecked}
+		, ALARM_VALUE = #{stepThree_InputValue}
+		, ALARM_ACTION = #{step3_alarm}
+		WHERE SENSOR_ID = #{areaSelectValue}
+		AND ALARM_LEVEL = '3'
+	</update>
+	
+	<update id="updateStep4" >
+		UPDATE tb_water_level_alarm_info
+		SET ALARM_CONDITION = #{stepFourChecked}
+		, ALARM_VALUE = #{stepFour_InputValue}
+		, ALARM_ACTION = #{step4_alarm}
+		WHERE SENSOR_ID = #{areaSelectValue}
+		AND ALARM_LEVEL = '4'
+	</update>
+	
+	<update id="updateStep5" >
+		UPDATE tb_water_level_alarm_info
+		SET ALARM_CONDITION = #{stepFiveChecked}
+		, ALARM_VALUE = #{stepFive_InputValue}
+		, ALARM_ACTION = #{step5_alarm}
+		WHERE SENSOR_ID = #{areaSelectValue}
+		AND ALARM_LEVEL = '5'
+	</update>
+	<!-- 침수조건 끝 -->
+    
+	
+    <!-- 해제조건 시작 -->	
+	<update id="updateAlarmOff" >
+		UPDATE tb_water_level_sensor_info
+		SET ALARM_OFF_CONDITION  = #{alarmOff}
+		WHERE SENSOR_ID = #{areaSelectValue}
+		AND SENSOR_LOCATION = #{zoneSelectValue}
+	</update>
+	<!-- 해제조건 끝 -->	
+	
 
 </mapper>

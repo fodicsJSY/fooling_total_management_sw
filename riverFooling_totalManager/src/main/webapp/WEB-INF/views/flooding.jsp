@@ -147,7 +147,17 @@
     </footer>
 
 
-    <script></script>
+    <script>
+        var loginIp = "${loginUser.serverip}";
+        var loginPort = ${loginUser.port};
+        var loginId = "${loginUser.user_id}";
+        var loginPw = "${loginUser.user_pw}";
+
+        console.log("loginIp", loginIp);
+        console.log("loginPort", loginPort);
+        console.log("loginId", loginId);
+        console.log("loginPw", loginPw);
+    </script>
     <script src="/resources/js/dataSearch/flooding/flooding_select.js"></script>
     <script src="/resources/js/dataSearch/flooding/flooding_table.js"></script>
     <script src="/resources/js/dataSearch/flooding/flooding_search.js"></script>

@@ -16,7 +16,7 @@ async function minFlooding_searchData() {
     let areaValue = document.getElementById("area") ? document.getElementById("area").value : null;
     console.log("areaValue : " + areaValue);
 
-    fetch("/send10min_flooding", { 
+    fetch("/dataSearch/send10min_flooding", { 
         method : "POST", 
         headers: {"Content-Type": "application/json;"}, 
         body : JSON.stringify( {"occuDay":occuDay, "areaValue":areaValue} ) 
@@ -65,7 +65,7 @@ async function dayFlooding_searchData() {
     let occuDay = selectYearValue + selectMonthValue + selectDayValue;
     console.log("occuDay : " + occuDay);
 
-    fetch("/sendDay_flooding", { 
+    fetch("/dataSearch/sendDay_flooding", { 
         method : "POST", 
         headers: {"Content-Type": "application/json;"}, 
         body : JSON.stringify( {"occuDay":occuDay} ) 
@@ -110,7 +110,7 @@ async function monthFlooding_searchData() {
     console.log("occuMonth : " + occuMonth);
 
 
-    fetch("/sendMonth_flooding", {
+    fetch("/dataSearch/sendMonth_flooding", {
         method: "POST",
         headers: { "Content-Type": "application/json;" },
         body: JSON.stringify({ "occuMonth": occuMonth })
@@ -153,7 +153,7 @@ async function yearFlooding_searchData() {
     console.log("occuYear : " + occuYear);
 
 
-    fetch("/sendYear_flooding", {
+    fetch("/dataSearch/sendYear_flooding", {
         method: "POST",
         headers: { "Content-Type": "application/json;" },
         body: JSON.stringify({ "occuYear": occuYear })
@@ -210,7 +210,7 @@ async function dateFlooding_searchData() {
     console.log("kindValue : " + kindValue);
 
 
-    fetch("/sendDate_flooding", {
+    fetch("/dataSearch/sendDate_flooding", {
         method: "POST",
         headers: { "Content-Type": "application/json;" },
         body: JSON.stringify({ "startOccuDate": startOccuDate, "endOccuDate": endOccuDate, "areaValue": areaValue, "kindValue": kindValue })
@@ -300,7 +300,7 @@ async function searchData1() {
 
         if (selectDayValue && areaValue) { // 시간
             // 10분
-            fetch("/send10min_flooding", {
+            fetch("/dataSearch/send10min_flooding", {
                 method: "POST",
                 headers: { "Content-Type": "application/json;" },
                 body: JSON.stringify({ "occuDay": occuDay, "areaValue": areaValue })
@@ -357,7 +357,7 @@ async function searchData1() {
         let occuMonth = selectYearValue + "0" + selectMonthValue;
         console.log("occuMonth : ", occuMonth);
 
-        fetch("/sendMonth_flooding", {
+        fetch("/dataSearch/sendMonth_flooding", {
             method: "POST",
             headers: { "Content-Type": "application/json;" },
             body: JSON.stringify({ "occuMonth": occuMonth })
@@ -384,7 +384,7 @@ async function searchData1() {
         let occuYear = selectYearValue;
         console.log("occuYear : ", occuYear);
 
-        fetch("/sendYear_flooding", {
+        fetch("/dataSearch/sendYear_flooding", {
             method: "POST",
             headers: { "Content-Type": "application/json;" },
             body: JSON.stringify({ "occuYear": occuYear })
@@ -407,23 +407,23 @@ async function searchData1() {
 
     } else { //시작연월일~종료연월일
         startYearValue = document.getElementById("startYear").value;
-        startMonthValue = document.getElementById("startMonth").value;
-        startDayValue = document.getElementById("startDay").value;
+        startMonthValue = addLeadingZero(document.getElementById("startMonth").value);
+        startDayValue = addLeadingZero(document.getElementById("startDay").value);
 
         endYearValue = document.getElementById("endYear").value;
-        endMonthValue = document.getElementById("endMonth").value;
-        endDayValue = document.getElementById("endDay").value;
+        endMonthValue = addLeadingZero(document.getElementById("endMonth").value);
+        endDayValue = addLeadingZero(document.getElementById("endDay").value);
 
-        // console.log("startYearValue : ", startYearValue);
-        // console.log("startMonthValue : ", startMonthValue);
-        // console.log("startDayValue : ", startDayValue);
+        console.log("startYearValue : ", startYearValue);
+        console.log("startMonthValue : ", startMonthValue);
+        console.log("startDayValue : ", startDayValue);
 
-        // console.log("endYearValue : ", endYearValue);
-        // console.log("endMonthValue : ", endMonthValue);
-        // console.log("endDayValue : ", endDayValue);
+        console.log("endYearValue : ", endYearValue);
+        console.log("endMonthValue : ", endMonthValue);
+        console.log("endDayValue : ", endDayValue);
 
-        let startOccuDate = startYearValue + "0" + startMonthValue + "0" + startDayValue;
-        let endOccuDate = endYearValue + "0" + endMonthValue + "0" + endDayValue;
+        let startOccuDate = startYearValue + startMonthValue + startDayValue;
+        let endOccuDate = endYearValue + endMonthValue + endDayValue;
 
         let areaValue = document.getElementById("area").value;
         console.log("areaValue : ", areaValue);
@@ -431,7 +431,7 @@ async function searchData1() {
         let kindValue = document.getElementById("kind").value;
         console.log("kindValue : ", kindValue);
 
-        fetch("/sendDate_flooding", {
+        fetch("/dataSearch/sendDate_flooding", {
             method: "POST",
             headers: { "Content-Type": "application/json;" },
             body: JSON.stringify({ "startOccuDate": startOccuDate, "endOccuDate": endOccuDate, "areaValue": areaValue, "kindValue": kindValue })
@@ -452,4 +452,9 @@ async function searchData1() {
 
     }
 
+}
+
+
+function addLeadingZero(value) {
+    return value.length == 1 ? '0' + value : value;
 }

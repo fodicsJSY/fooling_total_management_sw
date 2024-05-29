@@ -2,6 +2,7 @@ let tableDataList;
 
 // 시간별 강우 테이블 만들기
 function minMakeTable(data){
+
     console.log("data" + data);
     var tableContainer = document.querySelector(".tableContainer");
     tableContainer.innerHTML = ""; // Clear previous data

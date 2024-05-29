@@ -15,12 +15,12 @@
     <header>
         <div class="headContiner">
             <div class="headContent">
-                <a href="/rainfall"><div class="logoBox"><img class="logo" src="/resources/img/logo.png" alt=""></a></div>
+                <a href="/dataSearch/rainfall"><div class="logoBox"><img class="logo" src="/resources/img/logo.png" alt=""></a></div>
                 <div class="menuContiner">
-                    <div><a href="/rainfall">데이터검색</a></div>
-                    <div><a href="/차단기수동제어">장비제어</a></div>
-                    <div><a href="/임계값설정">침수설정</a></div>
-                    <div><a href="/보고서출력">보고서</a></div>
+                    <div><a href="/dataSearch/rainfall">데이터검색</a></div>
+                    <div><a href="/equipmentControl/차단기수동제어">장비제어</a></div>
+                    <div><a href="/inundationSetting/임계값설정">침수설정</a></div>
+                    <div><a href="/outputReport/보고서출력">보고서</a></div>
                 </div>
             </div>
         </div>
@@ -31,9 +31,9 @@
             <div class="sectionBox01">
                 <div class="listBox">
                     <div class="listTitle">침수설정</div>
-                    <div class="listContent"><a href="/임계값설정" class="pageFoward">임계값설정</a></div>
-                    <div class="listContent"><a href="/경보상황제어" class="pageFoward nowForward">경보상황 제어</a></div>
-                    <div class="listContent"><a href="/경보발생내역" class="pageFoward">경보발생 내역</a></div>
+                    <div class="listContent"><a href="/inundationSetting/임계값설정" class="pageFoward">임계값설정</a></div>
+                    <div class="listContent"><a href="/inundationSetting/경보상황제어" class="pageFoward nowForward">경보상황 제어</a></div>
+                    <div class="listContent"><a href="/inundationSetting/경보발생내역" class="pageFoward">경보발생 내역</a></div>
                 </div>
             </div>
             <div class="sectionBox02">

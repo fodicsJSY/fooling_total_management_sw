@@ -1,10 +1,15 @@
 package fodics.web.jsy.dataSearch.controller;
 
 
+import java.io.InputStream;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Scanner;
+
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
 
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,10 +22,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -30,10 +38,11 @@ import fodics.web.jsy.dataSearch.model.dto.Date_flooding;
 import fodics.web.jsy.dataSearch.model.dto.Flooding;
 import fodics.web.jsy.dataSearch.model.dto.Min_flooding;
 import fodics.web.jsy.dataSearch.model.service.DataSearchService;
+import fodics.web.jsy.user.model.dto.User;
 
 
-@SessionAttributes({"loginUser"}) 
 @Controller
+@RequestMapping("/dataSearch")
 public class DataSearchController {
 	
 	@Autowired
@@ -47,80 +56,6 @@ public class DataSearchController {
        this.restTemplate = restTemplate;
     }
 
-	
-	
-	
-	//로그인 페이지 임시
-	@GetMapping("/")
-	public String login(
-			Model model
-			){
-		return "/login";
-	}
-	
-	
-	
-	@PostMapping("/userLogin")
-	public String userLogin(
-								@RequestBody String req
-							) {
-		
-		System.out.println("req : " + req );
-
-		// MappingJackson2HttpMessageConverter 추가
-		restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
-
-		
-		
-		// JSON 문자열을 파싱하여 필요한 변수에 할당
-	    JSONObject jsonObject = new JSONObject(req);
-		
-	    String user_id = jsonObject.getString("user_id");
-	    String user_pw = jsonObject.getString("user_pw");
-	    String serverip = jsonObject.getString("serverip");
-	    String query = jsonObject.getString("query");
-	    System.out.println("user_id : "+ user_id);
-	    System.out.println("user_pw : "+ user_pw);
-	    System.out.println("serverip : "+ serverip);
-	    System.out.println("query : "+ query);
-		
-	    
-	    
-//	    String url = "http://172.16.103.34:8988/fnvr/request/query/select"; // 외부 RESTful API의 URL select
-//		
-//		
-//	    //서버로 전송할 객체 생성
-//       Map<String, String> requestBody = new LinkedHashMap<>();
-//       requestBody.put("user_id", user_id);
-//       requestBody.put("user_pw", user_pw);
-//       requestBody.put("serverip", serverip);
-//       requestBody.put("query", query);
-//       System.out.println("requestBody : "+ requestBody);
-//
-//       // 요청 헤더 설정
-//       HttpHeaders headers = new HttpHeaders();
-//       headers.setContentType(MediaType.APPLICATION_JSON);
-//
-//       // HttpEntity 생성
-//       HttpEntity<Map<String, String>> requestEntity = new HttpEntity<>(requestBody, headers);
-//
-//       // post 요청 보내기
-//       String response = restTemplate.postForObject(url, requestEntity, String.class);
-//       
-//       
-//       System.out.print("response"+ response);
-
-       // 응답 데이터를 클라이언트에 반환
-       
-	    
-	    
-	    
-	    
-	    
-	    
-	    
-		return "/dataSearch/rainfall";
-	}
 	
 	
 	
@@ -140,7 +75,7 @@ public class DataSearchController {
 	@ResponseBody
 	public String getDataFromAPI(@RequestBody String req) {
 		
-		System.out.println("req"+ req);
+//		System.out.println("req"+ req);
 		
 
 		// MappingJackson2HttpMessageConverter 추가
@@ -152,8 +87,8 @@ public class DataSearchController {
 	    JSONObject jsonObject = new JSONObject(req);
 	    String serverip = jsonObject.getString("serverip");
 	    String query = jsonObject.getString("query");
-	    System.out.println("serverip : "+ serverip);
-	    System.out.println("query : "+ query);
+//	    System.out.println("serverip : "+ serverip);
+//	    System.out.println("query : "+ query);
 		
 //      String url = "http://172.16.103.34:8988/fnvr/request/query/select"; // 외부 RESTful API의 URL select
       String url = "http://172.16.103.34:8988/fnvr/request/query/execute"; // 외부 RESTful API의 URL insert, update
@@ -163,7 +98,7 @@ public class DataSearchController {
        Map<String, String> requestBody = new LinkedHashMap<>();
        requestBody.put("serverip", serverip);
        requestBody.put("query", query);
-       System.out.println("requestBody : "+ requestBody);
+//       System.out.println("requestBody : "+ requestBody);
 
        // 요청 헤더 설정
        HttpHeaders headers = new HttpHeaders();
@@ -176,7 +111,7 @@ public class DataSearchController {
        String response = restTemplate.postForObject(url, requestEntity, String.class);
        
        
-       System.out.print("response"+ response);
+//       System.out.print("response"+ response);
 
        // 응답 데이터를 클라이언트에 반환
        return response;
@@ -184,19 +119,7 @@ public class DataSearchController {
 
 	
 	
-	
-	
-	
-	
-	
-	
-	//home 페이지 
-	@GetMapping("/home")
-	public String home(
-			Model model
-			){
-		return "/home";
-	}
+
 	
 	// 강우데이터 일간강우
 	@PostMapping("/sendDay_rainfall")
@@ -271,7 +194,7 @@ public class DataSearchController {
 		 List<Flooding> areaList = service.areaList();
 		String areaListJson = new Gson().toJson(areaList);
 		model.addAttribute("areaListJson", areaListJson);
-		System.out.println("areaListJson : "+areaListJson);
+//		System.out.println("areaListJson : "+areaListJson);
 		
 		return "/dataSearch/flooding";
 	}
@@ -286,12 +209,12 @@ public class DataSearchController {
 					) {
 				Map<String, Object> map = new HashMap<>();
 				
-				System.out.println("min_flooding"+min_flooding);
+//				System.out.println("min_flooding"+min_flooding);
 				
                 List<Flooding> min_floodingList = service.min_floodingList(min_flooding);
-                System.out.println("min_floodingList : " + min_floodingList);
+//                System.out.println("min_floodingList : " + min_floodingList);
                 map.put("min_floodingList", min_floodingList);
-                System.out.println("map : " + map);
+//                System.out.println("map : " + map);
                 
                 return map;
 		                
@@ -309,7 +232,7 @@ public class DataSearchController {
 			) {
 	 	Map<String, Object> map = new HashMap<>();
 	 	
-	 	System.out.println("req" + req);
+//	 	System.out.println("req" + req);
 
 
         // ObjectMapper 생성
@@ -322,15 +245,15 @@ public class DataSearchController {
             // "occuDay" 키에 해당하는 값을 추출
             String occuDay = jsonNode.get("occuDay").asText();
 
-            System.out.println("occuDay : " + occuDay);
+//            System.out.println("occuDay : " + occuDay);
             
             List<Flooding> day_floodingList = service.day_floodingList(occuDay);
-    		System.out.println("day_floodingList : " + day_floodingList);
+//    		System.out.println("day_floodingList : " + day_floodingList);
     		
 
 			map.put("day_floodingList", day_floodingList);
 			
-    		System.out.println("map : " + map);
+//    		System.out.println("map : " + map);
             return map;
     			
     		
@@ -362,7 +285,7 @@ public class DataSearchController {
 		
 		Map<String, Object> map = new HashMap<>();
 		
-		System.out.println("req"+req);
+//		System.out.println("req"+req);
 		
 
         // ObjectMapper 생성
@@ -375,13 +298,13 @@ public class DataSearchController {
             // "occuMonth" 키에 해당하는 값을 추출
             String occuMonth = jsonNode.get("occuMonth").asText();
 
-            System.out.println("occuMonth : " + occuMonth);
+//            System.out.println("occuMonth : " + occuMonth);
             
             List<Flooding> month_floodingList = service.month_floodingList(occuMonth);
-    		System.out.println("month_floodingList : " + month_floodingList);
+//    		System.out.println("month_floodingList : " + month_floodingList);
     		
     		map.put("month_floodingList", month_floodingList);
-    		System.out.println("map : " + map);
+//    		System.out.println("map : " + map);
     		
             
             return map;
@@ -401,7 +324,7 @@ public class DataSearchController {
 	public String fnameUrlForword(
 			@RequestBody String fnameUrl
 			) {
-		System.out.println("fnameUrl"+fnameUrl);
+//		System.out.println("fnameUrl"+fnameUrl);
 		return fnameUrl;
 	}
 	
@@ -414,22 +337,22 @@ public class DataSearchController {
 			) {
 	 	Map<String, Object> map = new HashMap<>();
 	 	
-		System.out.println("paramMap"+paramMap);
+//		System.out.println("paramMap"+paramMap);
 		
 		
 		// JSON 문자열을 파싱하여 필요한 변수에 할당
 	    JSONObject jsonObject = new JSONObject(paramMap);
 	    
 	    String occuMonth = jsonObject.getString("occuMonth");
-		 System.out.println("occuMonth"+occuMonth);
+//		 System.out.println("occuMonth"+occuMonth);
 		 String fname = jsonObject.getString("fname");
-		 System.out.println("fname"+fname);
+//		 System.out.println("fname"+fname);
 		 map.put("fname", fname);
 		
          List<Flooding> month_floodingSaveList = service.month_floodingSaveList(occuMonth);
 		 map.put("month_floodingSaveList", month_floodingSaveList);
 		
-		 System.out.println("map"+map);
+//		 System.out.println("map"+map);
 		
 		
 		return map;
@@ -444,7 +367,7 @@ public class DataSearchController {
 			) {
 	Map<String, Object> map = new HashMap<>();
 		
-		System.out.println("req"+req);
+//		System.out.println("req"+req);
 		
 
         // ObjectMapper 생성
@@ -457,13 +380,13 @@ public class DataSearchController {
             // "occuYear" 키에 해당하는 값을 추출
             String occuYear = jsonNode.get("occuYear").asText();
 
-            System.out.println("occuYear : " + occuYear);
+//            System.out.println("occuYear : " + occuYear);
             
             List<Flooding> year_floodingList = service.year_floodingList(occuYear);
-    		System.out.println("year_floodingList : " + year_floodingList);
+//    		System.out.println("year_floodingList : " + year_floodingList);
     		
     		map.put("year_floodingList", year_floodingList);
-    		System.out.println("map : " + map);
+//    		System.out.println("map : " + map);
             
             return map;
         } catch (Exception e) {

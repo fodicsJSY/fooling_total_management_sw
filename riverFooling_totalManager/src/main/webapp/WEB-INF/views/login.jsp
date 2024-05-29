@@ -9,9 +9,13 @@
     <title>침수차단 시스템</title>
     <link rel="shortcut icon" type="image/png" href="/resources/img/slogan.png" sizes="192x192">
 
+        <%-- sweetalert2 --%>
+    <script src="/resources/js/sweetalert/sweetalert2.js"></script>
+
     <link rel="stylesheet" href="/resources/css/login.css">
 </head>
 <body>
+
 <%-- 로그인 --%>
     <%-- <header>
         <div class="headContiner">
@@ -77,31 +81,47 @@
 <hr>
 <main>
     <section>
-        <form id="loginFrm">
+        <form action="/userLogin" method="post" id="loginFrm">
             <div class="loginContainer">
                 <div>
                     <div><a href="/"><div class="logoBox"><img class="slogan" src="/resources/img/slogan.png" alt=""></a></div></div>
                     <div class="loginText">LOGIN</div>
                 </div>
                 <div>
-                    <div class="textContainer">
-                        ID : 
-                    </div>
-                    <div>
-                        <input type="text" name="user_id" id="id" placeholder="id">
-                    </div>
-                </div>
-                <div>
-                    <div class="textContainer">
-                        PW : 
-                    </div>
-                    <div>
-                        <input type="password"  name="user_pw" id="pw" placeholder="password" autocomplete="off">
+                    <div class="constentsCon">
+                        <div class="textCon">
+                            <div class="textContainer">
+                                IP : 
+                            </div>
+                            <div class="textContainer">
+                                PORT : 
+                            </div>
+                            <div class="textContainer">
+                                ID : 
+                            </div>
+                            <div class="textContainer">
+                                PW : 
+                            </div>
+                        </div>
+                        <div class="inputCon">
+                            <div>
+                                <input type="text" name="serverip" id="user_ip" placeholder="ip">
+                            </div>
+                            <div>
+                                <input type="number" name="port" id="user_port" placeholder="port">
+                            </div>
+                            <div>
+                                <input type="text" name="user_id" id="id" placeholder="id">
+                            </div>
+                            <div>
+                                <input type="password"  name="user_pw" id="pw" placeholder="password" autocomplete="off">
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div>
                     <button id="loginSubmit">login</button>
-                </div>
+                </div> 
             </div>
         </form>
     </section>
@@ -118,9 +138,18 @@
         </div>
     </footer>
 
+    <c:if test="${not empty message}">
+        <script>
+            Swal.fire({
+                text: "${message}",
+                icon: 'info',
+                confirmButtonText: 'OK'
+            });
+        </script>
+    </c:if>
+    <script>
+    </script>
 
-    <script></script>
     <script src="/resources/js/login.js"></script>
-
 </body>
 </html>

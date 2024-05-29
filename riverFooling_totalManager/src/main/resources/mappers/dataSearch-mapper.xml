@@ -51,6 +51,8 @@
 		LEFT OUTER JOIN tb_water_level_sensor_info INFO ON HIST.DEVICE_ID = INFO.SENSOR_ID
 	 </select>
 	 
+	 
+	 
 	 <select id="min_floodingList" resultMap="_min_flooding">
 		SELECT DATE_FORMAT(HIST.DATE_TIME, '%h') AS HOUR, DATE_FORMAT(HIST.DATE_TIME, '%m') AS MIN, INFO.ALARM_WATER_LEVEL, ROUND(AVG(HIST.WATER_LEVEL), 2) AS WATER_LEVEL
 		FROM tb_water_level_hist HIST
@@ -60,6 +62,7 @@
 		GROUP BY HOUR, MIN
 		ORDER BY HOUR, MIN
 	 </select>
+	 
 	 
 	 
 	 <select id="day_floodingList" resultMap="_flooding">
@@ -130,6 +133,7 @@
 		GROUP BY DATE_FORMAT(HIST.DATE_TIME, '%Y%m%d'), HOUR
 		ORDER BY DATE, HOUR
 	</select>
+	 
 	 
 	  
 	 <select id="date_floodingList02" resultMap="_date_flooding">

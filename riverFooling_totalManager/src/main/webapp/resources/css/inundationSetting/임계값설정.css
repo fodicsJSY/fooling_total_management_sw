@@ -271,6 +271,27 @@
         padding: 0 0 0 10px;
     }
     
+    .alarmOffTable{
+        width: 100%;
+        font-size: 12px;
+        border: 1px solid #91CB98;
+        border-collapse: collapse;
+        margin-top: 30px;
+    }
+
+
+    .alarmOffTable th{
+        width: 6.5%;
+        height: 35px;
+        background-color: #D0E9D3;
+        border: 1px solid #91CB98;
+        color: #09552b;
+    }
+
+    .alarmOffTable td{
+        padding: 0 0 0 10px;
+    }
+    
 
     .stepOneTable{
         margin-top: 15px;

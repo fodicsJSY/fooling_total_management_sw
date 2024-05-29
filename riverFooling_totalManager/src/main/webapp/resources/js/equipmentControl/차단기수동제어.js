@@ -23,24 +23,26 @@ let sound998_7 = document.getElementById("sound998_7");
 let savedIP;
 //차단기 수동제어 로드시
 document.addEventListener("DOMContentLoaded", function() {
-    savedIP = getIPFromLocalStorage().breakerIP;
-    console.log("savedIP : ", savedIP);
-    selectBreaker(savedIP);
+    // savedIP = getIPFromLocalStorage().breakerIP;
+    // console.log("savedIP : ", savedIP);
+    selectBreaker();
     // forwardBreaker(savedIP);
 
 });
 
 
-function selectBreaker(savedIP){
-    console.log("savedIP", savedIP);
+function selectBreaker(){
+    console.log("loginIp", loginIp);
     //"172.16.20.101"
-    fetch("/cameraCode", { 
+    fetch("/equipmentControl/cameraCode", { 
         method : "POST", 
         headers: {"Content-Type": "application/json;"}, 
         credentials: "include",
         body : JSON.stringify( {
-                                "serverip" : savedIP,
-                                // "query" : "SELECT camera_code, gate_cmd FROM TB_CIRCUIT_BREAKER_LOG",
+                                "serverip" : loginIp,
+                                "port" : loginPort,
+                                "user_id" : loginId,
+                                "user_pw" : loginPw,
                                 "query" : "SELECT camera_code, status, camera_name, gate_code FROM TB_CIRCUIT_BREAKER_CONFIG",
         } )
     })
@@ -89,7 +91,7 @@ function selectBreaker(savedIP){
 function forwardBreaker(data){
     console.log("forwardBreaker data", data);
     //"172.16.20.101"
-    fetch("/breakerStatus", { 
+    fetch("/equipmentControl/breakerStatus", { 
         method : "POST", 
         headers: {"Content-Type": "application/json;"}, 
         credentials: "include",

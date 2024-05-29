@@ -19,6 +19,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.client.ResourceAccessException;
 import org.springframework.web.client.RestTemplate;
@@ -30,6 +31,7 @@ import fodics.web.jsy.equimentControl.model.service.EquimentControlService;
 
 
 @Controller
+@RequestMapping("/equipmentControl")
 public class EquimentControlController {
 	
 	@Autowired
@@ -77,10 +79,10 @@ public class EquimentControlController {
 			@RequestBody String req
 			) {
 		
-		System.out.println("cameraCode req : " + req);
+//		System.out.println("cameraCode req : " + req);
 		
 		String ipAddress;
-		String port;
+		String urlport;
 		
 		// MappingJackson2HttpMessageConverter 추가
 		restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
@@ -89,7 +91,7 @@ public class EquimentControlController {
 			InputStream is = getClass().getResourceAsStream("/server_info.ini");
 			Scanner s = new Scanner(is);
 			ipAddress = s.nextLine();
-			port = s.nextLine();
+			urlport = s.nextLine();
 			//		        System.out.println("openGate ipAddress : "+ ipAddress);
 			//		        System.out.println("openGate port : "+ port);
 			s.close();
@@ -100,32 +102,38 @@ public class EquimentControlController {
 			// JSON 문자열을 파싱하여 필요한 변수에 할당
 			JSONObject jsonObject = new JSONObject(req);
 			String serverip = jsonObject.getString("serverip");
+			int port = jsonObject.getInt("port");
+			String user_id = jsonObject.getString("user_id");
+			String user_pw = jsonObject.getString("user_pw");
 			String query = jsonObject.getString("query");
 			
-			System.out.println("serverip : " + serverip);
-			System.out.println("query : " + query);
+//			System.out.println("serverip : " + serverip);
+//			System.out.println("query : " + query);
 			
-			String select_url = "http://"+ipAddress+":"+port+"/fnvr/request/query/select"; // 외부 RESTful API의 URL select
-			System.out.println("select_url : "+ select_url);
+			String select_url = "http://"+ipAddress+":"+urlport+"/fnvr/request/query/select"; // 외부 RESTful API의 URL select
+//			System.out.println("select_url : "+ select_url);
 			
 			
 			//서버로 전송할 객체 생성
-			Map<String, String> requestBody = new LinkedHashMap<>();
+			Map<String, Object> requestBody = new LinkedHashMap<>();
 			requestBody.put("serverip", serverip);
+			requestBody.put("port", port);
+			requestBody.put("user_id", user_id);
+			requestBody.put("user_pw", user_pw);
 			requestBody.put("query", query);
-			System.out.println("cameraCode requestBody : "+ requestBody);
+//			System.out.println("cameraCode requestBody : "+ requestBody);
 			
 			// 요청 헤더 설정
 			HttpHeaders headers = new HttpHeaders();
 			headers.setContentType(MediaType.APPLICATION_JSON);
 			
 			// HttpEntity 생성
-			HttpEntity<Map<String, String>> requestEntity = new HttpEntity<>(requestBody, headers);
+			HttpEntity<Map<String, Object>> requestEntity = new HttpEntity<>(requestBody, headers);
 			
 			// post 요청 보내기
 			String response = restTemplate.postForObject(select_url, requestEntity, String.class);
 			
-			System.out.println("cameraCode response"+ response);
+//			System.out.println("cameraCode response"+ response);
 			
 			return response;
 			
@@ -149,7 +157,7 @@ public class EquimentControlController {
 	@PostMapping("/breakerStatus")
 	@ResponseBody
 	public Map<String, Object> breaker(@RequestBody Map<String, Object> req) {
-	    System.out.println("breaker req : " + req);
+//	    System.out.println("breaker req : " + req);
 
 	    String ipAddress;
 	    String port;
@@ -173,18 +181,18 @@ public class EquimentControlController {
 	            String camera_code = data.get(0);
 	            int command = Integer.parseInt(data.get(1));
 
-	            System.out.println("camera_code : " + camera_code);
-	            System.out.println("command : " + command);
+//	            System.out.println("camera_code : " + camera_code);
+//	            System.out.println("command : " + command);
 
 	            String breakerUrl = "http://" + ipAddress + ":" + port + "/fnvr/request/gate_control/gate_control";
-	            System.out.println("breakerUrl : " + breakerUrl);
+//	            System.out.println("breakerUrl : " + breakerUrl);
 
 	            // 서버로 전송할 객체 생성
 	            Map<String, Object> requestBody = new LinkedHashMap<>();
 	            requestBody.put("camera_code", camera_code);
 	            requestBody.put("command", command);
 
-	            System.out.println("breaker requestBody : " + requestBody);
+//	            System.out.println("breaker requestBody : " + requestBody);
 
 	            // 요청 헤더 설정
 	            HttpHeaders headers = new HttpHeaders();
@@ -196,7 +204,7 @@ public class EquimentControlController {
 	            try {
 	                // post 요청 보내기
 	                String response = restTemplate.postForObject(breakerUrl, requestEntity, String.class);
-	                System.out.println("breaker response: " + response);
+//	                System.out.println("breaker response: " + response);
 
 	                // 응답을 Map에 저장
 	                responseMap.put(camera_code, response);
@@ -485,7 +493,7 @@ public class EquimentControlController {
 	
 	
 	// 25_3시나리오 페이지 1
-	@GetMapping("/equipmentControl/scenario/hutanri25_3")
+	@GetMapping("/scenario/hutanri25_3")
 	public String scenarioPageForword1(
 			Model model
 			){
@@ -493,7 +501,7 @@ public class EquimentControlController {
 	}
 	
 	//시나리오331_1 페이지 
-	@GetMapping("/equipmentControl/scenario/hutanri331_1")
+	@GetMapping("/scenario/hutanri331_1")
 	public String scenarioPageForword2(
 			Model model
 			){
@@ -502,7 +510,7 @@ public class EquimentControlController {
 	
 	
 	// add25_3 페이지
-	@GetMapping("/equipmentControl/scenario/add/add25_3")
+	@GetMapping("/scenario/add/add25_3")
 	public String addPage25_3Forword(
 			Model model
 			){
@@ -523,7 +531,7 @@ public class EquimentControlController {
 	
 	
 	// add331_1 페이지
-	@GetMapping("/equipmentControl/scenario/add/add331_1")
+	@GetMapping("/scenario/add/add331_1")
 	public String addPage331_1Forword(
 			Model model
 			){

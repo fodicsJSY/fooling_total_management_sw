@@ -162,7 +162,7 @@ document.addEventListener("DOMContentLoaded", function() {
     console.log("areaValue : " + areaValue);
     console.log("areaList2 : " + areaList);
 
-    fetch("/send10min_flooding", { 
+    fetch("/dataSearch/send10min_flooding", { 
         method : "POST", 
         headers: {"Content-Type": "application/json;"}, 
         body : JSON.stringify( {"occuDay":occuDay, "areaValue":areaValue} ) 
@@ -203,7 +203,7 @@ minRainfall.addEventListener("click", ()=>{
     console.log("areaValue : " + areaValue);
     console.log("areaList2 : " + areaList);
 
-    fetch("/send10min_flooding", { 
+    fetch("/dataSearch/send10min_flooding", { 
         method : "POST", 
         headers: {"Content-Type": "application/json;"}, 
         body : JSON.stringify( {"occuDay":occuDay, "areaValue":areaValue} ) 
@@ -387,7 +387,7 @@ dayRainfall.addEventListener("click", ()=>{
 
     let occuDay = year + month + day;
 
-    fetch("/sendDay_flooding", { 
+    fetch("/dataSearch/sendDay_flooding", { 
         method : "POST", 
         headers: {"Content-Type": "application/json;"}, 
         body : JSON.stringify( {"occuDay":occuDay} ) 
@@ -558,7 +558,7 @@ monthRainfall.addEventListener("click", ()=>{
 
 
     let occuMonth = year + month;
-    fetch("/sendMonth_flooding", {
+    fetch("/dataSearch/sendMonth_flooding", {
         method: "POST",
         headers: { "Content-Type": "application/json;" },
         body: JSON.stringify({ "occuMonth": occuMonth })
@@ -717,7 +717,7 @@ yearRainfall.addEventListener("click", ()=>{
     let occuYear = year;
     console.log("occuYear : ", occuYear);
 
-    fetch("/sendYear_flooding", {
+    fetch("/dataSearch/sendYear_flooding", {
         method: "POST",
         headers: { "Content-Type": "application/json;" },
         body: JSON.stringify({ "occuYear": occuYear })
@@ -866,10 +866,17 @@ dateRainfall.addEventListener("click", ()=>{
     console.log("areaValue : " + areaValue);
     console.log("kindValue : " + kindValue);
 
-    fetch("/sendDate_flooding", {
+    var date_flooding={
+        "startOccuDate": startOccuDate
+        , "endOccuDate": endOccuDate
+        , "areaValue": areaValue
+    };
+
+
+    fetch("/dataSearch/sendDate_flooding", {
         method: "POST",
         headers: { "Content-Type": "application/json;" },
-        body: JSON.stringify({ "startOccuDate": startOccuDate, "endOccuDate": endOccuDate, "areaValue": areaValue, "kindValue": kindValue })
+        body: JSON.stringify({ "date_flooding":date_flooding, "kindValue": kindValue })
     })
     .then(resp => resp.json()) // 요청에 대한 응답 객체(response)를 필요한 형태로 파싱
     .then((result) => {

@@ -8,19 +8,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>침수차단 시스템</title>
     <link rel="shortcut icon" type="image/png" href="/resources/img/slogan.png" sizes="192x192">
-
     <link rel="stylesheet" href="/resources/css/inundationSetting/임계값설정.css">
+
+    <%-- sweetalert2 --%>
+    <script src="/resources/js/sweetalert/sweetalert2.js"></script>
 </head>
 <body>
     <header>
         <div class="headContiner">
             <div class="headContent">
-                <a href="/rainfall"><div class="logoBox"><img class="logo" src="/resources/img/logo.png" alt=""></a></div>
+                <a href="/dataSearch/rainfall"><div class="logoBox"><img class="logo" src="/resources/img/logo.png" alt=""></a></div>
                 <div class="menuContiner">
-                    <div><a href="/rainfall">데이터검색</a></div>
-                    <div><a href="/차단기수동제어">장비제어</a></div>
-                    <div><a href="/임계값설정">침수설정</a></div>
-                    <div><a href="/보고서출력">보고서</a></div>
+                    <div><a href="/dataSearch/rainfall">데이터검색</a></div>
+                    <div><a href="/equipmentControl/차단기수동제어">장비제어</a></div>
+                    <div><a href="/inundationSetting/임계값설정">침수설정</a></div>
+                    <div><a href="/outputReport/보고서출력">보고서</a></div>
                 </div>
             </div>
         </div>
@@ -32,9 +34,9 @@
             <div class="sectionBox01">
                 <div class="listBox">
                     <div class="listTitle">침수설정</div>
-                    <div class="listContent"><a href="/임계값설정" class="pageFoward nowForward">임계값설정</a></div>
-                    <div class="listContent"><a href="/경보상황제어" class="pageFoward">경보상황 제어</a></div>
-                    <div class="listContent"><a href="/경보발생내역" class="pageFoward">경보발생 내역</a></div>
+                    <div class="listContent"><a href="/inundationSetting/임계값설정" class="pageFoward nowForward">임계값설정</a></div>
+                    <div class="listContent"><a href="/inundationSetting/경보상황제어" class="pageFoward">경보상황 제어</a></div>
+                    <div class="listContent"><a href="/inundationSetting/경보발생내역" class="pageFoward">경보발생 내역</a></div>
                 </div>
             </div>
             <div class="sectionBox02">
@@ -74,7 +76,7 @@
                                     <select name="지역선택" id="areaSelect" class="selectArea">
                                         <option value="" disabled>강우센서선택</option>
                                         <c:forEach items="${sensorList}" var="sensorList">
-                                            <option value="${sensorList.sensorId}" selected>${sensorList.sensorId}</option>
+                                            <option value="${sensorList.sensorId}">${sensorList.sensorId}</option>
                                         </c:forEach>
                                         <%-- 
                                         <option value="yeongwol">영월(도)</option>
@@ -91,9 +93,32 @@
                                 </td>
                             </tr>
                         </table>
+                        <table class="alarmOffTable">
+                            <tr>
+                                <th>자동 해제 조건</th>
+                                <td>
+                                    <div>
+                                        <div>
+                                            <div>
+                                                <input type="radio" id="manual" name="alarmOff" value="-1"> <label for="manual">수동</label>
+                                            </div>
+                                            <div>
+                                                <input type="radio" id="autoWaterlevel" name="alarmOff" value="0" > <label for="autoWaterlevel"> 자동-수위</label>
+                                            </div>
+                                            <div>
+                                                <input type="radio" id="autoTime" name="alarmOff" value="1" > <label for="autoTime"> 자동-시간</label> 
+                                                시간설정(초) <input type="text" class="stepOne_numInput" id="inputTime" value="0"> 
+                                            </div> 
+                                            <div>
+                                            </div> 
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
                         <table class="stepOneTable">
                             <tr>
-                                <th class="step" rowspan="6"><input type="checkbox" id="stepOne" value="step1" checked><label class="checkStep"  for="stepOne">1단계(관심)</label></th>
+                                <th class="step" rowspan="6"><input type="checkbox" id="stepOne" value="step1"><label class="checkStep"  for="stepOne">1단계(관심)</label></th>
                             </tr>
                             <tr>
                                 <th class="group">침수</th>
@@ -101,7 +126,7 @@
                                     <div>
                                         <div>
                                             <div>
-                                                <input type="text" class="stepOne_numInput" id="stepOne_Input" name="stepOneRelease" value="0.5" checked> <label for="stepOne_Input">m</label>
+                                                <input type="text" class="stepOne_numInput" id="stepOne_Input" name="stepOneRelease"> <label for="stepOne_Input">m</label>
                                             </div>
                                             <%-- <div>
                                                 <input type="radio" id="stepOne_5cm" name="stepOneFlooding" value="5cm" checked> <label for="stepOne_5cm">5cm</label>
@@ -113,32 +138,32 @@
                                                 <input type="radio" id="stepOne_21cm" name="stepOneFlooding" value="21cm" > <label for="stepOne_21cm"> 21cm</label>
                                             </div> --%>
                                         </div>
-                                        <div>※ 해제조건을 조건에 추가합니다. (AND)</div>
+                                        <div>※ 침수상황을 조건에 추가합니다. (AND)</div>
                                     </div>
                                 </td>
                             </tr>
-                            <tr>
+                            <%-- <tr>
                                 <th class="group">해제조건</th>
                                 <td>
                                     <div>
                                         <div>
                                             <div>
-                                                <input type="radio" id="stepOne_manual" name="stepOneUnlock" value="manual" checked> <label for="stepOne_manual">수동</label>
+                                                <input type="radio" id="stepOne_manual" name="stepOneUnlock" value="-1"> <label for="stepOne_manual">수동</label>
                                             </div>
                                             <div>
-                                                <input type="radio" id="stepOne_autoWaterlevel" name="stepOneUnlock" value="autoWaterlevel" > <label for="stepOne_autoWaterlevel"> 자동-수위</label>
+                                                <input type="radio" id="stepOne_autoWaterlevel" name="stepOneUnlock" value="0" > <label for="stepOne_autoWaterlevel"> 자동-수위</label>
                                             </div>
                                             <div>
-                                                <input type="radio" id="stepOne_autoTime" name="stepOneUnlock" value="autoTime" > <label for="stepOne_autoTime"> 자동-시간</label> 
+                                                <input type="radio" id="stepOne_autoTime" name="stepOneUnlock" value="1" > <label for="stepOne_autoTime"> 자동-시간</label> 
                                                 시간설정(초) <input type="text" class="stepOne_numInput" id="stepOne_InputTime" name="stepOneFlooding" value="0"> 
                                             </div> 
                                             <div>
                                             </div> 
                                         </div>
-                                        <div>※ 침수상황을 조건에 추가합니다. (AND)</div>
+                                        <div>※ 해제조건을 추가합니다. (AND)</div>
                                     </div>
                                 </td>
-                            </tr>
+                            </tr> --%>
                             <%-- <tr>
                                 <th class="group">특보</th>
                                 <td>
@@ -234,7 +259,7 @@
                         </table>
                         <table class="stepTwoTable">
                             <tr>
-                                <th class="step" rowspan="6"><input type="checkbox" id="stepTwo" value="step2" checked><label class="checkStep"  for="stepTwo">2단계(주의)</label></th>
+                                <th class="step" rowspan="6"><input type="checkbox" id="stepTwo" value="step2"><label class="checkStep"  for="stepTwo">2단계(주의)</label></th>
                             </tr>
                             <tr>
                                 <th class="group">침수</th>
@@ -242,7 +267,7 @@
                                     <div>
                                         <div>
                                             <div>
-                                                <input type="text" class="stepTwo_numInput" id="stepTwo_Input" name="stepTwoFlooding" value="1" checked> <label for="stepTwo_Input">m</label>
+                                                <input type="text" class="stepTwo_numInput" id="stepTwo_Input" name="stepTwoFlooding"> <label for="stepTwo_Input">m</label>
                                             </div>
                                             <%-- <div>
                                                 <input type="radio" id="stepTwo_5cm" name="stepTwoFlooding" value="5cm" > <label for="stepTwo_5cm">5cm</label>
@@ -258,26 +283,26 @@
                                     </div>
                                 </td>
                             </tr>
-                            <tr>
+                            <%-- <tr>
                                 <th class="group">해제조건</th>
                                 <td>
                                     <div>
                                         <div>
                                             <div>
-                                                <input type="radio" id="stepTwo_manual" name="stepTwoUnlock" value="manual" checked> <label for="stepTwo_manual">수동</label>
+                                                <input type="radio" id="stepTwo_manual" name="stepTwoUnlock" value="-1"> <label for="stepTwo_manual">수동</label>
                                             </div>
                                             <div>
-                                                <input type="radio" id="stepTwo_autoWaterlevel" name="stepTwoUnlock" value="autoWaterlevel" > <label for="stepTwo_autoWaterlevel"> 자동-수위</label>
+                                                <input type="radio" id="stepTwo_autoWaterlevel" name="stepTwoUnlock" value="0" > <label for="stepTwo_autoWaterlevel"> 자동-수위</label>
                                             </div>
                                             <div>
-                                                <input type="radio" id="stepTwo_autoTime" name="stepTwoUnlock" value="autoTime" > <label for="stepTwo_autoTime"> 자동-시간</label>
+                                                <input type="radio" id="stepTwo_autoTime" name="stepTwoUnlock" value="1" > <label for="stepTwo_autoTime"> 자동-시간</label>
                                                 시간설정(초) <input type="text" class="stepTwo_numInput" id="stepTwo_InputTime" name="stepTwoFlooding" value="0"> 
                                             </div> 
                                         </div>
-                                        <div>※ 침수상황을 조건에 추가합니다. (AND)</div>
+                                        <div>※ 해제조건을 추가합니다. (AND)</div>
                                     </div>
                                 </td>
-                            </tr>
+                            </tr> --%>
                             <%-- <tr>
                                 <th class="group">특보</th>
                                 <td>
@@ -374,7 +399,7 @@
                         </table>
                         <table class="stepThreeTable">
                             <tr>
-                                <th class="step" rowspan="6"><input type="checkbox" id="stepThree" value="3단계" checked><label class="checkStep"  for="stepThree">3단계(경계)</label></th>
+                                <th class="step" rowspan="6"><input type="checkbox" id="stepThree" value="step3" ><label class="checkStep"  for="stepThree">3단계(경계)</label></th>
                             </tr>
                             <tr>
                                 <th class="group">침수</th>
@@ -382,7 +407,7 @@
                                     <div>
                                         <div>
                                             <div>
-                                                <input type="text" class="stepThree_numInput" id="stepThree_Input" name="stepThreeFlooding" value="1.5" checked> <label for="stepThree_Input">m</label>
+                                                <input type="text" class="stepThree_numInput" id="stepThree_Input" name="stepThreeFlooding"> <label for="stepThree_Input">m</label>
                                             </div>
                                             <%-- <div>
                                                 <input type="radio" id="stepThree_5cm" name="stepThreeFlooding" value="5cm" > <label for="stepThree_5cm">5cm</label>
@@ -398,26 +423,26 @@
                                     </div>
                                 </td>
                             </tr>
-                            <tr>
+                            <%-- <tr>
                                 <th class="group">해제조건</th>
                                 <td>
                                     <div>
                                         <div>
                                             <div>
-                                                <input type="radio" id="stepThree_manual" name="stepThreeUnlock" value="manual" checked> <label for="stepThree_manual">수동</label>
+                                                <input type="radio" id="stepThree_manual" name="stepThreeUnlock" value="-1" > <label for="stepThree_manual">수동</label>
                                             </div>
                                             <div>
-                                                <input type="radio" id="stepThree_autoWaterlevel" name="stepThreeUnlock" value="autoWaterlevel" > <label for="stepThree_autoWaterlevel"> 자동-수위</label>
+                                                <input type="radio" id="stepThree_autoWaterlevel" name="stepThreeUnlock" value="0" > <label for="stepThree_autoWaterlevel"> 자동-수위</label>
                                             </div>
                                             <div>
-                                                <input type="radio" id="stepThree_autoTime" name="stepThreeUnlock" value="autoTime" > <label for="stepThree_autoTime"> 자동-시간</label>
+                                                <input type="radio" id="stepThree_autoTime" name="stepThreeUnlock" value="1" > <label for="stepThree_autoTime"> 자동-시간</label>
                                                 시간설정(초) <input type="text" class="stepThree_numInput" id="stepThree_InputTime" name="stepThreeFlooding" value="0"> 
                                             </div> 
                                         </div>
-                                        <div>※ 침수상황을 조건에 추가합니다. (AND)</div>
+                                        <div>※ 해제조건을 추가합니다. (AND)</div>
                                     </div>
                                 </td>
-                            </tr>
+                            </tr> --%>
                             <%-- <tr>
                                 <th class="group">특보</th>
                                 <td>
@@ -513,7 +538,7 @@
                         </table>
                         <table class="stepFourTable">
                             <tr>
-                                <th class="step" rowspan="6"><input type="checkbox" id="stepFour" value="4단계" checked><label class="checkStep"  for="stepFour">4단계(침수)</label></th>
+                                <th class="step" rowspan="6"><input type="checkbox" id="stepFour" value="step4" ><label class="checkStep"  for="stepFour">4단계(침수)</label></th>
                             </tr>
                             <tr>
                                 <th class="group">침수</th>
@@ -521,7 +546,7 @@
                                     <div>
                                         <div>
                                             <div>
-                                                <input type="text" class="stepFour_numInput" id="stepFour_Input" name="stepFourFlooding" value="2" checked> <label for="stepFour_Input">m</label>
+                                                <input type="number" class="stepFour_numInput" id="stepFour_Input" name="stepFourFlooding"> <label for="stepFour_Input">m</label>
                                             </div>
                                             <%-- <div>
                                                 <input type="radio" id="stepThree_5cm" name="stepThreeFlooding" value="5cm" > <label for="stepThree_5cm">5cm</label>
@@ -537,26 +562,26 @@
                                     </div>
                                 </td>
                             </tr>
-                            <tr>
+                            <%-- <tr>
                                 <th class="group">해제조건</th>
                                 <td>
                                     <div>
                                         <div>
                                             <div>
-                                                <input type="radio" id="stepFour_manual" name="stepFourUnlock" value="manual" checked> <label for="stepFour_manual">수동</label>
+                                                <input type="radio" id="stepFour_manual" name="stepFourUnlock" value="-1"> <label for="stepFour_manual">수동</label>
                                             </div>
                                             <div>
-                                                <input type="radio" id="stepFour_autoWaterlevel" name="stepFourUnlock" value="autoWaterlevel" > <label for="stepFour_autoWaterlevel"> 자동-수위</label>
+                                                <input type="radio" id="stepFour_autoWaterlevel" name="stepFourUnlock" value="0" > <label for="stepFour_autoWaterlevel"> 자동-수위</label>
                                             </div>
                                             <div>
-                                                <input type="radio" id="stepFour_autoTime" name="stepFourUnlock" value="autoTime" > <label for="stepFour_autoTime"> 자동-시간</label>
+                                                <input type="radio" id="stepFour_autoTime" name="stepFourUnlock" value="1" > <label for="stepFour_autoTime"> 자동-시간</label>
                                                 시간설정(초) <input type="text" class="stepFour_numInput" id="stepFour_InputTime" name="stepFourFlooding" value="0"> 
                                             </div> 
                                         </div>
-                                        <div>※ 침수상황을 조건에 추가합니다. (AND)</div>
+                                        <div>※ 해제조건을 추가합니다. (AND)</div>
                                     </div>
                                 </td>
-                            </tr>
+                            </tr> --%>
                             <%-- <tr>
                                 <th class="group">특보</th>
                                 <td>
@@ -652,7 +677,7 @@
                         </table>
                         <table class="stepFiveTable">
                             <tr>
-                                <th class="step" rowspan="6"><input type="checkbox" id="stepFive" value="5단계" checked><label class="checkStep"  for="stepFive">5단계(대피)</label></th>
+                                <th class="step" rowspan="6"><input type="checkbox" id="stepFive" value="step5"><label class="checkStep"  for="stepFive">5단계(대피)</label></th>
                             </tr>
                             <tr>
                                 <th class="group">침수</th>
@@ -660,7 +685,7 @@
                                     <div>
                                         <div>
                                             <div>
-                                                <input type="text" class="stepFive_numInput" id="stepFive_Input" name="stepFiveFlooding" value="2.5" checked> <label for="stepFive_Input">m</label>
+                                                <input type="text" class="stepFive_numInput" id="stepFive_Input" name="stepFiveFlooding"> <label for="stepFive_Input">m</label>
                                             </div>
                                             <%-- <div>
                                                 <input type="radio" id="stepThree_5cm" name="stepThreeFlooding" value="5cm" > <label for="stepThree_5cm">5cm</label>
@@ -676,26 +701,26 @@
                                     </div>
                                 </td>
                             </tr>
-                            <tr>
+                            <%-- <tr>
                                 <th class="group">해제조건</th>
                                 <td>
                                     <div>
                                         <div>
                                             <div>
-                                                <input type="radio" id="stepFive_manual" name="stepFiveUnlock" value="manual" checked> <label for="stepFive_manual">수동</label>
+                                                <input type="radio" id="stepFive_manual" name="stepFiveUnlock" value="-1"> <label for="stepFive_manual">수동</label>
                                             </div>
                                             <div>
-                                                <input type="radio" id="stepFive_autoWaterlevel" name="stepFiveUnlock" value="autoWaterlevel" > <label for="stepFive_autoWaterlevel"> 자동-수위</label>
+                                                <input type="radio" id="stepFive_autoWaterlevel" name="stepFiveUnlock" value="0" > <label for="stepFive_autoWaterlevel"> 자동-수위</label>
                                             </div>
                                             <div>
-                                                <input type="radio" id="stepFive_autoTime" name="stepFiveUnlock" value="autoTime" > <label for="stepFive_autoTime"> 자동-시간</label>
+                                                <input type="radio" id="stepFive_autoTime" name="stepFiveUnlock" value="1" > <label for="stepFive_autoTime"> 자동-시간</label>
                                                 시간설정(초) <input type="text" class="stepFive_numInput" id="stepFive_InputTime" name="stepFiveFlooding" value="0"> 
                                             </div> 
                                         </div>
-                                        <div>※ 침수상황을 조건에 추가합니다. (AND)</div>
+                                        <div>※ 해제조건을 추가합니다. (AND)</div>
                                     </div>
                                 </td>
-                            </tr>
+                            </tr> --%>
                             <%-- <tr>
                                 <th class="group">특보</th>
                                 <td>
