@@ -1,0 +1,51 @@
+
+header{
+    height: 94px;
+    display:flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.headContiner{
+    width: 1780px; height: 100%; display:flex; align-items: center;
+}
+
+.headContent{
+    width: 1200px;
+    display:flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin: 0 0 0 15px;
+}
+
+
+
+.logo{
+    width: 219px;
+    height: 60px;
+}
+
+.menuContiner{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 720px;
+    font-size: 24px;
+    font-weight: bolder;
+    margin: 0 0 0 60px;
+}
+
+
+.setBtn{
+    width: 36px;
+    height: 25px;
+    margin: 0 5px 0 5px;
+    background-color: #ccc;
+}
+
+.setBtn:hover{
+    cursor: pointer;
+}

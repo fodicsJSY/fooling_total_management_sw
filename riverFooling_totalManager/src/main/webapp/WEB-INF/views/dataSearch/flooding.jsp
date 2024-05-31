@@ -17,7 +17,10 @@
 </head>
 <body>
 <%-- 침수데이터 --%>
-    <header>
+    <!-- header 시작 -->
+    <jsp:include page="/WEB-INF/views/header.jsp"/>
+    <!-- header 끝 -->
+    <%-- <header>
         <div class="headContiner">
             <div class="headContent">
                 <a href="/dataSearch/rainfall"><div class="logoBox"><img class="logo" src="/resources/img/logo.png" alt=""></a></div>
@@ -29,7 +32,7 @@
                 </div>
             </div>
         </div>
-    </header>
+    </header> --%>
 <hr>
     <%-- ${login_requestBody} --%>
     <main>
@@ -167,13 +170,9 @@
 
     </script>
     <script>
-        var loginPort = ${login_requestBody.port}
-        var loginIp = ${login_requestBody.serverip}
         var loginId = ${login_requestBody.user_id}
         var loginPw = ${login_requestBody.user_pw}
 
-        console.log("loginPort", loginPort);
-        console.log("loginIp", loginIp);
         console.log("loginId", loginId);
         console.log("loginPw", loginPw);
     </script>

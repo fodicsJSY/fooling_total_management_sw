@@ -21,10 +21,13 @@ let sound998_7 = document.getElementById("sound998_7");
 
 
 let savedIP;
+let savePORT;
 //차단기 수동제어 로드시
 document.addEventListener("DOMContentLoaded", function() {
-    // savedIP = getIPFromLocalStorage().breakerIP;
-    // console.log("savedIP : ", savedIP);
+    savedIP = getIP_FromLocalStorage().saveIP;
+    console.log("savedIP : ", savedIP);
+    savePORT = getPORT_FromLocalStorage().savePORT;
+    console.log("savePORT : ", savePORT);
     selectBreaker();
     // forwardBreaker(savedIP);
 
@@ -32,15 +35,14 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
 function selectBreaker(){
-    console.log("loginIp", loginIp);
     //"172.16.20.101"
     fetch("/equipmentControl/cameraCode", { 
         method : "POST", 
         headers: {"Content-Type": "application/json;"}, 
         credentials: "include",
         body : JSON.stringify( {
-                                "serverip" : loginIp,
-                                "port" : loginPort,
+                                "serverip" : savedIP,
+                                "port" : savePORT,
                                 "user_id" : loginId,
                                 "user_pw" : loginPw,
                                 "query" : "SELECT camera_code, status, camera_name, gate_code FROM TB_CIRCUIT_BREAKER_CONFIG",

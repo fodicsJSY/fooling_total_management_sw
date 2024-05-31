@@ -13,6 +13,7 @@
     <script src="/resources/js/sweetalert/sweetalert2.js"></script>
 
     <link rel="stylesheet" href="/resources/css/login.css">
+    <%-- <link rel="stylesheet" href="/resources/css/modal.css"> --%>
 </head>
 <body>
 
@@ -81,50 +82,58 @@
 <hr>
 <main>
     <section>
-        <form action="/userLogin" method="post" id="loginFrm">
-            <div class="loginContainer">
-                <div>
-                    <div><a href="/"><div class="logoBox"><img class="slogan" src="/resources/img/slogan.png" alt=""></a></div></div>
-                    <div class="loginText">LOGIN</div>
-                </div>
-                <div>
-                    <div class="constentsCon">
-                        <div class="textCon">
-                            <div class="textContainer">
-                                IP : 
-                            </div>
-                            <div class="textContainer">
-                                PORT : 
-                            </div>
-                            <div class="textContainer">
-                                ID : 
-                            </div>
-                            <div class="textContainer">
-                                PW : 
+        <div class="contentsContainer">
+            <div>
+                <form action="/userLogin" method="post" id="loginFrm">
+                    <div class="loginContainer">
+                        <div>
+                            <div><a href="/"><div class="logoBox"><img class="slogan" src="/resources/img/slogan.png" alt=""></a></div></div>
+                            <div class="loginText">LOGIN</div>
+                        </div>
+                        <div>
+                            <div class="constentsCon">
+                                <div class="textCon">
+                                    <%-- <div class="textContainer">
+                                        IP : 
+                                    </div>
+                                    <div class="textContainer">
+                                        PORT : 
+                                    </div> --%>
+                                    <div class="textContainer">
+                                        ID : 
+                                    </div>
+                                    <div class="textContainer">
+                                        PW : 
+                                    </div>
+                                </div>
+                                <div class="inputCon">
+                                    <%-- <div>
+                                        <input type="text" name="serverip" id="user_ip" placeholder="ip">
+                                    </div>
+                                    <div>
+                                        <input type="number" name="port" id="user_port" placeholder="port">
+                                    </div> --%>
+                                    <div>
+                                        <input type="text" name="user_id" id="id" placeholder="id">
+                                    </div>
+                                    <div>
+                                        <input type="password"  name="user_pw" id="pw" placeholder="password" autocomplete="off">
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        <div class="inputCon">
-                            <div>
-                                <input type="text" name="serverip" id="user_ip" placeholder="ip">
-                            </div>
-                            <div>
-                                <input type="number" name="port" id="user_port" placeholder="port">
-                            </div>
-                            <div>
-                                <input type="text" name="user_id" id="id" placeholder="id">
-                            </div>
-                            <div>
-                                <input type="password"  name="user_pw" id="pw" placeholder="password" autocomplete="off">
-                            </div>
-                        </div>
+                        <div>
+                            <button id="loginSubmit">login</button>
+                        </div> 
                     </div>
-                </div>
-                <div>
-                    <button id="loginSubmit">login</button>
-                </div> 
+                </form>
             </div>
-        </form>
+            <div>
+                <button type="button" class="settingButton" id="settingBtn">설정</button>
+            </div>
+        </div>
     </section>
+
 </main>
 
 <hr>
@@ -151,5 +160,7 @@
     </script>
 
     <script src="/resources/js/login.js"></script>
+    <script src="/resources/js/dbSetting.js"></script>
+    <%-- <script src="/resources/js/modal.js"></script> --%>
 </body>
 </html>

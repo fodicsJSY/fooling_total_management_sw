@@ -189,7 +189,7 @@ function findDataByTime(data, hour, min, property) {
 
 
 
-// 일별 강우 테이블 만들기
+// 일별 침수 테이블 만들기
 function dayMakeTable(data) {
     let tableContainer = document.querySelector(".tableContainer");
     tableContainer.innerHTML = ""; // Clear previous data

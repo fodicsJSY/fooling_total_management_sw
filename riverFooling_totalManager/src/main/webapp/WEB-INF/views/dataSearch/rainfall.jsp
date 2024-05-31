@@ -17,7 +17,10 @@
 </head>
 <body>
     <%-- ${loginUser} --%>
-    <header>
+    <!-- header 시작 -->
+    <jsp:include page="/WEB-INF/views/header.jsp"/>
+    <!-- header 끝 -->
+    <%-- <header>
         <div class="headContiner">
             <div class="headContent">
                     <a href="/dataSearch/rainfall"><div class="logoBox"><img class="logo" src="/resources/img/logo.png" alt=""></a></div>
@@ -29,7 +32,10 @@
                     </div>
             </div>
         </div>
-    </header>
+        <div>
+            <button id="settingBtn">설정</button>
+        </div>
+    </header> --%>
 <hr>
     <main>
         <section>
@@ -48,9 +54,9 @@
                             <div class="titleName">데이터검색</div>
                             <div class="typeBox">
                                 <div class="searchType"><button type="button" class="rainfall active" id="dayRainfall"># 일간강우</button></div>
-                                <div class="searchType"><button type="button" class="rainfall" id="monthRainfall"># 월간강우</button></div>
+                                <%-- <div class="searchType"><button type="button" class="rainfall" id="monthRainfall"># 월간강우</button></div>
                                 <div class="searchType"><button type="button" class="rainfall" id="yearRainfall"># 연간강우</button></div>
-                                <div class="searchType"><button type="button" class="rainfall" id="dateRainfall"># 기간별강우</button></div>
+                                <div class="searchType"><button type="button" class="rainfall" id="dateRainfall"># 기간별강우</button></div> --%>
                             </div>
                         </div>
                     </div>
@@ -148,23 +154,28 @@
             <div>포딕스로고</div> --%>
         </div>
     </footer>
+    <c:if test="${not empty message}">
+        <script>
+            Swal.fire({
+                text: "${message}",
+                icon: 'info',
+                confirmButtonText: 'OK'
+            });
+        </script>
+    </c:if>
 
     <script>
-        var loginIp = "${loginUser.serverip}";
-        var loginPort = ${loginUser.port};
         var loginId = "${loginUser.user_id}";
         var loginPw = "${loginUser.user_pw}";
 
-        console.log("loginIp", loginIp);
-        console.log("loginPort", loginPort);
         console.log("loginId", loginId);
         console.log("loginPw", loginPw);
 
     </script>
+    <script src="/resources/js/date.js"></script>
     <script src="/resources/js/dataSearch/rainfall/rainfall_select.js"></script>
     <script src="/resources/js/dataSearch/rainfall/rainfall_search.js"></script>
     <script src="/resources/js/dataSearch/rainfall/rainfall_table.js"></script>
-    <script src="/resources/js/date.js"></script>
 
     <script src="/resources/js/dbSetting.js"></script>
 </body>

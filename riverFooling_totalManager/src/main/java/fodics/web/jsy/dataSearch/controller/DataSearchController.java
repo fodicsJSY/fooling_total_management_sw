@@ -71,106 +71,116 @@ public class DataSearchController {
 	
 	
 
-	@PostMapping("/getDataFromAPI")
-	@ResponseBody
-	public String getDataFromAPI(@RequestBody String req) {
-		
-//		System.out.println("req"+ req);
-		
-
-		// MappingJackson2HttpMessageConverter 추가
-		restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
-
-		
-		
-		// JSON 문자열을 파싱하여 필요한 변수에 할당
-	    JSONObject jsonObject = new JSONObject(req);
-	    String serverip = jsonObject.getString("serverip");
-	    String query = jsonObject.getString("query");
-//	    System.out.println("serverip : "+ serverip);
-//	    System.out.println("query : "+ query);
-		
-//      String url = "http://172.16.103.34:8988/fnvr/request/query/select"; // 외부 RESTful API의 URL select
-      String url = "http://172.16.103.34:8988/fnvr/request/query/execute"; // 외부 RESTful API의 URL insert, update
-	       
-       
-       //서버로 전송할 객체 생성
-       Map<String, String> requestBody = new LinkedHashMap<>();
-       requestBody.put("serverip", serverip);
-       requestBody.put("query", query);
-//       System.out.println("requestBody : "+ requestBody);
-
-       // 요청 헤더 설정
-       HttpHeaders headers = new HttpHeaders();
-       headers.setContentType(MediaType.APPLICATION_JSON);
-
-       // HttpEntity 생성
-       HttpEntity<Map<String, String>> requestEntity = new HttpEntity<>(requestBody, headers);
-
-       // post 요청 보내기
-       String response = restTemplate.postForObject(url, requestEntity, String.class);
-       
-       
-//       System.out.print("response"+ response);
-
-       // 응답 데이터를 클라이언트에 반환
-       return response;
-   }
-
-	
-	
-
-	
 	// 강우데이터 일간강우
-	@PostMapping("/sendDay_rainfall")
+	//강우데이터 test
+	@PostMapping(value="/getData", produces="text/plain; charset=UTF-8")
 	@ResponseBody
-	public String rainfallDayDataForword(
-			@RequestBody String occuDay
-			) {
-		System.out.println("occuDay"+occuDay);
-		return null;
-	}
-	
-	// 강우데이터 월간강우
-	@PostMapping("/sendMonth_rainfall")
-	@ResponseBody
-	public String rainfallMonthDataForword(
-			@RequestBody String occuMonth
-			) {
-		System.out.println("occuMonth"+occuMonth);
-		return null;
-	}
-	
-	// 강우데이터 연간강우
-	@PostMapping("/sendYear_rainfall")
-	@ResponseBody
-	public String rainfallYearDataForword(
-			@RequestBody String occuYear
-			) {
-		System.out.println("occuYear"+occuYear);
-		return null;
-	}
-	
-	// 강우데이터 기간별강우
-	@PostMapping("/sendDate_rainfall")
-	@ResponseBody
-	public String rainfallDateDataForword(
-			@RequestBody String req
-			) {
-		System.out.println("req"+req);
+	public String getDataFromAPI(
+								@RequestBody String req
+								, RedirectAttributes ra
+								) {
+//		System.out.println("req: " + req);
+		
+		
+	    String apiKey;
+		
+		 try {
+		        InputStream is = getClass().getResourceAsStream("/rainfall_key.ini");
+		        Scanner s = new Scanner(is);
+		        apiKey = s.nextLine();
+//				System.out.println("apiKey : "+ apiKey);
+		        s.close();
+		        is.close();
+
+		
+		
+		String url = "https://www.vixbolt.co.kr/api/v100/rain/comp_export";
 		
 		// JSON 문자열을 파싱하여 필요한 변수에 할당
-	    JSONObject jsonObject = new JSONObject(req);
-	    String startOccuDate = jsonObject.getString("startOccuDate");
-	    String endOccuDate = jsonObject.getString("endOccuDate");
-	    String areaValue = jsonObject.getString("areaValue");
-	    
-	    // 각 변수 값 출력
-	    System.out.println("startOccuDate: " + startOccuDate);
-	    System.out.println("endOccuDate: " + endOccuDate);
-	    System.out.println("areaValue: " + areaValue);
-	    return null;
+		JSONObject jsonObject = new JSONObject(req);
+
+		String baseDate = jsonObject.getString("baseDate");
+//		System.out.println("baseDate: " + baseDate);
+		
+		// 서버로 전송할 객체 생성
+		Map<String, String> requestBody = new LinkedHashMap<>();
+		requestBody.put("key", apiKey);
+		requestBody.put("baseDate", baseDate);
+		System.out.println("requestBody: " + requestBody);
+		
+		// 요청 헤더 설정
+		HttpHeaders headers = new HttpHeaders();
+		headers.setContentType(MediaType.APPLICATION_JSON);
+		
+		// HttpEntity 생성
+		HttpEntity<Map<String, String>> requestEntity = new HttpEntity<>(requestBody, headers);
+		
+		// post 요청 보내기
+		String response = restTemplate.postForObject(url, requestEntity, String.class);
+		
+		System.out.print("response: " + response);
+		
+		// 응답 데이터를 클라이언트에 반환
+		return response;
+		
+	 } catch (Exception e) {
+            e.printStackTrace();
+            ra.addFlashAttribute("message", "최소 3일 간의 데이터만 조회할 수 있습니다.");
+            return "0"; // 에러 발생 시 null 반환하거나 적절히 처리
+        }
 	}
+
+	
+//	// 강우데이터 일간강우
+//	@PostMapping("/sendDay_rainfall")
+//	@ResponseBody
+//	public String rainfallDayDataForword(
+//			@RequestBody String occuDay
+//			) {
+//		System.out.println("occuDay"+occuDay);
+//		return null;
+//	}
+//	
+//	// 강우데이터 월간강우
+//	@PostMapping("/sendMonth_rainfall")
+//	@ResponseBody
+//	public String rainfallMonthDataForword(
+//			@RequestBody String occuMonth
+//			) {
+//		System.out.println("occuMonth"+occuMonth);
+//		return null;
+//	}
+//	
+//	// 강우데이터 연간강우
+//	@PostMapping("/sendYear_rainfall")
+//	@ResponseBody
+//	public String rainfallYearDataForword(
+//			@RequestBody String occuYear
+//			) {
+//		System.out.println("occuYear"+occuYear);
+//		return null;
+//	}
+//	
+//	// 강우데이터 기간별강우
+//	@PostMapping("/sendDate_rainfall")
+//	@ResponseBody
+//	public String rainfallDateDataForword(
+//			@RequestBody String req
+//			) {
+//		System.out.println("req"+req);
+//		
+//		// JSON 문자열을 파싱하여 필요한 변수에 할당
+//	    JSONObject jsonObject = new JSONObject(req);
+//	    String startOccuDate = jsonObject.getString("startOccuDate");
+//	    String endOccuDate = jsonObject.getString("endOccuDate");
+//	    String areaValue = jsonObject.getString("areaValue");
+//	    
+//	    // 각 변수 값 출력
+//	    System.out.println("startOccuDate: " + startOccuDate);
+//	    System.out.println("endOccuDate: " + endOccuDate);
+//	    System.out.println("areaValue: " + areaValue);
+//	    return null;
+//	}
 	
 	
 	

@@ -11,7 +11,7 @@
 	 
 	 <select id="gateCodeList" resultMap="_EquimentControl">
 		SELECT GATE_CODE
-		FROM TB_TEMP_DATE_CONTROL_LOG
+		FROM TB_CIRCUIT_BREAKER_LOG
 	 </select>
 	 
 

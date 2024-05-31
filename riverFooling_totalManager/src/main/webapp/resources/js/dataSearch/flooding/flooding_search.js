@@ -193,15 +193,19 @@ async function yearFlooding_searchData() {
 
 async function dateFlooding_searchData() {
     let startYearValue = document.getElementById("startYear").value;
-    let startMonthValue = document.getElementById("startMonth").value;
-    let startDayValue = document.getElementById("startDay").value;
-
+    let startMonth = document.getElementById("startMonth").value;
+    let startMonthValue = startMonth < 10 ? "0" + startMonth : startMonth.toString();
+    let startDay = document.getElementById("startDay").value;
+    let startDayValue = startDay < 10 ? "0" + startDay : startDay.toString();
+    
     let endYearValue = document.getElementById("endYear").value;
-    let endMonthValue = document.getElementById("endMonth").value;
-    let endDayValue = document.getElementById("endDay").value;
+    let endMonth = document.getElementById("endMonth").value;
+    let endMonthValue = endMonth < 10 ? "0" + endMonth : endMonth.toString();
+    let endDay = document.getElementById("endDay").value;
+    let endDayValue = endDay < 10 ? "0" + endDay : endDay.toString();
 
-    let startOccuDate = startYearValue + "0" + startMonthValue + "0" + startDayValue;
-    let endOccuDate = endYearValue + "0" + endMonthValue + "0" + endDayValue;    
+    let startOccuDate = startYearValue + startMonthValue +  startDayValue;
+    let endOccuDate = endYearValue +  endMonthValue + endDayValue;    
     let areaValue = document.getElementById("area").value;
     let kindValue = document.getElementById("kind").value;
     console.log("startOccuDate : " + startOccuDate);
@@ -354,7 +358,7 @@ async function searchData1() {
     } else if (selectMonthValue) { //연월
         // console.log("selectYearValue : ", selectYearValue);
         // console.log("selectMonthValue : ", selectMonthValue);
-        let occuMonth = selectYearValue + "0" + selectMonthValue;
+        let occuMonth = selectYearValue + selectMonthValue;
         console.log("occuMonth : ", occuMonth);
 
         fetch("/dataSearch/sendMonth_flooding", {
@@ -406,30 +410,41 @@ async function searchData1() {
 
 
     } else { //시작연월일~종료연월일
-        startYearValue = document.getElementById("startYear").value;
-        startMonthValue = addLeadingZero(document.getElementById("startMonth").value);
-        startDayValue = addLeadingZero(document.getElementById("startDay").value);
-
-        endYearValue = document.getElementById("endYear").value;
-        endMonthValue = addLeadingZero(document.getElementById("endMonth").value);
-        endDayValue = addLeadingZero(document.getElementById("endDay").value);
-
-        console.log("startYearValue : ", startYearValue);
-        console.log("startMonthValue : ", startMonthValue);
-        console.log("startDayValue : ", startDayValue);
-
-        console.log("endYearValue : ", endYearValue);
-        console.log("endMonthValue : ", endMonthValue);
-        console.log("endDayValue : ", endDayValue);
-
+        console.log(currentDate);
+        currentDate.setDate(currentDate.getDate() - 7); // currentDate에서 7일을 빼서 일주일 전 날짜를 설정함
+    
+        // 연, 월, 일을 얻어옴
+        let beforeYear = currentDate.getFullYear();
+        console.log("beforeYear : ", beforeYear);
+        console.log("year : ", year);
+        let beforeMonth = (currentDate.getMonth() + 1); // 월은 0부터 시작하므로 +1, 두 자리로 포맷
+        console.log("beforeMonth : ", beforeMonth);
+        console.log("month : ", month);
+        let beforeDay = currentDate.getDate(); // 두 자리로 포맷
+        console.log("beforeDay : ", beforeDay);
+        console.log("day : ", day);
+    
+        console.log(currentDate);
+    
+    
+        startYearValue = beforeYear;
+        startMonthValue = beforeMonth;
+        startDayValue = beforeDay;
+    
+        endYearValue = year;
+        endMonthValue = month;
+        endDayValue = day;
+    
         let startOccuDate = startYearValue + startMonthValue + startDayValue;
         let endOccuDate = endYearValue + endMonthValue + endDayValue;
-
         let areaValue = document.getElementById("area").value;
-        console.log("areaValue : ", areaValue);
-
         let kindValue = document.getElementById("kind").value;
-        console.log("kindValue : ", kindValue);
+        console.log("startOccuDate : " + startOccuDate);
+        console.log("endOccuDate : " + endOccuDate);
+        console.log("areaValue : " + areaValue);
+        console.log("kindValue : " + kindValue);
+    
+
 
         fetch("/dataSearch/sendDate_flooding", {
             method: "POST",

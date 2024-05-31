@@ -840,10 +840,15 @@ dateRainfall.addEventListener("click", ()=>{
 
     // 연, 월, 일을 얻어옴
     let beforeYear = currentDate.getFullYear();
+    console.log("beforeYear : ", beforeYear);
     console.log("year : ", year);
-    let beforeMonth = (currentDate.getMonth() + 1).toString().padStart(2, "0"); // 월은 0부터 시작하므로 +1, 두 자리로 포맷
+    let beforeMonthValue = (currentDate.getMonth() + 1); // 월은 0부터 시작하므로 +1, 두 자리로 포맷
+    let beforeMonth = beforeMonthValue < 10 ? "0" + beforeMonthValue : beforeMonthValue.toString();
+    console.log("beforeMonth : ", beforeMonth);
     console.log("month : ", month);
-    let beforeDay = currentDate.getDate().toString().padStart(2, "0"); // 두 자리로 포맷
+    let beforeDayValue = currentDate.getDate(); // 두 자리로 포맷
+    let beforeDay = beforeDayValue < 10 ? "0" + beforeDayValue : beforeDayValue.toString();
+    console.log("beforeDay : ", beforeDay);
     console.log("day : ", day);
 
     console.log(currentDate);
@@ -876,7 +881,11 @@ dateRainfall.addEventListener("click", ()=>{
     fetch("/dataSearch/sendDate_flooding", {
         method: "POST",
         headers: { "Content-Type": "application/json;" },
-        body: JSON.stringify({ "date_flooding":date_flooding, "kindValue": kindValue })
+        body: JSON.stringify({ 
+            "startOccuDate":startOccuDate
+            ,  "endOccuDate":endOccuDate
+            ,  "areaValue":areaValue
+            ,"kindValue": kindValue })
     })
     .then(resp => resp.json()) // 요청에 대한 응답 객체(response)를 필요한 형태로 파싱
     .then((result) => {

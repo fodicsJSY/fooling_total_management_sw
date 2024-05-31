@@ -15,7 +15,10 @@
     <script src="/resources/js/sweetalert/sweetalert2.js"></script>
 </head>
 <body>
-    <header>
+    <!-- header 시작 -->
+    <jsp:include page="/WEB-INF/views/header.jsp"/>
+    <!-- header 끝 -->
+    <%-- <header>
         <div class="headContiner">
             <div class="headContent">
                 <a href="/rainfall"><div class="logoBox"><img class="logo" src="/resources/img/logo.png" alt=""></a></div>
@@ -27,7 +30,7 @@
                 </div>
             </div>
         </div>
-    </header>
+    </header> --%>
 <hr>
     <main>
         <section>

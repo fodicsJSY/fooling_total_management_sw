@@ -1,29 +1,57 @@
 async function getDBIP() {
-    const { value: breakerIP } = await Swal.fire({
-        title: "차단기 IP를 입력해주세요.",
-        input: "text",
-        showCancelButton: true,
-        inputValidator: (value) => {
-            if (!value) {
-                return '차단기 IP를 입력해주세요.';
+    const { value: formValues } = await Swal.fire({
+        title: "IP와 PORT를 입력해주세요.",
+        html: `
+            <input id="swal-input1" class="swal2-input" placeholder="IP">
+            <input id="swal-input2" class="swal2-input" placeholder="PORT">
+        `,
+        focusConfirm: true,
+        preConfirm: () => {
+            const inputIP = document.getElementById('swal-input1').value;
+            const inputPORT = document.getElementById('swal-input2').value;
+
+            if (!inputIP || !inputPORT) {
+                Swal.showValidationMessage('IP와 PORT 모두 입력해주세요.');
+                return;
             }
-        }
+
+            return { inputIP, inputPORT };
+        },
+        showCancelButton: true,
     });
-    if (breakerIP) {
-        // 두 IP 주소를 로컬 스토리지에 저장
-        saveIPToLocalStorage(breakerIP);
-        // initialize(dataIP, breakerIP);
+
+    if (formValues) {
+        const { inputIP, inputPORT } = formValues;
+        saveIP_ToLocalStorage(inputIP);
+        savePORT_ToLocalStorage(inputPORT);
+        // initialize(dataIP, input1, input2);  // 필요한 경우 초기화 호출
     }
 }
+
+
+
 // 로컬 스토리지에 IP 주소를 저장하는 함수
-function saveIPToLocalStorage(breakerIP) {
-    localStorage.setItem("breakerIP", breakerIP);
+function saveIP_ToLocalStorage(inputIP) {
+    localStorage.setItem("inputIP", inputIP);
 }
 
 // 로컬 스토리지에서 IP 주소를 가져오는 함수
-function getIPFromLocalStorage() {
+function getIP_FromLocalStorage() {
     return {
-        breakerIP: localStorage.getItem("breakerIP")
+        saveIP: localStorage.getItem("inputIP")
+    };
+}
+
+
+// 로컬 스토리지에 IP 주소를 저장하는 함수
+function savePORT_ToLocalStorage(inputPORT) {
+    localStorage.setItem("inputPORT", inputPORT);
+}
+
+// 로컬 스토리지에서 IP 주소를 가져오는 함수
+function getPORT_FromLocalStorage() {
+    return {
+        savePORT: localStorage.getItem("inputPORT")
     };
 }
 

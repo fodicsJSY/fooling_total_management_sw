@@ -303,7 +303,7 @@ function saveChanges(camera_code, cameraName, i, gateCode) {
         }
         console.log("doorCommand", doorCommand);
 
-        fetch("/breakerSave", { 
+        fetch("/equipmentControl/breakerSave", { 
             method : "POST", 
             headers: {"Content-Type": "application/json;"}, 
             credentials: "include",
@@ -337,7 +337,7 @@ function saveChanges(camera_code, cameraName, i, gateCode) {
         }); 
     }else{
         console.log("6아님");
-        fetch("/breakerSave", { 
+        fetch("/equipmentControl/breakerSave", { 
             method : "POST", 
             headers: {"Content-Type": "application/json;"}, 
             credentials: "include",

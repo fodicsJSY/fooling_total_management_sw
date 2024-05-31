@@ -14,7 +14,10 @@
     <link rel="stylesheet" href="/resources/css/equipmentControl/차단기수동제어.css">
 </head>
 <body>
-    <header>
+    <!-- header 시작 -->
+    <jsp:include page="/WEB-INF/views/header.jsp"/>
+    <!-- header 끝 -->
+    <%-- <header>
         <div class="headContiner">
             <div class="headContent">
                 <a href="/dataSearch/rainfall"><div class="logoBox"><img class="logo" src="/resources/img/logo.png" alt=""></a></div>
@@ -26,7 +29,7 @@
                 </div>
             </div>
         </div>
-    </header>
+    </header> --%>
 <hr>
     <main>
         <section>
@@ -185,13 +188,9 @@
 
 
     <script>
-        var loginIp = "${loginUser.serverip}";
-        var loginPort = ${loginUser.port};
         var loginId = "${loginUser.user_id}";
         var loginPw = "${loginUser.user_pw}";
 
-        console.log("loginIp", loginIp);
-        console.log("loginPort", loginPort);
         console.log("loginId", loginId);
         console.log("loginPw", loginPw);
     </script>

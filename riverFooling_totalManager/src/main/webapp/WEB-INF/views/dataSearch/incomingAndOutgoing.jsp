@@ -13,7 +13,10 @@
 </head>
 <body>
 <%-- 입출차정보 --%>
-    <header>
+    <!-- header 시작 -->
+    <jsp:include page="/WEB-INF/views/header.jsp"/>
+    <!-- header 끝 -->
+    <%-- <header>
         <div class="headContiner">
             <div class="headContent">
                 <a href="/dataSearch/rainfall"><div class="logoBox"><img class="logo" src="/resources/img/logo.png" alt=""></a></div>
@@ -25,7 +28,7 @@
                 </div>
             </div>
         </div>
-    </header>
+    </header> --%>
 <hr>
     <main>
         <section>

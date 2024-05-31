@@ -19,6 +19,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestHeader;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -52,8 +53,8 @@ public class UserController {
 	// 회원 로그인
 	@PostMapping("/userLogin")
 	public String userLogin(
-							String serverip
-							, int port
+							@RequestParam(value = "inputIP", required = false) String inputIP
+							,@RequestParam(value = "inputPORT", required = false) Integer inputPORT
 							, String user_id
 							, String user_pw
 							, Model model, HttpServletResponse resp
@@ -70,8 +71,8 @@ public class UserController {
 		
         // User 객체 생성 및 설정
         User user = new User();
-        user.setPort(port);
-        user.setServerip(serverip);
+        user.setPort(inputPORT);
+        user.setServerip(inputIP);
         user.setUser_id(user_id);
         user.setUser_pw(user_pw);
         
