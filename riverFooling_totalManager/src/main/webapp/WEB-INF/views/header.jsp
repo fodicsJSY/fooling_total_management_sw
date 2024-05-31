@@ -8,6 +8,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>침수차단 시스템</title>
 
+    <%-- sweetalert2 --%>
+    <script src="/resources/js/sweetalert/sweetalert2.js"></script>
     <link rel="stylesheet" href="/resources/css/header.css">
 </head>
 <body>

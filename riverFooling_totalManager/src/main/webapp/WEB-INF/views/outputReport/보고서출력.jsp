@@ -72,8 +72,8 @@
                         </div>
                         
                         <div>
-                            <button type="button" onclick="return printPage();">인쇄</button>
-                            <button type="button" id="refreshButton" >새로고침</button>
+                            <button type="button" class="btn" onclick="return printPage();">인쇄</button>
+                            <button type="button" class="btn" id="refreshButton" >새로고침</button>
                         </div>       
                     </div>
                             </div>
