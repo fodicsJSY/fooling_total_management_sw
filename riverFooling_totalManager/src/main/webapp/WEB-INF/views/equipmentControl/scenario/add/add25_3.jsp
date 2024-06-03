@@ -37,8 +37,8 @@
             <div class="sectionBox01">
                 <div class="listBox">
                     <div class="listTitle">장비제어</div>
-                    <div class="listContent"><a href="/차단기수동제어" class="pageFoward">차단기</a></div>
-                    <div class="listContent"><a href="/displayManagement" class="pageFoward nowForward">전광판</a></div>
+                    <div class="listContent"><a href="/equipmentControl/차단기수동제어" class="pageFoward">차단기</a></div>
+                    <div class="listContent"><a href="/equipmentControl/displayManagement" class="pageFoward nowForward">전광판</a></div>
                 </div>
             </div>
             <div class="sectionBox02">

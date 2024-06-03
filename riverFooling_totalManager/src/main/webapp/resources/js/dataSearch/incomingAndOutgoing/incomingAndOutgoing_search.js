@@ -1,5 +1,5 @@
 function searchData(){
-    console.log("클릭");
+    // console.log("클릭");
     // yearSelect 요소의 값을 가져와서 콘솔에 출력합니다.
 
 
@@ -52,7 +52,7 @@ function searchData(){
         // console.log("selectYearValue : ", selectYearValue);
         // console.log("selectMonthValue : ", selectMonthValue);
         let occuMonth = selectYearValue + "0" + selectMonthValue;
-        console.log("occuMonth : ", occuMonth);
+        // console.log("occuMonth : ", occuMonth);
 
         fetch("/sendMonth_IAO", { 
             method : "POST", 
@@ -83,7 +83,7 @@ function searchData(){
     }else if(selectYearValue){ //연
         // console.log("selectYearValue : ", selectYearValue);
         let occuYear = selectYearValue;
-        console.log("occuYear : ", occuYear);
+        // console.log("occuYear : ", occuYear);
 
         fetch("/sendYear_IAO", { 
             method : "POST", 
@@ -132,10 +132,10 @@ function searchData(){
         let endOccuDate = endYearValue + "0" +endMonthValue + "0" +endDayValue;
 
         let areaValue = document.getElementById("area").value;
-        console.log("areaValue : ", areaValue);
+        // console.log("areaValue : ", areaValue);
 
         let kindValue = document.getElementById("kind").value;
-        console.log("kindValue : ", kindValue);
+        // console.log("kindValue : ", kindValue);
 
 
 

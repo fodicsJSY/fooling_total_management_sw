@@ -1,7 +1,7 @@
 
 //임계값설정 페이지 로드시
 document.addEventListener("DOMContentLoaded", function() {
-    console.log("야호fhem");
+    // console.log("야호fhem");
     settingDataForword();
 });
 
@@ -148,11 +148,11 @@ var stepFive_sms = document.getElementById("stepFive_sms");
 
 // 지구선택
 let zoneSelectValue = zoneSelect.value;
-console.log("zoneSelectValue : ", zoneSelectValue);
+// console.log("zoneSelectValue : ", zoneSelectValue);
 
 // 강우 센서
 let areaSelectValue = areaSelect.value;
-console.log("areaSelectValue : ", areaSelectValue);
+// console.log("areaSelectValue : ", areaSelectValue);
 
 // 단계 선택
 var stepOneValue = stepOne.checked
@@ -270,7 +270,7 @@ var stepFiveValue = stepFive.checked
 
 /********************* 저장버튼 클릭 시 시작 ****************************/
 document.getElementById("saveBtn").addEventListener("click", ()=>{
-    console.log("클릭");
+    // console.log("클릭");
 
 
 
@@ -296,7 +296,7 @@ document.getElementById("saveBtn").addEventListener("click", ()=>{
     let selectedRadio = document.querySelector('input[name="alarmOff"]:checked');
     
     let selectedRadio_value = selectedRadio.value;
-    console.log("stepOne선택된 라디오 버튼 값:", selectedRadio_value);
+    // console.log("stepOne선택된 라디오 버튼 값:", selectedRadio_value);
 
     // 해제조건 시간 input
     let inputTime_value = inputTime.value;
@@ -479,7 +479,7 @@ document.getElementById("saveBtn").addEventListener("click", ()=>{
     })
     .then(resp => resp.json()) // 요청에 대한 응답 객체(response)를 필요한 형태로 파싱
     .then((result) => {
-        console.log("result", result );
+        // console.log("result", result );
 
         if(result == 1){
             Swal.fire("저장이 완료되었습니다!").then(() => {
@@ -492,7 +492,7 @@ document.getElementById("saveBtn").addEventListener("click", ()=>{
 
     }) // 첫 번째 then에서 파싱한 데이터를 이용한 동작 작성
     .catch( err => {
-        // console.log("err : ", err);
+        console.log("err : ", err);
     }); // 예외 발생 시 처리할 내용을 작성
 });
 /********************* 저장버튼 클릭 시 끝 ****************************/
@@ -502,7 +502,7 @@ document.getElementById("saveBtn").addEventListener("click", ()=>{
 /*********************페이지로드 시 설정정보 가져오기 시작**********************/
 
 function settingDataForword(){
-    console.log("함수");
+    // console.log("함수");
 
     fetch("/inundationSetting/Settingdata", { 
         method : "POST", 
@@ -514,11 +514,11 @@ function settingDataForword(){
     })
     .then(resp => resp.json()) // 요청에 대한 응답 객체(response)를 필요한 형태로 파싱
     .then((result) => {
-        console.log("result", result );
+        // console.log("result", result );
         
         var settingDataList = result.settingDataList;
-        console.log("settingDataList", settingDataList );
-        console.log("settingDataList.length", settingDataList.length );
+        // console.log("settingDataList", settingDataList );
+        // console.log("settingDataList.length", settingDataList.length );
 
         for(let x = 0; x < settingDataList.length; x++){
             let alarmLevel = settingDataList[x].alarmLevel;
@@ -540,7 +540,7 @@ function settingDataForword(){
                 autoTime.checked = true;
                 inputTime.value = alarmOffCondition;
             }
-            console.log("alarmOffCondition", alarmOffCondition);
+            // console.log("alarmOffCondition", alarmOffCondition);
 
             // 1단계
             // console.log("alarmLevel", alarmLevel);
@@ -687,7 +687,7 @@ function settingDataForword(){
 
     }) // 첫 번째 then에서 파싱한 데이터를 이용한 동작 작성
     .catch( err => {
-        // console.log("err : ", err);
+        console.log("err : ", err);
     }); // 예외 발생 시 처리할 내용을 작성
 }
 

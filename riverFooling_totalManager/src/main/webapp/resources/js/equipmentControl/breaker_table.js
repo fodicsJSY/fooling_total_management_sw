@@ -5,8 +5,8 @@ function breakerMakeTable(data){
     // tableDataList = data.tableDataList;
 
     // console.log("tableDataList", tableDataList );
-    console.log("테이블 생성");
-    console.log("data", data );
+    // console.log("테이블 생성");
+    // console.log("data", data );
     
     var tableContainer = document.querySelector(".tableContainer");
     tableContainer.innerHTML = ""; // Clear previous data
@@ -54,7 +54,7 @@ function breakerMakeTable(data){
         saveButton.textContent = "저장";
         saveButton.id = `saveBtn_${i}`; // ID를 데이터의 첫 번째 요소를 이용하여 설정
         saveButton.addEventListener("click", function() {
-            console.log("클릭");
+            // console.log("클릭");
             saveChanges(data[i][0], data[i][2], i, data[i][3]);
         });
         saveCell.appendChild(saveButton);
@@ -106,7 +106,7 @@ function makeCell(row, elementType, content) {
 
 // select 셀 생성 함수1
 function createSelectCell1(row, className, status, cameraName, i, gateCode) {
-    console.log("createSelectCell1 gateCode : ", gateCode);
+    // console.log("createSelectCell1 gateCode : ", gateCode);
     var cell = document.createElement("td");
     cell.className = className;
     var select = document.createElement("select");
@@ -122,7 +122,7 @@ function createSelectCell1(row, className, status, cameraName, i, gateCode) {
         optionElement.textContent = option.text;
 
         if(gateCode == 6){
-            console.log("createSelectCell1 status : ", status);
+            // console.log("createSelectCell1 status : ", status);
             if (status == 20 || status == 21) {
                 if (option.value == "1") { // 상태가 20 또는 21일 때 열림이 선택되도록 함
                     optionElement.selected = true;
@@ -149,7 +149,7 @@ function createSelectCell1(row, className, status, cameraName, i, gateCode) {
 
 // select 셀 생성 함수2(EM LOCK)
 function createSelectCell2(row, className, status, cameraName, i, gateCode) {
-    console.log("gateCode : ", gateCode);
+    // console.log("gateCode : ", gateCode);
     var cell = document.createElement("td");
     cell.className = className;
     if(gateCode == 6){
@@ -258,12 +258,12 @@ function createSelectCell4(row, className, value, cameraName, i) {
 
 // 저장 함수 정의
 function saveChanges(camera_code, cameraName, i, gateCode) {
-    console.log("실행");
-    console.log("camera_code : ", camera_code);
-    console.log("cameraName : ", cameraName);
-    console.log("Index : ", i);
-    console.log("cameraName : ", cameraName);
-    console.log("gateCode : ", gateCode);
+    // console.log("실행");
+    // console.log("camera_code : ", camera_code);
+    // console.log("cameraName : ", cameraName);
+    // console.log("Index : ", i);
+    // console.log("cameraName : ", cameraName);
+    // console.log("gateCode : ", gateCode);
 
     var clickedButton = event.target;
     var row = clickedButton.closest("tr");
@@ -274,7 +274,7 @@ function saveChanges(camera_code, cameraName, i, gateCode) {
     // var select4 = row.querySelector(`select[id="${cameraName}_WarningSound${i}"]`);
 
     var value1 = select1.value;
-    console.log("Value 1: ", value1);
+    // console.log("Value 1: ", value1);
 
     // var value3 = select3.value;
     // console.log("Value 3: ", value3);
@@ -285,7 +285,7 @@ function saveChanges(camera_code, cameraName, i, gateCode) {
     if(gateCode == 6){
 
         var value2 = select2.value;
-        console.log("Value 2: ", value2);
+        // console.log("Value 2: ", value2);
 
         let doorCommand;
         if(value1 == 0){
@@ -301,7 +301,7 @@ function saveChanges(camera_code, cameraName, i, gateCode) {
                 doorCommand = 21;
             }
         }
-        console.log("doorCommand", doorCommand);
+        // console.log("doorCommand", doorCommand);
 
         fetch("/equipmentControl/breakerSave", { 
             method : "POST", 
@@ -314,14 +314,14 @@ function saveChanges(camera_code, cameraName, i, gateCode) {
         })
         .then(resp => resp.json()) 
         .then((result) => {
-            console.log("result", result );
+            // console.log("result", result );
             // result 문자열을 JSON으로 파싱
             let resultObj = JSON.parse(result.result);
     
             // res_code 값 추출
             let resCode = resultObj.res_code;
     
-            console.log(resCode); // 결과값 출력
+            // console.log(resCode); // 결과값 출력
     
             if(resCode == 200 ){
                 Swal.fire("저장이 완료되었습니다!").then(() => {
@@ -336,7 +336,7 @@ function saveChanges(camera_code, cameraName, i, gateCode) {
             console.error("Error: ", err);
         }); 
     }else{
-        console.log("6아님");
+        // console.log("6아님");
         fetch("/equipmentControl/breakerSave", { 
             method : "POST", 
             headers: {"Content-Type": "application/json;"}, 
@@ -348,14 +348,14 @@ function saveChanges(camera_code, cameraName, i, gateCode) {
         })
         .then(resp => resp.json()) 
         .then((result) => {
-            console.log("result", result );
+            // console.log("result", result );
             // result 문자열을 JSON으로 파싱
             let resultObj = JSON.parse(result.result);
     
             // res_code 값 추출
             let resCode = resultObj.res_code;
     
-            console.log(resCode); // 결과값 출력
+            // console.log(resCode); // 결과값 출력
     
             if(resCode == 200 ){
                 Swal.fire("저장이 완료되었습니다!").then(() => {

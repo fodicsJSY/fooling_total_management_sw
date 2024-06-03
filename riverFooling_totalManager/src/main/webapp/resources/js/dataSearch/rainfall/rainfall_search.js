@@ -1,5 +1,5 @@
 function searchData(){
-    console.log("searchData");
+    // console.log("searchData");
 
     let selectYearValue = document.getElementById("selectYear") ? document.getElementById("selectYear").value : null;
     let monthValue = document.getElementById("selectMonth") ? document.getElementById("selectMonth").value : null;
@@ -12,7 +12,7 @@ function searchData(){
         // console.log("selectMonthValue : ", selectMonthValue);
         // console.log("selectDayValue : ", selectDayValue);
         let occuDay = selectYearValue + selectMonthValue + selectDayValue;
-        console.log("occuDay : ", occuDay);
+        // console.log("occuDay : ", occuDay);
 
 
         fetch("/dataSearch/getData", { 
@@ -25,14 +25,14 @@ function searchData(){
         })
         .then(resp => resp.json()) // 요청에 대한 응답 객체(response)를 필요한 형태로 파싱
         .then((result) => {
-            console.log("result", result );
+            // console.log("result", result );
     
             if(result == "0"){
                 Swal.fire("데이터가 없습니다.");
             }else{
     
                 let data = result.results;
-                console.log("data", data);
+                // console.log("data", data);
         
                 r_dayMakeTable(data);
             }
@@ -41,7 +41,7 @@ function searchData(){
             
         }) // 첫 번째 then에서 파싱한 데이터를 이용한 동작 작성
         .catch( err => {
-            // console.log("err : ", err);
+            console.log("err : ", err);
         }); // 예외 발생 시 처리할 내용을 작성
 
 

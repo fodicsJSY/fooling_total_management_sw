@@ -118,14 +118,14 @@ public class DataSearchController {
 		// post 요청 보내기
 		String response = restTemplate.postForObject(url, requestEntity, String.class);
 		
-		System.out.print("response: " + response);
+//		System.out.print("response: " + response);
 		
 		// 응답 데이터를 클라이언트에 반환
 		return response;
 		
 	 } catch (Exception e) {
             e.printStackTrace();
-            ra.addFlashAttribute("message", "최소 3일 간의 데이터만 조회할 수 있습니다.");
+            ra.addFlashAttribute("message", "선택한 날짜의 데이터가 없습니다.");
             return "0"; // 에러 발생 시 null 반환하거나 적절히 처리
         }
 	}
@@ -417,24 +417,24 @@ public class DataSearchController {
 			) {
 		Map<String, Object> map = new HashMap<>();
 		
-		System.out.println("date_flooding"+date_flooding);
+//		System.out.println("date_flooding"+date_flooding);
 		
 
 
 
             if("flooding".equals(date_flooding.getKindValue())) {
                 List<Flooding> date_floodingList01 = service.date_floodingList01(date_flooding);
-                System.out.println("date_floodingList01 : " + date_floodingList01);
+//                System.out.println("date_floodingList01 : " + date_floodingList01);
                 map.put("date_floodingList01", date_floodingList01);
-                System.out.println("map : " + map);
+//                System.out.println("map : " + map);
                 
                 return map;
                 
             }else {
             	List<Flooding> date_floodingList02 = service.date_floodingList02(date_flooding);
-            	System.out.println("date_floodingList02 : " + date_floodingList02);
+//            	System.out.println("date_floodingList02 : " + date_floodingList02);
             	map.put("date_floodingList02", date_floodingList02);
-            	System.out.println("map : " + map);
+//            	System.out.println("map : " + map);
             	
             	return map;
             }
@@ -472,7 +472,7 @@ public class DataSearchController {
 	public String IAODayDataForword(
 			@RequestBody String occuDay
 			) {
-		System.out.println("occuDay"+occuDay);
+//		System.out.println("occuDay"+occuDay);
 		return null;
 	}
 	
@@ -484,7 +484,7 @@ public class DataSearchController {
 	public String IAOMonthDataForword(
 			@RequestBody String occuMonth
 			) {
-		System.out.println("occuMonth"+occuMonth);
+//		System.out.println("occuMonth"+occuMonth);
 		return null;
 	}
 	
@@ -497,7 +497,7 @@ public class DataSearchController {
 	public String IAOYearDataForword(
 			@RequestBody String occuYear
 			) {
-		System.out.println("occuYear"+occuYear);
+//		System.out.println("occuYear"+occuYear);
 		return null;
 	}
 	
@@ -510,7 +510,7 @@ public class DataSearchController {
 	public String IAODateDataForword(
 			@RequestBody String req
 			) {
-		System.out.println("req"+req);
+//		System.out.println("req"+req);
 		
 		// JSON 문자열을 파싱하여 필요한 변수에 할당
 	    JSONObject jsonObject = new JSONObject(req);
@@ -520,10 +520,10 @@ public class DataSearchController {
 	    String kindValue = jsonObject.getString("kindValue");
 	    
 	    // 각 변수 값 출력
-	    System.out.println("startOccuDate: " + startOccuDate);
-	    System.out.println("endOccuDate: " + endOccuDate);
-	    System.out.println("areaValue: " + areaValue);
-	    System.out.println("kindValue: " + kindValue);
+//	    System.out.println("startOccuDate: " + startOccuDate);
+//	    System.out.println("endOccuDate: " + endOccuDate);
+//	    System.out.println("areaValue: " + areaValue);
+//	    System.out.println("kindValue: " + kindValue);
 	    return null;
 	}
 	

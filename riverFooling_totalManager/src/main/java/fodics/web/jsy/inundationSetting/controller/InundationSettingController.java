@@ -90,7 +90,7 @@ public class InundationSettingController {
 		
 		
 //		System.out.println("thresholdSetting"+thresholdSetting);
-		System.out.println("req"+req);
+//		System.out.println("req"+req);
 		
 		// JSON 문자열을 파싱하여 필요한 변수에 할당
 	    JSONObject jsonObject = new JSONObject(req);
@@ -159,7 +159,7 @@ public class InundationSettingController {
         }
 
         // 조건에 따라 처리
-        if (step1_hasPopup == true && step1_hasSms == false) {
+        if (step1_hasPopup == false && step1_hasSms == false) {
         	step1_alarm = 0;
         }
         
@@ -167,8 +167,12 @@ public class InundationSettingController {
         	step1_alarm = 1;
         }
         
+        if (step1_hasPopup == true && step1_hasSms == false) {
+        	step1_alarm = 1024; 
+        }
+        
         if (step1_hasPopup == true && step1_hasSms == true) {
-        	step1_alarm = 10; // 임시로 넣어둠
+        	step1_alarm = 1025;
         }
 //        System.out.println("step1_alarm : " + step1_alarm);
         
@@ -187,7 +191,7 @@ public class InundationSettingController {
         }
         
         // 조건에 따라 처리
-        if (step2_hasPopup == true && step2_hasSms == false) {
+        if (step2_hasPopup == false && step2_hasSms == false) {
         	step2_alarm = 0;
         }
         
@@ -195,8 +199,12 @@ public class InundationSettingController {
         	step2_alarm = 1;
         }
         
+        if (step2_hasPopup == true && step2_hasSms == false) {
+        	step2_alarm = 1024; 
+        }
+        
         if (step2_hasPopup == true && step2_hasSms == true) {
-        	step2_alarm = 10; // 임시로 넣어둠
+        	step2_alarm = 1025; 
         }
 //        System.out.println("step2_alarm : " + step2_alarm);
         
@@ -215,7 +223,7 @@ public class InundationSettingController {
         }
         
         // 조건에 따라 처리
-        if (step3_hasPopup == true && step3_hasSms == false) {
+        if (step3_hasPopup == false && step3_hasSms == false) {
         	step3_alarm = 0;
         }
         
@@ -223,8 +231,12 @@ public class InundationSettingController {
         	step3_alarm = 1;
         }
         
+        if (step3_hasPopup == true && step3_hasSms == false) {
+        	step3_alarm = 1024;
+        }
+        
         if (step3_hasPopup == true && step3_hasSms == true) {
-        	step3_alarm = 10; // 임시로 넣어둠
+        	step3_alarm = 1025;
         }
 //        System.out.println("step3_alarm : " + step3_alarm);
         
@@ -243,7 +255,7 @@ public class InundationSettingController {
         }
         
         // 조건에 따라 처리
-        if (step4_hasPopup == true && step4_hasSms == false) {
+        if (step4_hasPopup == false && step4_hasSms == false) {
         	step4_alarm = 0;
         }
         
@@ -251,8 +263,12 @@ public class InundationSettingController {
         	step4_alarm = 1;
         }
         
+        if (step4_hasPopup == true && step4_hasSms == false) {
+        	step4_alarm = 1024; 
+        }
+        
         if (step4_hasPopup == true && step4_hasSms == true) {
-        	step4_alarm = 10; // 임시로 넣어둠
+        	step4_alarm = 1025; 
         }
         
         
@@ -276,7 +292,7 @@ public class InundationSettingController {
         }
         
         // 조건에 따라 처리
-        if (step5_hasPopup == true && step5_hasSms == false) {
+        if (step5_hasPopup == false && step5_hasSms == false) {
         	step5_alarm = 0;
         }
         
@@ -284,8 +300,12 @@ public class InundationSettingController {
         	step5_alarm = 1;
         }
         
+        if (step5_hasPopup == true && step5_hasSms == false) {
+        	step5_alarm = 1024; 
+        }
+        
         if (step5_hasPopup == true && step5_hasSms == true) {
-        	step5_alarm = 10; // 임시로 넣어둠
+        	step5_alarm = 1025; 
         }
         
         
@@ -422,7 +442,7 @@ public class InundationSettingController {
 	public String warningDataForword(
 			@RequestBody String warningValue
 			) {
-		System.out.println("warningValue"+warningValue);
+//		System.out.println("warningValue"+warningValue);
 		return null;
 	}
 

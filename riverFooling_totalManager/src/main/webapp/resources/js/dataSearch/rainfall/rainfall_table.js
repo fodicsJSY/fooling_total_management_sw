@@ -4,15 +4,15 @@ let tableDataList;
 function r_dayMakeTable(data){
 
     tableDataList = data;
-    console.log("tableDataList", tableDataList);
+    // console.log("tableDataList", tableDataList);
     
-    console.log("테이블 생성");
+    // console.log("테이블 생성");
     
 
 
     
     for (let i = 0; i < tableDataList.length; i++) {
-        console.log("tableDataList[i]", tableDataList[i]);
+        // console.log("tableDataList[i]", tableDataList[i]);
 
     }
     
@@ -57,11 +57,11 @@ function r_dayMakeTable(data){
 
      // 중복을 제거한 후에 중복 제거된 값들의 배열을 만듭니다.
     const locations = [...new Set(tableDataList.map(item => item.location))];
-    console.log("locations", locations);
+    // console.log("locations", locations);
     
     const values = [...new Set(tableDataList.map(item => item.values))];
-    console.log("values", values);
-    console.log("values[0]", values[0]);
+    // console.log("values", values);
+    // console.log("values[0]", values[0]);
     
     if(values[0] === 'noData'){
         Swal.fire("데이터가 없습니다.");
@@ -71,12 +71,12 @@ function r_dayMakeTable(data){
         
 
     locations.forEach(location => {
-        console.log("location", location);
+        // console.log("location", location);
         var tr = document.createElement("tr");
         rainfullTbody.appendChild(tr);
 
         let location_value = location.replace("강원특별자치도 영월군 ","");
-        console.log("location_value", location_value)
+        // console.log("location_value", location_value)
 
         let tdLocation = document.createElement("td");
         tdLocation.className = "rainfull areaNameData";
@@ -86,11 +86,11 @@ function r_dayMakeTable(data){
         let cellValue = "-";
 
         let filteredData = tableDataList.filter(item => item.location === location);
-        console.log("filteredData", filteredData);
+        // console.log("filteredData", filteredData);
         
         // 해당 일에 대한 데이터가 있는 경우 값을 할당
         let foundData = filteredData.find(item => item.values);
-        console.log("foundData", foundData);
+        // console.log("foundData", foundData);
         if (foundData) {
             cellValue = foundData.values;
             // cellValue = cellV.split("강원특별자치도 영월군 ");

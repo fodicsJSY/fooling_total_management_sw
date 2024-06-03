@@ -11,10 +11,10 @@ async function minFlooding_searchData() {
 
 
     let occuDay = selectYearValue + selectMonthValue + selectDayValue;
-    console.log("occuDay : " + occuDay);
+    // console.log("occuDay : " + occuDay);
     
     let areaValue = document.getElementById("area") ? document.getElementById("area").value : null;
-    console.log("areaValue : " + areaValue);
+    // console.log("areaValue : " + areaValue);
 
     fetch("/dataSearch/send10min_flooding", { 
         method : "POST", 
@@ -23,14 +23,14 @@ async function minFlooding_searchData() {
     })
     .then(resp => resp.json()) // 요청에 대한 응답 객체(response)를 필요한 형태로 파싱
     .then((result) => {
-        console.log("min_flooding result", result );
+        // console.log("min_flooding result", result );
 
         data = result.min_floodingList;
-        console.log("data : ", data );
-        console.log("data.length : ", data.length );
+        // console.log("data : ", data );
+        // console.log("data.length : ", data.length );
 
         if(data.length == 0){
-            console.log("야호");
+            // console.log("야호");
             var tableContainer = document.querySelector(".tableContainer");
             tableContainer.innerHTML = "데이터 없음"; // Clear previous data
         }{
@@ -43,7 +43,7 @@ async function minFlooding_searchData() {
 
     }) // 첫 번째 then에서 파싱한 데이터를 이용한 동작 작성
     .catch( err => {
-        // console.log("err : ", err);
+        console.log("err : ", err);
     }); // 예외 발생 시 처리할 내용을 작성
 
 }
@@ -63,7 +63,7 @@ async function dayFlooding_searchData() {
 
 
     let occuDay = selectYearValue + selectMonthValue + selectDayValue;
-    console.log("occuDay : " + occuDay);
+    // console.log("occuDay : " + occuDay);
 
     fetch("/dataSearch/sendDay_flooding", { 
         method : "POST", 
@@ -72,13 +72,13 @@ async function dayFlooding_searchData() {
     })
     .then(resp => resp.json()) // 요청에 대한 응답 객체(response)를 필요한 형태로 파싱
     .then((result) => {
-        console.log("sendDay_flooding result", result );
+        // console.log("sendDay_flooding result", result );
 
         data = result.day_floodingList;
-        console.log("data : ", data );
+        // console.log("data : ", data );
         
         
-        console.log("data.length : ", data.length );
+        // console.log("data.length : ", data.length );
 
         if(data.length == 0){
             console.log("야호");
@@ -94,7 +94,7 @@ async function dayFlooding_searchData() {
 
     }) // 첫 번째 then에서 파싱한 데이터를 이용한 동작 작성
     .catch( err => {
-        // console.log("err : ", err);
+        console.log("err : ", err);
     }); // 예외 발생 시 처리할 내용을 작성
 
 }
@@ -107,7 +107,7 @@ async function monthFlooding_searchData() {
     let selectMonthValue = monthString < 10 ? "0" + monthString : monthString.toString();
 
     let occuMonth = selectYearValue + selectMonthValue;
-    console.log("occuMonth : " + occuMonth);
+    // console.log("occuMonth : " + occuMonth);
 
 
     fetch("/dataSearch/sendMonth_flooding", {
@@ -117,16 +117,16 @@ async function monthFlooding_searchData() {
     })
     .then(resp => resp.json()) // 요청에 대한 응답 객체(response)를 필요한 형태로 파싱
     .then((result) => {
-        console.log("sendMonth_flooding result", result );
+        // console.log("sendMonth_flooding result", result );
 
         data = result.month_floodingList;
-        console.log("data : ", data );
+        // console.log("data : ", data );
         
         // var tableContainer = document.querySelector(".tableContainer");
         
-        console.log("data.length : ", data.length );
+        // console.log("data.length : ", data.length );
         if(data.length == 0){
-            console.log("야호");
+            // console.log("야호");
             var tableContainer = document.querySelector(".tableContainer");
             tableContainer.innerHTML = "데이터 없음"; // Clear previous data
         }{
@@ -137,7 +137,7 @@ async function monthFlooding_searchData() {
 
     }) // 첫 번째 then에서 파싱한 데이터를 이용한 동작 작성
     .catch(err => {
-        // console.log("err : ", err);
+        console.log("err : ", err);
     }); // 예외 발생 시 처리할 내용을 작성
 
 
@@ -150,7 +150,7 @@ async function yearFlooding_searchData() {
     let selectYearValue = document.getElementById("selectYear") ? document.getElementById("selectYear").value : null;
 
     let occuYear = selectYearValue;
-    console.log("occuYear : " + occuYear);
+    // console.log("occuYear : " + occuYear);
 
 
     fetch("/dataSearch/sendYear_flooding", {
@@ -160,16 +160,16 @@ async function yearFlooding_searchData() {
     })
     .then(resp => resp.json()) // 요청에 대한 응답 객체(response)를 필요한 형태로 파싱
     .then((result) => {
-        console.log("sendYear_flooding result", result );
+        // console.log("sendYear_flooding result", result );
 
         data = result.year_floodingList;
-        console.log("data : ", data );
+        // console.log("data : ", data );
         
         // var tableContainer = document.querySelector(".tableContainer");
         
-        console.log("data.length : ", data.length );
+        // console.log("data.length : ", data.length );
         if(data.length == 0){
-            console.log("야호");
+            // console.log("야호");
             var tableContainer = document.querySelector(".tableContainer");
             tableContainer.innerHTML = ""; // Clear previous data
         }{
@@ -180,7 +180,7 @@ async function yearFlooding_searchData() {
 
     }) // 첫 번째 then에서 파싱한 데이터를 이용한 동작 작성
     .catch(err => {
-        // console.log("err : ", err);
+        console.log("err : ", err);
     }); // 예외 발생 시 처리할 내용을 작성
 
 
@@ -208,10 +208,10 @@ async function dateFlooding_searchData() {
     let endOccuDate = endYearValue +  endMonthValue + endDayValue;    
     let areaValue = document.getElementById("area").value;
     let kindValue = document.getElementById("kind").value;
-    console.log("startOccuDate : " + startOccuDate);
-    console.log("endOccuDate : " + endOccuDate);
-    console.log("areaValue : " + areaValue);
-    console.log("kindValue : " + kindValue);
+    // console.log("startOccuDate : " + startOccuDate);
+    // console.log("endOccuDate : " + endOccuDate);
+    // console.log("areaValue : " + areaValue);
+    // console.log("kindValue : " + kindValue);
 
 
     fetch("/dataSearch/sendDate_flooding", {
@@ -221,16 +221,16 @@ async function dateFlooding_searchData() {
     })
     .then(resp => resp.json()) // 요청에 대한 응답 객체(response)를 필요한 형태로 파싱
     .then((result) => {
-        console.log("sendDate_flooding result", result );
+        // console.log("sendDate_flooding result", result );
 
-        console.log("kindValue 여기 : ", kindValue);
+        // console.log("kindValue 여기 : ", kindValue);
 
         if(kindValue == "flooding"){
             data = result.date_floodingList01;
-            console.log("data : ", data );
-            console.log("data.length : ", data.length );
+            // console.log("data : ", data );
+            // console.log("data.length : ", data.length );
             if(data.length == 0){
-                console.log("야호");
+                // console.log("야호");
                 var tableContainer = document.querySelector(".tableContainer");
                 tableContainer.innerHTML = ""; // Clear previous data
             }{
@@ -239,9 +239,9 @@ async function dateFlooding_searchData() {
             }
         }else{
             data = result.date_floodingList02;
-            console.log("data : ", data );
+            // console.log("data : ", data );
             if(data.length == 0){
-                console.log("야호");
+                // console.log("야호");
                 var tableContainer = document.querySelector(".tableContainer");
                 tableContainer.innerHTML = ""; // Clear previous data
             }{
@@ -253,7 +253,7 @@ async function dateFlooding_searchData() {
 
     }) // 첫 번째 then에서 파싱한 데이터를 이용한 동작 작성
     .catch(err => {
-        // console.log("err : ", err);
+        console.log("err : ", err);
     }); // 예외 발생 시 처리할 내용을 작성
 
 
@@ -267,9 +267,9 @@ async function dateFlooding_searchData() {
 async function searchData1() {
 
     savedIP = getIPFromLocalStorage().dataIP;
-    console.log("savedIP : ", savedIP);
+    // console.log("savedIP : ", savedIP);
 
-    console.log("클릭");
+    // console.log("클릭");
     // yearSelect 요소의 값을 가져와서 콘솔에 출력합니다.
 
 
@@ -293,12 +293,12 @@ async function searchData1() {
 
 
     if (selectDayValue) { //연월일
-        console.log("selectYearValue : ", selectYearValue);
-        console.log("selectMonthValue : ", selectMonthValue);
-        console.log("selectDayValue : ", selectDayValue);
+        // console.log("selectYearValue : ", selectYearValue);
+        // console.log("selectMonthValue : ", selectMonthValue);
+        // console.log("selectDayValue : ", selectDayValue);
 
         let occuDay = selectYearValue + selectMonthValue + selectDayValue;
-        console.log("occuDay : ", occuDay);
+        // console.log("occuDay : ", occuDay);
         let areaValue = document.getElementById("area") ? document.getElementById("area").value : null;
         // console.log("areaValue : ", areaValue);
 
@@ -319,9 +319,9 @@ async function searchData1() {
 
             }) // 첫 번째 then에서 파싱한 데이터를 이용한 동작 작성
             .catch(err => {
-                // console.log("err : ", err);
+                console.log("err : ", err);
             }); // 예외 발생 시 처리할 내용을 작성
-        } else {
+        } //else {
             // // 일간
             // fetch("/sendDay_flooding", { 
             //     method : "POST", 
@@ -351,7 +351,7 @@ async function searchData1() {
             // .catch( err => {
             //     // console.log("err : ", err);
             // }); // 예외 발생 시 처리할 내용을 작성
-        }
+        //}
 
 
 
@@ -359,7 +359,7 @@ async function searchData1() {
         // console.log("selectYearValue : ", selectYearValue);
         // console.log("selectMonthValue : ", selectMonthValue);
         let occuMonth = selectYearValue + selectMonthValue;
-        console.log("occuMonth : ", occuMonth);
+        // console.log("occuMonth : ", occuMonth);
 
         fetch("/dataSearch/sendMonth_flooding", {
             method: "POST",
@@ -368,7 +368,7 @@ async function searchData1() {
         })
         .then(resp => resp.json()) // 요청에 대한 응답 객체(response)를 필요한 형태로 파싱
         .then((result) => {
-            console.log("sendMonth_flooding result", result );
+            // console.log("sendMonth_flooding result", result );
 
             data = result;
 
@@ -376,7 +376,7 @@ async function searchData1() {
 
         }) // 첫 번째 then에서 파싱한 데이터를 이용한 동작 작성
         .catch(err => {
-            // console.log("err : ", err);
+            console.log("err : ", err);
         }); // 예외 발생 시 처리할 내용을 작성
 
 
@@ -386,7 +386,7 @@ async function searchData1() {
         // console.log("selectYearValue : ", selectYearValue);
 
         let occuYear = selectYearValue;
-        console.log("occuYear : ", occuYear);
+        // console.log("occuYear : ", occuYear);
 
         fetch("/dataSearch/sendYear_flooding", {
             method: "POST",
@@ -403,28 +403,28 @@ async function searchData1() {
 
         }) // 첫 번째 then에서 파싱한 데이터를 이용한 동작 작성
         .catch(err => {
-            // console.log("err : ", err);
+            console.log("err : ", err);
         }); // 예외 발생 시 처리할 내용을 작성
 
 
 
 
     } else { //시작연월일~종료연월일
-        console.log(currentDate);
+        // console.log(currentDate);
         currentDate.setDate(currentDate.getDate() - 7); // currentDate에서 7일을 빼서 일주일 전 날짜를 설정함
     
         // 연, 월, 일을 얻어옴
         let beforeYear = currentDate.getFullYear();
-        console.log("beforeYear : ", beforeYear);
-        console.log("year : ", year);
+        // console.log("beforeYear : ", beforeYear);
+        // console.log("year : ", year);
         let beforeMonth = (currentDate.getMonth() + 1); // 월은 0부터 시작하므로 +1, 두 자리로 포맷
-        console.log("beforeMonth : ", beforeMonth);
-        console.log("month : ", month);
+        // console.log("beforeMonth : ", beforeMonth);
+        // console.log("month : ", month);
         let beforeDay = currentDate.getDate(); // 두 자리로 포맷
-        console.log("beforeDay : ", beforeDay);
-        console.log("day : ", day);
+        // console.log("beforeDay : ", beforeDay);
+        // console.log("day : ", day);
     
-        console.log(currentDate);
+        // console.log(currentDate);
     
     
         startYearValue = beforeYear;
@@ -439,10 +439,10 @@ async function searchData1() {
         let endOccuDate = endYearValue + endMonthValue + endDayValue;
         let areaValue = document.getElementById("area").value;
         let kindValue = document.getElementById("kind").value;
-        console.log("startOccuDate : " + startOccuDate);
-        console.log("endOccuDate : " + endOccuDate);
-        console.log("areaValue : " + areaValue);
-        console.log("kindValue : " + kindValue);
+        // console.log("startOccuDate : " + startOccuDate);
+        // console.log("endOccuDate : " + endOccuDate);
+        // console.log("areaValue : " + areaValue);
+        // console.log("kindValue : " + kindValue);
     
 
 
@@ -462,7 +462,7 @@ async function searchData1() {
 
         }) // 첫 번째 then에서 파싱한 데이터를 이용한 동작 작성
         .catch(err => {
-            // console.log("err : ", err);
+            console.log("err : ", err);
         }); // 예외 발생 시 처리할 내용을 작성
 
     }

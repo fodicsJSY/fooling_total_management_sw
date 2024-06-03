@@ -25,9 +25,9 @@ let savePORT;
 //차단기 수동제어 로드시
 document.addEventListener("DOMContentLoaded", function() {
     savedIP = getIP_FromLocalStorage().saveIP;
-    console.log("savedIP : ", savedIP);
+    // console.log("savedIP : ", savedIP);
     savePORT = getPORT_FromLocalStorage().savePORT;
-    console.log("savePORT : ", savePORT);
+    // console.log("savePORT : ", savePORT);
     selectBreaker();
     // forwardBreaker(savedIP);
 
@@ -50,16 +50,16 @@ function selectBreaker(){
     })
     .then(resp => resp.json()) // 요청에 대한 응답 객체(response)를 필요한 형태로 파싱
     .then((result) => {
-        console.log("result", result );
+        // console.log("result", result );
 
         var data = result.result
-        console.log("data", data);
+        // console.log("data", data);
         // forwardBreaker(data)
         breakerMakeTable(data);
         
     }) // 첫 번째 then에서 파싱한 데이터를 이용한 동작 작성
     .catch( err => {
-        // console.log("err : ", err);
+        console.log("err : ", err);
     }); // 예외 발생 시 처리할 내용을 작성
 }
 
@@ -103,12 +103,12 @@ function forwardBreaker(data){
     })
     .then(resp => resp.json()) // 요청에 대한 응답 객체(response)를 필요한 형태로 파싱
     .then((result) => {
-        console.log("result", result );
+        // console.log("result", result );
 
 
     }) // 첫 번째 then에서 파싱한 데이터를 이용한 동작 작성
     .catch( err => {
-        // console.log("err : ", err);
+        console.log("err : ", err);
     }); // 예외 발생 시 처리할 내용을 작성
 }
 

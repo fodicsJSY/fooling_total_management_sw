@@ -315,7 +315,7 @@ public class EquimentControlController {
 	public Map<String, String> updatebreaker(
 			@RequestBody String req
 			) {
-		System.out.println("req"+req);
+//		System.out.println("req"+req);
 		
 		
 		String ipAddress;
@@ -341,12 +341,12 @@ public class EquimentControlController {
 			int command = jsonObject.getInt("command");
 			
 			// System.out.println("serverip : " + serverip);
-			System.out.println("camera_code : " + camera_code);
-			System.out.println("command : " + command);
+//			System.out.println("camera_code : " + camera_code);
+//			System.out.println("command : " + command);
 			
 			String breakerUrl = "http://" + ipAddress + ":" + port + "/fnvr/request/gate_control/gate_control";
 //	        String breakerUrl = "http://172.16.20.71:10443/fnvr/request/gate_control/gate_control";
-			System.out.println("breakerUrl : " + breakerUrl);
+//			System.out.println("breakerUrl : " + breakerUrl);
 			
 			// 서버로 전송할 객체 생성
 			Map<String, Object> requestBody = new LinkedHashMap<>();
@@ -354,7 +354,7 @@ public class EquimentControlController {
 			requestBody.put("camera_code", camera_code);
 			requestBody.put("command", command);
 			
-			System.out.println("breaker requestBody : " + requestBody);
+//			System.out.println("breaker requestBody : " + requestBody);
 			
 			// 요청 헤더 설정
 			HttpHeaders headers = new HttpHeaders();
@@ -367,7 +367,7 @@ public class EquimentControlController {
 			try {
 				// post 요청 보내기
 				String response = restTemplate.postForObject(breakerUrl, requestEntity, String.class);
-				System.out.println("breaker response: " + response);
+//				System.out.println("breaker response: " + response);
 				
 				// 응답을 Map에 저장
 				responseMap.put("result", response);
@@ -405,9 +405,9 @@ public class EquimentControlController {
 	    int sound25_3change = jsonObject.getInt("sound25_3change");
 	    
 	    // 각 변수 값 출력
-	    System.out.println("gate25_3change: " + gate25_3change);
-	    System.out.println("light25_3change: " + light25_3change);
-	    System.out.println("sound25_3change: " + sound25_3change);
+//	    System.out.println("gate25_3change: " + gate25_3change);
+//	    System.out.println("light25_3change: " + light25_3change);
+//	    System.out.println("sound25_3change: " + sound25_3change);
 	    return null;
 	}
 	
@@ -420,7 +420,7 @@ public class EquimentControlController {
 	public String control331_1Forword(
 			@RequestBody String req
 			) {
-		System.out.println("req"+req);
+//		System.out.println("req"+req);
 		
 		// JSON 문자열을 파싱하여 필요한 변수에 할당
 		JSONObject jsonObject = new JSONObject(req);
@@ -429,9 +429,9 @@ public class EquimentControlController {
 		String sound331_1change = jsonObject.getString("sound331_1change");
 		
 		// 각 변수 값 출력
-		System.out.println("gate331_1change: " + gate331_1change);
-		System.out.println("light331_1change: " + light331_1change);
-		System.out.println("sound331_1change: " + sound331_1change);
+//		System.out.println("gate331_1change: " + gate331_1change);
+//		System.out.println("light331_1change: " + light331_1change);
+//		System.out.println("sound331_1change: " + sound331_1change);
 		return null;
 	}
 	
@@ -445,7 +445,7 @@ public class EquimentControlController {
 	public String control426_20Forword(
 			@RequestBody String req
 			) {
-		System.out.println("req"+req);
+//		System.out.println("req"+req);
 		
 		// JSON 문자열을 파싱하여 필요한 변수에 할당
 		JSONObject jsonObject = new JSONObject(req);
@@ -454,9 +454,9 @@ public class EquimentControlController {
 		String sound426_20change = jsonObject.getString("sound426_20change");
 		
 		// 각 변수 값 출력
-		System.out.println("gate426_20change: " + gate426_20change);
-		System.out.println("light426_20change: " + light426_20change);
-		System.out.println("sound426_20change: " + sound426_20change);
+//		System.out.println("gate426_20change: " + gate426_20change);
+//		System.out.println("light426_20change: " + light426_20change);
+//		System.out.println("sound426_20change: " + sound426_20change);
 		return null;
 	}
 	
@@ -469,7 +469,7 @@ public class EquimentControlController {
 	public String control998_7Forword(
 			@RequestBody String req
 			) {
-		System.out.println("req"+req);
+//		System.out.println("req"+req);
 		
 		// JSON 문자열을 파싱하여 필요한 변수에 할당
 		JSONObject jsonObject = new JSONObject(req);
@@ -478,9 +478,9 @@ public class EquimentControlController {
 		String sound998_7change = jsonObject.getString("sound998_7change");
 		
 		// 각 변수 값 출력
-		System.out.println("gate998_7change: " + gate998_7change);
-		System.out.println("light998_7change: " + light998_7change);
-		System.out.println("sound998_7change: " + sound998_7change);
+//		System.out.println("gate998_7change: " + gate998_7change);
+//		System.out.println("light998_7change: " + light998_7change);
+//		System.out.println("sound998_7change: " + sound998_7change);
 		return null;
 	}
 	
@@ -524,7 +524,7 @@ public class EquimentControlController {
 	public String addScenarioData25_3(
 										@RequestBody String req
 										) {
-		System.out.println("req"+req);
+//		System.out.println("req"+req);
 		
 		return null;
 	}
@@ -544,7 +544,7 @@ public class EquimentControlController {
 	public String addScenarioData331_1(
 										@RequestBody String req
 										) {
-		System.out.println("req"+req);
+//		System.out.println("req"+req);
 		
 		return null;
 	}

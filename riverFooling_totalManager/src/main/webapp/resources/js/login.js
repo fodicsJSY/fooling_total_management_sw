@@ -2,9 +2,9 @@ ex();
 function ex(){
 
     let location = '강원특별자치도 영월군 어쩌구저쩌구';
-    console.log("location", location)
+    // console.log("location", location)
     let location_value = location.replace("강원특별자치도 영월군 ","");
-    console.log("location_value", location_value)
+    // console.log("location_value", location_value)
     // console.log("location_value[1]", location_value[1])
 
 
@@ -27,9 +27,9 @@ document.getElementById('loginFrm').addEventListener('submit', async function(ev
     event.preventDefault(); // 기본 폼 제출 중단
 
     savedIP = getIP_FromLocalStorage().saveIP;
-    console.log("savedIP : ", savedIP);
+    // console.log("savedIP : ", savedIP);
     savePORT = getPORT_FromLocalStorage().savePORT;
-    console.log("savePORT : ", savePORT);
+    // console.log("savePORT : ", savePORT);
 
     if (!savedIP || savedIP === 'undefined' || !savePORT || savePORT === 'undefined') {
         await getDBIP();

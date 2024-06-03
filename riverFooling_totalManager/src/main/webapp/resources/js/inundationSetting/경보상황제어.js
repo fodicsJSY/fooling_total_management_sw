@@ -30,7 +30,7 @@ document.getElementById("warningBtn").addEventListener("click", ()=>{
         
     }) // 첫 번째 then에서 파싱한 데이터를 이용한 동작 작성
     .catch( err => {
-        // console.log("err : ", err);
+        console.log("err : ", err);
     }); // 예외 발생 시 처리할 내용을 작성
 
 });
