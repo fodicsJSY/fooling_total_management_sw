@@ -160,7 +160,7 @@ function dayRainfallForward(){
     
 
     subTitle.innerHTML = ""; 
-    subTitle.innerHTML = "▶ 데이터검색  &gt; 입출차정보  &gt; 일간입출차"; 
+    subTitle.innerHTML = "▶ 데이터검색  &gt; 게이트 개폐 정보  &gt; 일간걔폐"; 
 
     selectDate.innerHTML = ""; 
 
@@ -280,7 +280,7 @@ monthRainfall.addEventListener("click", ()=>{
 
 
     subTitle.innerHTML = ""; 
-    subTitle.innerHTML = "▶ 데이터검색  &gt; 입출차정보  &gt; 월간입출차"; 
+    subTitle.innerHTML = "▶ 데이터검색  &gt; 게이트 개폐 정보  &gt; 월간개폐"; 
 
     selectDate.innerHTML = ""; 
 
@@ -376,7 +376,7 @@ yearRainfall.addEventListener("click", ()=>{
     yearRainfall.classList.add("active");
 
     subTitle.innerHTML = ""; 
-    subTitle.innerHTML = "▶ 데이터검색  &gt; 입출차정보  &gt; 연간입출차"; 
+    subTitle.innerHTML = "▶ 데이터검색  &gt; 게이트 개폐 정보  &gt; 연간개폐"; 
 
     selectDate.innerHTML = ""; 
 
@@ -450,7 +450,7 @@ dateRainfall.addEventListener("click", ()=>{
     dateRainfall.classList.add("active");
 
     subTitle.innerHTML = ""; 
-    subTitle.innerHTML = "▶ 데이터검색  &gt; 입출차정보  &gt; 기간별입출차"; 
+    subTitle.innerHTML = "▶ 데이터검색  &gt; 게이트 개폐 정보  &gt; 기간별개폐"; 
 
     selectDate.innerHTML = ""; 
 

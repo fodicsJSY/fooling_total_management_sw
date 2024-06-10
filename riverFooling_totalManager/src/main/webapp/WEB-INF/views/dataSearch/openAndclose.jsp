@@ -9,7 +9,7 @@
     <title>침수차단 시스템</title>
     <link rel="shortcut icon" type="image/png" href="/resources/img/slogan.png" sizes="192x192">
 
-        <link rel="stylesheet" href="/resources/css/dataSearch/incomingAndOutgoing.css">
+        <link rel="stylesheet" href="/resources/css/dataSearch/openAndclose.css">
 </head>
 <body>
 <%-- 입출차정보 --%>
@@ -37,7 +37,7 @@
                     <div class="listTitle">데이터 검색</div>
                     <div class="listContent"><a href="/dataSearch/rainfall" class="pageFoward">강우 데이터</a></div>
                     <div class="listContent"><a href="/dataSearch/flooding" class="pageFoward">침수 데이터</a></div>
-                    <div class="listContent"><a href="/dataSearch/incomingAndOutgoing" class="pageFoward nowForward">입출차 정보</a></div>
+                    <div class="listContent"><a href="/dataSearch/openAndclose" class="pageFoward nowForward">게이트 개폐 정보</a></div>
                 </div>
             </div>
             <div class="sectionBox02">
@@ -56,7 +56,7 @@
                     <div class="titleContiner02">
                         <div class="subTitleBox">
                             <div class="subTitle">
-                            ▶ 데이터검색  &gt; 강우데이터  &gt; 일간강우
+                            ▶ 데이터검색  &gt; 게이트 개폐 정보  &gt; 일간개폐
                             </div>
                         </div>
                     </div>
@@ -140,10 +140,10 @@
 
 
     <script></script>
-    <script src="/resources/js/dataSearch/incomingAndOutgoing/incomingAndOutgoing_select.js"></script>
-    <script src="/resources/js/dataSearch/incomingAndOutgoing/incomingAndOutgoing_search.js"></script>
-    <script src="/resources/js/dataSearch/incomingAndOutgoing/incomingAndOutgoing_xml.js"></script>
-    <script src="/resources/js/dataSearch/incomingAndOutgoing/incomingAndOutgoing_table.js"></script>
+    <script src="/resources/js/dataSearch/openAndclose/openAndclose_select.js"></script>
+    <script src="/resources/js/dataSearch/openAndclose/openAndclose_search.js"></script>
+    <script src="/resources/js/dataSearch/openAndclose/openAndclose_xml.js"></script>
+    <script src="/resources/js/dataSearch/openAndclose/openAndclose_table.js"></script>
     <script src="/resources/js/date.js"></script>
 
 
