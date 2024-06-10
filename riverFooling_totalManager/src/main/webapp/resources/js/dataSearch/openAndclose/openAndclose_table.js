@@ -29,7 +29,7 @@ function dayMakeTable(data){
     var htr = document.createElement("tr");
     rainfullThead.appendChild(htr);
 
-    createCell(htr, "th", "rainfull areaName", "지역명");
+    createCell(htr, "th", "rainfull areaName", "카메라명");
     createCell(htr, "th", "rainfull inout", "구분");
 
 
@@ -170,7 +170,7 @@ function monthMakeTable(data){
     var htr = document.createElement("tr");
     rainfullThead.appendChild(htr);
 
-    createCell(htr, "th", "rainfull areaName", "지역명");
+    createCell(htr, "th", "rainfull areaName", "카메라명");
     createCell(htr, "th", "rainfull inout", "구분");
 
 
@@ -311,7 +311,7 @@ function yearMakeTable(data){
     var htr = document.createElement("tr");
     rainfullThead.appendChild(htr);
 
-    createCell(htr, "th", "rainfull areaName", "지역명");
+    createCell(htr, "th", "rainfull areaName", "카메라명");
     createCell(htr, "th", "rainfull inout", "구분");
 
 
