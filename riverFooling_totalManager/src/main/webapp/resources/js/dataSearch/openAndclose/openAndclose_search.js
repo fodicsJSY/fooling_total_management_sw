@@ -1,123 +1,161 @@
-function searchData(){
-    // console.log("클릭");
+
+function dayOAC_searchData(){
+    console.log("클릭");
     // yearSelect 요소의 값을 가져와서 콘솔에 출력합니다.
 
+    let selectYearValue = document.getElementById("selectYear") ? document.getElementById("selectYear").value : null;
+    let monthValue = document.getElementById("selectMonth") ? document.getElementById("selectMonth").value : null;
+    let selectMonthValue = monthValue < 10 ? "0" + monthValue : monthValue.toString();
+    let dayValue = document.getElementById("selectDay") ? document.getElementById("selectDay").value : null;
+    let selectDayValue = dayValue < 10 ? "0" + dayValue : dayValue.toString();
+
+    let occuDay = selectYearValue + '-' + selectMonthValue + '-' + selectDayValue;
+            console.log("occuDay : ", occuDay);
+            
+            console.log("savedIP : ", savedIP);
+            console.log("savePORT : ", savePORT);
+            console.log("loginId : ", loginId);
+            console.log("loginPw : ", loginPw);
+
+    fetch("/dataSearch/sendDay_OAC", { 
+        method : "POST", 
+        headers: {"Content-Type": "application/json;"}, 
+        body : JSON.stringify( {
+                            "serverip" : savedIP,
+                            "port" : savePORT,
+                            "user_id" : loginId,
+                            "user_pw" : loginPw,
+                            "query" : "SELECT  BCONF.camera_name, DATEPART(HOUR, BLOG.log_time) AS 시간, BLOG.gate_cmd FROM TB_CIRCUIT_BREAKER_LOG BLOG LEFT OUTER JOIN dbo.TB_CIRCUIT_BREAKER_CONFIG BCONF ON BLOG.camera_code = BCONF.camera_code WHERE log_date = '"+occuDay+"' ORDER BY BCONF.camera_name, BLOG.log_time",
+        } ) 
+    })
+    .then(resp => resp.json()) // 요청에 대한 응답 객체(response)를 필요한 형태로 파싱
+    .then((result) => {
+        // console.log("result", result );
+        // console.log("result.result", result.result );
+
+        var data = result.result
+        dayMakeTable(data);
+
+        
+    }) // 첫 번째 then에서 파싱한 데이터를 이용한 동작 작성
+    .catch( err => {
+        // console.log("err : ", err);
+    }); // 예외 발생 시 처리할 내용을 작성
+
+
+}
+
+
+// 월별 개폐정보
+function monthOAC_searchData(){
 
     let selectYearValue = document.getElementById("selectYear") ? document.getElementById("selectYear").value : null;
-    let selectMonthValue = document.getElementById("selectMonth") ? document.getElementById("selectMonth").value : null;
-    let selectDayValue = document.getElementById("selectDay") ? document.getElementById("selectDay").value : null;
+    let monthValue = document.getElementById("selectMonth") ? document.getElementById("selectMonth").value : null;
+    let selectMonthValue = monthValue < 10 ? "0" + monthValue : monthValue.toString();
 
-
-    let startYearValue;
-    let startMonthValue;
-    let startDayValue;
-
-    let endYearValue;
-    let endMonthValue;
-    let endDayValue;
-
-    if(selectDayValue){ //연월일
-        // console.log("selectYearValue : ", selectYearValue);
-        // console.log("selectMonthValue : ", selectMonthValue);
-        // console.log("selectDayValue : ", selectDayValue);
-
-        let occuDay = selectYearValue+"0"+selectMonthValue+"0"+selectDayValue;
-
-        fetch("/sendDay_IAO", { 
-            method : "POST", 
-            headers: {"Content-Type": "application/json;"}, 
-            body : JSON.stringify( {"occuDay":occuDay} ) 
-        })
-        .then(resp => resp.json()) // 요청에 대한 응답 객체(response)를 필요한 형태로 파싱
-        .then((result) => {
-            // console.log("result", result );
+    let occuMonth = selectYearValue + '-' + selectMonthValue ;
+    console.log("occuMonth : ", occuMonth);
     
-            data = result;
-    
-            // 차트호출
-            // lineChart(data);
-            // makeTable(data);
-            // liveInfomation(data);
-            // openDounutChart(data);
-            // closeDounutChart(data);
-    
-            
-        }) // 첫 번째 then에서 파싱한 데이터를 이용한 동작 작성
-        .catch( err => {
-            // console.log("err : ", err);
-        }); // 예외 발생 시 처리할 내용을 작성
+    console.log("savedIP : ", savedIP);
+    console.log("savePORT : ", savePORT);
+    console.log("loginId : ", loginId);
+    console.log("loginPw : ", loginPw);
 
 
-    }else if(selectMonthValue){ //연월
-        // console.log("selectYearValue : ", selectYearValue);
-        // console.log("selectMonthValue : ", selectMonthValue);
-        let occuMonth = selectYearValue + "0" + selectMonthValue;
-        // console.log("occuMonth : ", occuMonth);
+    fetch("/dataSearch/sendMonth_OAC", { 
+        method : "POST", 
+        headers: {"Content-Type": "application/json;"}, 
+        body : JSON.stringify( {
+            "serverip" : savedIP,
+            "port" : savePORT,
+            "user_id" : loginId,
+            "user_pw" : loginPw,
+            "query" : "SELECT  BCONF.camera_name, SUBSTRING(CONVERT(VARCHAR(10), log_date, 120), 9, 2), BLOG.gate_cmd FROM TB_CIRCUIT_BREAKER_LOG BLOG LEFT OUTER JOIN dbo.TB_CIRCUIT_BREAKER_CONFIG BCONF ON BLOG.camera_code = BCONF.camera_code WHERE LEFT(CONVERT(VARCHAR(7), log_date, 23), 7) = '"+occuMonth+"' ORDER BY BCONF.camera_name, BLOG.log_time"
 
-        fetch("/sendMonth_IAO", { 
-            method : "POST", 
-            headers: {"Content-Type": "application/json;"}, 
-            body : JSON.stringify( {"occuMonth":occuMonth} ) 
-        })
-        .then(resp => resp.json()) // 요청에 대한 응답 객체(response)를 필요한 형태로 파싱
-        .then((result) => {
-            // console.log("result", result );
-    
-            data = result;
-    
-            // 차트호출
-            // lineChart(data);
-            // makeTable(data);
-            // liveInfomation(data);
-            // openDounutChart(data);
-            // closeDounutChart(data);
-    
-            
-        }) // 첫 번째 then에서 파싱한 데이터를 이용한 동작 작성
-        .catch( err => {
-            // console.log("err : ", err);
-        }); // 예외 발생 시 처리할 내용을 작성
+        } ) 
+    })
+    .then(resp => resp.json()) // 요청에 대한 응답 객체(response)를 필요한 형태로 파싱
+    .then((result) => {
+        console.log("result", result );
+
+        var data = result.result;
+
+        // 차트호출
+        monthMakeTable(data);
+
+        
+    }) // 첫 번째 then에서 파싱한 데이터를 이용한 동작 작성
+    .catch( err => {
+        // console.log("err : ", err);
+    }); // 예외 발생 시 처리할 내용을 작성
 
 
-
-    }else if(selectYearValue){ //연
-        // console.log("selectYearValue : ", selectYearValue);
-        let occuYear = selectYearValue;
-        // console.log("occuYear : ", occuYear);
-
-        fetch("/sendYear_IAO", { 
-            method : "POST", 
-            headers: {"Content-Type": "application/json;"}, 
-            body : JSON.stringify( {"occuYear":occuYear} ) 
-        })
-        .then(resp => resp.json()) // 요청에 대한 응답 객체(response)를 필요한 형태로 파싱
-        .then((result) => {
-            // console.log("result", result );
-    
-            data = result;
-    
-            // 차트호출
-            // lineChart(data);
-            // makeTable(data);
-            // liveInfomation(data);
-            // openDounutChart(data);
-            // closeDounutChart(data);
-    
-            
-        }) // 첫 번째 then에서 파싱한 데이터를 이용한 동작 작성
-        .catch( err => {
-            // console.log("err : ", err);
-        }); // 예외 발생 시 처리할 내용을 작성
+}
 
 
-    }else{ //시작연월일~종료연월일
-        startYearValue = document.getElementById("startYear").value;
-        startMonthValue = document.getElementById("startMonth").value;
-        startDayValue = document.getElementById("startDay").value;
+// 연도별 개폐정보
+function yearOAC_searchData(){
+    let selectYearValue = document.getElementById("selectYear") ? document.getElementById("selectYear").value : null;
+
+    let occuYear = selectYearValue ;
+    // console.log("occuYear : ", occuYear);
+
     
-        endYearValue = document.getElementById("endYear").value;
-        endMonthValue = document.getElementById("endMonth").value;
-        endDayValue = document.getElementById("endDay").value;
+    // console.log("savedIP : ", savedIP);
+    // console.log("savePORT : ", savePORT);
+    // console.log("loginId : ", loginId);
+    // console.log("loginPw : ", loginPw);
+
+
+    fetch("/dataSearch/sendYear_OAC", { 
+        method : "POST", 
+        headers: {"Content-Type": "application/json;"}, 
+        body : JSON.stringify( {
+            "serverip" : savedIP,
+            "port" : savePORT,
+            "user_id" : loginId,
+            "user_pw" : loginPw,
+            "query" : "SELECT  BCONF.camera_name, SUBSTRING(CONVERT(VARCHAR(10), log_date, 120), 6, 2), BLOG.gate_cmd FROM TB_CIRCUIT_BREAKER_LOG BLOG LEFT OUTER JOIN dbo.TB_CIRCUIT_BREAKER_CONFIG BCONF ON BLOG.camera_code = BCONF.camera_code WHERE LEFT(CONVERT(VARCHAR(7), log_date, 23), 4) = '"+occuYear+"' ORDER BY BCONF.camera_name, BLOG.log_time"
+
+        } ) 
+    })
+    .then(resp => resp.json()) // 요청에 대한 응답 객체(response)를 필요한 형태로 파싱
+    .then((result) => {
+        // console.log("result", result );
+
+        data = result.result;
+
+        // 차트호출
+        yearMakeTable(data);
+
+        
+    }) // 첫 번째 then에서 파싱한 데이터를 이용한 동작 작성
+    .catch( err => {
+        // console.log("err : ", err);
+    }); // 예외 발생 시 처리할 내용을 작성
+
+}
+
+
+// 기간별 개폐정보
+function dateOAC_searchData(){
+        console.log("요기요기");
+        let startYearValue = document.getElementById("startYear") ? document.getElementById("startYear").value : null;
+        let startMonth = document.getElementById("startMonth") ? document.getElementById("startMonth").value : null;
+        let startMonthValue = startMonth < 10 ? "0" + startMonth : startMonth.toString();
+        let startDay = document.getElementById("startDay") ? document.getElementById("startDay").value : null;
+        let startDayValue = startDay < 10 ? "0" + startDay : startDay.toString();
+
+    
+
+        let endYearValue = document.getElementById("endYear") ? document.getElementById("endYear").value : null;
+        let endMonth = document.getElementById("endMonth") ? document.getElementById("endMonth").value : null;
+        let endMonthValue = endMonth < 10 ? "0" + endMonth : endMonth.toString();
+        let endDay = document.getElementById("endDay") ? document.getElementById("endDay").value : null;
+        let endDayValue = endDay < 10 ? "0" + endDay : endDay.toString();
+
+
+
         
         // console.log("startYearValue : ", startYearValue);
         // console.log("startMonthValue : ", startMonthValue);
@@ -128,40 +166,41 @@ function searchData(){
         // console.log("endDayValue : ", endDayValue);
 
 
-        let startOccuDate = startYearValue + "0" +startMonthValue + "0" +startDayValue;
-        let endOccuDate = endYearValue + "0" +endMonthValue + "0" +endDayValue;
+        let startOccuDate = startYearValue + startMonthValue + startDayValue;
+        let endOccuDate = endYearValue + endMonthValue + endDayValue;
 
-        let areaValue = document.getElementById("area").value;
+        // let areaValue = document.getElementById("area").value;
         // console.log("areaValue : ", areaValue);
 
-        let kindValue = document.getElementById("kind").value;
+        // let kindValue = document.getElementById("kind").value;
         // console.log("kindValue : ", kindValue);
 
 
-
-        fetch("/sendDate_IAO", { 
+        fetch("/dataSearch/sendDate_OAC", { 
             method : "POST", 
             headers: {"Content-Type": "application/json;"}, 
-            body : JSON.stringify( {"startOccuDate": startOccuDate, "endOccuDate":endOccuDate, "areaValue": areaValue, "kindValue": kindValue} ) 
+            body : JSON.stringify( {
+                // "startOccuDate": startOccuDate, 
+                // "endOccuDate":endOccuDate,
+                // "areaValue": areaValue, 
+                // "kindValue": kindValue,
+                "serverip" : savedIP,
+                "port" : savePORT,
+                "user_id" : loginId,
+                "user_pw" : loginPw,
+                "query" : "SELECT  log_date, SUBSTRING(CONVERT(VARCHAR(10), log_date, 120), 9, 2), BLOG.gate_cmd FROM TB_CIRCUIT_BREAKER_LOG BLOG LEFT OUTER JOIN dbo.TB_CIRCUIT_BREAKER_CONFIG BCONF ON BLOG.camera_code = BCONF.camera_code WHERE log_date BETWEEN '2024-06-10' AND '2024-06-11' AND BLOG.gate_cmd = 1 AND BCONF.camera_name = 'test1' ORDER BY BCONF.camera_name, BLOG.log_time"
+            } ) 
         })
         .then(resp => resp.json()) // 요청에 대한 응답 객체(response)를 필요한 형태로 파싱
         .then((result) => {
-            // console.log("result", result );
+            console.log("result", result );
     
-            data = result;
+            var data = result.result;
     
-            // 차트호출
-            // lineChart(data);
-            // makeTable(data);
-            // liveInfomation(data);
-            // openDounutChart(data);
-            // closeDounutChart(data);
-    
-            
         }) // 첫 번째 then에서 파싱한 데이터를 이용한 동작 작성
         .catch( err => {
             // console.log("err : ", err);
         }); // 예외 발생 시 처리할 내용을 작성
-    }
 
 }
+

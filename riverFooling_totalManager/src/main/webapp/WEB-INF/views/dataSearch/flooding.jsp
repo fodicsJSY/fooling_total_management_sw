@@ -42,7 +42,7 @@
                     <div class="listTitle">데이터 검색</div>
                     <div class="listContent"><a href="/dataSearch/rainfall" class="pageFoward">강우 데이터</a></div>
                     <div class="listContent"><a href="/dataSearch/flooding" class="pageFoward nowForward">침수 데이터</a></div>
-                    <div class="listContent"><a href="/dataSearch/incomingAndOutgoing" class="pageFoward">입출차 정보</a></div>
+                    <div class="listContent"><a href="/dataSearch/openAndclose" class="pageFoward">게이트 개폐 정보</a></div>
                 </div>
             </div>
             <div class="sectionBox02">
@@ -163,8 +163,8 @@
         var loginId = ${login_requestBody.user_id}
         var loginPw = ${login_requestBody.user_pw}
 
-        console.log("loginId", loginId);
-        console.log("loginPw", loginPw);
+        // console.log("loginId", loginId);
+        // console.log("loginPw", loginPw);
     </script>
     <script src="/resources/js/dataSearch/flooding/flooding_select.js"></script>
     <script src="/resources/js/dataSearch/flooding/flooding_table.js"></script>

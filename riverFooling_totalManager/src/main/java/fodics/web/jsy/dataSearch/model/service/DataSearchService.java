@@ -6,6 +6,7 @@ import java.util.Map;
 import fodics.web.jsy.dataSearch.model.dto.Date_flooding;
 import fodics.web.jsy.dataSearch.model.dto.Flooding;
 import fodics.web.jsy.dataSearch.model.dto.Min_flooding;
+import fodics.web.jsy.dataSearch.model.dto.OpenAndClose;
 
 public interface DataSearchService {
 	
@@ -24,6 +25,7 @@ public interface DataSearchService {
 	List<Flooding> min_floodingList(Min_flooding min_flooding);
 
 	List<Flooding> month_floodingSaveList(String occuMonth);
+
 
 
 

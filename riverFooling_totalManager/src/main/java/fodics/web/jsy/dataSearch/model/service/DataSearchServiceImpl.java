@@ -10,6 +10,7 @@ import fodics.web.jsy.dataSearch.model.dao.DataSearchDAO;
 import fodics.web.jsy.dataSearch.model.dto.Date_flooding;
 import fodics.web.jsy.dataSearch.model.dto.Flooding;
 import fodics.web.jsy.dataSearch.model.dto.Min_flooding;
+import fodics.web.jsy.dataSearch.model.dto.OpenAndClose;
 
 @Service
 public class DataSearchServiceImpl implements DataSearchService{
@@ -61,4 +62,5 @@ public class DataSearchServiceImpl implements DataSearchService{
 	public List<Flooding> min_floodingList(Min_flooding min_flooding) {
 		return dao.min_floodingList(min_flooding);
 	}
+	
 }

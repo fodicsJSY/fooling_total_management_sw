@@ -1,14 +1,4 @@
-ex();
-function ex(){
 
-    let location = '강원특별자치도 영월군 어쩌구저쩌구';
-    // console.log("location", location)
-    let location_value = location.replace("강원특별자치도 영월군 ","");
-    // console.log("location_value", location_value)
-    // console.log("location_value[1]", location_value[1])
-
-
-}
 
 document.getElementById("settingBtn").addEventListener("click", ()=>{
     getDBIP();

@@ -88,7 +88,7 @@ public class DataSearchController {
 		        InputStream is = getClass().getResourceAsStream("/rainfall_key.ini");
 		        Scanner s = new Scanner(is);
 		        apiKey = s.nextLine();
-//				System.out.println("apiKey : "+ apiKey);
+				System.out.println("apiKey : "+ apiKey);
 		        s.close();
 		        is.close();
 
@@ -106,7 +106,7 @@ public class DataSearchController {
 		Map<String, String> requestBody = new LinkedHashMap<>();
 		requestBody.put("key", apiKey);
 		requestBody.put("baseDate", baseDate);
-		System.out.println("requestBody: " + requestBody);
+//		System.out.println("requestBody: " + requestBody);
 		
 		// 요청 헤더 설정
 		HttpHeaders headers = new HttpHeaders();
@@ -118,13 +118,12 @@ public class DataSearchController {
 		// post 요청 보내기
 		String response = restTemplate.postForObject(url, requestEntity, String.class);
 		
-//		System.out.print("response: " + response);
+//		System.out.println("response: " + response);
 		
 		// 응답 데이터를 클라이언트에 반환
 		return response;
 		
 	 } catch (Exception e) {
-            e.printStackTrace();
             ra.addFlashAttribute("message", "선택한 날짜의 데이터가 없습니다.");
             return "0"; // 에러 발생 시 null 반환하거나 적절히 처리
         }
@@ -453,11 +452,11 @@ public class DataSearchController {
 	
 	
 	//입출차정보 페이지 
-	@GetMapping("/incomingAndOutgoing")
+	@GetMapping("/openAndclose")
 	public String entryAndExitForword(
 			Model model
 			){
-		return "/dataSearch/incomingAndOutgoing";
+		return "/dataSearch/openAndclose";
 	}
 	
 	
@@ -466,65 +465,393 @@ public class DataSearchController {
 	
 	
 	
-	// 입출차정보 일간강우
-	@PostMapping("/sendDay_IAO")
+	// 일일 개폐정보
+	@PostMapping("/sendDay_OAC")
 	@ResponseBody
 	public String IAODayDataForword(
-			@RequestBody String occuDay
+			@RequestBody String req
 			) {
-//		System.out.println("occuDay"+occuDay);
-		return null;
+//		System.out.println("cameraCode req : " + req);
+		
+		String ipAddress;
+		String urlport;
+		
+		// MappingJackson2HttpMessageConverter 추가
+		restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
+		
+		try {
+			InputStream is = getClass().getResourceAsStream("/server_info.ini");
+			Scanner s = new Scanner(is);
+			ipAddress = s.nextLine();
+			urlport = s.nextLine();
+//					        System.out.println("openGate ipAddress : "+ ipAddress);
+//					        System.out.println("openGate port : "+ urlport);
+			s.close();
+			is.close();
+			
+			
+			
+			// JSON 문자열을 파싱하여 필요한 변수에 할당
+			JSONObject jsonObject = new JSONObject(req);
+			String serverip = jsonObject.getString("serverip");
+			int port = jsonObject.getInt("port");
+			String user_id = jsonObject.getString("user_id");
+			String user_pw = jsonObject.getString("user_pw");
+			String query = jsonObject.getString("query");
+			
+//			System.out.println("serverip : " + serverip);
+//			System.out.println("port : " + port);
+//			System.out.println("query : " + query);
+//			System.out.println("user_id : " + user_id);
+//			System.out.println("user_pw : " + user_pw);
+			
+			String select_url = "http://"+ipAddress+":"+urlport+"/fnvr/request/query/select"; // 외부 RESTful API의 URL select
+//			System.out.println("select_url : "+ select_url);
+			
+			
+			//서버로 전송할 객체 생성
+			Map<String, Object> requestBody = new LinkedHashMap<>();
+			requestBody.put("serverip", serverip);
+			requestBody.put("port", port);
+			requestBody.put("user_id", user_id);
+			requestBody.put("user_pw", user_pw);
+			requestBody.put("query", query);
+//			System.out.println("cameraCode requestBody : "+ requestBody);
+			
+			// 요청 헤더 설정
+			HttpHeaders headers = new HttpHeaders();
+			headers.setContentType(MediaType.APPLICATION_JSON);
+			
+			// HttpEntity 생성
+			HttpEntity<Map<String, Object>> requestEntity = new HttpEntity<>(requestBody, headers);
+			
+			// post 요청 보내기
+			String response = restTemplate.postForObject(select_url, requestEntity, String.class);
+			
+//			System.out.println("cameraCode response"+ response);
+			
+			return response;
+			
+			
+		} catch (Exception e) {
+			//  //  System.out.println("Read Query Error");
+			e.printStackTrace();
+			return ""; // 예외가 발생하면 빈 문자열을 반환하도록 수정
+		}
 	}
 	
 	
 	
-	// 입출차정보 월간강우
-	@PostMapping("/sendMonth_IAO")
+	
+	
+	
+	// 월별 개폐정보
+	@PostMapping("/sendMonth_OAC")
 	@ResponseBody
 	public String IAOMonthDataForword(
-			@RequestBody String occuMonth
+			@RequestBody String req
 			) {
-//		System.out.println("occuMonth"+occuMonth);
-		return null;
+//		System.out.println("IAOMonthDataForword req : " + req);
+		
+		String ipAddress;
+		String urlport;
+		
+		// MappingJackson2HttpMessageConverter 추가
+		restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
+		
+		try {
+			InputStream is = getClass().getResourceAsStream("/server_info.ini");
+			Scanner s = new Scanner(is);
+			ipAddress = s.nextLine();
+			urlport = s.nextLine();
+//					        System.out.println("openGate ipAddress : "+ ipAddress);
+//					        System.out.println("openGate port : "+ urlport);
+			s.close();
+			is.close();
+			
+			
+			
+			// JSON 문자열을 파싱하여 필요한 변수에 할당
+			JSONObject jsonObject = new JSONObject(req);
+			String serverip = jsonObject.getString("serverip");
+			int port = jsonObject.getInt("port");
+			String user_id = jsonObject.getString("user_id");
+			String user_pw = jsonObject.getString("user_pw");
+			String query = jsonObject.getString("query");
+			
+//			System.out.println("serverip : " + serverip);
+//			System.out.println("port : " + port);
+//			System.out.println("query : " + query);
+//			System.out.println("user_id : " + user_id);
+//			System.out.println("user_pw : " + user_pw);
+			
+			String select_url = "http://"+ipAddress+":"+urlport+"/fnvr/request/query/select"; // 외부 RESTful API의 URL select
+//			System.out.println("select_url : "+ select_url);
+			
+			
+			//서버로 전송할 객체 생성
+			Map<String, Object> requestBody = new LinkedHashMap<>();
+			requestBody.put("serverip", serverip);
+			requestBody.put("port", port);
+			requestBody.put("user_id", user_id);
+			requestBody.put("user_pw", user_pw);
+			requestBody.put("query", query);
+//			System.out.println("cameraCode requestBody : "+ requestBody);
+			
+			// 요청 헤더 설정
+			HttpHeaders headers = new HttpHeaders();
+			headers.setContentType(MediaType.APPLICATION_JSON);
+			
+			// HttpEntity 생성
+			HttpEntity<Map<String, Object>> requestEntity = new HttpEntity<>(requestBody, headers);
+			
+			// post 요청 보내기
+			String response = restTemplate.postForObject(select_url, requestEntity, String.class);
+			
+//			System.out.println("cameraCode response"+ response);
+			
+			return response;
+			
+			
+		} catch (Exception e) {
+			//  //  System.out.println("Read Query Error");
+			e.printStackTrace();
+			return ""; // 예외가 발생하면 빈 문자열을 반환하도록 수정
+		}
 	}
 	
 	
 	
 	
-	// 입출차정보 월간강우
-	@PostMapping("/sendYear_IAO")
+	// 연별 개폐정보
+	@PostMapping("/sendYear_OAC")
 	@ResponseBody
 	public String IAOYearDataForword(
-			@RequestBody String occuYear
+			@RequestBody String req
 			) {
-//		System.out.println("occuYear"+occuYear);
-		return null;
+		System.out.println("IAOMonthDataForword req : " + req);
+		
+		String ipAddress;
+		String urlport;
+		
+		// MappingJackson2HttpMessageConverter 추가
+		restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
+		
+		try {
+			InputStream is = getClass().getResourceAsStream("/server_info.ini");
+			Scanner s = new Scanner(is);
+			ipAddress = s.nextLine();
+			urlport = s.nextLine();
+					        System.out.println("openGate ipAddress : "+ ipAddress);
+					        System.out.println("openGate port : "+ urlport);
+			s.close();
+			is.close();
+			
+			
+			
+			// JSON 문자열을 파싱하여 필요한 변수에 할당
+			JSONObject jsonObject = new JSONObject(req);
+			String serverip = jsonObject.getString("serverip");
+			int port = jsonObject.getInt("port");
+			String user_id = jsonObject.getString("user_id");
+			String user_pw = jsonObject.getString("user_pw");
+			String query = jsonObject.getString("query");
+			
+			System.out.println("serverip : " + serverip);
+			System.out.println("port : " + port);
+			System.out.println("query : " + query);
+			System.out.println("user_id : " + user_id);
+			System.out.println("user_pw : " + user_pw);
+			
+			String select_url = "http://"+ipAddress+":"+urlport+"/fnvr/request/query/select"; // 외부 RESTful API의 URL select
+			System.out.println("select_url : "+ select_url);
+			
+			
+			//서버로 전송할 객체 생성
+			Map<String, Object> requestBody = new LinkedHashMap<>();
+			requestBody.put("serverip", serverip);
+			requestBody.put("port", port);
+			requestBody.put("user_id", user_id);
+			requestBody.put("user_pw", user_pw);
+			requestBody.put("query", query);
+			System.out.println("cameraCode requestBody : "+ requestBody);
+			
+			// 요청 헤더 설정
+			HttpHeaders headers = new HttpHeaders();
+			headers.setContentType(MediaType.APPLICATION_JSON);
+			
+			// HttpEntity 생성
+			HttpEntity<Map<String, Object>> requestEntity = new HttpEntity<>(requestBody, headers);
+			
+			// post 요청 보내기
+			String response = restTemplate.postForObject(select_url, requestEntity, String.class);
+			
+			System.out.println("cameraCode response"+ response);
+			
+			return response;
+			
+			
+		} catch (Exception e) {
+			//  //  System.out.println("Read Query Error");
+			e.printStackTrace();
+			return ""; // 예외가 발생하면 빈 문자열을 반환하도록 수정
+		}
+	}
+	
+	
+	
+	
+	// 	기간별 카메라 목록
+	@PostMapping("/date_camera")
+	@ResponseBody
+	public String date_cameraForword(
+			@RequestBody String req
+			) {
+		System.out.println("date_cameraForword req : " + req);
+		
+		String ipAddress;
+		String urlport;
+		
+		// MappingJackson2HttpMessageConverter 추가
+		restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
+		
+		try {
+			InputStream is = getClass().getResourceAsStream("/server_info.ini");
+			Scanner s = new Scanner(is);
+			ipAddress = s.nextLine();
+			urlport = s.nextLine();
+			System.out.println("openGate ipAddress : "+ ipAddress);
+			System.out.println("openGate port : "+ urlport);
+			s.close();
+			is.close();
+			
+			
+			
+			// JSON 문자열을 파싱하여 필요한 변수에 할당
+			JSONObject jsonObject = new JSONObject(req);
+			String serverip = jsonObject.getString("serverip");
+			int port = jsonObject.getInt("port");
+			String user_id = jsonObject.getString("user_id");
+			String user_pw = jsonObject.getString("user_pw");
+			String query = jsonObject.getString("query");
+			
+			System.out.println("serverip : " + serverip);
+			System.out.println("port : " + port);
+			System.out.println("query : " + query);
+			System.out.println("user_id : " + user_id);
+			System.out.println("user_pw : " + user_pw);
+			
+			String select_url = "http://"+ipAddress+":"+urlport+"/fnvr/request/query/select"; // 외부 RESTful API의 URL select
+			System.out.println("select_url : "+ select_url);
+			
+			
+			//서버로 전송할 객체 생성
+			Map<String, Object> requestBody = new LinkedHashMap<>();
+			requestBody.put("serverip", serverip);
+			requestBody.put("port", port);
+			requestBody.put("user_id", user_id);
+			requestBody.put("user_pw", user_pw);
+			requestBody.put("query", query);
+			System.out.println("cameraCode requestBody : "+ requestBody);
+			
+			// 요청 헤더 설정
+			HttpHeaders headers = new HttpHeaders();
+			headers.setContentType(MediaType.APPLICATION_JSON);
+			
+			// HttpEntity 생성
+			HttpEntity<Map<String, Object>> requestEntity = new HttpEntity<>(requestBody, headers);
+			
+			// post 요청 보내기
+			String response = restTemplate.postForObject(select_url, requestEntity, String.class);
+			
+			System.out.println("cameraCode response"+ response);
+			
+			return response;
+			
+			
+		} catch (Exception e) {
+			//  //  System.out.println("Read Query Error");
+			e.printStackTrace();
+			return ""; // 예외가 발생하면 빈 문자열을 반환하도록 수정
+		}
 	}
 	
 	
 
 	
-	// 입출차정보 기간별강우
-	@PostMapping("/sendDate_IAO")
+	// 기간별 개폐정보
+	@PostMapping("/sendDate_OAC")
 	@ResponseBody
 	public String IAODateDataForword(
 			@RequestBody String req
 			) {
-//		System.out.println("req"+req);
+		System.out.println("IAODateDataForword req : " + req);
 		
-		// JSON 문자열을 파싱하여 필요한 변수에 할당
-	    JSONObject jsonObject = new JSONObject(req);
-	    String startOccuDate = jsonObject.getString("startOccuDate");
-	    String endOccuDate = jsonObject.getString("endOccuDate");
-	    String areaValue = jsonObject.getString("areaValue");
-	    String kindValue = jsonObject.getString("kindValue");
-	    
-	    // 각 변수 값 출력
-//	    System.out.println("startOccuDate: " + startOccuDate);
-//	    System.out.println("endOccuDate: " + endOccuDate);
-//	    System.out.println("areaValue: " + areaValue);
-//	    System.out.println("kindValue: " + kindValue);
-	    return null;
+		String ipAddress;
+		String urlport;
+		
+		// MappingJackson2HttpMessageConverter 추가
+		restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
+		
+		try {
+			InputStream is = getClass().getResourceAsStream("/server_info.ini");
+			Scanner s = new Scanner(is);
+			ipAddress = s.nextLine();
+			urlport = s.nextLine();
+			System.out.println("openGate ipAddress : "+ ipAddress);
+			System.out.println("openGate port : "+ urlport);
+			s.close();
+			is.close();
+			
+			
+			
+			// JSON 문자열을 파싱하여 필요한 변수에 할당
+			JSONObject jsonObject = new JSONObject(req);
+			String serverip = jsonObject.getString("serverip");
+			int port = jsonObject.getInt("port");
+			String user_id = jsonObject.getString("user_id");
+			String user_pw = jsonObject.getString("user_pw");
+			String query = jsonObject.getString("query");
+			
+			System.out.println("serverip : " + serverip);
+			System.out.println("port : " + port);
+			System.out.println("query : " + query);
+			System.out.println("user_id : " + user_id);
+			System.out.println("user_pw : " + user_pw);
+			
+			String select_url = "http://"+ipAddress+":"+urlport+"/fnvr/request/query/select"; // 외부 RESTful API의 URL select
+			System.out.println("select_url : "+ select_url);
+			
+			
+			//서버로 전송할 객체 생성
+			Map<String, Object> requestBody = new LinkedHashMap<>();
+			requestBody.put("serverip", serverip);
+			requestBody.put("port", port);
+			requestBody.put("user_id", user_id);
+			requestBody.put("user_pw", user_pw);
+			requestBody.put("query", query);
+			System.out.println("IAODateDataForword requestBody : "+ requestBody);
+			
+			// 요청 헤더 설정
+			HttpHeaders headers = new HttpHeaders();
+			headers.setContentType(MediaType.APPLICATION_JSON);
+			
+			// HttpEntity 생성
+			HttpEntity<Map<String, Object>> requestEntity = new HttpEntity<>(requestBody, headers);
+			
+			// post 요청 보내기
+			String response = restTemplate.postForObject(select_url, requestEntity, String.class);
+			
+			System.out.println("IAODateDataForword response"+ response);
+			
+			return response;
+			
+			
+		} catch (Exception e) {
+			//  //  System.out.println("Read Query Error");
+			e.printStackTrace();
+			return ""; // 예외가 발생하면 빈 문자열을 반환하도록 수정
+		}
 	}
 	
 	

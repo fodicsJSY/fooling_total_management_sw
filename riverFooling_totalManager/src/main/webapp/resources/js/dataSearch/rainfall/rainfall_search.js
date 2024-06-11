@@ -25,14 +25,14 @@ function searchData(){
         })
         .then(resp => resp.json()) // 요청에 대한 응답 객체(response)를 필요한 형태로 파싱
         .then((result) => {
-            // console.log("result", result );
+            console.log("result", result );
     
             if(result == "0"){
                 Swal.fire("데이터가 없습니다.");
             }else{
     
                 let data = result.results;
-                // console.log("data", data);
+                console.log("data", data);
         
                 r_dayMakeTable(data);
             }

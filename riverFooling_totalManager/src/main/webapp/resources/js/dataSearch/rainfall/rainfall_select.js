@@ -157,59 +157,11 @@ let endDayValue;
 //강우페이지 로드시
 document.addEventListener("DOMContentLoaded", function() {
     let occuDay = year + month + day;
-    // console.log("occuDay", occuDay );
+
 
     dayRainfallForward();
-    fetch("/dataSearch/getData", { 
-        method : "POST", 
-        headers: {"Content-Type": "application/json"}, 
-        credentials: "include",
-        body : JSON.stringify( {
-                                // "key" : "K7p9sE5rT2yF8gU1hJ4iO3pL",
-                                "baseDate": occuDay
-                                } ) 
-    })
-    .then(resp => resp.json()) // 요청에 대한 응답 객체(response)를 필요한 형태로 파싱
-    .then((result) => {
-        // console.log("result", result );
 
-        let data = result.results;
-        // console.log("data", data);
-        r_dayMakeTable(data);
-
-        
-    }) // 첫 번째 then에서 파싱한 데이터를 이용한 동작 작성
-    .catch( err => {
-        console.log("err : ", err);
-    }); // 예외 발생 시 처리할 내용을 작성
 });
-
-
-function api(){
-    console.log("api");
-    fetch("/dataSearch/getData", { 
-        method : "POST", 
-        headers: {"Content-Type": "application/json"}, 
-        credentials: "include",
-        body : JSON.stringify( {
-                                // "key" : "K7p9sE5rT2yF8gU1hJ4iO3pL",
-                                "baseDate": "20240529"
-                                } ) 
-    })
-    .then(resp => resp.json()) // 요청에 대한 응답 객체(response)를 필요한 형태로 파싱
-    .then((result) => {
-        // console.log("result", result );
-
-        let data = result.results;
-        // console.log("data", data);
-        r_dayMakeTable(data);
-
-        
-    }) // 첫 번째 then에서 파싱한 데이터를 이용한 동작 작성
-    .catch( err => {
-        console.log("err : ", err);
-    }); // 예외 발생 시 처리할 내용을 작성
-}
 
 
 
@@ -251,10 +203,10 @@ function dayRainfallForward(){
     })
     .then(resp => resp.json()) // 요청에 대한 응답 객체(response)를 필요한 형태로 파싱
     .then((result) => {
-        // console.log("result", result );
+        console.log("result", result );
 
         let data = result.results;
-        // console.log("data", data);
+        console.log("data", data);
         r_dayMakeTable(data);
 
         

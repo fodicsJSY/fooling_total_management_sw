@@ -37,11 +37,13 @@
 	     	<result property="alarmWaterLevel" column="ALARM_WATER_LEVEL" />
 	     	<result property="areaValue" column="AREA_VALUE" />
 	</resultMap> 
+	
+	<resultMap type="OpenAndClose" id="_openAndClose">
+	     	<result property="cameraName" column="camera_name" />
+	</resultMap> 
 
 	
 	 <resultMap id="_int" type="java.lang.Integer"/>
-	 
-	 
 	 
 	 
 	 

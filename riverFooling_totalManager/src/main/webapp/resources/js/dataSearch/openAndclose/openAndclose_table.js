@@ -1,5 +1,4 @@
 
-let tableDataList; 
 
 
 
@@ -7,10 +6,19 @@ let tableDataList;
 
 // 일별 강우 테이블 만들기
 function dayMakeTable(data){
-    // tableDataList = data.tableDataList;
+    // console.log("data", data );
+    var tableDataList = data;
+    // console.log("tableDataList", tableDataList);
+    // console.log("tableDataList.length", tableDataList.length);
 
-    // console.log("tableDataList", tableDataList );
-    // console.log("테이블 생성");
+    let cameraList = [];
+    
+    for(let i = 0; i < tableDataList.length; i++){
+        cameraList.push(tableDataList[i][0]);
+    }
+
+    const cameras = [...new Set(cameraList)];
+    // console.log("cameras : ", cameras);
 
     var tableContainer = document.querySelector(".tableContainer");
     tableContainer.innerHTML = ""; // Clear previous data
@@ -32,8 +40,8 @@ function dayMakeTable(data){
     createCell(htr, "th", "rainfull areaName", "카메라명");
     createCell(htr, "th", "rainfull inout", "구분");
 
-
-    for(let i = 1; i<=31 ; i++ ){
+    // 시간 헤더 생성
+    for(let i = 0; i<24 ; i++ ){
         createCell(htr, "th", "rainfull dayData", i);
     }
 
@@ -43,115 +51,158 @@ function dayMakeTable(data){
     rainfullTbody.className = "rainfullTbody";
     rainfullTable.appendChild(rainfullTbody);
 
-    for(let i = 0; i<4 ; i ++ ){
-        
+    // 바디 생성
+    for(let i = 0; i<cameras.length ; i++){
         var tr = document.createElement("tr");
         rainfullTbody.appendChild(tr);
         
-        var tr = document.createElement("tr");
-        rainfullTbody.appendChild(tr);
-
-        
-        // 시간 값을 위아래 두 칸 차지하도록 설정합니다.
+        // 카메라명을 위아래 두 칸 차지하도록 설정합니다.
         var tdSpan = document.createElement("th");
         tdSpan.className = "rainfull areaName";
         tdSpan.setAttribute("rowspan", "2");
-        tdSpan.textContent = "후탄리 25-3";
+        tdSpan.textContent = cameras[i];
         tr.appendChild(tdSpan);
-        
 
-
-
-
-
-        // "in" 행 생성
+        // "OPEN" 행 생성
         var trFlooding = document.createElement("th");
         tr.appendChild(trFlooding);
         trFlooding.className = "rainfull inoutData";
-        trFlooding.innerHTML = "in";
+        trFlooding.innerHTML = "OPEN";
 
-        for(let j = 1; j<=31 ; j ++ ){
-            createCell(tr, "td", "rainfull", "0");
+        for(let j = 0; j<24; j++){
+            let cellValue = findOpenData(tableDataList, j, cameras[i]);
+            createCell(tr, "td", "rainfull", cellValue);
         }
-        createCell(tr, "td", "rainfull sumData", "12");
 
-
+        // "OPEN" 행 합계
+        let openSum = closeSumData(tableDataList, cameras[i]);
+        createCell(tr, "td", "rainfull dateSumData", openSum);
 
         var tr3 = document.createElement("tr");
         rainfullTbody.appendChild(tr3);
 
-        // "out" 행 생성
+        // "CLOSE" 행 생성
         var trWaterLevel = document.createElement("th");
         tr3.appendChild(trWaterLevel);
         trWaterLevel.className = "rainfull inoutData";
-        trWaterLevel.innerHTML = "out";
+        trWaterLevel.innerHTML = "CLOSE";
 
-        for(let j = 1; j<=31 ; j ++ ){
-            createCell(tr3, "td", "rainfull",  "0");
+        for(let j = 0; j<24; j++){
+            let cellValue = findCloseData(tableDataList, j, cameras[i]);
+            createCell(tr3, "td", "rainfull", cellValue);
         }
-        createCell(tr3, "td", "rainfull sumData", "12");
+        // "CLOSE" 행 합계
+        let closeSum = closeSumData(tableDataList, cameras[i]);
+        createCell(tr3, "td", "rainfull dateSumData", closeSum);
+    }
 
     }
     
+    function findOpenData(data, hour, camera) {
+        // console.log("data", data);
+        // console.log("camera", camera);
+    
+        let filteredData = data.filter(item => {
+            let itemCamera = item[0];
+            let itemHour = item[1];
+            let itemCmd = item[2];
+    
+            // 데이터의 시간, 카메라, 개폐여부가 모두 유효한지 확인하고 조건을 만족하는지 검사
+            return itemHour == hour && itemCamera == camera && itemCmd == '1';
+        });
+    
+        // console.log("filteredData : ", filteredData);
+    
+        // 조건을 만족하는 데이터의 개수를 반환
+        let count = filteredData.length;
+        // console.log("count : ", count);
+    
+        return count > 0 ? count : "-";
+    }
+
+    function findCloseData(data, hour, camera) {
+        // console.log("data", data);
+        // console.log("camera", camera);
+    
+        let filteredData = data.filter(item => {
+            let itemCamera = item[0];
+            let itemHour = item[1];
+            let itemCmd = item[2];
+    
+            // 데이터의 시간, 카메라, 개폐여부가 모두 유효한지 확인하고 조건을 만족하는지 검사
+            return itemHour == hour && itemCamera == camera && itemCmd == '0';
+        });
+    
+        // console.log("filteredData : ", filteredData);
+    
+        // 조건을 만족하는 데이터의 개수를 반환
+        let count = filteredData.length;
+        // console.log("count : ", count);
+    
+        return count > 0 ? count : "-";
+    }
 
 
-    // 데이터 삽입
-    /*
-    tableDataList.forEach(function (item) {    
-        var tr = document.createElement("tr");
-        gateTbody.appendChild(tr);
-        createCell(tr, "td", "gatetd", item.gateName);
-
-        var div1 = document.createElement("div");
-        div1.className = "gateIconBox";
-        tr.appendChild(div1);
-
-        let gateImg =  document.createElement("img");
-        gateImg.className = "gateIcon";
-
-        
-        // console.log("item.gateStatus : ", item.gateStatus );
-        
-
-        if(item.gateStatus == 'close'){
-            gateImg.src = "/resources/img/iconBTN_GateClose.png";
-        }
-        if(item.gateStatus == 'open'){
-            gateImg.src = "/resources/img/iconBTN_GateOpen.png";
-        }
-        div1.appendChild(gateImg);
-        
-        if(item.gateStatus == ''){
-            div1.innerHTML = "-";
-        }
-
-        
-        let signalImg =  document.createElement("img");
-        signalImg.className = "signalIcon";
-
-        // console.log("item.commStatus : ", item.commStatus );
-        if(item.commStatus == 'on'){
-            signalImg.src = "/resources/img/connect-signalOK.png";
-        }
-        if(item.commStatus == 'off'){
-            signalImg.src = "/resources/img/connect-signalNO.png";
-        }
-
-        // createCell(tr, "td", "gatetd", data);
-        createCell(tr, "td", "gatetd gate", div1);
-        createCell(tr, "td", "gatetd", signalImg.outerHTML);
-    });
-    */
-}
+    
+    function openSumData(data,camera) {
+        // console.log("data", data);
+        // console.log("camera", camera);
+    
+        let filteredData = data.filter(item => {
+            let itemCamera = item[0];
+            let itemCmd = item[2];
+    
+            // 데이터의 시간, 카메라, 개폐여부가 모두 유효한지 확인하고 조건을 만족하는지 검사
+            return itemCamera == camera && itemCmd == '1';
+        });
+    
+        // console.log("filteredData : ", filteredData);
+    
+        // 조건을 만족하는 데이터의 개수를 반환
+        let count = filteredData.length;
+        // console.log("count : ", count);
+    
+        return count > 0 ? count : "-";
+    }
+    
+    function closeSumData(data,camera) {
+        // console.log("data", data);
+        // console.log("camera", camera);
+    
+        let filteredData = data.filter(item => {
+            let itemCamera = item[0];
+            let itemCmd = item[2];
+    
+            // 데이터의 시간, 카메라, 개폐여부가 모두 유효한지 확인하고 조건을 만족하는지 검사
+            return itemCamera == camera && itemCmd == '0';
+        });
+    
+        // console.log("filteredData : ", filteredData);
+    
+        // 조건을 만족하는 데이터의 개수를 반환
+        let count = filteredData.length;
+        // console.log("count : ", count);
+    
+        return count > 0 ? count : "-";
+    }
 
 
 
 // 월별 강우 테이블 만들기
 function monthMakeTable(data){
-    // tableDataList = data.tableDataList;
+    var tableDataList = data;
 
     // console.log("tableDataList", tableDataList );
     // console.log("테이블 생성");
+
+    let cameraList = [];
+    
+    for(let i = 0; i < tableDataList.length; i++){
+        cameraList.push(tableDataList[i][0]);
+    }
+
+    const cameras = [...new Set(cameraList)];
+    console.log("cameras : ", cameras);
 
     var tableContainer = document.querySelector(".tableContainer");
     tableContainer.innerHTML = ""; // Clear previous data
@@ -184,7 +235,7 @@ function monthMakeTable(data){
     rainfullTbody.className = "rainfullTbody";
     rainfullTable.appendChild(rainfullTbody);
 
-    for(let i = 0; i<4 ; i ++ ){
+    for(let i = 0; i<cameras.length ; i ++ ){
         
         var tr = document.createElement("tr");
         rainfullTbody.appendChild(tr);
@@ -197,102 +248,117 @@ function monthMakeTable(data){
         var tdSpan = document.createElement("th");
         tdSpan.className = "rainfull areaName";
         tdSpan.setAttribute("rowspan", "2");
-        tdSpan.textContent = "후탄리 25-3";
+        tdSpan.textContent = cameras[i];
         tr.appendChild(tdSpan);
         
 
-
-
-
-
-        // "in" 행 생성
+        // "OPEN" 행 생성
         var trFlooding = document.createElement("th");
         tr.appendChild(trFlooding);
         trFlooding.className = "rainfull inoutData";
-        trFlooding.innerHTML = "in";
+        trFlooding.innerHTML = "OPEN";
 
         for(let j = 1; j<=31 ; j ++ ){
-            createCell(tr, "td", "rainfull", "0");
+            let cellValue = monthOpenData(tableDataList, j, cameras[i]);
+            createCell(tr, "td", "rainfull", cellValue);
         }
-        createCell(tr, "td", "rainfull sumData", "12");
+
+        // "OPEN" 행 합계
+        let openSum = openSumData(tableDataList, cameras[i]);
+        createCell(tr, "td", "rainfull dateSumData", openSum);
 
 
 
         var tr3 = document.createElement("tr");
         rainfullTbody.appendChild(tr3);
 
-        // "out" 행 생성
+        // "CLOSE" 행 생성
         var trWaterLevel = document.createElement("th");
         tr3.appendChild(trWaterLevel);
         trWaterLevel.className = "rainfull inoutData";
-        trWaterLevel.innerHTML = "out";
+        trWaterLevel.innerHTML = "CLOSE";
 
         for(let j = 1; j<=31 ; j ++ ){
-            createCell(tr3, "td", "rainfull",  "0");
+            let cellValue = monthCloseData(tableDataList, j, cameras[i]);
+            createCell(tr3, "td", "rainfull", cellValue);
         }
-        createCell(tr3, "td", "rainfull sumData", "12");
+        // "CLOSE" 행 합계
+        let closeSum = closeSumData(tableDataList, cameras[i]);
+        createCell(tr3, "td", "rainfull dateSumData", closeSum);
 
     }
-
-
-    // 데이터 삽입
-    /*
-    tableDataList.forEach(function (item) {    
-        var tr = document.createElement("tr");
-        gateTbody.appendChild(tr);
-        createCell(tr, "td", "gatetd", item.gateName);
-
-        var div1 = document.createElement("div");
-        div1.className = "gateIconBox";
-        tr.appendChild(div1);
-
-        let gateImg =  document.createElement("img");
-        gateImg.className = "gateIcon";
-
-        
-        // console.log("item.gateStatus : ", item.gateStatus );
-        
-
-        if(item.gateStatus == 'close'){
-            gateImg.src = "/resources/img/iconBTN_GateClose.png";
-        }
-        if(item.gateStatus == 'open'){
-            gateImg.src = "/resources/img/iconBTN_GateOpen.png";
-        }
-        div1.appendChild(gateImg);
-        
-        if(item.gateStatus == ''){
-            div1.innerHTML = "-";
-        }
-
-        
-        let signalImg =  document.createElement("img");
-        signalImg.className = "signalIcon";
-
-        // console.log("item.commStatus : ", item.commStatus );
-        if(item.commStatus == 'on'){
-            signalImg.src = "/resources/img/connect-signalOK.png";
-        }
-        if(item.commStatus == 'off'){
-            signalImg.src = "/resources/img/connect-signalNO.png";
-        }
-
-        // createCell(tr, "td", "gatetd", data);
-        createCell(tr, "td", "gatetd gate", div1);
-        createCell(tr, "td", "gatetd", signalImg.outerHTML);
-    });
-    */
 }
 
 
 
 
+function monthOpenData(data, day, camera) {
+    console.log("data", data);
+    console.log("camera", camera);
+    let dayValue = day < 10 ? "0" + day : day.toString();
+    console.log("dayValue", dayValue);
+
+    let filteredData = data.filter(item => {
+        let itemCamera = item[0];
+        let itemDay = item[1];
+        let itemCmd = item[2];
+
+        // 데이터의 시간, 카메라, 개폐여부가 모두 유효한지 확인하고 조건을 만족하는지 검사
+        return itemDay == dayValue && itemCamera == camera && itemCmd == '1';
+    });
+
+    console.log("filteredData : ", filteredData);
+
+    // 조건을 만족하는 데이터의 개수를 반환
+    let count = filteredData.length;
+    console.log("count : ", count);
+
+    return count > 0 ? count : "-";
+}
+
+function monthCloseData(data, day, camera) {
+    console.log("data", data);
+    console.log("camera", camera);
+    let dayValue = day < 10 ? "0" + day : day.toString();
+    console.log("dayValue", dayValue);
+
+    let filteredData = data.filter(item => {
+        let itemCamera = item[0];
+        let itemDay = item[1];
+        let itemCmd = item[2];
+
+        // 데이터의 시간, 카메라, 개폐여부가 모두 유효한지 확인하고 조건을 만족하는지 검사
+        return itemDay == dayValue && itemCamera == camera && itemCmd == '0';
+    });
+
+    console.log("filteredData : ", filteredData);
+
+    // 조건을 만족하는 데이터의 개수를 반환
+    let count = filteredData.length;
+    console.log("count : ", count);
+
+    return count > 0 ? count : "-";
+}
+
+
+
 //  연간강우 테이블 만들기
 function yearMakeTable(data){
-    // tableDataList = data.tableDataList;
+    var tableDataList = data;
 
-    // console.log("tableDataList", tableDataList );
+    console.log("tableDataList", tableDataList );
     // console.log("테이블 생성");
+
+
+    let cameraList = [];
+    
+    for(let i = 0; i < tableDataList.length; i++){
+        // console.log("tableDataList[i]", tableDataList[i]);
+        cameraList.push(tableDataList[i][0]);
+        // console.log("cameraList", cameraList);
+        }
+        const cameras = [...new Set(cameraList)];
+        console.log("cameras : ", cameras);
 
     var tableContainer = document.querySelector(".tableContainer");
     tableContainer.innerHTML = ""; // Clear previous data
@@ -315,6 +381,7 @@ function yearMakeTable(data){
     createCell(htr, "th", "rainfull inout", "구분");
 
 
+    // 일 헤더 생성
     for(let i = 1; i<=12 ; i++ ){
         createCell(htr, "th", "rainfull dayData", i);
     }
@@ -325,7 +392,9 @@ function yearMakeTable(data){
     rainfullTbody.className = "rainfullTbody";
     rainfullTable.appendChild(rainfullTbody);
 
-    for(let i = 0; i<4 ; i ++ ){
+
+        // 바디 생성
+    for(let i = 0; i<cameras.length; i ++ ){
         
         var tr = document.createElement("tr");
         rainfullTbody.appendChild(tr);
@@ -338,7 +407,7 @@ function yearMakeTable(data){
         var tdSpan = document.createElement("th");
         tdSpan.className = "rainfull areaName";
         tdSpan.setAttribute("rowspan", "2");
-        tdSpan.textContent = "후탄리 25-3";
+        tdSpan.textContent = cameras[i];
         tr.appendChild(tdSpan);
         
 
@@ -346,87 +415,92 @@ function yearMakeTable(data){
 
 
 
-        // "in" 행 생성
+        // "OPEN" 행 생성
         var trFlooding = document.createElement("th");
         tr.appendChild(trFlooding);
         trFlooding.className = "rainfull inoutData";
-        trFlooding.innerHTML = "in";
+        trFlooding.innerHTML = "OPEN";
+
+
 
         for(let j = 1; j<=12 ; j ++ ){
-            createCell(tr, "td", "rainfull", "0");
+            let cellValue = findOpenData(tableDataList, j, cameras[i]);
+            createCell(tr, "td", "rainfull", cellValue);
         }
-        createCell(tr, "td", "rainfull sumData", "12");
 
+        // "OPEN" 행 합계
+        let openSum = openSumData(tableDataList, cameras[i]);
+        createCell(tr, "td", "rainfull dateSumData", openSum);
 
 
         var tr3 = document.createElement("tr");
         rainfullTbody.appendChild(tr3);
 
-        // "out" 행 생성
+        // "CLOSE" 행 생성
         var trWaterLevel = document.createElement("th");
         tr3.appendChild(trWaterLevel);
         trWaterLevel.className = "rainfull inoutData";
-        trWaterLevel.innerHTML = "out";
+        trWaterLevel.innerHTML = "CLOSE";
 
         for(let j = 1; j<=12 ; j ++ ){
-            createCell(tr3, "td", "rainfull",  "0");
+            let cellValue = findCloseData(tableDataList, j, cameras[i]);
+            createCell(tr3, "td", "rainfull", cellValue);
         }
-        createCell(tr3, "td", "rainfull sumData", "12");
+
+
+        // "CLOSE" 행 합계
+        let closeSum = closeSumData(tableDataList, cameras[i]);
+        createCell(tr3, "td", "rainfull dateSumData", closeSum);
 
     }
 
 
-
-    // 데이터 삽입
-    /*
-    tableDataList.forEach(function (item) {    
-        var tr = document.createElement("tr");
-        gateTbody.appendChild(tr);
-        createCell(tr, "td", "gatetd", item.gateName);
-
-        var div1 = document.createElement("div");
-        div1.className = "gateIconBox";
-        tr.appendChild(div1);
-
-        let gateImg =  document.createElement("img");
-        gateImg.className = "gateIcon";
-
-        
-        // console.log("item.gateStatus : ", item.gateStatus );
-        
-
-        if(item.gateStatus == 'close'){
-            gateImg.src = "/resources/img/iconBTN_GateClose.png";
-        }
-        if(item.gateStatus == 'open'){
-            gateImg.src = "/resources/img/iconBTN_GateOpen.png";
-        }
-        div1.appendChild(gateImg);
-        
-        if(item.gateStatus == ''){
-            div1.innerHTML = "-";
-        }
-
-        
-        let signalImg =  document.createElement("img");
-        signalImg.className = "signalIcon";
-
-        // console.log("item.commStatus : ", item.commStatus );
-        if(item.commStatus == 'on'){
-            signalImg.src = "/resources/img/connect-signalOK.png";
-        }
-        if(item.commStatus == 'off'){
-            signalImg.src = "/resources/img/connect-signalNO.png";
-        }
-
-        // createCell(tr, "td", "gatetd", data);
-        createCell(tr, "td", "gatetd gate", div1);
-        createCell(tr, "td", "gatetd", signalImg.outerHTML);
-    });
-    */
 }
 
 
+function yearOpenData(data, month, camera) {
+    console.log("data", data);
+    console.log("camera", camera);
+
+    let filteredData = data.filter(item => {
+        let itemCamera = item[0];
+        let itemMonth = item[1];
+        let itemCmd = item[2];
+
+        // 데이터의 시간, 카메라, 개폐여부가 모두 유효한지 확인하고 조건을 만족하는지 검사
+        return itemMonth == month && itemCamera == camera && itemCmd == '1';
+    });
+
+    console.log("filteredData : ", filteredData);
+
+    // 조건을 만족하는 데이터의 개수를 반환
+    let count = filteredData.length;
+    console.log("count : ", count);
+
+    return count > 0 ? count : "-";
+}
+
+function yearCloseData(data, month, camera) {
+    console.log("data", data);
+    console.log("camera", camera);
+
+    let filteredData = data.filter(item => {
+        let itemCamera = item[0];
+        let itemMonth = item[1];
+        let itemCmd = item[2];
+
+        // 데이터의 시간, 카메라, 개폐여부가 모두 유효한지 확인하고 조건을 만족하는지 검사
+        return itemMonth == month && itemCamera == camera && itemCmd == '0';
+    });
+
+    console.log("filteredData : ", filteredData);
+
+    // 조건을 만족하는 데이터의 개수를 반환
+    let count = filteredData.length;
+    console.log("count : ", count);
+
+    return count > 0 ? count : "-";
+}
 
 
 
@@ -435,10 +509,21 @@ function yearMakeTable(data){
 
 // 기간별강우 테이블 만들기
 function dateMakeTable(data){
-    // tableDataList = data.tableDataList;
+    tableDataList = data;
 
-    // console.log("tableDataList", tableDataList );
+    console.log("tableDataList", tableDataList );
     // console.log("테이블 생성");
+
+
+    let dateList = [];
+    
+    for(let i = 0; i < tableDataList.length; i++){
+        // console.log("tableDataList[i]", tableDataList[i]);
+        dateList.push(tableDataList[i][0]);
+        // console.log("cameraList", cameraList);
+        }
+        const cameras = [...new Set(dateList)];
+        console.log("cameras : ", cameras);
 
     var tableContainer = document.querySelector(".tableContainer");
     tableContainer.innerHTML = ""; // Clear previous data

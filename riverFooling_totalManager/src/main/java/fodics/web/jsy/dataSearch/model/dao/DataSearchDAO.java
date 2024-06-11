@@ -12,6 +12,7 @@ import org.springframework.stereotype.Repository;
 import fodics.web.jsy.dataSearch.model.dto.Date_flooding;
 import fodics.web.jsy.dataSearch.model.dto.Flooding;
 import fodics.web.jsy.dataSearch.model.dto.Min_flooding;
+import fodics.web.jsy.dataSearch.model.dto.OpenAndClose;
 import fodics.web.jsy.equimentControl.model.dto.EquimentControl;
 
 @Repository
@@ -55,7 +56,6 @@ public class DataSearchDAO {
 	public List<Flooding> month_floodingSaveList(String occuMonth) {
 		return sql.selectList("databaseMapper.month_floodingList", occuMonth);
 	}
-
 
 
 

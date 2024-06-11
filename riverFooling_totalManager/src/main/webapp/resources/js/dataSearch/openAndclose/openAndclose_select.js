@@ -135,10 +135,20 @@ function setTodaySelections() {
 }
 
 
+let savedIP;
+let savePORT;
+
 //입출차 페이지 로드시
 document.addEventListener("DOMContentLoaded", function() {
+
+    savedIP = getIP_FromLocalStorage().saveIP;
+    // console.log("savedIP : ", savedIP);
+    savePORT = getPORT_FromLocalStorage().savePORT;
+    // console.log("savePORT : ", savePORT);
+
     makeDaySelectBox();
-    dayMakeTable();
+    // dayMakeTable();
+    dayOAC_searchData();
 });
 
 
@@ -165,7 +175,8 @@ function dayRainfallForward(){
     selectDate.innerHTML = ""; 
 
     makeDaySelectBox();
-    dayMakeTable();
+    dayOAC_searchData();
+    // dayMakeTable();
 
 }
 
@@ -261,7 +272,7 @@ function makeDaySelectBox(){
     searchButton = button01;
 
     searchButton.addEventListener("click", ()=>{
-        searchData();
+        dayOAC_searchData();
     });
 
     setTodaySelections();
@@ -284,8 +295,9 @@ monthRainfall.addEventListener("click", ()=>{
 
     selectDate.innerHTML = ""; 
 
-    monthMakeTable();
+    // monthMakeTable();
     makeMonthSelectBox();
+    monthOAC_searchData()
 
 });
 
@@ -356,7 +368,7 @@ function makeMonthSelectBox(){
     searchButton = button01;
 
     searchButton.addEventListener("click", ()=>{
-        searchData();
+        monthOAC_searchData();
     });
 
     setTodaySelections();
@@ -380,9 +392,9 @@ yearRainfall.addEventListener("click", ()=>{
 
     selectDate.innerHTML = ""; 
 
-    yearMakeTable();
     makeYearSelectBox();
-
+    yearOAC_searchData()
+    
 });
 
 
@@ -432,7 +444,7 @@ function makeYearSelectBox(){
     searchButton = button01;
 
     searchButton.addEventListener("click", ()=>{
-        searchData();
+        yearOAC_searchData();
     });
 
     setTodaySelections();
@@ -454,18 +466,54 @@ dateRainfall.addEventListener("click", ()=>{
 
     selectDate.innerHTML = ""; 
 
+    cameraRest();
     dateMakeTable();
-    dateSelectBox();
+    // dateSelectBox();
+    dateOAC_searchData();
+    
 
 });
 
 
 
+
+
+function cameraRest(){
+
+    fetch("/dataSearch/date_camera", { 
+        method : "POST", 
+        headers: {"Content-Type": "application/json;"}, 
+        body : JSON.stringify( {
+            "serverip" : savedIP,
+            "port" : savePORT,
+            "user_id" : loginId,
+            "user_pw" : loginPw,
+            "query" : "SELECT  camera_name FROM TB_CIRCUIT_BREAKER_CONFIG ORDER BY camera_name"
+
+    } ) 
+        })
+        .then(resp => resp.json()) // 요청에 대한 응답 객체(response)를 필요한 형태로 파싱
+    .then((result) => {
+        console.log("result", result );
+        
+        let data = result.result;
+        console.log("data", data );
+
+        // 차트호출
+        dateSelectBox(data);
+
+    }) // 첫 번째 then에서 파싱한 데이터를 이용한 동작 작성
+    .catch( err => {
+        // console.log("err : ", err);
+    }); // 예외 발생 시 처리할 내용을 작성
+
+
+}   
 //기간별강우 날짜선택
-function dateSelectBox(){
+function dateSelectBox(data){
 
 
-    //침수&수위 선택
+    //개폐 선택
     var kindBox01 = document.createElement("div");
     kindBox01.className = "kindBox";
     selectDate.appendChild(kindBox01);
@@ -478,14 +526,15 @@ function dateSelectBox(){
 
 
     var option05 = document.createElement("option");
-    option05.value = "in";
-    option05.innerHTML = "IN";
+    option05.value = "open";
+    option05.innerHTML = "OPEN";
     kindSelect01.appendChild(option05);
 
     var option06 = document.createElement("option");
-    option06.value = "out";
-    option06.innerHTML = "OUT";
+    option06.value = "close";
+    option06.innerHTML = "CLOSE";
     kindSelect01.appendChild(option06);
+
 
 
     //지역
@@ -496,30 +545,19 @@ function dateSelectBox(){
     var areaSelect01 = document.createElement("select");
     areaSelect01.className = "areaSelect";
     areaSelect01.id = "area";
-    areaSelect01.name = "지역명";
+    areaSelect01.name = "카메라명";
     areaBox01.appendChild(areaSelect01);
 
 
-    var option01 = document.createElement("option");
-    option01.value = "hutanri25_3";
-    option01.innerHTML = "후탄리25-3";
-    areaSelect01.appendChild(option01);
+    data.forEach(item => {
+        console.log("item : ", item);
 
-    var option02 = document.createElement("option");
-    option02.value = "hutanri331_1";
-    option02.innerHTML = "후탄리331-1";
-    areaSelect01.appendChild(option02);
-
-    var option03 = document.createElement("option");
-    option03.value = "Panunri426_20";
-    option03.innerHTML = "판운리423-20";
-    areaSelect01.appendChild(option03);
-
-    var option04 = document.createElement("option");
-    option04.value = "gwangjeonri998_7";
-    option04.innerHTML = "광전리998-7";
-    areaSelect01.appendChild(option04);
-
+        var option01 = document.createElement("option");
+        option01.value = item;
+        option01.innerHTML = item;
+        areaSelect01.appendChild(option01);
+    
+    });
 
 
     //연

@@ -4,17 +4,17 @@ let tableDataList;
 function r_dayMakeTable(data){
 
     tableDataList = data;
-    // console.log("tableDataList", tableDataList);
+    console.log("tableDataList", tableDataList);
     
     // console.log("테이블 생성");
     
 
 
     
-    for (let i = 0; i < tableDataList.length; i++) {
-        // console.log("tableDataList[i]", tableDataList[i]);
+    // for (let i = 0; i < tableDataList.length; i++) {
+    //     // console.log("tableDataList[i]", tableDataList[i]);
 
-    }
+    // }
     
     // const values = [...new Set(data.map(item => item.values))];
     // console.log("values", values);

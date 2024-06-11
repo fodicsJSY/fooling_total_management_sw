@@ -59,7 +59,7 @@ function saveData(fname){
     let occuMonth = selectYearValue + "0"  + selectMonthValue;
     console.log("occuMonth : ", occuMonth);
 
-    fetch("/sendMonth_floodingSave", { 
+    fetch("/dataSearch/sendMonth_floodingSave", { 
         method : "POST", 
         headers: {"Content-Type": "application/json;"}, 
         body : JSON.stringify( {"occuMonth":occuMonth, "fname":fname} ) 

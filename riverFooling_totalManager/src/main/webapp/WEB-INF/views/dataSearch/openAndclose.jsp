@@ -139,7 +139,10 @@
     <jsp:include page="/WEB-INF/views/footer.jsp"/>
 
 
-    <script></script>
+    <script>
+        var loginId = "${loginUser.user_id}";
+        var loginPw = "${loginUser.user_pw}";
+    </script>
     <script src="/resources/js/dataSearch/openAndclose/openAndclose_select.js"></script>
     <script src="/resources/js/dataSearch/openAndclose/openAndclose_search.js"></script>
     <script src="/resources/js/dataSearch/openAndclose/openAndclose_xml.js"></script>

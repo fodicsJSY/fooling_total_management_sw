@@ -183,8 +183,8 @@
         var loginId = "${loginUser.user_id}";
         var loginPw = "${loginUser.user_pw}";
 
-        console.log("loginId", loginId);
-        console.log("loginPw", loginPw);
+        // console.log("loginId", loginId);
+        // console.log("loginPw", loginPw);
     </script>
     <script src="/resources/js/equipmentControl/차단기수동제어.js"></script>
     <script src="/resources/js/date.js"></script>

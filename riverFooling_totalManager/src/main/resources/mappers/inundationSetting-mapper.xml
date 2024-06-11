@@ -86,6 +86,7 @@
 		AND ALARM_LEVEL = '2'
 	</update>
 	
+	
 	<update id="updateStep3" >
 		UPDATE tb_water_level_alarm_info
 		SET ALARM_CONDITION = #{stepThreeChecked}
@@ -95,6 +96,7 @@
 		AND ALARM_LEVEL = '3'
 	</update>
 	
+	
 	<update id="updateStep4" >
 		UPDATE tb_water_level_alarm_info
 		SET ALARM_CONDITION = #{stepFourChecked}
@@ -103,6 +105,7 @@
 		WHERE SENSOR_ID = #{areaSelectValue}
 		AND ALARM_LEVEL = '4'
 	</update>
+	
 	
 	<update id="updateStep5" >
 		UPDATE tb_water_level_alarm_info
