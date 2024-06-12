@@ -151,17 +151,17 @@
         var areaList = [];
 
         for (var i = 0; i < areaListJson.length; i++) {
-            console.log("객체 ", i, "의 name 속성: ", areaListJson[i].sensorLocation);
+            // console.log("객체 ", i, "의 name 속성: ", areaListJson[i].sensorLocation);
 
             // areaList 배열에 새로운 요소를 추가
             areaList.push(areaListJson[i].sensorLocation);
-            console.log("areaList: ", areaList);
+            // console.log("areaList: ", areaList);
         }
 
     </script>
     <script>
-        var loginId = ${login_requestBody.user_id}
-        var loginPw = ${login_requestBody.user_pw}
+        var loginId = ${login_requestBody.user_id};
+        var loginPw = ${login_requestBody.user_pw};
 
         // console.log("loginId", loginId);
         // console.log("loginPw", loginPw);
@@ -169,7 +169,6 @@
     <script src="/resources/js/dataSearch/flooding/flooding_select.js"></script>
     <script src="/resources/js/dataSearch/flooding/flooding_table.js"></script>
     <script src="/resources/js/dataSearch/flooding/flooding_search.js"></script>
-    <script src="/resources/js/dataSearch/flooding/flooding_todaySearch.js"></script>
     <script src="/resources/js/dataSearch/flooding/flooding_save.js"></script>
     <script src="/resources/js/date.js"></script>
 

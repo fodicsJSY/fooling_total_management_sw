@@ -542,10 +542,10 @@ function dateSelectBox(){
     })
     .then(resp => resp.json()) // 요청에 대한 응답 객체(response)를 필요한 형태로 파싱
     .then((result) => {
-        console.log("result", result );
+        // console.log("result", result );
         
         let data = result.result;
-        console.log("data", data );
+        // console.log("data", data );
 
         //개폐 선택
         var kindBox01 = document.createElement("div");
@@ -582,7 +582,7 @@ function dateSelectBox(){
 
 
         data.forEach(item => {
-            console.log("item : ", item);
+            // console.log("item : ", item);
 
             var option01 = document.createElement("option");
             option01.value = item;
@@ -760,65 +760,7 @@ function dateSelectBox(){
 
 
 
-    // //개폐 선택
-    // var kindBox01 = document.createElement("div");
-    // kindBox01.className = "kindBox";
-    // selectDate.appendChild(kindBox01);
 
-    // var kindSelect01 = document.createElement("select");
-    // kindSelect01.className = "kindSelect";
-    // kindSelect01.id = "kind";
-    // kindSelect01.name = "inOut";
-    // kindBox01.appendChild(kindSelect01);
-
-
-    // var option05 = document.createElement("option");
-    // option05.value = "open";
-    // option05.innerHTML = "OPEN";
-    // kindSelect01.appendChild(option05);
-
-    // var option06 = document.createElement("option");
-    // option06.value = "close";
-    // option06.innerHTML = "CLOSE";
-    // kindSelect01.appendChild(option06);
-
-
-
-
-    // //지역
-    // var areaBox01 = document.createElement("div");
-    // areaBox01.className = "areaBox";
-    // selectDate.appendChild(areaBox01);
-
-    // var areaSelect01 = document.createElement("select");
-    // areaSelect01.className = "areaSelect";
-    // areaSelect01.id = "area";
-    // areaSelect01.name = "카메라명";
-    // areaBox01.appendChild(areaSelect01);
-
-
-    // data.forEach(item => {
-    //     console.log("item : ", item);
-
-    //     var option01 = document.createElement("option");
-    //     option01.value = item;
-    //     option01.innerHTML = item;
-    //     areaSelect01.appendChild(option01);
-    
-    // });
-
-
-    // // 이벤트 리스너 추가
-    // kindSelect01.addEventListener("change", (event) => {
-    //     selectedKind = event.target.value;
-    //     console.log("selectedKind: ", selectedKind);
-    // });
-
-    // areaSelect01.addEventListener("change", (event) => {
-    //     selectedArea = event.target.value;
-    //     console.log("selectedArea: ", selectedArea);
-    // });
-    
 
 }
 

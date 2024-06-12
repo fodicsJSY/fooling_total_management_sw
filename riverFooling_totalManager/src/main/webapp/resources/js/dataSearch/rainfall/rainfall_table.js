@@ -4,7 +4,7 @@ let tableDataList;
 function r_dayMakeTable(data){
 
     tableDataList = data;
-    console.log("tableDataList", tableDataList);
+    // console.log("tableDataList", tableDataList);
     
     // console.log("테이블 생성");
     

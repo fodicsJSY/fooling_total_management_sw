@@ -202,7 +202,7 @@ function monthMakeTable(data){
     }
 
     const cameras = [...new Set(cameraList)];
-    console.log("cameras : ", cameras);
+    // console.log("cameras : ", cameras);
 
     var tableContainer = document.querySelector(".tableContainer");
     tableContainer.innerHTML = ""; // Clear previous data
@@ -346,7 +346,7 @@ function monthCloseData(data, day, camera) {
 function yearMakeTable(data){
     var tableDataList = data;
 
-    console.log("tableDataList", tableDataList );
+    // console.log("tableDataList", tableDataList );
     // console.log("테이블 생성");
 
 
@@ -358,7 +358,7 @@ function yearMakeTable(data){
         // console.log("cameraList", cameraList);
         }
         const cameras = [...new Set(cameraList)];
-        console.log("cameras : ", cameras);
+        // console.log("cameras : ", cameras);
 
     var tableContainer = document.querySelector(".tableContainer");
     tableContainer.innerHTML = ""; // Clear previous data
@@ -510,7 +510,7 @@ function yearCloseData(data, month, camera) {
 
 // 기간별강우 열림 테이블 만들기
 function dateMakeOpenTable(data, datalength){
-    console.log("열림");
+    // console.log("열림");
     // console.log("테이블 data : ", data);
     // console.log("테이블 datalength : ", datalength);
     var tableDataList = data;

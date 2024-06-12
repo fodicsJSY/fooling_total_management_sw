@@ -1,6 +1,6 @@
 
 function dayOAC_searchData(){
-    console.log("클릭");
+    // console.log("클릭");
     // yearSelect 요소의 값을 가져와서 콘솔에 출력합니다.
 
     let selectYearValue = document.getElementById("selectYear") ? document.getElementById("selectYear").value : null;
@@ -10,12 +10,12 @@ function dayOAC_searchData(){
     let selectDayValue = dayValue < 10 ? "0" + dayValue : dayValue.toString();
 
     let occuDay = selectYearValue + '-' + selectMonthValue + '-' + selectDayValue;
-            console.log("occuDay : ", occuDay);
+            // console.log("occuDay : ", occuDay);
             
-            console.log("savedIP : ", savedIP);
-            console.log("savePORT : ", savePORT);
-            console.log("loginId : ", loginId);
-            console.log("loginPw : ", loginPw);
+            // console.log("savedIP : ", savedIP);
+            // console.log("savePORT : ", savePORT);
+            // console.log("loginId : ", loginId);
+            // console.log("loginPw : ", loginPw);
 
     fetch("/dataSearch/sendDay_OAC", { 
         method : "POST", 
@@ -76,7 +76,7 @@ function monthOAC_searchData(){
     })
     .then(resp => resp.json()) // 요청에 대한 응답 객체(response)를 필요한 형태로 파싱
     .then((result) => {
-        console.log("result", result );
+        // console.log("result", result );
 
         var data = result.result;
 
@@ -144,7 +144,7 @@ function yearOAC_searchData(){
 
 // 기간별 개폐정보
 function dateOAC_searchData(){
-        console.log("요기요기");
+        // console.log("요기요기");
         // console.log("selectedKind: ", selectedKind);
         // console.log("selectedArea: ", selectedArea);
 
@@ -207,7 +207,7 @@ function dateOAC_searchData(){
         })
         .then(resp => resp.json()) // 요청에 대한 응답 객체(response)를 필요한 형태로 파싱
         .then((result) => {
-            console.log("result", result );
+            // console.log("result", result );
             
             var data = result.result;
             var datalength = data.length;

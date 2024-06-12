@@ -155,12 +155,12 @@ let endDayValue;
 
 //침수페이지 로드시
 document.addEventListener("DOMContentLoaded", function() {
-    console.log("야호fhem");
+    // console.log("야호fhem");
     minRainfallForward();
     let occuDay = year + month + day;
     let areaValue = document.getElementById("area") ? document.getElementById("area").value : null;
-    console.log("areaValue : " + areaValue);
-    console.log("areaList2 : " + areaList);
+    // console.log("areaValue : " + areaValue);
+    // console.log("areaList2 : " + areaList);
 
     fetch("/dataSearch/send10min_flooding", { 
         method : "POST", 
@@ -169,14 +169,14 @@ document.addEventListener("DOMContentLoaded", function() {
     })
     .then(resp => resp.json()) // 요청에 대한 응답 객체(response)를 필요한 형태로 파싱
     .then((result) => {
-        console.log("min_flooding result", result );
+        // console.log("min_flooding result", result );
 
         data = result.min_floodingList;
-        console.log("data : ", data );
-        console.log("data.length : ", data.length );
+        // console.log("data : ", data );
+        // console.log("data.length : ", data.length );
 
         if(data.length == 0){
-            console.log("야호digh");
+            // console.log("야호digh");
             var tableContainer = document.querySelector(".tableContainer");
             tableContainer.innerHTML = "데이터 없음"; // Clear previous data
         }{
@@ -200,8 +200,8 @@ minRainfall.addEventListener("click", ()=>{
     minRainfallForward();
     let occuDay = year + month + day;
     let areaValue = document.getElementById("area") ? document.getElementById("area").value : null;
-    console.log("areaValue : " + areaValue);
-    console.log("areaList2 : " + areaList);
+    // console.log("areaValue : " + areaValue);
+    // console.log("areaList2 : " + areaList);
 
     fetch("/dataSearch/send10min_flooding", { 
         method : "POST", 
@@ -210,14 +210,14 @@ minRainfall.addEventListener("click", ()=>{
     })
     .then(resp => resp.json()) // 요청에 대한 응답 객체(response)를 필요한 형태로 파싱
     .then((result) => {
-        console.log("min_flooding result", result );
+        // console.log("min_flooding result", result );
 
         data = result.min_floodingList;
-        console.log("data : ", data );
-        console.log("data.length : ", data.length );
+        // console.log("data : ", data );
+        // console.log("data.length : ", data.length );
 
         if(data.length == 0){
-            console.log("야호digh");
+            // console.log("야호digh");
             var tableContainer = document.querySelector(".tableContainer");
             tableContainer.innerHTML = "데이터 없음"; // Clear previous data
         }{
@@ -275,8 +275,8 @@ function makeMinSelectBox(){
             var option = document.createElement("option");
             option.value = areaList[i];
             option.innerHTML = areaList[i];
-            console.log("option.value", option.value);
-            console.log("option.innerHTML", option.innerHTML);
+            // console.log("option.value", option.value);
+            // console.log("option.innerHTML", option.innerHTML);
             areaSelect01.appendChild(option);
     }
 
@@ -394,13 +394,13 @@ dayRainfall.addEventListener("click", ()=>{
     })
     .then(resp => resp.json()) // 요청에 대한 응답 객체(response)를 필요한 형태로 파싱
     .then((result) => {
-        console.log("sendDay_flooding result", result );
+        // console.log("sendDay_flooding result", result );
         
         data = result.day_floodingList;
-        console.log("data : ", data );
+        // console.log("data : ", data );
 
         if(data.length == 0){
-            console.log("야호");
+            // console.log("야호");
             var tableContainer = document.querySelector(".tableContainer");
             tableContainer.innerHTML = ""; // Clear previous data
         }{
@@ -565,14 +565,14 @@ monthRainfall.addEventListener("click", ()=>{
     })
     .then(resp => resp.json()) // 요청에 대한 응답 객체(response)를 필요한 형태로 파싱
     .then((result) => {
-        console.log("sendMonth_flooding result", result );
+        // console.log("sendMonth_flooding result", result );
 
         
         data = result.month_floodingList;
-        console.log("data : ", data );
+        // console.log("data : ", data );
 
         if(data.length == 0){
-            console.log("야호");
+            // console.log("야호");
             var tableContainer = document.querySelector(".tableContainer");
             tableContainer.innerHTML = ""; // Clear previous data
         }{
@@ -715,7 +715,7 @@ yearRainfall.addEventListener("click", ()=>{
 
 
     let occuYear = year;
-    console.log("occuYear : ", occuYear);
+    // console.log("occuYear : ", occuYear);
 
     fetch("/dataSearch/sendYear_flooding", {
         method: "POST",
@@ -727,13 +727,13 @@ yearRainfall.addEventListener("click", ()=>{
         // console.log("result", result );
 
         data = result.year_floodingList;
-        console.log("data : ", data );
+        // console.log("data : ", data );
         
         // var tableContainer = document.querySelector(".tableContainer");
         
-        console.log("data.length : ", data.length );
+        // console.log("data.length : ", data.length );
         if(data.length == 0){
-            console.log("야호");
+            // console.log("야호");
             var tableContainer = document.querySelector(".tableContainer");
             tableContainer.innerHTML = ""; // Clear previous data
         }{
@@ -835,23 +835,23 @@ dateRainfall.addEventListener("click", ()=>{
     dateSelectBox();
 
 
-    console.log(currentDate);
+    // console.log(currentDate);
     currentDate.setDate(currentDate.getDate() - 7); // currentDate에서 7일을 빼서 일주일 전 날짜를 설정함
 
     // 연, 월, 일을 얻어옴
     let beforeYear = currentDate.getFullYear();
-    console.log("beforeYear : ", beforeYear);
-    console.log("year : ", year);
+    // console.log("beforeYear : ", beforeYear);
+    // console.log("year : ", year);
     let beforeMonthValue = (currentDate.getMonth() + 1); // 월은 0부터 시작하므로 +1, 두 자리로 포맷
     let beforeMonth = beforeMonthValue < 10 ? "0" + beforeMonthValue : beforeMonthValue.toString();
-    console.log("beforeMonth : ", beforeMonth);
-    console.log("month : ", month);
+    // console.log("beforeMonth : ", beforeMonth);
+    // console.log("month : ", month);
     let beforeDayValue = currentDate.getDate(); // 두 자리로 포맷
     let beforeDay = beforeDayValue < 10 ? "0" + beforeDayValue : beforeDayValue.toString();
-    console.log("beforeDay : ", beforeDay);
-    console.log("day : ", day);
+    // console.log("beforeDay : ", beforeDay);
+    // console.log("day : ", day);
 
-    console.log(currentDate);
+    // console.log(currentDate);
 
 
     startYearValue = beforeYear;
@@ -866,10 +866,10 @@ dateRainfall.addEventListener("click", ()=>{
     let endOccuDate = endYearValue + endMonthValue + endDayValue;
     let areaValue = document.getElementById("area").value;
     let kindValue = document.getElementById("kind").value;
-    console.log("startOccuDate : " + startOccuDate);
-    console.log("endOccuDate : " + endOccuDate);
-    console.log("areaValue : " + areaValue);
-    console.log("kindValue : " + kindValue);
+    // console.log("startOccuDate : " + startOccuDate);
+    // console.log("endOccuDate : " + endOccuDate);
+    // console.log("areaValue : " + areaValue);
+    // console.log("kindValue : " + kindValue);
 
     var date_flooding={
         "startOccuDate": startOccuDate
@@ -889,16 +889,16 @@ dateRainfall.addEventListener("click", ()=>{
     })
     .then(resp => resp.json()) // 요청에 대한 응답 객체(response)를 필요한 형태로 파싱
     .then((result) => {
-        console.log("sendDate_flooding result", result );
+        // console.log("sendDate_flooding result", result );
 
-        console.log("kindValue 여기 : ", kindValue);
+        // console.log("kindValue 여기 : ", kindValue);
 
         if(kindValue == "flooding"){
             data = result.date_floodingList01;
-            console.log("data : ", data );
-            console.log("data.length : ", data.length );
+            // console.log("data : ", data );
+            // console.log("data.length : ", data.length );
             if(data.length == 0){
-                console.log("야호");
+                // console.log("야호");
                 var tableContainer = document.querySelector(".tableContainer");
                 tableContainer.innerHTML = ""; // Clear previous data
             }{
@@ -907,9 +907,9 @@ dateRainfall.addEventListener("click", ()=>{
             }
         }else{
             data = result.date_floodingList02;
-            console.log("data : ", data );
+            // console.log("data : ", data );
             if(data.length == 0){
-                console.log("야호");
+                // console.log("야호");
                 var tableContainer = document.querySelector(".tableContainer");
                 tableContainer.innerHTML = ""; // Clear previous data
             }{
@@ -970,8 +970,8 @@ function dateSelectBox(){
         var option = document.createElement("option");
         option.value = areaList[i];
         option.innerHTML = areaList[i];
-        console.log("option.value", option.value);
-        console.log("option.innerHTML", option.innerHTML);
+        // console.log("option.value", option.value);
+        // console.log("option.innerHTML", option.innerHTML);
         areaSelect01.appendChild(option);
     }
 

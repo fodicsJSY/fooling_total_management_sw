@@ -88,7 +88,7 @@ public class DataSearchController {
 		        InputStream is = getClass().getResourceAsStream("/rainfall_key.ini");
 		        Scanner s = new Scanner(is);
 		        apiKey = s.nextLine();
-				System.out.println("apiKey : "+ apiKey);
+//				System.out.println("apiKey : "+ apiKey);
 		        s.close();
 		        is.close();
 
@@ -451,7 +451,7 @@ public class DataSearchController {
 	
 	
 	
-	//입출차정보 페이지 
+	//게이트 개폐정보 페이지 
 	@GetMapping("/openAndclose")
 	public String entryAndExitForword(
 			Model model

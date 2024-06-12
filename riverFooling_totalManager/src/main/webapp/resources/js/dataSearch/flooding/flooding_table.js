@@ -3,7 +3,7 @@ let tableDataList;
 // 시간별 강우 테이블 만들기
 function minMakeTable(data){
 
-    console.log("data" + data);
+    // console.log("data" + data);
     var tableContainer = document.querySelector(".tableContainer");
     tableContainer.innerHTML = ""; // Clear previous data
 
@@ -52,9 +52,9 @@ function minMakeTable(data){
 
         for(let j = 0; j < 6; j++ ){
             let min = (j * 10) + 5; // 분 계산
-            console.log("min : ", min);
+            // console.log("min : ", min);
             let cellValue = data ? findDataByTime(data, i, min, "alarmWaterLevel") : "-";
-            console.log("cellValue : ", cellValue);
+            // console.log("cellValue : ", cellValue);
             
             createCell(trFlooding, "td", "rainfull", cellValue);
         }
@@ -92,99 +92,6 @@ function findDataByTime(data, hour, min, property) {
 
     return foundData ? foundData[property] : "-";
 }
-
-
-
-// // 시간별 강우 테이블 만들기
-// function minMakeTable(data){
-//     // tableDataList = data.tableDataList;
-
-//     // console.log("tableDataList", tableDataList );
-//     console.log("minMakeTable");
-//     console.log("data : ", data);
-
-//     var tableContainer = document.querySelector(".tableContainer");
-//     tableContainer.innerHTML = ""; // Clear previous data
-
-//     var div = document.createElement("div");    
-//     tableContainer.appendChild(div);
-
-//     var rainfullTable = document.createElement("table");
-//     rainfullTable.className = "rainfullTable";
-//     div.appendChild(rainfullTable);
-
-//     var rainfullThead = document.createElement("thead");
-//     rainfullThead.className = "rainfullThead";
-//     rainfullTable.appendChild(rainfullThead);
-
-//     var htr = document.createElement("tr");
-//     rainfullThead.appendChild(htr);
-
-//     createCell(htr, "th", "rainfull time", "시간");
-//     createCell(htr, "th", "rainfull dataType", "데이터타입");
-
-
-//     for(let i = 10; i<61 ; i += 10 ){
-//         createCell(htr, "th", "rainfull dayData", i+"분");
-//     }
-
-
-
-//     var rainfullTbody = document.createElement("tbody");
-//     rainfullTbody.className = "rainfullTbody";
-//     rainfullTable.appendChild(rainfullTbody);
-
-//     for(let h = 0; h<24 ; h++ ){
-//         let paddedNumber = String(h).padStart(2, "0");
-        
-//         var tr = document.createElement("tr");
-//         rainfullTbody.appendChild(tr);
-
-        
-        
-//         var tr = document.createElement("tr");
-//         rainfullTbody.appendChild(tr);
-
-        
-//         // 시간 값을 위아래 두 칸 차지하도록 설정합니다.
-//         var tdSpan = document.createElement("th");
-//         tdSpan.className = "rainfull time";
-//         tdSpan.setAttribute("rowspan", "2");
-//         tdSpan.textContent = h+"시";
-//         tr.appendChild(tdSpan);
-
-
-//         // "침수" 행 생성
-//         var trFlooding = document.createElement("th");
-//         tr.appendChild(trFlooding);
-//         trFlooding.className = "rainfull dataType";
-//         trFlooding.innerHTML = "침수";
-
-//         for(let j = 0; j<6 ; j ++ ){
-//             createCell(tr, "td", "rainfull", data.alarmWaterLevel);
-//         }
-
-
-
-//         var tr3 = document.createElement("tr");
-//         rainfullTbody.appendChild(tr3);
-
-//         // "수위" 행 생성
-//         var trWaterLevel = document.createElement("th");
-//         tr3.appendChild(trWaterLevel);
-//         trWaterLevel.className = "rainfull dataType";
-//         trWaterLevel.innerHTML = "수위";
-
-//         for(let k = 0; k<6 ; k ++ ){
-//             createCell(tr3, "td", "rainfull",  data.waterLevel);
-//         }
-
-
-//     }
-
-// }
-
-
 
 
 
@@ -255,7 +162,7 @@ function dayMakeTable(data) {
 
 // 월별 강우 테이블 만들기
 function monthMakeTable(data){
-    console.log("data", data );
+    // console.log("data", data );
 
     var tableContainer = document.querySelector(".tableContainer");
     tableContainer.innerHTML = ""; // Clear previous data
@@ -326,7 +233,7 @@ function monthMakeTable(data){
 //  연간강우 테이블 만들기
 function yearMakeTable(data){
     
-    console.log("data", data );
+    // console.log("data", data );
     
 
     var tableContainer = document.querySelector(".tableContainer");
@@ -434,7 +341,7 @@ function dateMakeFloodingTable(data){
 
     // 중복을 제거한 후에 중복 제거된 값들의 배열을 만듭니다.
     const uniqueDate= [...new Set(data.map(item => item.date))];
-    console.log("flooding_uniqueDate: ", uniqueDate);
+    // console.log("flooding_uniqueDate: ", uniqueDate);
     uniqueDate.forEach(date => {
         let tr = document.createElement("tr");
         rainfullTbody.appendChild(tr);
@@ -449,20 +356,18 @@ function dateMakeFloodingTable(data){
 
             // 해당 지역의 데이터만 필터링
             let filteredData = data.filter(item => item.date === date);
-            console.log("flooding_filteredData : ", filteredData);
+            // console.log("flooding_filteredData : ", filteredData);
 
             // 해당 일에 대한 데이터가 있는 경우 값을 할당
             let foundData = filteredData.find(item => String(item.hour).padStart(2, "0") === String(j).padStart(2, "0"));
-            console.log("flooding_foundData : ", foundData);
+            // console.log("flooding_foundData : ", foundData);
             if (foundData) {
                 cellValue = foundData.alarmWaterLevel;
-                console.log("flooding_cellValue : ", cellValue);
+                // console.log("flooding_cellValue : ", cellValue);
             }
             createCell(tr, "td", "rainfull", cellValue);
         }
     });
-
-
 
 
 }
@@ -506,7 +411,7 @@ function dateMakeWaterLevelTable(data){
 
     // 중복을 제거한 후에 중복 제거된 값들의 배열을 만듭니다.
     const uniqueDate= [...new Set(data.map(item => item.date))];
-    console.log("waterLevel_uniqueDate : ", uniqueDate);
+    // console.log("waterLevel_uniqueDate : ", uniqueDate);
     uniqueDate.forEach(date => {
         let tr = document.createElement("tr");
         rainfullTbody.appendChild(tr);
@@ -521,14 +426,14 @@ function dateMakeWaterLevelTable(data){
 
             // 해당 지역의 데이터만 필터링
             let filteredData = data.filter(item => item.date === date);
-            console.log("waterLevel_filteredData : ", filteredData);
+            // console.log("waterLevel_filteredData : ", filteredData);
 
             // 해당 일에 대한 데이터가 있는 경우 값을 할당
             let foundData = filteredData.find(item => String(item.hour).padStart(2, "0") === String(j).padStart(2, "0"));
-            console.log("waterLevel_foundData : ", foundData);
+            // console.log("waterLevel_foundData : ", foundData);
             if (foundData) {
                 cellValue = foundData.waterLevel;
-                console.log("waterLevel_cellValue : ", cellValue);
+                // console.log("waterLevel_cellValue : ", cellValue);
             }
             createCell(tr, "td", "rainfull", cellValue);
         }
