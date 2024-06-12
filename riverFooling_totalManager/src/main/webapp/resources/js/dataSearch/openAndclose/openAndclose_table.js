@@ -509,26 +509,16 @@ function yearCloseData(data, month, camera) {
 
 
 // 기간별강우 열림 테이블 만들기
-function dateMakeOpenTable(data, datalength){
+function dateMakeOpenTable(data){
     // console.log("열림");
     // console.log("테이블 data : ", data);
     // console.log("테이블 datalength : ", datalength);
-    var tableDataList = data;
 
     // console.log("tableDataList", tableDataList );
     // console.log("tableDataList.length", tableDataList.length );
     // console.log("테이블 생성");
 
 
-    let dateList = [];
-    
-    for(let i = 0; i < datalength; i++){
-        // console.log("tableDataList[i]", tableDataList[i]);
-        dateList.push(tableDataList[i][0]);
-        // console.log("cameraList", cameraList);
-    }
-    const searchDate = [...new Set(dateList)];
-    // console.log("searchDate : ", searchDate);
 
     var tableContainer = document.querySelector(".tableContainer");
     tableContainer.innerHTML = ""; // Clear previous data
@@ -637,27 +627,16 @@ function dateOpenSum(data, date) {
 
 
 // 기간별강우 닫힘 테이블 만들기
-function dateMakeCloseTable(data, datalength){
-                // console.log("닫힘");
+function dateMakeCloseTable(data){
+    // console.log("닫힘");
     
     // console.log("테이블 data : ", data);
     // console.log("테이블 datalength : ", datalength);
-    var tableDataList = data;
 
     // console.log("tableDataList", tableDataList );
     // console.log("tableDataList.length", tableDataList.length );
     // console.log("테이블 생성");
 
-
-    let dateList = [];
-    
-    for(let i = 0; i < datalength; i++){
-        // console.log("tableDataList[i]", tableDataList[i]);
-        dateList.push(tableDataList[i][0]);
-        // console.log("cameraList", cameraList);
-    }
-    const searchDate = [...new Set(dateList)];
-    console.log("searchDate : ", searchDate);
 
     var tableContainer = document.querySelector(".tableContainer");
     tableContainer.innerHTML = ""; // Clear previous data
@@ -730,7 +709,7 @@ function dateCloseData(data, date, hour) {
         let itemhour = item[1];
         let itemCmd = item[2];
         
-        let total = itemDate == dateValue && itemhour == hourValue && itemCmd == '0'? "진짜진짜" : "없음";
+        // let total = itemDate == dateValue && itemhour == hourValue && itemCmd == '0'? "진짜진짜" : "없음";
         // console.log("total", total);
         
         return itemDate == dateValue && itemhour == hourValue && itemCmd == '0';

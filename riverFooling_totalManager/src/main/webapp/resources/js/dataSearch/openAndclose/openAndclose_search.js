@@ -210,18 +210,16 @@ function dateOAC_searchData(){
             // console.log("result", result );
             
             var data = result.result;
-            var datalength = data.length;
-            // console.log("datalength", datalength );
 
 
             // console.log("cmd_num reult: ", cmd_num);
             if(cmd_num == 1){
-                dateMakeOpenTable(data, datalength);
+                dateMakeOpenTable(data);
             }
 
 
             if(cmd_num == 0){
-                dateMakeCloseTable(data, datalength);
+                dateMakeCloseTable(data);
             }
     
         }) // 첫 번째 then에서 파싱한 데이터를 이용한 동작 작성

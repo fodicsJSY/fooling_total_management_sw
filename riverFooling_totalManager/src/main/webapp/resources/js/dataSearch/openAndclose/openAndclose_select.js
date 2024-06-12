@@ -147,13 +147,12 @@ document.addEventListener("DOMContentLoaded", function() {
     // console.log("savePORT : ", savePORT);
 
     makeDaySelectBox();
-    // dayMakeTable();
     dayOAC_searchData();
 });
 
 
 
-//일일강우 클릭 시
+//일일 클릭 시
 dayRainfall.addEventListener("click", ()=>{
     dayRainfallForward();
 });
@@ -176,7 +175,6 @@ function dayRainfallForward(){
 
     makeDaySelectBox();
     dayOAC_searchData();
-    // dayMakeTable();
 
 }
 
@@ -279,7 +277,7 @@ function makeDaySelectBox(){
 }
 
 
-// 월간강우 클릭 시
+// 월간 클릭 시
 monthRainfall.addEventListener("click", ()=>{
     // active 클래스 삭제
     dayRainfall.classList.remove("active");
@@ -303,7 +301,7 @@ monthRainfall.addEventListener("click", ()=>{
 
 
 
-//월간강우 날짜선택
+//월간 날짜선택
 function makeMonthSelectBox(){
 
     //연
@@ -377,7 +375,7 @@ function makeMonthSelectBox(){
 
 
 
-// 연간강우 클릭 시
+// 연간 클릭 시
 yearRainfall.addEventListener("click", ()=>{
     // active 클래스 삭제
     dayRainfall.classList.remove("active");
@@ -400,7 +398,7 @@ yearRainfall.addEventListener("click", ()=>{
 
 
 
-// 연간강우 날짜선택
+// 연간 날짜선택
 function makeYearSelectBox(){
 
     //연
@@ -452,7 +450,7 @@ function makeYearSelectBox(){
 
 
 
-// 기간별강우 클릭 시
+// 기간별 클릭 시
 dateRainfall.addEventListener("click", ()=>{
     // active 클래스 삭제
     dayRainfall.classList.remove("active");
@@ -467,9 +465,6 @@ dateRainfall.addEventListener("click", ()=>{
     selectDate.innerHTML = ""; 
 
     dateSelectBox();
-    // cameraRest();
-    // dateMakeTable();
-    // dateSelectBox();
 
 
     setTimeout(dateOAC_searchData, 100);
@@ -512,7 +507,7 @@ function cameraRest(){
 
     }) // 첫 번째 then에서 파싱한 데이터를 이용한 동작 작성
     .catch( err => {
-        // console.log("err : ", err);
+        console.log("err : ", err);
     }); // 예외 발생 시 처리할 내용을 작성
 
 
@@ -755,7 +750,7 @@ function dateSelectBox(){
 
     }) // 첫 번째 then에서 파싱한 데이터를 이용한 동작 작성
     .catch( err => {
-        // console.log("err : ", err);
+        console.log("err : ", err);
     }); // 예외 발생 시 처리할 내용을 작성
 
 
