@@ -466,10 +466,13 @@ dateRainfall.addEventListener("click", ()=>{
 
     selectDate.innerHTML = ""; 
 
-    cameraRest();
-    dateMakeTable();
+    dateSelectBox();
+    // cameraRest();
+    // dateMakeTable();
     // dateSelectBox();
-    dateOAC_searchData();
+
+
+    setTimeout(dateOAC_searchData, 100);
     
 
 });
@@ -478,7 +481,12 @@ dateRainfall.addEventListener("click", ()=>{
 
 
 
+
+
+
 function cameraRest(){
+
+
 
     fetch("/dataSearch/date_camera", { 
         method : "POST", 
@@ -509,215 +517,309 @@ function cameraRest(){
 
 
 }   
+
+
+let selectedArea = null;
+let selectedKind = null;
+
+
+var areaSelect01;
 //기간별강우 날짜선택
-function dateSelectBox(data){
+function dateSelectBox(){
 
 
-    //개폐 선택
-    var kindBox01 = document.createElement("div");
-    kindBox01.className = "kindBox";
-    selectDate.appendChild(kindBox01);
+    fetch("/dataSearch/date_camera", { 
+        method : "POST", 
+        headers: {"Content-Type": "application/json;"}, 
+        body : JSON.stringify( {
+            "serverip" : savedIP,
+            "port" : savePORT,
+            "user_id" : loginId,
+            "user_pw" : loginPw,
+            "query" : "SELECT  camera_name FROM TB_CIRCUIT_BREAKER_CONFIG ORDER BY camera_name"
 
-    var kindSelect01 = document.createElement("select");
-    kindSelect01.className = "kindSelect";
-    kindSelect01.id = "kind";
-    kindSelect01.name = "inOut";
-    kindBox01.appendChild(kindSelect01);
+        } ) 
+    })
+    .then(resp => resp.json()) // 요청에 대한 응답 객체(response)를 필요한 형태로 파싱
+    .then((result) => {
+        console.log("result", result );
+        
+        let data = result.result;
+        console.log("data", data );
 
+        //개폐 선택
+        var kindBox01 = document.createElement("div");
+        kindBox01.className = "kindBox";
+        selectDate.appendChild(kindBox01);
 
-    var option05 = document.createElement("option");
-    option05.value = "open";
-    option05.innerHTML = "OPEN";
-    kindSelect01.appendChild(option05);
-
-    var option06 = document.createElement("option");
-    option06.value = "close";
-    option06.innerHTML = "CLOSE";
-    kindSelect01.appendChild(option06);
-
-
-
-    //지역
-    var areaBox01 = document.createElement("div");
-    areaBox01.className = "areaBox";
-    selectDate.appendChild(areaBox01);
-
-    var areaSelect01 = document.createElement("select");
-    areaSelect01.className = "areaSelect";
-    areaSelect01.id = "area";
-    areaSelect01.name = "카메라명";
-    areaBox01.appendChild(areaSelect01);
+        var kindSelect01 = document.createElement("select");
+        kindSelect01.className = "kindSelect";
+        kindSelect01.id = "kind";
+        kindSelect01.name = "inOut";
+        kindBox01.appendChild(kindSelect01);
 
 
-    data.forEach(item => {
-        console.log("item : ", item);
+        var option05 = document.createElement("option");
+        option05.value = "open";
+        option05.innerHTML = "OPEN";
+        kindSelect01.appendChild(option05);
 
-        var option01 = document.createElement("option");
-        option01.value = item;
-        option01.innerHTML = item;
-        areaSelect01.appendChild(option01);
+        var option06 = document.createElement("option");
+        option06.value = "close";
+        option06.innerHTML = "CLOSE";
+        kindSelect01.appendChild(option06);
+
+        //지역
+        var areaBox01 = document.createElement("div");
+        areaBox01.className = "areaBox";
+        selectDate.appendChild(areaBox01);
+
+        areaSelect01 = document.createElement("select");
+        areaSelect01.className = "areaSelect";
+        areaSelect01.id = "area";
+        areaSelect01.name = "카메라명";
+        areaBox01.appendChild(areaSelect01);
+
+
+        data.forEach(item => {
+            console.log("item : ", item);
+
+            var option01 = document.createElement("option");
+            option01.value = item;
+            option01.innerHTML = item;
+            areaSelect01.appendChild(option01);
+        
+        });
+
+
+        
+
+        //연
+        var yearBox01 = document.createElement("div");
+        yearBox01.className = "yearBox";
+        selectDate.appendChild(yearBox01);
+
+        var yearSelect01 = document.createElement("select");
+        yearSelect01.className = "yearSelect";
+        yearSelect01.id = "startYear";
+        yearSelect01.name = "연도";
+        yearBox01.appendChild(yearSelect01);
+
+        for(let i =2020 ; i <=year; i++){
+            var option1 = document.createElement("option");
+            option1.value = i;
+            option1.innerHTML = i;
+            yearSelect01.appendChild(option1);
+        }
+        var p01 = document.createElement("p");
+        p01.innerHTML="년";
+        yearBox01.appendChild(p01);
+
+        //월
+        var monthBox01 = document.createElement("div");
+        monthBox01.className = "monthBox";
+        selectDate.appendChild(monthBox01);
+
+        var monthSelect01 = document.createElement("select");
+        monthSelect01.className = "monthSelect";
+        monthSelect01.id = "startMonth";
+        monthSelect01.name = "월";
+        monthBox01.appendChild(monthSelect01);
+
+        for(let i =1 ; i <=12; i++){
+            var option1 = document.createElement("option");
+            option1.value = i;
+            option1.innerHTML = i;
+            monthSelect01.appendChild(option1);
+        }
+        var p02 = document.createElement("p");
+        p02.innerHTML="월";
+        monthBox01.appendChild(p02);
+
+
+        //일
+        var dayBox01 = document.createElement("div");
+        dayBox01.className = "dayBox";
+        selectDate.appendChild(dayBox01);
+
+
+        var daySelect01 = document.createElement("select");
+        daySelect01.className = "daySelect";
+        daySelect01.id = "startDay";
+        daySelect01.name = "일";
+        dayBox01.appendChild(daySelect01);
+
+
+        for(let i =1 ; i <=31; i++){
+            var option1 = document.createElement("option");
+            option1.value = i;
+            option1.innerHTML = i;
+            daySelect01.appendChild(option1);
+        }
+        var p03 = document.createElement("p");
+        p03.innerHTML="일";
+        dayBox01.appendChild(p03);
+
+
+
+
+        //연2
+        var yearBox02 = document.createElement("div");
+        yearBox02.className = "yearBox";
+        selectDate.appendChild(yearBox02);
+
+        var yearSelect02 = document.createElement("select");
+        yearSelect02.className = "yearSelect";
+        yearSelect02.id = "endYear";
+        yearSelect02.name = "연도";
+        yearBox02.appendChild(yearSelect02);
+
+        for(let i =2020 ; i <=year; i++){
+            var option1 = document.createElement("option");
+            option1.value = i;
+            option1.innerHTML = i;
+            yearSelect02.appendChild(option1);
+        }
+        var p01 = document.createElement("p");
+        p01.innerHTML="년";
+        yearBox02.appendChild(p01);
+
+        //월2
+        var monthBox02 = document.createElement("div");
+        monthBox02.className = "monthBox";
+        selectDate.appendChild(monthBox02);
+
+        var monthSelect02 = document.createElement("select");
+        monthSelect02.className = "monthSelect";
+        monthSelect02.id = "endMonth";
+        monthSelect02.name = "월";
+        monthBox02.appendChild(monthSelect02);
+
+        for(let i =1 ; i <=12; i++){
+            var option1 = document.createElement("option");
+            option1.value = i;
+            option1.innerHTML = i;
+            monthSelect02.appendChild(option1);
+        }
+        var p02 = document.createElement("p");
+        p02.innerHTML="월";
+        monthBox02.appendChild(p02);
+
+
+        //일2
+        var dayBox02 = document.createElement("div");
+        dayBox02.className = "dayBox";
+        selectDate.appendChild(dayBox02);
+
+
+        var daySelect02 = document.createElement("select");
+        daySelect02.className = "daySelect";
+        daySelect02.id = "endDay";
+        daySelect02.name = "일";
+        dayBox02.appendChild(daySelect02);
+
+
+        for(let i =1 ; i <=31; i++){
+            var option1 = document.createElement("option");
+            option1.value = i;
+            option1.innerHTML = i;
+            daySelect02.appendChild(option1);
+        }
+        var p03 = document.createElement("p");
+        p03.innerHTML="일";
+        dayBox02.appendChild(p03);
+
+
+        //버튼
+        var div01 = document.createElement("div");
+        selectDate.appendChild(div01);
+
+
+        var button01 = document.createElement("button");
+
+        button01.type = "button";
+        button01.className = "searchBtn";
+        button01.id = "searchButton";
+        button01.innerHTML = "검색";
+
+        div01.appendChild(button01);
+
+        // searchButton 변수에 버튼 엘리먼트 할당
+        searchButton = button01;
+
+        searchButton.addEventListener("click", ()=>{
+            dateOAC_searchData();
+        });
+
+        setTodaySelections();
+
+    }) // 첫 번째 then에서 파싱한 데이터를 이용한 동작 작성
+    .catch( err => {
+        // console.log("err : ", err);
+    }); // 예외 발생 시 처리할 내용을 작성
+
+
+
+    // //개폐 선택
+    // var kindBox01 = document.createElement("div");
+    // kindBox01.className = "kindBox";
+    // selectDate.appendChild(kindBox01);
+
+    // var kindSelect01 = document.createElement("select");
+    // kindSelect01.className = "kindSelect";
+    // kindSelect01.id = "kind";
+    // kindSelect01.name = "inOut";
+    // kindBox01.appendChild(kindSelect01);
+
+
+    // var option05 = document.createElement("option");
+    // option05.value = "open";
+    // option05.innerHTML = "OPEN";
+    // kindSelect01.appendChild(option05);
+
+    // var option06 = document.createElement("option");
+    // option06.value = "close";
+    // option06.innerHTML = "CLOSE";
+    // kindSelect01.appendChild(option06);
+
+
+
+
+    // //지역
+    // var areaBox01 = document.createElement("div");
+    // areaBox01.className = "areaBox";
+    // selectDate.appendChild(areaBox01);
+
+    // var areaSelect01 = document.createElement("select");
+    // areaSelect01.className = "areaSelect";
+    // areaSelect01.id = "area";
+    // areaSelect01.name = "카메라명";
+    // areaBox01.appendChild(areaSelect01);
+
+
+    // data.forEach(item => {
+    //     console.log("item : ", item);
+
+    //     var option01 = document.createElement("option");
+    //     option01.value = item;
+    //     option01.innerHTML = item;
+    //     areaSelect01.appendChild(option01);
     
-    });
+    // });
 
 
-    //연
-    var yearBox01 = document.createElement("div");
-    yearBox01.className = "yearBox";
-    selectDate.appendChild(yearBox01);
+    // // 이벤트 리스너 추가
+    // kindSelect01.addEventListener("change", (event) => {
+    //     selectedKind = event.target.value;
+    //     console.log("selectedKind: ", selectedKind);
+    // });
 
-    var yearSelect01 = document.createElement("select");
-    yearSelect01.className = "yearSelect";
-    yearSelect01.id = "startYear";
-    yearSelect01.name = "연도";
-    yearBox01.appendChild(yearSelect01);
+    // areaSelect01.addEventListener("change", (event) => {
+    //     selectedArea = event.target.value;
+    //     console.log("selectedArea: ", selectedArea);
+    // });
+    
 
-    for(let i =2020 ; i <=year; i++){
-        var option1 = document.createElement("option");
-        option1.value = i;
-        option1.innerHTML = i;
-        yearSelect01.appendChild(option1);
-    }
-    var p01 = document.createElement("p");
-    p01.innerHTML="년";
-    yearBox01.appendChild(p01);
-
-    //월
-    var monthBox01 = document.createElement("div");
-    monthBox01.className = "monthBox";
-    selectDate.appendChild(monthBox01);
-
-    var monthSelect01 = document.createElement("select");
-    monthSelect01.className = "monthSelect";
-    monthSelect01.id = "startMonth";
-    monthSelect01.name = "월";
-    monthBox01.appendChild(monthSelect01);
-
-    for(let i =1 ; i <=12; i++){
-        var option1 = document.createElement("option");
-        option1.value = i;
-        option1.innerHTML = i;
-        monthSelect01.appendChild(option1);
-    }
-    var p02 = document.createElement("p");
-    p02.innerHTML="월";
-    monthBox01.appendChild(p02);
-
-
-    //일
-    var dayBox01 = document.createElement("div");
-    dayBox01.className = "dayBox";
-    selectDate.appendChild(dayBox01);
-
-
-    var daySelect01 = document.createElement("select");
-    daySelect01.className = "daySelect";
-    daySelect01.id = "startDay";
-    daySelect01.name = "일";
-    dayBox01.appendChild(daySelect01);
-
-
-    for(let i =1 ; i <=31; i++){
-        var option1 = document.createElement("option");
-        option1.value = i;
-        option1.innerHTML = i;
-        daySelect01.appendChild(option1);
-    }
-    var p03 = document.createElement("p");
-    p03.innerHTML="일";
-    dayBox01.appendChild(p03);
-
-
-
-
-    //연2
-    var yearBox02 = document.createElement("div");
-    yearBox02.className = "yearBox";
-    selectDate.appendChild(yearBox02);
-
-    var yearSelect02 = document.createElement("select");
-    yearSelect02.className = "yearSelect";
-    yearSelect02.id = "endYear";
-    yearSelect02.name = "연도";
-    yearBox02.appendChild(yearSelect02);
-
-    for(let i =2020 ; i <=year; i++){
-        var option1 = document.createElement("option");
-        option1.value = i;
-        option1.innerHTML = i;
-        yearSelect02.appendChild(option1);
-    }
-    var p01 = document.createElement("p");
-    p01.innerHTML="년";
-    yearBox02.appendChild(p01);
-
-    //월2
-    var monthBox02 = document.createElement("div");
-    monthBox02.className = "monthBox";
-    selectDate.appendChild(monthBox02);
-
-    var monthSelect02 = document.createElement("select");
-    monthSelect02.className = "monthSelect";
-    monthSelect02.id = "endMonth";
-    monthSelect02.name = "월";
-    monthBox02.appendChild(monthSelect02);
-
-    for(let i =1 ; i <=12; i++){
-        var option1 = document.createElement("option");
-        option1.value = i;
-        option1.innerHTML = i;
-        monthSelect02.appendChild(option1);
-    }
-    var p02 = document.createElement("p");
-    p02.innerHTML="월";
-    monthBox02.appendChild(p02);
-
-
-    //일2
-    var dayBox02 = document.createElement("div");
-    dayBox02.className = "dayBox";
-    selectDate.appendChild(dayBox02);
-
-
-    var daySelect02 = document.createElement("select");
-    daySelect02.className = "daySelect";
-    daySelect02.id = "endDay";
-    daySelect02.name = "일";
-    dayBox02.appendChild(daySelect02);
-
-
-    for(let i =1 ; i <=31; i++){
-        var option1 = document.createElement("option");
-        option1.value = i;
-        option1.innerHTML = i;
-        daySelect02.appendChild(option1);
-    }
-    var p03 = document.createElement("p");
-    p03.innerHTML="일";
-    dayBox02.appendChild(p03);
-
-
-    //버튼
-    var div01 = document.createElement("div");
-    selectDate.appendChild(div01);
-
-
-    var button01 = document.createElement("button");
-
-    button01.type = "button";
-    button01.className = "searchBtn";
-    button01.id = "searchButton";
-    button01.innerHTML = "검색";
-
-    div01.appendChild(button01);
-
-    // searchButton 변수에 버튼 엘리먼트 할당
-    searchButton = button01;
-
-    searchButton.addEventListener("click", ()=>{
-        searchData();
-    });
-
-    setTodaySelections();
 }
 
 

@@ -54,12 +54,12 @@ function monthOAC_searchData(){
     let selectMonthValue = monthValue < 10 ? "0" + monthValue : monthValue.toString();
 
     let occuMonth = selectYearValue + '-' + selectMonthValue ;
-    console.log("occuMonth : ", occuMonth);
+    // console.log("occuMonth : ", occuMonth);
     
-    console.log("savedIP : ", savedIP);
-    console.log("savePORT : ", savePORT);
-    console.log("loginId : ", loginId);
-    console.log("loginPw : ", loginPw);
+    // console.log("savedIP : ", savedIP);
+    // console.log("savePORT : ", savePORT);
+    // console.log("loginId : ", loginId);
+    // console.log("loginPw : ", loginPw);
 
 
     fetch("/dataSearch/sendMonth_OAC", { 
@@ -99,7 +99,6 @@ function yearOAC_searchData(){
 
     let occuYear = selectYearValue ;
     // console.log("occuYear : ", occuYear);
-
     
     // console.log("savedIP : ", savedIP);
     // console.log("savePORT : ", savePORT);
@@ -137,23 +136,30 @@ function yearOAC_searchData(){
 }
 
 
+
+
+
+
+
+
 // 기간별 개폐정보
 function dateOAC_searchData(){
         console.log("요기요기");
+        // console.log("selectedKind: ", selectedKind);
+        // console.log("selectedArea: ", selectedArea);
+
         let startYearValue = document.getElementById("startYear") ? document.getElementById("startYear").value : null;
         let startMonth = document.getElementById("startMonth") ? document.getElementById("startMonth").value : null;
         let startMonthValue = startMonth < 10 ? "0" + startMonth : startMonth.toString();
         let startDay = document.getElementById("startDay") ? document.getElementById("startDay").value : null;
         let startDayValue = startDay < 10 ? "0" + startDay : startDay.toString();
 
-    
 
         let endYearValue = document.getElementById("endYear") ? document.getElementById("endYear").value : null;
         let endMonth = document.getElementById("endMonth") ? document.getElementById("endMonth").value : null;
         let endMonthValue = endMonth < 10 ? "0" + endMonth : endMonth.toString();
         let endDay = document.getElementById("endDay") ? document.getElementById("endDay").value : null;
         let endDayValue = endDay < 10 ? "0" + endDay : endDay.toString();
-
 
 
         
@@ -168,34 +174,55 @@ function dateOAC_searchData(){
 
         let startOccuDate = startYearValue + startMonthValue + startDayValue;
         let endOccuDate = endYearValue + endMonthValue + endDayValue;
+        // console.log("startOccuDate : ", startOccuDate);
+        // console.log("endOccuDate : ", endOccuDate);
 
-        // let areaValue = document.getElementById("area").value;
+        let kindValue = document.getElementById("kind").value;
+        // console.log("kindValue : ", kindValue);
+
+        let cmd_num = 0;
+        if(kindValue == 'open'){
+            cmd_num = 1;
+        }
+        // console.log("cmd_num : ", cmd_num);
+
+
+        let areaValue = document.getElementById("area").value;
         // console.log("areaValue : ", areaValue);
 
-        // let kindValue = document.getElementById("kind").value;
-        // console.log("kindValue : ", kindValue);
 
 
         fetch("/dataSearch/sendDate_OAC", { 
             method : "POST", 
             headers: {"Content-Type": "application/json;"}, 
             body : JSON.stringify( {
-                // "startOccuDate": startOccuDate, 
-                // "endOccuDate":endOccuDate,
-                // "areaValue": areaValue, 
-                // "kindValue": kindValue,
                 "serverip" : savedIP,
                 "port" : savePORT,
                 "user_id" : loginId,
                 "user_pw" : loginPw,
-                "query" : "SELECT  log_date, SUBSTRING(CONVERT(VARCHAR(10), log_date, 120), 9, 2), BLOG.gate_cmd FROM TB_CIRCUIT_BREAKER_LOG BLOG LEFT OUTER JOIN dbo.TB_CIRCUIT_BREAKER_CONFIG BCONF ON BLOG.camera_code = BCONF.camera_code WHERE log_date BETWEEN '2024-06-10' AND '2024-06-11' AND BLOG.gate_cmd = 1 AND BCONF.camera_name = 'test1' ORDER BY BCONF.camera_name, BLOG.log_time"
+                // "query" : "SELECT  log_date, SUBSTRING(CONVERT(VARCHAR(10), log_time, 120), 1, 2), BLOG.gate_cmd FROM TB_CIRCUIT_BREAKER_LOG BLOG LEFT OUTER JOIN dbo.TB_CIRCUIT_BREAKER_CONFIG BCONF ON BLOG.camera_code = BCONF.camera_code WHERE log_date BETWEEN '2024-06-10' AND '2024-06-11' AND BLOG.gate_cmd = 1 AND BCONF.camera_name = 'test1' ORDER BY BCONF.camera_name, BLOG.log_time"
+                "query" : "SELECT  log_date, SUBSTRING(CONVERT(VARCHAR(10), log_time, 120), 1, 2), BLOG.gate_cmd FROM TB_CIRCUIT_BREAKER_LOG BLOG LEFT OUTER JOIN dbo.TB_CIRCUIT_BREAKER_CONFIG BCONF ON BLOG.camera_code = BCONF.camera_code WHERE log_date BETWEEN '"+startOccuDate+"' AND '"+endOccuDate+"' AND BLOG.gate_cmd = "+cmd_num+" AND BCONF.camera_name = '"+areaValue+"'"
+            
             } ) 
         })
         .then(resp => resp.json()) // 요청에 대한 응답 객체(response)를 필요한 형태로 파싱
         .then((result) => {
             console.log("result", result );
-    
+            
             var data = result.result;
+            var datalength = data.length;
+            // console.log("datalength", datalength );
+
+
+            // console.log("cmd_num reult: ", cmd_num);
+            if(cmd_num == 1){
+                dateMakeOpenTable(data, datalength);
+            }
+
+
+            if(cmd_num == 0){
+                dateMakeCloseTable(data, datalength);
+            }
     
         }) // 첫 번째 then에서 파싱한 데이터를 이용한 동작 작성
         .catch( err => {

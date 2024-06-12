@@ -629,7 +629,7 @@ public class DataSearchController {
 	public String IAOYearDataForword(
 			@RequestBody String req
 			) {
-		System.out.println("IAOMonthDataForword req : " + req);
+//		System.out.println("IAOMonthDataForword req : " + req);
 		
 		String ipAddress;
 		String urlport;
@@ -642,8 +642,8 @@ public class DataSearchController {
 			Scanner s = new Scanner(is);
 			ipAddress = s.nextLine();
 			urlport = s.nextLine();
-					        System.out.println("openGate ipAddress : "+ ipAddress);
-					        System.out.println("openGate port : "+ urlport);
+//					        System.out.println("openGate ipAddress : "+ ipAddress);
+//					        System.out.println("openGate port : "+ urlport);
 			s.close();
 			is.close();
 			
@@ -657,14 +657,14 @@ public class DataSearchController {
 			String user_pw = jsonObject.getString("user_pw");
 			String query = jsonObject.getString("query");
 			
-			System.out.println("serverip : " + serverip);
-			System.out.println("port : " + port);
-			System.out.println("query : " + query);
-			System.out.println("user_id : " + user_id);
-			System.out.println("user_pw : " + user_pw);
+//			System.out.println("serverip : " + serverip);
+//			System.out.println("port : " + port);
+//			System.out.println("query : " + query);
+//			System.out.println("user_id : " + user_id);
+//			System.out.println("user_pw : " + user_pw);
 			
 			String select_url = "http://"+ipAddress+":"+urlport+"/fnvr/request/query/select"; // 외부 RESTful API의 URL select
-			System.out.println("select_url : "+ select_url);
+//			System.out.println("select_url : "+ select_url);
 			
 			
 			//서버로 전송할 객체 생성
@@ -674,7 +674,7 @@ public class DataSearchController {
 			requestBody.put("user_id", user_id);
 			requestBody.put("user_pw", user_pw);
 			requestBody.put("query", query);
-			System.out.println("cameraCode requestBody : "+ requestBody);
+//			System.out.println("cameraCode requestBody : "+ requestBody);
 			
 			// 요청 헤더 설정
 			HttpHeaders headers = new HttpHeaders();
@@ -686,7 +686,7 @@ public class DataSearchController {
 			// post 요청 보내기
 			String response = restTemplate.postForObject(select_url, requestEntity, String.class);
 			
-			System.out.println("cameraCode response"+ response);
+//			System.out.println("cameraCode response"+ response);
 			
 			return response;
 			
@@ -707,7 +707,7 @@ public class DataSearchController {
 	public String date_cameraForword(
 			@RequestBody String req
 			) {
-		System.out.println("date_cameraForword req : " + req);
+//		System.out.println("date_cameraForword req : " + req);
 		
 		String ipAddress;
 		String urlport;
@@ -720,8 +720,8 @@ public class DataSearchController {
 			Scanner s = new Scanner(is);
 			ipAddress = s.nextLine();
 			urlport = s.nextLine();
-			System.out.println("openGate ipAddress : "+ ipAddress);
-			System.out.println("openGate port : "+ urlport);
+//			System.out.println("openGate ipAddress : "+ ipAddress);
+//			System.out.println("openGate port : "+ urlport);
 			s.close();
 			is.close();
 			
@@ -735,14 +735,14 @@ public class DataSearchController {
 			String user_pw = jsonObject.getString("user_pw");
 			String query = jsonObject.getString("query");
 			
-			System.out.println("serverip : " + serverip);
-			System.out.println("port : " + port);
-			System.out.println("query : " + query);
-			System.out.println("user_id : " + user_id);
-			System.out.println("user_pw : " + user_pw);
+//			System.out.println("serverip : " + serverip);
+//			System.out.println("port : " + port);
+//			System.out.println("query : " + query);
+//			System.out.println("user_id : " + user_id);
+//			System.out.println("user_pw : " + user_pw);
 			
 			String select_url = "http://"+ipAddress+":"+urlport+"/fnvr/request/query/select"; // 외부 RESTful API의 URL select
-			System.out.println("select_url : "+ select_url);
+//			System.out.println("select_url : "+ select_url);
 			
 			
 			//서버로 전송할 객체 생성
@@ -752,7 +752,7 @@ public class DataSearchController {
 			requestBody.put("user_id", user_id);
 			requestBody.put("user_pw", user_pw);
 			requestBody.put("query", query);
-			System.out.println("cameraCode requestBody : "+ requestBody);
+//			System.out.println("cameraCode requestBody : "+ requestBody);
 			
 			// 요청 헤더 설정
 			HttpHeaders headers = new HttpHeaders();
@@ -764,7 +764,7 @@ public class DataSearchController {
 			// post 요청 보내기
 			String response = restTemplate.postForObject(select_url, requestEntity, String.class);
 			
-			System.out.println("cameraCode response"+ response);
+//			System.out.println("cameraCode response"+ response);
 			
 			return response;
 			
@@ -785,7 +785,7 @@ public class DataSearchController {
 	public String IAODateDataForword(
 			@RequestBody String req
 			) {
-		System.out.println("IAODateDataForword req : " + req);
+//		System.out.println("IAODateDataForword req : " + req);
 		
 		String ipAddress;
 		String urlport;
@@ -798,8 +798,8 @@ public class DataSearchController {
 			Scanner s = new Scanner(is);
 			ipAddress = s.nextLine();
 			urlport = s.nextLine();
-			System.out.println("openGate ipAddress : "+ ipAddress);
-			System.out.println("openGate port : "+ urlport);
+//			System.out.println("openGate ipAddress : "+ ipAddress);
+//			System.out.println("openGate port : "+ urlport);
 			s.close();
 			is.close();
 			
@@ -813,14 +813,14 @@ public class DataSearchController {
 			String user_pw = jsonObject.getString("user_pw");
 			String query = jsonObject.getString("query");
 			
-			System.out.println("serverip : " + serverip);
-			System.out.println("port : " + port);
-			System.out.println("query : " + query);
-			System.out.println("user_id : " + user_id);
-			System.out.println("user_pw : " + user_pw);
+//			System.out.println("serverip : " + serverip);
+//			System.out.println("port : " + port);
+//			System.out.println("query : " + query);
+//			System.out.println("user_id : " + user_id);
+//			System.out.println("user_pw : " + user_pw);
 			
 			String select_url = "http://"+ipAddress+":"+urlport+"/fnvr/request/query/select"; // 외부 RESTful API의 URL select
-			System.out.println("select_url : "+ select_url);
+//			System.out.println("select_url : "+ select_url);
 			
 			
 			//서버로 전송할 객체 생성
@@ -830,7 +830,7 @@ public class DataSearchController {
 			requestBody.put("user_id", user_id);
 			requestBody.put("user_pw", user_pw);
 			requestBody.put("query", query);
-			System.out.println("IAODateDataForword requestBody : "+ requestBody);
+//			System.out.println("IAODateDataForword requestBody : "+ requestBody);
 			
 			// 요청 헤더 설정
 			HttpHeaders headers = new HttpHeaders();
@@ -842,7 +842,7 @@ public class DataSearchController {
 			// post 요청 보내기
 			String response = restTemplate.postForObject(select_url, requestEntity, String.class);
 			
-			System.out.println("IAODateDataForword response"+ response);
+//			System.out.println("IAODateDataForword response"+ response);
 			
 			return response;
 			

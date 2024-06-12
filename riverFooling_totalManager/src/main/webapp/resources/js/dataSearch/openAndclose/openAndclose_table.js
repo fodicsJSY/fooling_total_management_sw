@@ -293,10 +293,10 @@ function monthMakeTable(data){
 
 
 function monthOpenData(data, day, camera) {
-    console.log("data", data);
-    console.log("camera", camera);
+    // console.log("data", data);
+    // console.log("camera", camera);
     let dayValue = day < 10 ? "0" + day : day.toString();
-    console.log("dayValue", dayValue);
+    // console.log("dayValue", dayValue);
 
     let filteredData = data.filter(item => {
         let itemCamera = item[0];
@@ -307,20 +307,20 @@ function monthOpenData(data, day, camera) {
         return itemDay == dayValue && itemCamera == camera && itemCmd == '1';
     });
 
-    console.log("filteredData : ", filteredData);
+    // console.log("filteredData : ", filteredData);
 
     // 조건을 만족하는 데이터의 개수를 반환
     let count = filteredData.length;
-    console.log("count : ", count);
+    // console.log("count : ", count);
 
     return count > 0 ? count : "-";
 }
 
 function monthCloseData(data, day, camera) {
-    console.log("data", data);
-    console.log("camera", camera);
+    // console.log("data", data);
+    // console.log("camera", camera);
     let dayValue = day < 10 ? "0" + day : day.toString();
-    console.log("dayValue", dayValue);
+    // console.log("dayValue", dayValue);
 
     let filteredData = data.filter(item => {
         let itemCamera = item[0];
@@ -331,11 +331,11 @@ function monthCloseData(data, day, camera) {
         return itemDay == dayValue && itemCamera == camera && itemCmd == '0';
     });
 
-    console.log("filteredData : ", filteredData);
+    // console.log("filteredData : ", filteredData);
 
     // 조건을 만족하는 데이터의 개수를 반환
     let count = filteredData.length;
-    console.log("count : ", count);
+    // console.log("count : ", count);
 
     return count > 0 ? count : "-";
 }
@@ -459,8 +459,9 @@ function yearMakeTable(data){
 
 
 function yearOpenData(data, month, camera) {
-    console.log("data", data);
-    console.log("camera", camera);
+    // console.log("data", data);
+    // console.log("camera", camera);
+    
 
     let filteredData = data.filter(item => {
         let itemCamera = item[0];
@@ -471,18 +472,18 @@ function yearOpenData(data, month, camera) {
         return itemMonth == month && itemCamera == camera && itemCmd == '1';
     });
 
-    console.log("filteredData : ", filteredData);
+    // console.log("filteredData : ", filteredData);
 
     // 조건을 만족하는 데이터의 개수를 반환
     let count = filteredData.length;
-    console.log("count : ", count);
+    // console.log("count : ", count);
 
     return count > 0 ? count : "-";
 }
 
 function yearCloseData(data, month, camera) {
-    console.log("data", data);
-    console.log("camera", camera);
+    // console.log("data", data);
+    // console.log("camera", camera);
 
     let filteredData = data.filter(item => {
         let itemCamera = item[0];
@@ -493,11 +494,11 @@ function yearCloseData(data, month, camera) {
         return itemMonth == month && itemCamera == camera && itemCmd == '0';
     });
 
-    console.log("filteredData : ", filteredData);
+    // console.log("filteredData : ", filteredData);
 
     // 조건을 만족하는 데이터의 개수를 반환
     let count = filteredData.length;
-    console.log("count : ", count);
+    // console.log("count : ", count);
 
     return count > 0 ? count : "-";
 }
@@ -507,23 +508,27 @@ function yearCloseData(data, month, camera) {
 
 
 
-// 기간별강우 테이블 만들기
-function dateMakeTable(data){
-    tableDataList = data;
+// 기간별강우 열림 테이블 만들기
+function dateMakeOpenTable(data, datalength){
+    console.log("열림");
+    // console.log("테이블 data : ", data);
+    // console.log("테이블 datalength : ", datalength);
+    var tableDataList = data;
 
-    console.log("tableDataList", tableDataList );
+    // console.log("tableDataList", tableDataList );
+    // console.log("tableDataList.length", tableDataList.length );
     // console.log("테이블 생성");
 
 
     let dateList = [];
     
-    for(let i = 0; i < tableDataList.length; i++){
+    for(let i = 0; i < datalength; i++){
         // console.log("tableDataList[i]", tableDataList[i]);
         dateList.push(tableDataList[i][0]);
         // console.log("cameraList", cameraList);
-        }
-        const cameras = [...new Set(dateList)];
-        console.log("cameras : ", cameras);
+    }
+    const searchDate = [...new Set(dateList)];
+    // console.log("searchDate : ", searchDate);
 
     var tableContainer = document.querySelector(".tableContainer");
     tableContainer.innerHTML = ""; // Clear previous data
@@ -557,91 +562,214 @@ function dateMakeTable(data){
     rainfullTable.appendChild(rainfullTbody);
 
 
-    
-        
-    var tr = document.createElement("tr");
-    rainfullTbody.appendChild(tr);
 
-    
-    createCell(tr, "td", "rainfull date", "24년 04월 01일");
         
+    // 중복을 제거한 후에 중복 제거된 값들의 배열을 만듭니다.
+    const uniqueDate= [...new Set(data.map(item => item[0]))];
+    // console.log("uniqueDate: ", uniqueDate);
 
-    for(let j = 0; j<24 ; j ++ ){
-        createCell(tr, "td", "rainfull", "0");
+    for (let j = 0; j < uniqueDate.length; j++) {
+        // console.log("date :", uniqueDate[j]);
+        let tr = document.createElement("tr");
+        rainfullTbody.appendChild(tr);
+    
+        createCell(tr, "td", "rainfull", uniqueDate[j]);
+    
+        for (let k = 0; k < 24; k++) {
+            // console.log("야호");
+    
+            let cellValue = dateOpenData(data, uniqueDate[j], k); // uniqueDate[j]를 전달
+    
+            createCell(tr, "td", "rainfull", cellValue);
+        }
+        let openSum = dateOpenSum(data, uniqueDate[j]);
+        createCell(tr, "td", "rainfull dateSumData", openSum);
     }
-    createCell(tr, "td", "rainfull dateSumData", "12");
 
-
-
-
-
-
-
-
-
-
-
-    // var tr = document.createElement("tr");
-    // rainfullTbody.appendChild(tr);
-
-    // createCell(tr, "td", "rainfull areaName", "24년 03월 26일");
-
-    // for(let i = 0; i<24 ; i++){
-    //     createCell(tr, "td", "rainfull", "0");
-    // }
-    // createCell(tr, "td", "rainfull sumData", "25");
-
-
-    // 데이터 삽입
-    /*
-    tableDataList.forEach(function (item) {    
-        var tr = document.createElement("tr");
-        gateTbody.appendChild(tr);
-        createCell(tr, "td", "gatetd", item.gateName);
-
-        var div1 = document.createElement("div");
-        div1.className = "gateIconBox";
-        tr.appendChild(div1);
-
-        let gateImg =  document.createElement("img");
-        gateImg.className = "gateIcon";
-
-        
-        // console.log("item.gateStatus : ", item.gateStatus );
-        
-
-        if(item.gateStatus == 'close'){
-            gateImg.src = "/resources/img/iconBTN_GateClose.png";
-        }
-        if(item.gateStatus == 'open'){
-            gateImg.src = "/resources/img/iconBTN_GateOpen.png";
-        }
-        div1.appendChild(gateImg);
-        
-        if(item.gateStatus == ''){
-            div1.innerHTML = "-";
-        }
-
-        
-        let signalImg =  document.createElement("img");
-        signalImg.className = "signalIcon";
-
-        // console.log("item.commStatus : ", item.commStatus );
-        if(item.commStatus == 'on'){
-            signalImg.src = "/resources/img/connect-signalOK.png";
-        }
-        if(item.commStatus == 'off'){
-            signalImg.src = "/resources/img/connect-signalNO.png";
-        }
-
-        // createCell(tr, "td", "gatetd", data);
-        createCell(tr, "td", "gatetd gate", div1);
-        createCell(tr, "td", "gatetd", signalImg.outerHTML);
-    });
-    */
 }
 
 
+
+function dateOpenData(data, date, hour) {
+    let dateValue = date.toString();
+    let hourValue = hour < 10 ? "0" + hour : hour.toString();
+
+    let filteredData = data.filter(item => {
+        let itemDate = item[0].toString();
+        let itemhour = item[1];
+        let itemCmd = item[2];
+        
+        return itemDate == dateValue && itemhour == hourValue && itemCmd == '1';
+    });
+
+    // console.log("filteredData : ", filteredData);
+
+    // 조건을 만족하는 데이터의 개수를 반환
+    let count = filteredData.length;
+    // console.log("count : ", count);
+
+    return count > 0 ? count : "-";
+}
+
+
+function dateOpenSum(data, date) {
+    // console.log("data", data);
+    // console.log("camera", camera);
+
+    let filteredData = data.filter(item => {
+        let itemDate = item[0];
+        let itemCmd = item[2];
+
+        // 데이터의 시간, 카메라, 개폐여부가 모두 유효한지 확인하고 조건을 만족하는지 검사
+        return itemDate == date && itemCmd == '1';
+    });
+
+    // console.log("filteredData : ", filteredData);
+
+    // 조건을 만족하는 데이터의 개수를 반환
+    let count = filteredData.length;
+    // console.log("count : ", count);
+
+    return count > 0 ? count : "-";
+}
+
+
+
+
+// 기간별강우 닫힘 테이블 만들기
+function dateMakeCloseTable(data, datalength){
+                // console.log("닫힘");
+    
+    // console.log("테이블 data : ", data);
+    // console.log("테이블 datalength : ", datalength);
+    var tableDataList = data;
+
+    // console.log("tableDataList", tableDataList );
+    // console.log("tableDataList.length", tableDataList.length );
+    // console.log("테이블 생성");
+
+
+    let dateList = [];
+    
+    for(let i = 0; i < datalength; i++){
+        // console.log("tableDataList[i]", tableDataList[i]);
+        dateList.push(tableDataList[i][0]);
+        // console.log("cameraList", cameraList);
+    }
+    const searchDate = [...new Set(dateList)];
+    console.log("searchDate : ", searchDate);
+
+    var tableContainer = document.querySelector(".tableContainer");
+    tableContainer.innerHTML = ""; // Clear previous data
+
+    var div = document.createElement("div");    
+    tableContainer.appendChild(div);
+
+    var rainfullTable = document.createElement("table");
+    rainfullTable.className = "rainfullTable";
+    div.appendChild(rainfullTable);
+
+    var rainfullThead = document.createElement("thead");
+    rainfullThead.className = "rainfullThead";
+    rainfullTable.appendChild(rainfullThead);
+
+    var htr = document.createElement("tr");
+    rainfullThead.appendChild(htr);
+
+    createCell(htr, "th", "rainfull areaName", "날짜");
+
+    for(let i = 0; i<24 ; i++){
+        createCell(htr, "th", "rainfull dayData", i);
+    }
+
+    createCell(htr, "th", "rainfull sum", "계");
+
+
+
+    var rainfullTbody = document.createElement("tbody");
+    rainfullTbody.className = "rainfullTbody";
+    rainfullTable.appendChild(rainfullTbody);
+
+
+
+        
+    // 중복을 제거한 후에 중복 제거된 값들의 배열을 만듭니다.
+    const uniqueDate= [...new Set(data.map(item => item[0]))];
+    // console.log("uniqueDate: ", uniqueDate);
+
+    for (let j = 0; j < uniqueDate.length; j++) {
+        // console.log("date :", uniqueDate[j]);
+        let tr = document.createElement("tr");
+        rainfullTbody.appendChild(tr);
+    
+        createCell(tr, "td", "rainfull", uniqueDate[j]);
+    
+        for (let k = 0; k < 24; k++) {
+            // console.log("야호");
+    
+            let cellValue = dateCloseData(data, uniqueDate[j], k); // uniqueDate[j]를 전달
+    
+            createCell(tr, "td", "rainfull", cellValue);
+        }
+        let closeSum = dateCloseSum(data, uniqueDate[j]);
+        createCell(tr, "td", "rainfull dateSumData", closeSum);
+    }
+
+}
+
+
+
+function dateCloseData(data, date, hour) {
+    // console.log("data", data);
+    // console.log("date", date);
+    let dateValue = date.toString();
+    let hourValue = hour < 10 ? "0" + hour : hour.toString();
+    
+    let filteredData = data.filter(item => {
+        let itemDate = item[0].toString();
+        let itemhour = item[1];
+        let itemCmd = item[2];
+        
+        let total = itemDate == dateValue && itemhour == hourValue && itemCmd == '0'? "진짜진짜" : "없음";
+        // console.log("total", total);
+        
+        return itemDate == dateValue && itemhour == hourValue && itemCmd == '0';
+    });
+
+    // console.log("filteredData : ", filteredData);
+
+    // 조건을 만족하는 데이터의 개수를 반환
+    let count = filteredData.length;
+    // console.log("count : ", count);
+
+    return count > 0 ? count : "-";
+}
+
+
+
+
+
+
+function dateCloseSum(data,date) {
+    // console.log("data", data);
+    // console.log("camera", camera);
+
+    let filteredData = data.filter(item => {
+        let itemDate = item[0];
+        let itemCmd = item[2];
+
+        // 데이터의 시간, 카메라, 개폐여부가 모두 유효한지 확인하고 조건을 만족하는지 검사
+        return itemDate == date && itemCmd == '0';
+    });
+
+    // console.log("filteredData : ", filteredData);
+
+    // 조건을 만족하는 데이터의 개수를 반환
+    let count = filteredData.length;
+    // console.log("count : ", count);
+
+    return count > 0 ? count : "-";
+}
 
 
 
