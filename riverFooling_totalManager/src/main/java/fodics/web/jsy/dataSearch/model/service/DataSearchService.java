@@ -6,7 +6,6 @@ import java.util.Map;
 import fodics.web.jsy.dataSearch.model.dto.Date_flooding;
 import fodics.web.jsy.dataSearch.model.dto.Flooding;
 import fodics.web.jsy.dataSearch.model.dto.Min_flooding;
-import fodics.web.jsy.dataSearch.model.dto.OpenAndClose;
 
 public interface DataSearchService {
 	
