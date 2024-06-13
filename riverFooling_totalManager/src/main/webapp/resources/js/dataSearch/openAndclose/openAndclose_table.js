@@ -75,7 +75,7 @@ function dayMakeTable(data){
         }
 
         // "OPEN" 행 합계
-        let openSum = closeSumData(tableDataList, cameras[i]);
+        let openSum = openSumData(tableDataList, cameras[i]);
         createCell(tr, "td", "rainfull dateSumData", openSum);
 
         var tr3 = document.createElement("tr");
