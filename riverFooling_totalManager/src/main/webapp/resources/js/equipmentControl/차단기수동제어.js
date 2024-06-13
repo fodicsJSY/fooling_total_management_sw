@@ -29,10 +29,11 @@ document.addEventListener("DOMContentLoaded", function() {
     savePORT = getPORT_FromLocalStorage().savePORT;
     // console.log("savePORT : ", savePORT);
     selectBreaker();
-    // forwardBreaker(savedIP);
 
 });
 
+
+let breakerList = [];
 
 function selectBreaker(){
     //"172.16.20.101"
@@ -45,7 +46,7 @@ function selectBreaker(){
                                 "port" : savePORT,
                                 "user_id" : loginId,
                                 "user_pw" : loginPw,
-                                "query" : "SELECT camera_code, status, camera_name, gate_code FROM TB_CIRCUIT_BREAKER_CONFIG",
+                                "query" : "SELECT camera_code, status, camera_name, gate_code FROM TB_CIRCUIT_BREAKER_CONFIG ORDER BY camera_name",
         } )
     })
     .then(resp => resp.json()) // 요청에 대한 응답 객체(response)를 필요한 형태로 파싱
@@ -54,9 +55,10 @@ function selectBreaker(){
 
         var data = result.result
         // console.log("data", data);
-        // forwardBreaker(data)
         breakerMakeTable(data);
-        
+
+        breakerList = result.result;
+                
     }) // 첫 번째 then에서 파싱한 데이터를 이용한 동작 작성
     .catch( err => {
         console.log("err : ", err);
@@ -87,31 +89,6 @@ function selectBreaker(){
 //         // console.log("err : ", err);
 //     }); // 예외 발생 시 처리할 내용을 작성
 // }
-
-
-
-function forwardBreaker(data){
-    console.log("forwardBreaker data", data);
-    //"172.16.20.101"
-    fetch("/equipmentControl/breakerStatus", { 
-        method : "POST", 
-        headers: {"Content-Type": "application/json;"}, 
-        credentials: "include",
-        body : JSON.stringify( {
-                                "data": data
-        } ) 
-    })
-    .then(resp => resp.json()) // 요청에 대한 응답 객체(response)를 필요한 형태로 파싱
-    .then((result) => {
-        // console.log("result", result );
-
-
-    }) // 첫 번째 then에서 파싱한 데이터를 이용한 동작 작성
-    .catch( err => {
-        console.log("err : ", err);
-    }); // 예외 발생 시 처리할 내용을 작성
-}
-
 
 
 
