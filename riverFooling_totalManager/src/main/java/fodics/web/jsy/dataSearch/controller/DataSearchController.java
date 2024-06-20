@@ -58,6 +58,15 @@ public class DataSearchController {
 
 	
 	
+	//임시 메인 페이지 
+//	@GetMapping("/")
+//	public String mainForword(
+//			Model model
+//			){
+//		return "/dataSearch/rainfall";
+//	}
+	
+	
 	
 	
 	//강우데이터 페이지 

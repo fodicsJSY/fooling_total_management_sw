@@ -42,7 +42,8 @@
             <div class="sectionBox01">
                 <div class="listBox">
                     <div class="listTitle">데이터 검색</div>
-                    <div class="listContent"><a href="/dataSearch/rainfall" class="pageFoward nowForward">강우 데이터</a></div>
+                    <div class="listContent"><a href="/" class="pageFoward nowForward">강우 데이터</a></div>
+                    <%-- <div class="listContent"><a href="/dataSearch/rainfall" class="pageFoward nowForward">강우 데이터</a></div> --%>
                     <div class="listContent"><a href="/dataSearch/flooding" class="pageFoward">침수 데이터</a></div>
                     <div class="listContent"><a href="/dataSearch/openAndclose" class="pageFoward">게이트 개폐 정보</a></div>
                 </div>

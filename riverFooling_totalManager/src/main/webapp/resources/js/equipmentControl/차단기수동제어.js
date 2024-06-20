@@ -46,7 +46,7 @@ function selectBreaker(){
                                 "port" : savePORT,
                                 "user_id" : loginId,
                                 "user_pw" : loginPw,
-                                "query" : "SELECT camera_code, status, camera_name, gate_code FROM TB_CIRCUIT_BREAKER_CONFIG ORDER BY camera_name",
+                                "query" : "SELECT camera_code, status, camera_name, gate_code, site_code FROM TB_CIRCUIT_BREAKER_CONFIG ORDER BY camera_name"
         } )
     })
     .then(resp => resp.json()) // 요청에 대한 응답 객체(response)를 필요한 형태로 파싱

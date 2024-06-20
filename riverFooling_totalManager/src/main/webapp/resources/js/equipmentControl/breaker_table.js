@@ -55,7 +55,8 @@ function breakerMakeTable(data){
         saveButton.id = `saveBtn_${i}`; // ID를 데이터의 첫 번째 요소를 이용하여 설정
         saveButton.addEventListener("click", function() {
             // console.log("클릭");
-            saveChanges(data[i][0], data[i][2], i, data[i][3]);
+
+            saveChanges(data[i][0], data[i][2], i, data[i][3], data[i][4]);
         });
         saveCell.appendChild(saveButton);
         tr.appendChild(saveCell);
@@ -257,7 +258,7 @@ function createSelectCell4(row, className, value, cameraName, i) {
 
 
 // 저장 함수 정의
-function saveChanges(camera_code, cameraName, i, gateCode) {
+function saveChanges(camera_code, cameraName, i, gateCode, site_code) {
     // console.log("실행");
     // console.log("camera_code : ", camera_code);
     // console.log("cameraName : ", cameraName);
@@ -324,6 +325,7 @@ function saveChanges(camera_code, cameraName, i, gateCode) {
             // console.log(resCode); // 결과값 출력
     
             if(resCode == 200 ){
+                // addLogData(camera_code, cameraName, gateCode);
                 Swal.fire("저장이 완료되었습니다!").then(() => {
                     // location.reload();
                 });
@@ -358,9 +360,10 @@ function saveChanges(camera_code, cameraName, i, gateCode) {
             // console.log(resCode); // 결과값 출력
     
             if(resCode == 200 ){
-                Swal.fire("저장이 완료되었습니다!").then(() => {
-                    // location.reload();
-                });
+                addLogData(camera_code, cameraName, value1, site_code);
+                // Swal.fire("저장이 완료되었습니다!").then(() => {
+                //     location.reload();
+                // });
             }else{
                 Swal.fire("저장에 실패했습니다.");
             }

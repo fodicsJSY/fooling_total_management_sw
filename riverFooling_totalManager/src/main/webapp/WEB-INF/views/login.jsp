@@ -74,10 +74,18 @@
         </section>
     </main> --%>
 <header>
+    <div>
+        <div style="width: 150px;"></div>
+    </div>
     <div class="headContent">
         <div><a href="/"><div class="logoBox"><img class="logo" src="/resources/img/logo.png" alt=""></a></div></div>
 
     </div>
+    <%-- 전광판 페이지 이동 시작(나중에 헤더에도 만들 것) --%>
+    <div>
+        <button type="button" class="settingButton" id="openDustmomoBtn">dustmomo</button>
+    </div>
+    <%-- 전광판 페이지 이동 끝(나중에 헤더에도 만들 것) --%>
 </header>
 <hr>
 <main>
@@ -152,6 +160,7 @@
 
     <script src="/resources/js/login.js"></script>
     <script src="/resources/js/dbSetting.js"></script>
+    <script src="/resources/js/dustmomo.js"></script>
     <%-- <script src="/resources/js/modal.js"></script> --%>
 </body>
 </html>

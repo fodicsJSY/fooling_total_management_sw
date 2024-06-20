@@ -27,10 +27,14 @@
         </div>
     </div>
     <div>
+        <button type="button" class="settingButton" id="openDustmomoBtn">dustmomo</button>
+    </div>
+    <div>
         <button type="button" class="setBtn" id="settingBtn">설정</button>
     </div>
 </header>
     <script src="/resources/js/header.js"></script>
     <script src="/resources/js/dbSetting.js"></script>
+    <script src="/resources/js/dustmomo.js"></script>
 </body>
 </html>

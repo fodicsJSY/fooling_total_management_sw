@@ -102,7 +102,7 @@ function yearOAC_searchData(){
     
     // console.log("savedIP : ", savedIP);
     // console.log("savePORT : ", savePORT);
-    // console.log("loginId : ", loginId);
+    // console.log("loginId : ", loginId);c
     // console.log("loginPw : ", loginPw);
 
 

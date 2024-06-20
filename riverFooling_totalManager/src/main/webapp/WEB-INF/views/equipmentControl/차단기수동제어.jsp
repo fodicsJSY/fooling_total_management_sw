@@ -37,7 +37,7 @@
                 <div class="listBox">
                     <div class="listTitle">장비제어</div>
                     <div class="listContent"><a href="/equipmentControl/차단기수동제어" class="pageFoward nowForward">차단기</a></div>
-                    <div class="listContent"><a href="/equipmentControl/displayManagement" class="pageFoward">전광판</a></div>
+                    <%-- <div class="listContent"><a href="/equipmentControl/displayManagement" class="pageFoward">전광판</a></div> --%>
                 </div>
             </div>
             <div class="sectionBox02">
@@ -188,6 +188,7 @@
     </script>
     <script src="/resources/js/equipmentControl/차단기수동제어.js"></script>
     <script src="/resources/js/date.js"></script>
+    <script src="/resources/js/equipmentControl/breakerLog.js"></script>
     <script src="/resources/js/equipmentControl/breaker_table.js"></script>
     <script src="/resources/js/login.js"></script>
     <script src="/resources/js/dbSetting.js"></script>

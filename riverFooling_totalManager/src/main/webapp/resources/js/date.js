@@ -13,6 +13,7 @@
     // 현재 시간을 얻어옴
     let hours = currentDate.getHours().toString().padStart(2, "0");
     let minutes = currentDate.getMinutes().toString().padStart(2, "0");
+    let secounds = currentDate.getSeconds().toString().padStart(2, "0");
 
     //날짜+시간
     var tmFc;
